@@ -9,6 +9,8 @@ glossary OFF (no respelling unless --glossary is given); voices are found by sho
 v1.3 (clarified 2026-10-15): NO default cast - only the host defaults (Carter). --guest/--guest2 are required for the roles the script uses; run_episode.ps1 / pick_cast.py choose them at random from the pool and write <Dir>\\cast.json.
 audio.cpp runs at IDLE priority; needs the GPU (Vulkan device 0 = RX 7900 XT in audio.cpp numbering), ~12 GB, Ollama must be empty."""
 import argparse, json, os, re, sys, time, subprocess, glob
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from md_clean import clean_lines   # v1.4: strip markdown marks (*x*, **x**, _x_, `x`, leading #/-/>) from the TEXT only
 import numpy as np, soundfile as sf
 ROOT = os.environ.get("PODCAST_ROOT", r"C:\grok\podcast"); B = os.path.join(ROOT, "tests", "vv7b_cpp")
 CLI = os.path.join(B, "bin", "audiocpp_cli.exe"); MODEL = os.path.join(B, "models", "vibevoice-7b-q8_0.gguf")
@@ -44,7 +46,7 @@ def clean(t):
     elif a.pace == "sentence": t = re.sub(r"(?<!\.)([.?!]) ", r"\1.. ", t)
     elif a.pace == "all": t = re.sub(r"(?<!\.)([.?!,]) ", r"\1.. ", t)
     return t
-lines = [l for l in json.load(open(a.script, encoding="utf-8-sig")) if l.get("text")]
+lines = clean_lines([l for l in json.load(open(a.script, encoding="utf-8-sig")) if l.get("text")])[0]
 chunks, cur, n = [], [], 0
 for l in lines:          # chunks end on turn boundaries
     w = len(l["text"].split())

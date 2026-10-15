@@ -1,0 +1,149 @@
+{
+ "_doc": "v1.3 voice registry. f0 = voice_f0.json (7B, 3-speaker). credit = line added to notes + chapters.txt by post_episode.ps1 when the voice is in the cast. Blocked voices are refused by vv7b_generate.py / pick_cast.py.",
+ "voices": {
+  "Carter": {
+   "file": "VibeVoice-main/demo/voices/en-Carter_man.wav",
+   "gender": "M",
+   "accent": "US",
+   "source": "VibeVoice demo voice (license not verified)",
+   "credit": null
+  },
+  "Frank": {
+   "file": "VibeVoice-main/demo/voices/en-Frank_man.wav",
+   "gender": "M",
+   "accent": "US",
+   "source": "VibeVoice demo voice (license not verified)",
+   "credit": null
+  },
+  "Clara": {
+   "file": "voices_extra/en-Clara_woman.wav",
+   "gender": "F",
+   "accent": "US (presumed)",
+   "source": "LibriTTS-R dev-clean speaker 84",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Clara is synthesized from a reference recording of LibriTTS-R speaker 84 (Y. Koizumi et al., \"LibriTTS-R: A Restored Multi-Speaker Text-to-Speech Corpus\", Interspeech 2023; CC BY 4.0, https://www.openslr.org/141/), derived from public-domain LibriVox recordings."
+  },
+  "Isla": {
+   "file": "voices_extra/en-Isla_woman.wav",
+   "gender": "F",
+   "accent": "Scottish (West Dumfries)",
+   "source": "VCTK 0.92 speaker p234",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Isla is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p234; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645)."
+  },
+  "Marcus": {
+   "file": "voices_extra/en-Marcus_man.wav",
+   "gender": "M",
+   "accent": "US (presumed)",
+   "source": "LibriTTS-R dev-clean speaker 2086",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Marcus is synthesized from a reference recording of LibriTTS-R speaker 2086 (Y. Koizumi et al., \"LibriTTS-R: A Restored Multi-Speaker Text-to-Speech Corpus\", Interspeech 2023; CC BY 4.0, https://www.openslr.org/141/), derived from public-domain LibriVox recordings."
+  },
+  "Declan": {
+   "file": "voices_extra/en-Declan_man.wav",
+   "gender": "M",
+   "accent": "Irish (Dublin)",
+   "source": "VCTK 0.92 speaker p245",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Declan is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p245; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645)."
+  },
+  "Willa": {
+   "file": "voices_extra/en-Willa_woman.wav",
+   "gender": "F",
+   "accent": "American (San Francisco)",
+   "source": "VCTK 0.92 speaker p294",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Willa is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p294; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645).",
+   "status": "added to the pool 2026-10-15 (Thomas, candidate batch; may be cut later); F0 provisional from one 7B test line"
+  },
+  "Zara": {
+   "file": "voices_extra/en-Zara_woman.wav",
+   "gender": "F",
+   "accent": "South African (Cape Town)",
+   "source": "VCTK 0.92 speaker p314",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Zara is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p314; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645).",
+   "status": "added to the pool 2026-10-15 (Thomas, candidate batch; may be cut later); F0 provisional from one 7B test line"
+  },
+  "Imogen": {
+   "file": "voices_extra/en-Imogen_woman.wav",
+   "gender": "F",
+   "accent": "British (England)",
+   "source": "VCTK 0.92 speaker s5",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Imogen is synthesized from a reference recording from the CSTR VCTK Corpus (speaker s5; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645).",
+   "status": "added to the pool 2026-10-15 (Thomas, candidate batch; may be cut later); F0 provisional from one 7B test line"
+  },
+  "Elliot": {
+   "file": "voices_extra/en-Elliot_man.wav",
+   "gender": "M",
+   "accent": "English (Cumbria)",
+   "source": "VCTK 0.92 speaker p227",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Elliot is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p227; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645).",
+   "status": "added to the pool 2026-10-15 (Thomas, candidate batch; may be cut later); F0 provisional from one 7B test line"
+  },
+  "Hugh": {
+   "file": "voices_extra/en-Hugh_man.wav",
+   "gender": "M",
+   "accent": "English (Newcastle)",
+   "source": "VCTK 0.92 speaker p286",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Hugh is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p286; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645).",
+   "status": "added to the pool 2026-10-15 (Thomas, candidate batch; may be cut later); F0 provisional from one 7B test line"
+  },
+  "Lachlan": {
+   "file": "voices_extra/en-Lachlan_man.wav",
+   "gender": "M",
+   "accent": "Australian (Sydney)",
+   "source": "VCTK 0.92 speaker p326",
+   "license": "CC BY 4.0",
+   "credit": "Voice credit: the voice of Lachlan is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p326; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645).",
+   "status": "added to the pool 2026-10-15 (Thomas, candidate batch; may be cut later); F0 provisional from one 7B test line"
+  },
+  "Maya": {
+   "file": "VibeVoice-main/demo/voices/en-Maya_woman.wav",
+   "gender": "F",
+   "accent": "US",
+   "source": "VibeVoice demo voice (license not verified)",
+   "credit": null,
+   "status": "EXCLUDED from the random guest pool 2026-10-15 (Thomas: sounds artificial); explicit -Guests override only, with a warning. Earlier: valid for other shows; passed the 7B test 2026-10-15 (WER 0, F0 +3.8%, no noise); used in Uploaded Intelligence ep1"
+  },
+  "Samuel": {
+   "file": "VibeVoice-main/demo/voices/in-Samuel_man.wav",
+   "gender": "M",
+   "accent": "Indian English",
+   "source": "VibeVoice demo voice",
+   "credit": null,
+   "status": "allowed, low priority (pick weight 0.25); 7B F0 ~132 Hz = same as Carter, so the F0 rule excludes him next to Carter"
+  }
+ },
+ "blocked": {
+  "Alice": "never used (v1.3)",
+  "Mary": "background music in the reference clip",
+  "Thomas": "no personal voice clone"
+ },
+ "host_default": "Carter",
+ "pool": {
+  "guests": [
+   "Frank",
+   "Clara",
+   "Isla",
+   "Marcus",
+   "Declan",
+   "Willa",
+   "Zara",
+   "Imogen",
+   "Elliot",
+   "Hugh",
+   "Lachlan"
+  ],
+  "low_priority": [
+   "Samuel"
+  ],
+  "excluded": {
+   "Maya": "excluded from the random pool 2026-10-15 (Thomas: sounds artificial); entry and F0 data kept; usable only via explicit -Guests override (pick_cast.py warns)"
+  },
+  "_doc": "v1.3 (clarified 2026-10-15): NO default cast. Only the host is fixed (Carter unless Thomas says otherwise). Guests are picked at random per episode by pick_cast.py from this pool (Frank, Clara, Isla, Marcus, Declan, Willa, Zara, Imogen, Elliot, Hugh, Lachlan; Samuel weight 0.25; Maya excluded 15 Oct per Thomas, override only), respecting script gender and a >= 12 Hz F0 gap to host and to the other guest. Willa..Lachlan added 15 Oct (VCTK, CC BY 4.0, credit auto-added)."
+ }
+}

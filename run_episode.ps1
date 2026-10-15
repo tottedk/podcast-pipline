@@ -20,6 +20,8 @@ if (-not (Test-Path "$W\cast.json")) {
 if (-not (Test-Path "$W\cast.json")) { St 'ABORT cast pick failed (see chain.log)'; exit 4 }
 $cj = gc "$W\cast.json" -Raw | ConvertFrom-Json; $HostVoice = $cj.host; $GuestVoice = $cj.guest; $Guest2Voice = $cj.guest2
 St "cast: host=$HostVoice guest=$GuestVoice guest2=$Guest2Voice mode=$($cj.mode) pick_seed=$($cj.seed) warnings=$($cj.warnings -join '; ')"
+# --- v1.4: strip markdown marks (*x*, **x**, _x_, `x`, leading #/-/>) from the segment scripts BEFORE TTS (in place; <seg>.pre_md.json saved only if something changed; speaker field untouched)
+foreach ($sj in (gci "$W\seg??.json")) { $mo = & "$Root\venv_vv\Scripts\python.exe" (Tool 'md_clean.py') $sj.FullName 2>&1 | Out-String; Add-Content "$W\chain.log" $mo.Trim() }
 while (((Invoke-RestMethod http://localhost:11434/api/ps -EA SilentlyContinue).models).Count -gt 0) { St 'waiting for Ollama to be empty'; Start-Sleep 15 }
 & powershell -ExecutionPolicy Bypass -File (Tool 'render7b.ps1') -Dir $W -HostVoice $HostVoice -Tempo $Tempo *> "$W\render.log"
 St "step=TTS done $((gc $W\render.log | sls SEGDONE).Count) segs"

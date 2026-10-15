@@ -3,6 +3,9 @@ Usage: python write_script.py notes.txt script.json [--model gemma4:26b-a4b-it-q
 The model is unloaded afterwards (keep_alive=0) so VRAM is freed for gaming.
 """
 import argparse, json, re, sys, time, urllib.request
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from md_clean import clean_lines   # v1.4: strip markdown marks (*x*, **x**, _x_, `x`, leading #/-/>) from the TEXT only
 
 ap = argparse.ArgumentParser()
 ap.add_argument("notes"); ap.add_argument("out")
@@ -49,6 +52,8 @@ for attempt in range(3):
         print(f"attempt {attempt+1} failed: {e}", file=sys.stderr)
         if attempt == 2: raise
 lines = [{"speaker": "Guest" if str(d.get("speaker","")).lower().startswith("g") else "Host", "text": d["text"].strip()} for d in data if d.get("text")]
+lines, nmd = clean_lines(lines)   # v1.4: markdown marks out of the spoken text
+if nmd: print(f"md_clean: {nmd} line(s) had markdown marks removed")
 json.dump(lines, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 tps = r.get("eval_count", 0) / max(r.get("eval_duration", 1) / 1e9, 1e-9)
 print(f"Wrote {len(lines)} lines to {a.out} | {r.get('eval_count')} tokens @ {tps:.1f} tok/s | total {time.time()-t:.1f}s | model unloaded")

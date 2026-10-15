@@ -5,6 +5,8 @@ Defaults unchanged after the 2026-10-13 A/B (cfg 1.3, 10 steps, '...' pace, orig
 clean refs / cfg 1.5-1.8 / 20 steps / no '...'). Artifacts are handled downstream by qc_vv.py (redo + pause gate). Per-chunk wavs are kept in <out>.chunks/ so qc_vv.py can trigger --redo of single chunks.
 """
 import argparse, json, os, re, sys, time, glob, subprocess
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from md_clean import clean_lines   # v1.4: strip markdown marks (*x*, **x**, _x_, `x`, leading #/-/>) from the TEXT only
 import numpy as np, torch, soundfile as sf
 from vibevoice.modular.modeling_vibevoice_inference import VibeVoiceForConditionalGenerationInference
 from vibevoice.processor.vibevoice_processor import VibeVoiceProcessor
@@ -59,7 +61,7 @@ def clean(t):
     elif a.pace == "all": t = re.sub(r"(?<!\.)([.?!,]) ", r"\1.. ", t)
     return t
 
-lines = [l for l in json.load(open(a.script, encoding="utf-8")) if l.get("text")]
+lines = clean_lines([l for l in json.load(open(a.script, encoding="utf-8")) if l.get("text")])[0]
 chunks, cur, n = [], [], 0
 for l in lines:
     w = len(l["text"].split())
