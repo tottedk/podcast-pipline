@@ -1,0 +1,31 @@
+{
+  "_readme": "vram_free.json (v1.5). apps = GPU-hungry apps vram_free.ps1 -Free may close GRACEFULLY (WM_CLOSE to all their windows / or the app's own shutdown command). protected = never touched, always wins over apps. Edit 'enabled' to switch single apps off. Nothing here is ever killed unless -Force is given on the command line (and then only what did not close by itself).",
+  "idle_minutes": 20,
+  "scheduled_min_idle_minutes": 10,
+  "night_window": { "start": "00:30", "end": "07:00" },
+  "scheduled_enabled": true,
+  "foreground_guard_unless_idle_minutes": 0,
+  "wait_seconds": 20,
+  "settle_seconds": 10,
+  "log_dir": "C:\\grok\\podcast\\hwlogs",
+  "game_path_patterns": ["*\\steamapps\\common\\*", "*\\Games\\*", "*\\Riot Games\\*", "*\\EA Games\\*"],
+  "apps": [
+    { "name": "Brave",    "enabled": true, "processes": ["brave"],  "close": "window", "restart_args": "--restore-last-session" },
+    { "name": "Chrome",   "enabled": true, "processes": ["chrome"], "close": "window", "restart_args": "--restore-last-session" },
+    { "name": "Edge",     "enabled": true, "processes": ["msedge"], "close": "window", "restart_args": "--restore-last-session" },
+    { "name": "Steam",    "enabled": true, "processes": ["steam", "steamwebhelper"], "close": "command", "command_args": "-shutdown", "restart_args": "-silent" },
+    { "name": "Stremio",  "enabled": true, "processes": ["stremio"], "close": "window" },
+    { "name": "VLC",      "enabled": true, "processes": ["vlc"], "close": "window" },
+    { "name": "RadeonSoftware (UI only)", "enabled": true, "processes": ["RadeonSoftware"], "close": "window" },
+    { "name": "Teams",    "enabled": true, "processes": ["ms-teams"], "close": "window" },
+    { "name": "LM Studio","enabled": true, "processes": ["LM Studio"], "close": "window" },
+    { "name": "Phone Link (needs -Force: no window)", "enabled": true, "processes": ["PhoneExperienceHost", "YourPhoneAppProxyHost"], "close": "force_only" }
+  ],
+  "protected": [
+    "Grok Bot", "grok", "node", "tailscale", "tailscaled", "cloudflared", "ngrok", "rustdesk", "anydesk", "teamviewer", "parsec", "sshd", "ssh",
+    "explorer", "dwm", "csrss", "winlogon", "wininit", "services", "lsass", "svchost", "fontdrvhost", "sihost", "taskhostw", "ctfmon", "SearchHost", "StartMenuExperienceHost", "ShellExperienceHost", "TextInputHost", "ApplicationFrameHost", "SystemSettings", "RuntimeBroker", "WidgetBoard", "Widgets", "msedgewebview2",
+    "hwmon", "HWiNFO64", "HWiNFO64Launcher", "ollama", "ollama app", "ollama_llama_server", "python", "pythonw", "audiocpp_cli", "ffmpeg", "powershell", "pwsh", "cmd", "conhost", "WindowsTerminal", "wt", "git", "code", "cursor",
+    "AMDRSServ", "AMDRSSrcExt", "cncmd", "AMDNoiseSuppression", "RadeonSoftware_service", "steamservice",
+    "Battle.net", "Agent", "Blizzard Update Agent", "lghub_agent", "lghub_system_tray", "lghub", "EpicGamesLauncher", "OneDrive", "iCUE", "Corsair.Service"
+  ]
+}

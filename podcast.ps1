@@ -22,6 +22,7 @@ param(
   [string]$Glossary = "",      # v1.3: respellings OFF by default (empty_glossary.json); opt in with -Glossary glossary.json
   [double]$AfftdnNr = 0,       # v1.3: afftdn OFF by default (old chain nr=10); 4 = soft
   [double]$DeEss = 0.4, [double]$Presence = 1.5,   # v1.3 post chain: de-esser intensity, 3 kHz bell dB (0 = off)
+  [switch]$Scheduled,          # v1.5: nightly run -> vram_free.ps1 -Free -Scheduled first (guarded, graceful; also env PODCAST_SCHEDULED=1)
   [switch]$NoHwMonitor         # skip the hardware logger (hwlogs\; own HwMon / LibreHardwareMonitor, fallback HWiNFO VSB)
 )
 $ErrorActionPreference = "Continue"   # native stderr (warnings) must not abort
@@ -29,6 +30,7 @@ $root = $PSScriptRoot
 if (-not $Glossary) { $Glossary = "$root\empty_glossary.json" }   # v1.3
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 $sw = [Diagnostics.Stopwatch]::StartNew()
+if (($Scheduled -or $env:PODCAST_SCHEDULED -eq '1') -and (Test-Path "$root\vram_free.ps1")) { & powershell -NoProfile -ExecutionPolicy Bypass -File "$root\vram_free.ps1" -Free -Scheduled 2>&1 | Out-String | Write-Host }   # v1.5: free VRAM for scheduled runs only
 $Out = [IO.Path]::GetFullPath((Join-Path (Get-Location) $Out))
 $base = [IO.Path]::ChangeExtension($Out, $null).TrimEnd('.')
 $json = if ($Script) { $Script } else { "$base.script.json" }

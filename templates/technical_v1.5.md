@@ -1,0 +1,13 @@
+# Technical template
+**Version 1.5 - 2026-10-15** = v1.4 + nightly VRAM freeing. Everything not listed here is as in `technical_v1.4.md` / `technical_v1.3.md` (unedited).
+
+## v1.5 change: vram_free.ps1 (+ vram_free.json)
+- **Why:** the desktop holds ~4-6 GB of the 7900 XT's 20 GB (browsers, Steam web helper, Radeon UI, Stremio/VLC, Teams...), so 14B+ LLMs and the FLUX/TTS steps spill. For the nightly render these apps can be closed; in the evening they must not be.
+- **Modes:** `-Report` (default; per-process dedicated GB, config status, idle/foreground/audio/fullscreen state), `-Free` (graceful close: WM_CLOSE to all visible windows, Steam via `steam.exe -shutdown`; waits `wait_seconds`; never kills unless `-Force`, and then only selected apps that did not exit), `-Restore` (relaunch what the last -Free closed, from `hwlogs\vram_free_closed.json`), `-Check` (render/LLM job running or imminent? exit 3 = yes; and would -Free be allowed now). `-WhatIf`/`-DryRun` lists what would be closed, closes nothing.
+- **Gate (live -Free):** night run = user idle >= 20 min AND local time 00:30-07:00; `-Scheduled` (or env `PODCAST_SCHEDULED=1`) = `scheduled_enabled` AND idle >= 10 min; `-IgnoreIdle` = explicit manual override of idle/window only.
+- **Always-on guards:** fullscreen window in the foreground / Windows busy-presentation-D3D-fullscreen state / a game running from a game path -> close nothing; per app: skip if it owns the foreground window (child processes included), has an ACTIVE audio session (Core Audio, all render devices; browser child processes included), is protected, or has no visible window (tray/background -> needs -Force). Fail-safe: unknown audio/idle state blocks.
+- **Never touched (protected list):** Grok Bot app and agent-connection tools, explorer/dwm/csrss/shell hosts, WebView2 hosts, hwmon/HWiNFO, ollama, python/audio.cpp/ffmpeg/powershell, Radeon driver/service/overlay-extension processes, Battle.net/Epic/G Hub/OneDrive/iCUE, steamservice.
+- **Closes (config `apps`):** Brave, Chrome, Edge, Steam (+webhelper), Stremio, VLC, Radeon Software UI, Teams, LM Studio, Phone Link (the last needs -Force). Edit `enabled` per app.
+- **Log:** `hwlogs\vram_free_<date>.log` (dedicated VRAM before/after, what was closed/skipped and why).
+- **Hook:** `run_episode.ps1` and `podcast.ps1` accept `-Scheduled` (or env `PODCAST_SCHEDULED=1`) and then call `vram_free.ps1 -Free -Scheduled` before the Ollama/TTS steps; without it nothing changes (manual runs at the PC). The nightly launcher should pass `-Scheduled`.
+- **Not hooked:** no automatic restore after the render (run `vram_free.ps1 -Restore` in the morning if wanted).

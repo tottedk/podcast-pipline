@@ -4,7 +4,7 @@ Start it detached and poll STATUS.txt with short calls:
 Cast: NO default cast; host = Carter unless -HostVoice. Guests are picked at random from the pool (pick_cast.py; seed logged to cast.json, STATUS.txt and the notes). -GuestGenders "M,F" = script wants Guest male, Guest2 female. -Guests "Marcus,Isla" overrides. -CastSeed N reproduces a pick. An existing <Dir>\cast.json is reused (resume).
 Needs in <Dir>: segNN.json, intro.wav, sting.wav, outro.wav, <Ep>.chapters.in.json; in <BgDir>: prompts.json + backgrounds.json.  #>
 param([Parameter(Mandatory)][string]$Dir, [Parameter(Mandatory)][string]$Ep, [Parameter(Mandatory)][string]$BgDir, [string]$FrameSuffix = "_ep", [string]$Title = "",
-  [string]$HostVoice = "Carter", [string]$Guests = "", [string]$GuestGenders = "", [int]$CastSeed = 0, [double]$Tempo = 0.93, [double]$SegGap = 0.4, [double]$StingPad = 0, [string]$Root = "C:\grok\podcast")
+  [string]$HostVoice = "Carter", [string]$Guests = "", [string]$GuestGenders = "", [int]$CastSeed = 0, [double]$Tempo = 0.93, [double]$SegGap = 0.4, [double]$StingPad = 0, [string]$Root = "C:\grok\podcast", [switch]$Scheduled)
 $ErrorActionPreference = 'Continue'; (Get-Process -Id $PID).PriorityClass = 'Idle'; cd $Root
 $W = if ([IO.Path]::IsPathRooted($Dir)) { $Dir } else { Join-Path $Root $Dir }; $tpl = Split-Path $MyInvocation.MyCommand.Path
 function Tool($n) { if (Test-Path "$Root\$n") { "$Root\$n" } else { "$tpl\$n" } }
@@ -22,6 +22,8 @@ $cj = gc "$W\cast.json" -Raw | ConvertFrom-Json; $HostVoice = $cj.host; $GuestVo
 St "cast: host=$HostVoice guest=$GuestVoice guest2=$Guest2Voice mode=$($cj.mode) pick_seed=$($cj.seed) warnings=$($cj.warnings -join '; ')"
 # --- v1.4: strip markdown marks (*x*, **x**, _x_, `x`, leading #/-/>) from the segment scripts BEFORE TTS (in place; <seg>.pre_md.json saved only if something changed; speaker field untouched)
 foreach ($sj in (gci "$W\seg??.json")) { $mo = & "$Root\venv_vv\Scripts\python.exe" (Tool 'md_clean.py') $sj.FullName 2>&1 | Out-String; Add-Content "$W\chain.log" $mo.Trim() }
+# --- v1.5: nightly/scheduled runs only (-Scheduled or env PODCAST_SCHEDULED=1): free GPU VRAM by closing configured GPU-hungry apps GRACEFULLY (vram_free.ps1 -Free -Scheduled; guarded: user idle, foreground, audio, fullscreen; never kills; log in hwlogs\vram_free_<date>.log). Manual runs while Thomas is at the PC do nothing here.
+if ($Scheduled -or $env:PODCAST_SCHEDULED -eq '1') { $vf = Tool 'vram_free.ps1'; if (Test-Path $vf) { $vo = & powershell -NoProfile -ExecutionPolicy Bypass -File $vf -Free -Scheduled 2>&1 | Out-String; Add-Content "$W\chain.log" $vo.Trim() } }
 while (((Invoke-RestMethod http://localhost:11434/api/ps -EA SilentlyContinue).models).Count -gt 0) { St 'waiting for Ollama to be empty'; Start-Sleep 15 }
 & powershell -ExecutionPolicy Bypass -File (Tool 'render7b.ps1') -Dir $W -HostVoice $HostVoice -Tempo $Tempo *> "$W\render.log"
 St "step=TTS done $((gc $W\render.log | sls SEGDONE).Count) segs"

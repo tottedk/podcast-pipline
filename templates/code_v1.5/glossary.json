@@ -1,0 +1,24 @@
+{
+ "_doc": "Hard terms: TTS gets the respelling (vv_generate.py --glossary), subtitles/script keep the original. qc_vv.py checks each term is recognised (original or respelling, fuzzy).",
+ "terms": {
+  "Sisyphean": "sis-ih-FEE-un",
+  "neocameralism": "neo-CAM-er-al-ism",
+  "neocameral": "neo-CAM-er-al",
+  "Moldbug": "Mold bug",
+  "Hoppe": "Hoppa",
+  "usufruct": "YOO-zoo-fruct",
+  "Hobbesian": "HOB-zee-an",
+  "Huguenots": "HYOO-guh-nots",
+  "Hajnal": "HIGH-nal",
+  "Oankali": "oh-an-KAH-lee",
+  "Schumpeter": "SHOOM-payter",
+  "Slobodian": "slow-BOH-dee-an",
+  "Sandifer": "SAN-dih-fer",
+  "Noys": "Noyce",
+  "accelerationism": "accelerationism",
+  "Heidegger": "HIGH-degger",
+  "Dasein": "DAH-zine",
+  "Adorno": "a-DOR-no",
+  "Byung-Chul": "byung chool"
+ }
+}
