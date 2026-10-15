@@ -1,0 +1,15 @@
+{
+ "samples": 23,
+ "vram_baseline_mb": 5691,
+ "vram_peak_mb": 18813,
+ "hotspot_max_c": 90.0,
+ "hotspot_avg_c": 73.1,
+ "core_max_c": 69.0,
+ "memjunction_max_c": 94.0,
+ "power_max_w": 336.0,
+ "power_avg_w": 164.9,
+ "load_avg_pct": 42.0,
+ "cpu_load_avg_pct": 16.9,
+ "csv": "C:\\grok\\podcast\\hwlogs\\shootout_gpt-oss_20b_20261015_201854.csv",
+ "vram_peak_delta_mb": 13122
+}

@@ -1,0 +1,13 @@
+START qwen3.8:27b-q4_K_M 19:44:58
+END qwen3.8:27b-q4_K_M exit 0 19:53:04
+START gpt-oss:20b 19:53:04
+END gpt-oss:20b exit 0 19:59:27
+START mistral-small3.2:24b 19:59:27
+END mistral-small3.2:24b exit 0 20:06:44
+START muse-glimmer:30b-q4_K_M 20:06:44
+END muse-glimmer:30b-q4_K_M exit 0 20:15:43
+START gemma4:31b-it-qat 20:15:43
+END gemma4:31b-it-qat exit 0 20:27:36
+START qwen3.6:35b-a3b-q4_K_M 20:27:36
+END qwen3.6:35b-a3b-q4_K_M exit 0 20:41:02
+ALLDONE

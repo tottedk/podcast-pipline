@@ -1,0 +1,338 @@
+[
+ {
+  "model": "gemma4:31b-it-qat",
+  "quant": "QAT int4 (dense 31B)",
+  "size_gb": 18.01,
+  "vram_gb": 16.57,
+  "gpu_pct": 92.0,
+  "load_s": 23.6,
+  "ttft_warm_s": 2.79,
+  "tok_s_write": 4.3,
+  "tok_s_median": 4.8,
+  "ttft_write_s": 30.02,
+  "prompt_tok_s": 198.0,
+  "vram_peak_mb": 19845,
+  "vram_base_mb": 5630,
+  "hotspot_max_c": 102.0,
+  "power_max_w": 291.0,
+  "scores": {
+   "write": 3.5,
+   "summ": 4.75,
+   "da": 4.6,
+   "json": 5.0,
+   "code": 5.0
+  },
+  "auto": {
+   "write": 3.0,
+   "summ": 5,
+   "json": 5.0,
+   "code": 5.0,
+   "da": 5
+  },
+  "judge": {
+   "da": 4.2,
+   "write": 4,
+   "summ": 4.5
+  },
+  "total": 22.85,
+  "words_write": 1065,
+  "json_valid": 10,
+  "json_correct": 10,
+  "code_pass": 20,
+  "unloaded": true
+ },
+ {
+  "model": "qwen3.8:27b-q4_K_M",
+  "quant": "Q4_K_M (dense 27B)",
+  "size_gb": 16.26,
+  "vram_gb": 16.26,
+  "gpu_pct": 100.0,
+  "load_s": 32.1,
+  "ttft_warm_s": 2.55,
+  "tok_s_write": 4.9,
+  "tok_s_median": 5.5,
+  "ttft_write_s": 42.56,
+  "prompt_tok_s": 138.0,
+  "vram_peak_mb": 19681,
+  "vram_base_mb": 6669,
+  "hotspot_max_c": 92.0,
+  "power_max_w": 292.0,
+  "scores": {
+   "write": 3.5,
+   "summ": 4.5,
+   "da": 4.75,
+   "json": 5.0,
+   "code": 5.0
+  },
+  "auto": {
+   "write": 3.5,
+   "summ": 4.5,
+   "json": 5.0,
+   "code": 5.0,
+   "da": 5
+  },
+  "judge": {
+   "da": 4.5,
+   "write": 3.5,
+   "summ": 4.5
+  },
+  "total": 22.75,
+  "words_write": 1197,
+  "json_valid": 10,
+  "json_correct": 10,
+  "code_pass": 20,
+  "unloaded": true
+ },
+ {
+  "model": "muse-glimmer:30b-q4_K_M",
+  "quant": "Q4_K_M (30B)",
+  "size_gb": 15.4,
+  "vram_gb": 15.4,
+  "gpu_pct": 100.0,
+  "load_s": 19.1,
+  "ttft_warm_s": 3.95,
+  "tok_s_write": 5.3,
+  "tok_s_median": 5.3,
+  "ttft_write_s": 296.94,
+  "prompt_tok_s": 131.0,
+  "vram_peak_mb": 19621,
+  "vram_base_mb": 5653,
+  "hotspot_max_c": 88.0,
+  "power_max_w": 405.0,
+  "scores": {
+   "write": 4.0,
+   "summ": 3.88,
+   "da": 4.0,
+   "json": 5.0,
+   "code": 5.0
+  },
+  "auto": {
+   "write": 5,
+   "summ": 4.75,
+   "json": 5.0,
+   "code": 5.0,
+   "da": 4.5
+  },
+  "judge": {
+   "da": 3.5,
+   "write": 3,
+   "summ": 3
+  },
+  "total": 21.88,
+  "words_write": 830,
+  "json_valid": 10,
+  "json_correct": 10,
+  "code_pass": 20,
+  "unloaded": true
+ },
+ {
+  "model": "gemma4:26b-a4b-it-qat",
+  "quant": "QAT int4 (MoE 26B/4B act.)",
+  "size_gb": 14.28,
+  "vram_gb": 14.28,
+  "gpu_pct": 100.0,
+  "load_s": 27.9,
+  "ttft_warm_s": 2.37,
+  "tok_s_write": 23.5,
+  "tok_s_median": 36.8,
+  "ttft_write_s": 8.95,
+  "prompt_tok_s": 801.0,
+  "vram_peak_mb": 19849,
+  "vram_base_mb": 6659,
+  "hotspot_max_c": 88.0,
+  "power_max_w": 280.0,
+  "scores": {
+   "write": 3.25,
+   "summ": 3.75,
+   "da": 4.5,
+   "json": 5.0,
+   "code": 5.0
+  },
+  "auto": {
+   "write": 2.5,
+   "summ": 4.5,
+   "json": 5.0,
+   "code": 5.0,
+   "da": 5
+  },
+  "judge": {
+   "da": 4,
+   "write": 4,
+   "summ": 3
+  },
+  "total": 21.5,
+  "words_write": 1158,
+  "json_valid": 10,
+  "json_correct": 10,
+  "code_pass": 20,
+  "unloaded": true
+ },
+ {
+  "model": "qwen3.6:35b-a3b-q4_K_M",
+  "quant": "Q4_K_M (MoE 35B/3B act.)",
+  "size_gb": 21.91,
+  "vram_gb": 17.95,
+  "gpu_pct": 81.9,
+  "load_s": 23.2,
+  "ttft_warm_s": 2.58,
+  "tok_s_write": 24.5,
+  "tok_s_median": 27.9,
+  "ttft_write_s": 13.51,
+  "prompt_tok_s": 489.0,
+  "vram_peak_mb": 20210,
+  "vram_base_mb": 5884,
+  "hotspot_max_c": 89.0,
+  "power_max_w": 247.0,
+  "scores": {
+   "write": 2.75,
+   "summ": 4.38,
+   "da": 4.6,
+   "json": 4.7,
+   "code": 4.75
+  },
+  "auto": {
+   "write": 3.0,
+   "summ": 4.75,
+   "json": 4.7,
+   "code": 4.75,
+   "da": 5
+  },
+  "judge": {
+   "da": 4.2,
+   "write": 2.5,
+   "summ": 4
+  },
+  "total": 21.18,
+  "words_write": 1281,
+  "json_valid": 10,
+  "json_correct": 9,
+  "code_pass": 19,
+  "unloaded": true
+ },
+ {
+  "model": "gpt-oss:20b",
+  "quant": "MXFP4 (MoE 20B/3.6B act.)",
+  "size_gb": 11.99,
+  "vram_gb": 11.99,
+  "gpu_pct": 100.0,
+  "load_s": 13.6,
+  "ttft_warm_s": 2.42,
+  "tok_s_write": 106.4,
+  "tok_s_median": 117.0,
+  "ttft_write_s": 3.45,
+  "prompt_tok_s": 3754.0,
+  "vram_peak_mb": 18813,
+  "vram_base_mb": 5691,
+  "hotspot_max_c": 90.0,
+  "power_max_w": 336.0,
+  "scores": {
+   "write": 2.12,
+   "summ": 4.12,
+   "da": 4.25,
+   "json": 4.4,
+   "code": 5.0
+  },
+  "auto": {
+   "write": 2.25,
+   "summ": 4.75,
+   "json": 4.4,
+   "code": 5.0,
+   "da": 5
+  },
+  "judge": {
+   "da": 3.5,
+   "write": 2,
+   "summ": 3.5
+  },
+  "total": 19.89,
+  "words_write": 1496,
+  "json_valid": 10,
+  "json_correct": 8,
+  "code_pass": 20,
+  "unloaded": true
+ },
+ {
+  "model": "qwen3:14b",
+  "quant": "Q4_K_M (dense 14B)",
+  "size_gb": 11.02,
+  "vram_gb": 11.02,
+  "gpu_pct": 100.0,
+  "load_s": 9.8,
+  "ttft_warm_s": 2.22,
+  "tok_s_write": 54.4,
+  "tok_s_median": 62.2,
+  "ttft_write_s": 5.99,
+  "prompt_tok_s": 1408.0,
+  "vram_peak_mb": 18225,
+  "vram_base_mb": 6297,
+  "hotspot_max_c": 98.0,
+  "power_max_w": 316.0,
+  "scores": {
+   "write": 2.75,
+   "summ": 4.38,
+   "da": 3.75,
+   "json": 4.7,
+   "code": 3.5
+  },
+  "auto": {
+   "write": 3.5,
+   "summ": 4.75,
+   "json": 4.7,
+   "code": 3.5,
+   "da": 4.5
+  },
+  "judge": {
+   "da": 3,
+   "write": 2,
+   "summ": 4
+  },
+  "total": 19.08,
+  "words_write": 2067,
+  "json_valid": 10,
+  "json_correct": 9,
+  "code_pass": 14,
+  "unloaded": true
+ },
+ {
+  "model": "mistral-small3.2:24b",
+  "quant": "Q4_K_M (dense 24B)",
+  "size_gb": 15.78,
+  "vram_gb": 15.78,
+  "gpu_pct": 100.0,
+  "load_s": 15.9,
+  "ttft_warm_s": 5.4,
+  "tok_s_write": 8.9,
+  "tok_s_median": 13.3,
+  "ttft_write_s": 37.84,
+  "prompt_tok_s": 167.0,
+  "vram_peak_mb": 19528,
+  "vram_base_mb": 5675,
+  "hotspot_max_c": 90.0,
+  "power_max_w": 482.0,
+  "scores": {
+   "write": 3.75,
+   "summ": 3.88,
+   "da": 3.75,
+   "json": 3.05,
+   "code": 3.5
+  },
+  "auto": {
+   "write": 4.5,
+   "summ": 4.25,
+   "json": 3.05,
+   "code": 3.5,
+   "da": 5
+  },
+  "judge": {
+   "da": 2.5,
+   "write": 3,
+   "summ": 3.5
+  },
+  "total": 17.93,
+  "words_write": 753,
+  "json_valid": 1,
+  "json_correct": 8,
+  "code_pass": 14,
+  "unloaded": true
+ }
+]

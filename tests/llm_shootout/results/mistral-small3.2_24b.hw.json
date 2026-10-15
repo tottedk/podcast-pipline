@@ -1,0 +1,15 @@
+{
+ "samples": 80,
+ "vram_baseline_mb": 5675,
+ "vram_peak_mb": 19528,
+ "hotspot_max_c": 90.0,
+ "hotspot_avg_c": 81.2,
+ "core_max_c": 70.0,
+ "memjunction_max_c": 90.0,
+ "power_max_w": 482.0,
+ "power_avg_w": 225.1,
+ "load_avg_pct": 81.7,
+ "cpu_load_avg_pct": 15.6,
+ "csv": "C:\\grok\\podcast\\hwlogs\\shootout_mistral-small3.2_24b_20261015_202101.csv",
+ "vram_peak_delta_mb": 13853
+}

@@ -1,0 +1,15 @@
+{
+ "samples": 51,
+ "vram_baseline_mb": 5884,
+ "vram_peak_mb": 20210,
+ "hotspot_max_c": 89.0,
+ "hotspot_avg_c": 75.6,
+ "core_max_c": 71.0,
+ "memjunction_max_c": 90.0,
+ "power_max_w": 247.0,
+ "power_avg_w": 164.6,
+ "load_avg_pct": 59.7,
+ "cpu_load_avg_pct": 46.0,
+ "csv": "C:\\grok\\podcast\\hwlogs\\shootout_qwen3.6_35b-a3b-q4_K_M_20261015_210723.csv",
+ "vram_peak_delta_mb": 14326
+}

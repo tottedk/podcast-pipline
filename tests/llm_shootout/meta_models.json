@@ -1,0 +1,10 @@
+{
+    "mistral-small3.2:24b":  "Q4_K_M (dense 24B)",
+    "gemma4:26b-a4b-it-qat":  "QAT int4 (MoE 26B/4B act.)",
+    "qwen3.6:35b-a3b-q4_K_M":  "Q4_K_M (MoE 35B/3B act.)",
+    "qwen3:14b":  "Q4_K_M (dense 14B)",
+    "qwen3.8:27b-q4_K_M":  "Q4_K_M (dense 27B)",
+    "gpt-oss:20b":  "MXFP4 (MoE 20B/3.6B act.)",
+    "gemma4:31b-it-qat":  "QAT int4 (dense 31B)",
+    "muse-glimmer:30b-q4_K_M":  "Q4_K_M (30B)"
+}

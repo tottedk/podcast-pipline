@@ -55,3 +55,13 @@ tests/vv7b_cpp/
 tests/voices_cand_test/
 tests/v13_check/
 tests/voices_extra_test/
+
+# LLM shootout: keep full model outputs local (private/note-derived text), commit only scripts + aggregate results
+tests/llm_shootout/results/*/
+tests/llm_shootout/results/*.out
+tests/llm_shootout/results/*.err
+tests/llm_shootout/blind_*.md
+tests/llm_shootout/blind_key.json
+tests/llm_shootout/pull_*.log
+tests/llm_shootout/pull_*.err
+!tests/llm_shootout/results.md

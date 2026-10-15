@@ -1,0 +1,54 @@
+19:52:00 JOB START pid 9716
+19:52:02 START gemma4:26b-a4b-it-qat (hotspot 59 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw gemma4_26b-a4b-it-qat {'samples': 45, 'vram_baseline_mb': 6659, 'vram_peak_mb': 19849, 'hotspot_max_c': 88.0, 'hotspot_avg_c': 74.9, 'core_max_c': 69.0, 'memjunction_max_c': 88.0, 'power_max_w': 280.0, 'power_avg_w': 167.7, 'load_avg_pct': 59.1, 'cpu_load_avg_pct': 21.5, 'vram_peak_delta_mb': 13190}
+19:55:55 END gemma4:26b-a4b-it-qat exit  (220 s) ollama_ps_empty=True
+19:55:55 START qwen3:14b (hotspot 58 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw qwen3_14b {'samples': 30, 'vram_baseline_mb': 6297, 'vram_peak_mb': 18225, 'hotspot_max_c': 98.0, 'hotspot_avg_c': 76.5, 'core_max_c': 70.0, 'memjunction_max_c': 99.0, 'power_max_w': 316.0, 'power_avg_w': 206.2, 'load_avg_pct': 58.3, 'cpu_load_avg_pct': 16.9, 'vram_peak_delta_mb': 11928}
+19:58:37 END qwen3:14b exit  (149 s) ollama_ps_empty=True
+19:58:37 JOB DONE
+20:00:44 JOB START pid 29252
+20:00:46 START qwen3.8:27b-q4_K_M (hotspot 62 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw qwen3.8_27b-q4_K_M {'samples': 172, 'vram_baseline_mb': 6669, 'vram_peak_mb': 19681, 'hotspot_max_c': 92.0, 'hotspot_avg_c': 81.2, 'core_max_c': 70.0, 'memjunction_max_c': 88.0, 'power_max_w': 292.0, 'power_avg_w': 220.6, 'load_avg_pct': 90.2, 'cpu_load_avg_pct': 19.0, 'vram_peak_delta_mb': 13012}
+20:15:16 END qwen3.8:27b-q4_K_M exit  (857 s) ollama_ps_empty=True
+20:15:16 START gpt-oss:20b (hotspot 62 C)
+20:16:18 HOTSPOT 100 C >= 100: aborting gpt-oss:20b
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw gpt-oss_20b {'samples': 13, 'vram_baseline_mb': 5690, 'vram_peak_mb': 18828, 'hotspot_max_c': 100.0, 'hotspot_avg_c': 76.2, 'core_max_c': 70.0, 'memjunction_max_c': 94.0, 'power_max_w': 316.0, 'power_avg_w': 178.9, 'load_avg_pct': 47.8, 'cpu_load_avg_pct': 18.6, 'vram_peak_delta_mb': 13138}
+20:16:31 END gpt-oss:20b exit  (62 s) ollama_ps_empty=True
+20:16:31 JOB DONE
+20:18:52 JOB START pid 24472
+20:18:54 START gpt-oss:20b (hotspot 60 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw gpt-oss_20b {'samples': 23, 'vram_baseline_mb': 5691, 'vram_peak_mb': 18813, 'hotspot_max_c': 90.0, 'hotspot_avg_c': 73.1, 'core_max_c': 69.0, 'memjunction_max_c': 94.0, 'power_max_w': 336.0, 'power_avg_w': 164.9, 'load_avg_pct': 42.0, 'cpu_load_avg_pct': 16.9, 'vram_peak_delta_mb': 13122}
+20:21:01 END gpt-oss:20b exit  (114 s) ollama_ps_empty=True
+20:21:01 START mistral-small3.2:24b (hotspot 58 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw mistral-small3.2_24b {'samples': 80, 'vram_baseline_mb': 5675, 'vram_peak_mb': 19528, 'hotspot_max_c': 90.0, 'hotspot_avg_c': 81.2, 'core_max_c': 70.0, 'memjunction_max_c': 90.0, 'power_max_w': 482.0, 'power_avg_w': 225.1, 'load_avg_pct': 81.7, 'cpu_load_avg_pct': 15.6, 'vram_peak_delta_mb': 13853}
+20:27:54 END mistral-small3.2:24b exit  (400 s) ollama_ps_empty=True
+20:27:54 START muse-glimmer:30b-q4_K_M (hotspot 59 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw muse-glimmer_30b-q4_K_M {'samples': 262, 'vram_baseline_mb': 5653, 'vram_peak_mb': 19621, 'hotspot_max_c': 88.0, 'hotspot_avg_c': 81.9, 'core_max_c': 68.0, 'memjunction_max_c': 88.0, 'power_max_w': 405.0, 'power_avg_w': 223.9, 'load_avg_pct': 94.2, 'cpu_load_avg_pct': 12.5, 'vram_peak_delta_mb': 13968}
+20:49:55 END muse-glimmer:30b-q4_K_M exit  (1308 s) ollama_ps_empty=True
+20:49:55 JOB DONE
+20:52:26 JOB START pid 5904
+20:52:29 START gemma4:31b-it-qat (hotspot 61 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw gemma4_31b-it-qat {'samples': 176, 'vram_baseline_mb': 5630, 'vram_peak_mb': 19845, 'hotspot_max_c': 102.0, 'hotspot_avg_c': 78.2, 'core_max_c': 72.0, 'memjunction_max_c': 90.0, 'power_max_w': 291.0, 'power_avg_w': 192.9, 'load_avg_pct': 80.9, 'cpu_load_avg_pct': 50.2, 'vram_peak_delta_mb': 14215}
+21:07:23 END gemma4:31b-it-qat exit  (882 s) ollama_ps_empty=True
+21:07:23 START qwen3.6:35b-a3b-q4_K_M (hotspot 63 C)
+C:\grok\podcast\tests\llm_shootout\analyze_hw.py:1: SyntaxWarning: invalid escape sequence '\<'
+  """analyze_hw.py <session.csv> <safe> <start> <end>: peak VRAM (D3D dedicated, hwmon GpuVram_MB), hotspot max etc. for the RX 7900 XT -> results\<safe>.hw.json"""
+hw qwen3.6_35b-a3b-q4_K_M {'samples': 51, 'vram_baseline_mb': 5884, 'vram_peak_mb': 20210, 'hotspot_max_c': 89.0, 'hotspot_avg_c': 75.6, 'core_max_c': 71.0, 'memjunction_max_c': 90.0, 'power_max_w': 247.0, 'power_avg_w': 164.6, 'load_avg_pct': 59.7, 'cpu_load_avg_pct': 46.0, 'vram_peak_delta_mb': 14326}
+21:11:51 END qwen3.6:35b-a3b-q4_K_M exit  (255 s) ollama_ps_empty=True
+21:11:51 JOB DONE

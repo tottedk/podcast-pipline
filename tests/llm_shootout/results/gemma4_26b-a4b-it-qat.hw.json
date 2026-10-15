@@ -1,0 +1,15 @@
+{
+ "samples": 45,
+ "vram_baseline_mb": 6659,
+ "vram_peak_mb": 19849,
+ "hotspot_max_c": 88.0,
+ "hotspot_avg_c": 74.9,
+ "core_max_c": 69.0,
+ "memjunction_max_c": 88.0,
+ "power_max_w": 280.0,
+ "power_avg_w": 167.7,
+ "load_avg_pct": 59.1,
+ "cpu_load_avg_pct": 21.5,
+ "csv": "C:\\grok\\podcast\\hwlogs\\shootout_gemma4_26b-a4b-it-qat_20261015_195202.csv",
+ "vram_peak_delta_mb": 13190
+}
