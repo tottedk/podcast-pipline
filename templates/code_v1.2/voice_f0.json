@@ -1,0 +1,1 @@
+{"_doc": "Median F0 (Hz) of GENERATED speech per VibeVoice voice (qc_vv.py/qc_mix.py F0-drift reference; the voice-prompt F0 differs, e.g. Frank prompt 116 Hz). Measured on DE ep1 (whole episode, lines >= 5 words). Unknown voices fall back to the file median.", "Carter": 131.1, "Frank": 127.5}

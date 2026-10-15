@@ -1,0 +1,57 @@
+# environments and third-party code
+venv*/
+VibeVoice-main/
+__pycache__/
+# media and outputs
+*.mp3
+*.mp4
+*.wav
+*.zip
+*.srt
+*.whisper.json
+*.timings.json
+*_ep*.json
+*_ep*.chapters*
+episodes/
+vv_out/
+video_frames/
+bg_*/
+ab_*/
+de/
+dm/
+dm_v2/
+mm/
+pw/
+ui/
+ui1/
+voices_extra/
+vv_voices_clean/
+learn/
+logs/
+hwlogs/
+# logs and temp
+*.log
+*.done
+*.start
+*.err
+*.bak*
+hw_monitor.csv
+vram_peak.txt
+step_times.txt
+# one-off backups (history is in git from now on)
+*_backup_*
+README_backup_*
+
+tests/soulx/
+tests/**/pretrained_models/
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.jpg
+*.png
+
+tests/vv7b_cpp/
+tests/voices_cand_test/
+tests/v13_check/
+tests/voices_extra_test/

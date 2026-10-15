@@ -1,0 +1,4 @@
+family=vibevoice
+task=tts
+mode=offline
+audio_out=C:\grok\podcast\tests\shootout2\vv7b\s42\vv7b.raw.wav

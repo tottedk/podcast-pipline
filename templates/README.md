@@ -1,0 +1,9 @@
+# Podcast templates: versioning
+- Each template is a versioned file: `content_style_vX.Y.md`, `technical_vX.Y.md`, plus a code snapshot `code_vX.Y\` (with `SHA256SUMS.txt`).
+- **Never edit an old version.** To change something, copy it to the next version (v1.1 for small changes, v2.0 for structural ones), edit the copy, update the date and add a changelog entry.
+- The highest version number is the current one. Old versions document how earlier episodes were made.
+- v1.0 (2026-10-14) = the state used for *The Dark Enlightenment* ep1.
+- v1.1 (2026-10-14) = v1.0 + approved QC v2 audio fixes (technical only; content_style stays v1.0).
+- v1.2 (2026-10-14) = v1.1 + 3-speaker support (Guest2), make_video crimson 2nd guest + .srt-only default, qc_takes venv fix (technical only).
+- v1.3 (2026-10-15) = v1.2 + approved new defaults (technical only; content_style stays v2.0): **7B Q8 audio.cpp default engine** (render7b.ps1 / vv7b_generate.py; VV-1.5B and SoulX = backups), **no default cast** (only Host Carter fixed; Guest/Guest2 random per episode from Frank, Clara, Maya, Isla, Marcus, Declan, Samuel low priority; gender-aware; F0 gap >= 12 Hz; seed logged to cast.json/STATUS/notes; override -Guests; Alice/Mary/Thomas never; earlier "default cast Carter+Frank+Clara" withdrawn), voices_extra CC BY voices + voices.json credits, glossary respellings off, QcRetries 2 + soft f0_drift + per-voice voice_f0.json, ChunkWords 275, lighter post chain (no afftdn, presence +1.5 dB, de-esser), length rule (40-45 min = ~6,300-6,800 words at tempo 0.93), detached run_episode.ps1, **own LibreHardwareMonitor hardware logger (C:\grok\hwmon, task HwMon) replaces HWiNFO logging: podcast.ps1 / render7b.ps1 / hwrun.ps1 switched, old monitor kept as fallback**. Files: technical_v1.3.md, code_v1.3\ (+ SHA256SUMS). Backups of touched live files: *_backup_pre_v13.*, templates\README_backup_pre_v13.md.
+

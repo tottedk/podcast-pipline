@@ -1,0 +1,42 @@
+[
+ {
+  "speaker": "Host",
+  "text": "Welcome back to the show. Today I have two guests with me, and we are testing how a three-way conversation sounds."
+ },
+ {
+  "speaker": "Guest",
+  "text": "Thanks for having me, Carter. I have been looking forward to this for weeks."
+ },
+ {
+  "speaker": "Guest2",
+  "text": "Same here. It is not often that we get to disagree with each other on air."
+ },
+ {
+  "speaker": "Host",
+  "text": "Let us start simple. What is the one idea from this month's reading that stuck with you?"
+ },
+ {
+  "speaker": "Guest2",
+  "text": "For me it was the claim that small rules, repeated often enough, end up shaping a whole city."
+ },
+ {
+  "speaker": "Guest",
+  "text": "I would push back on that a little. Rules matter, but people bend them all the time, and the bending is where the real story is."
+ },
+ {
+  "speaker": "Host",
+  "text": "So you think the exceptions matter more than the rules?"
+ },
+ {
+  "speaker": "Guest",
+  "text": "In practice, yes. Nobody lives inside a rulebook."
+ },
+ {
+  "speaker": "Guest2",
+  "text": "But the rulebook decides what counts as an exception in the first place. That is my whole point."
+ },
+ {
+  "speaker": "Host",
+  "text": "That is a good place to pause. We will come back to it after a short break. Stay with us."
+ }
+]

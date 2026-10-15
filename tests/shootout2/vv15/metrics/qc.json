@@ -1,0 +1,214 @@
+{
+ "wer": 0.0338,
+ "pitch_events": 0,
+ "pitch_t": [],
+ "pitch_glitches": [],
+ "lowprob_words": [],
+ "gap_db": -11.3,
+ "nonspeech_s": 8.76,
+ "noise_events": 7,
+ "event_t": [
+  0.0,
+  25.46,
+  26.42,
+  57.94,
+  83.22,
+  89.6,
+  148.5
+ ],
+ "speech_db": -24.2,
+ "unrecognised": [],
+ "file": "C:\\grok\\podcast\\tests\\shootout2\\vv15\\metrics\\x.raw.wav",
+ "ref_f0": {
+  "Host": 131.7,
+  "Guest": 115.9,
+  "Guest2": 101.3
+ },
+ "chunks": [
+  {
+   "wer": 0.0338,
+   "pitch_events": 0,
+   "pitch_t": [],
+   "pitch_glitches": [],
+   "lowprob_words": [],
+   "gap_db": -11.3,
+   "nonspeech_s": 8.76,
+   "noise_events": 7,
+   "event_t": [
+    0.0,
+    25.46,
+    26.42,
+    57.94,
+    83.22,
+    89.6,
+    148.5
+   ],
+   "speech_db": -24.2,
+   "unrecognised": [],
+   "i": 1,
+   "seed": 42,
+   "lines": [
+    {
+     "k": 0,
+     "speaker": "Host",
+     "n": 23,
+     "cov": 0.91,
+     "t": [
+      0.72,
+      8.58
+     ],
+     "wer": 0.09,
+     "rate": 2.93,
+     "f0": 164.1
+    },
+    {
+     "k": 1,
+     "speaker": "Guest2",
+     "n": 98,
+     "cov": 0.97,
+     "t": [
+      9.42,
+      49.14
+     ],
+     "wer": 0.04,
+     "rate": 2.47,
+     "f0": 106.7
+    },
+    {
+     "k": 2,
+     "speaker": "Guest",
+     "n": 70,
+     "cov": 0.99,
+     "t": [
+      49.24,
+      73.06
+     ],
+     "wer": 0.01,
+     "rate": 2.94,
+     "f0": 116.8
+    },
+    {
+     "k": 3,
+     "speaker": "Guest2",
+     "n": 40,
+     "cov": 0.95,
+     "t": [
+      73.26,
+      87.92
+     ],
+     "wer": 0.05,
+     "rate": 2.73,
+     "f0": 113.5
+    },
+    {
+     "k": 4,
+     "speaker": "Guest",
+     "n": 70,
+     "cov": 0.97,
+     "t": [
+      88.1,
+      109.2
+     ],
+     "wer": 0.03,
+     "rate": 3.32,
+     "f0": 133.3
+    },
+    {
+     "k": 5,
+     "speaker": "Host",
+     "n": 10,
+     "cov": 1.0,
+     "t": [
+      109.3,
+      112.26
+     ],
+     "wer": 0.0,
+     "rate": 3.38,
+     "f0": 163.3
+    },
+    {
+     "k": 6,
+     "speaker": "Guest",
+     "n": 22,
+     "cov": 1.0,
+     "t": [
+      112.56,
+      119.52
+     ],
+     "wer": 0.0,
+     "rate": 3.16,
+     "f0": 141.6
+    },
+    {
+     "k": 7,
+     "speaker": "Guest2",
+     "n": 86,
+     "cov": 0.95,
+     "t": [
+      119.72,
+      147.98
+     ],
+     "wer": 0.05,
+     "rate": 3.04,
+     "f0": 122.1
+    },
+    {
+     "k": 8,
+     "speaker": "Guest",
+     "n": 25,
+     "cov": 1.0,
+     "t": [
+      148.98,
+      155.7
+     ],
+     "wer": 0.0,
+     "rate": 3.72,
+     "f0": 126.0
+    }
+   ],
+   "bad_lines": [],
+   "line_wer": [],
+   "glossary_missing": [],
+   "dur": 156.22,
+   "f0_med": {
+    "Host": 163.7,
+    "Guest2": 113.5,
+    "Guest": 129.7
+   },
+   "f0_drift": [
+    [
+     0,
+     "Host",
+     164.1,
+     131.1
+    ],
+    [
+     5,
+     "Host",
+     163.3,
+     131.1
+    ],
+    [
+     7,
+     "Guest2",
+     122.1,
+     101.3
+    ]
+   ],
+   "rate_bad": [],
+   "unrecognised_long": [],
+   "flags": [
+    "f0_drift"
+   ],
+   "score": 31.88
+  }
+ ],
+ "f0_ref_used": {
+  "Host": 131.1,
+  "Guest2": 101.3,
+  "Guest": 127.5
+ },
+ "redo": [
+  1
+ ]
+}

@@ -1,0 +1,217 @@
+{
+ "voices": {
+  "Host": "Carter",
+  "Guest": "Frank",
+  "Guest2": "Samuel"
+ },
+ "prompt_f0": {
+  "Host": 131.7,
+  "Guest": 115.9,
+  "Guest2": 101.3
+ },
+ "speaker_median_f0": {
+  "Host": 142.4,
+  "Guest": 117.2,
+  "Guest2": 132.2
+ },
+ "lines": [
+  {
+   "k": 0,
+   "speaker": "Host",
+   "t": 0.4,
+   "dur": 8.36,
+   "f0": 148.1,
+   "f0_vs_spkmed_pct": 4.0,
+   "nearest_f0": "Host",
+   "sim_prompt": {
+    "Host": 0.98,
+    "Guest": 0.935,
+    "Guest2": 0.929
+   },
+   "nearest_prompt": "Host",
+   "sim_centroid": {
+    "Host": 0.982,
+    "Guest": 0.924,
+    "Guest2": 0.923
+   },
+   "nearest_centroid": "Host",
+   "suspect": false
+  },
+  {
+   "k": 1,
+   "speaker": "Guest2",
+   "t": 9.16,
+   "dur": 43.18,
+   "f0": 127.0,
+   "f0_vs_spkmed_pct": -3.9,
+   "nearest_f0": "Guest2",
+   "sim_prompt": {
+    "Host": 0.953,
+    "Guest": 0.911,
+    "Guest2": 0.99
+   },
+   "nearest_prompt": "Guest2",
+   "sim_centroid": {
+    "Host": 0.925,
+    "Guest": 0.878,
+    "Guest2": 0.996
+   },
+   "nearest_centroid": "Guest2",
+   "suspect": false
+  },
+  {
+   "k": 2,
+   "speaker": "Guest",
+   "t": 52.93,
+   "dur": 26.51,
+   "f0": 115.9,
+   "f0_vs_spkmed_pct": -1.1,
+   "nearest_f0": "Guest",
+   "sim_prompt": {
+    "Host": 0.935,
+    "Guest": 0.984,
+    "Guest2": 0.89
+   },
+   "nearest_prompt": "Guest",
+   "sim_centroid": {
+    "Host": 0.936,
+    "Guest": 0.994,
+    "Guest2": 0.882
+   },
+   "nearest_centroid": "Guest",
+   "suspect": false
+  },
+  {
+   "k": 3,
+   "speaker": "Guest2",
+   "t": 80.68,
+   "dur": 16.4,
+   "f0": 139.1,
+   "f0_vs_spkmed_pct": 5.2,
+   "nearest_f0": "Host",
+   "sim_prompt": {
+    "Host": 0.941,
+    "Guest": 0.897,
+    "Guest2": 0.983
+   },
+   "nearest_prompt": "Guest2",
+   "sim_centroid": {
+    "Host": 0.92,
+    "Guest": 0.869,
+    "Guest2": 0.996
+   },
+   "nearest_centroid": "Guest2",
+   "suspect": false
+  },
+  {
+   "k": 4,
+   "speaker": "Guest",
+   "t": 97.36,
+   "dur": 23.92,
+   "f0": 123.1,
+   "f0_vs_spkmed_pct": 5.0,
+   "nearest_f0": "Guest",
+   "sim_prompt": {
+    "Host": 0.926,
+    "Guest": 0.979,
+    "Guest2": 0.879
+   },
+   "nearest_prompt": "Guest",
+   "sim_centroid": {
+    "Host": 0.929,
+    "Guest": 0.994,
+    "Guest2": 0.871
+   },
+   "nearest_centroid": "Guest",
+   "suspect": false
+  },
+  {
+   "k": 5,
+   "speaker": "Host",
+   "t": 122.28,
+   "dur": 4.02,
+   "f0": 136.8,
+   "f0_vs_spkmed_pct": -4.0,
+   "nearest_f0": "Guest2",
+   "sim_prompt": {
+    "Host": 0.965,
+    "Guest": 0.933,
+    "Guest2": 0.912
+   },
+   "nearest_prompt": "Host",
+   "sim_centroid": {
+    "Host": 0.982,
+    "Guest": 0.943,
+    "Guest2": 0.914
+   },
+   "nearest_centroid": "Host",
+   "suspect": false
+  },
+  {
+   "k": 6,
+   "speaker": "Guest",
+   "t": 126.68,
+   "dur": 8.58,
+   "f0": 108.8,
+   "f0_vs_spkmed_pct": -7.2,
+   "nearest_f0": "Guest",
+   "sim_prompt": {
+    "Host": 0.918,
+    "Guest": 0.963,
+    "Guest2": 0.862
+   },
+   "nearest_prompt": "Guest",
+   "sim_centroid": {
+    "Host": 0.94,
+    "Guest": 0.995,
+    "Guest2": 0.863
+   },
+   "nearest_centroid": "Guest",
+   "suspect": false
+  },
+  {
+   "k": 7,
+   "speaker": "Guest2",
+   "t": 136.3,
+   "dur": 32.44,
+   "f0": 132.2,
+   "f0_vs_spkmed_pct": 0.0,
+   "nearest_f0": "Guest2",
+   "sim_prompt": {
+    "Host": 0.943,
+    "Guest": 0.895,
+    "Guest2": 0.987
+   },
+   "nearest_prompt": "Guest2",
+   "sim_centroid": {
+    "Host": 0.921,
+    "Guest": 0.863,
+    "Guest2": 0.998
+   },
+   "nearest_centroid": "Guest2",
+   "suspect": false
+  },
+  {
+   "k": 8,
+   "speaker": "Guest",
+   "t": 168.74,
+   "dur": 7.72,
+   "f0": 118.5,
+   "f0_vs_spkmed_pct": 1.1,
+   "nearest_f0": "Guest",
+   "sim_prompt": {
+    "Host": 0.912,
+    "Guest": 0.965,
+    "Guest2": 0.861
+   },
+   "nearest_prompt": "Guest",
+   "sim_centroid": {
+    "Host": 0.93,
+    "Guest": 0.992,
+    "Guest2": 0.859
+   },
+   "nearest_centroid": "Guest",
+   "suspect": false
+  }
+ ]
+}

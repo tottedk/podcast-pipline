@@ -1,0 +1,1 @@
+cd C:\grok\podcast; $env:HIP_VISIBLE_DEVICES='1'; .\podcast.ps1 x tests\shootout2\vv15\s42.mp3 -Script tests\shootout2\vv15\excerpt.json -HostVoice Carter -GuestVoice Frank -Guest2Voice Samuel -Seed 42 -Cfg 1.3 -Steps 10 -Pace sentence -ChunkWords 450 -NoQc -NoMerge -NoHwMonitor -Glossary ab_dm\empty_glossary.json *>&1 | % { "$_" }

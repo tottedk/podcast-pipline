@@ -1,0 +1,1 @@
+cd C:\grok\podcast\tests\shootout2\soulx; $env:HIP_VISIBLE_DEVICES='1'; $env:PYTHONIOENCODING='utf-8'; & C:\grok\podcast\venv_soulx\Scripts\python.exe run_soulx2.py --script C:\grok\podcast\tests\shootout2\excerpt.json --cast Carter,Frank,Samuel --seed 42 --gap 0.3 --out s42 *>&1 | % { "$_" } | ? { $_ -notmatch 'MIOpen' }
