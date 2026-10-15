@@ -1,0 +1,7 @@
+# Technical template
+**Version 1.6 - 2026-10-15** = v1.5 + one bug fix + one helper. Everything not listed here is as in `technical_v1.5.md` (and v1.4/v1.3), which stay unedited.
+
+## v1.6 changes
+- **Bug fix `post_episode.ps1`:** line 18 contained a literal `\n` between `$sd = ...` and `$castnote = ...`. PowerShell ran a command called `\n` (error, non-fatal) and `$castnote` was never set, so the "Cast pick: mode=..., seed=..., F0 gaps ..." line was missing from `episodes\<Ep>.notes.md`. Fixed (real newline). Credits (CC BY lines) were not affected (separate code path).
+- **New `tools\split_segments.py`:** `split_segments.py script.json <Ep>.chapters.in.json <Dir> [--dry] [--force] [--expect_lines N --expect_words N]` writes `<Dir>\segNN.json` at the chapter starts (same logic as `dm\split.py`; text untouched; identical existing files are kept, different ones abort unless `--force`). `--rescale_bg backgrounds.json --from_lines A --to_lines B` rescales the `line` indices of a backgrounds.json after the script length changed (keeps `.bak_pre_rescale`).
+- Episode-specific launchers live in live `tools\` + git only (e.g. `tools\start_mike_ma_ep1.ps1`: preflight, split, detached wrapper around `run_episode.ps1 ... -Scheduled`, post-only retry with `-SegGap 1.2 -StingPad 0.6` if the mix is < 2400 s).

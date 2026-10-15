@@ -15,7 +15,8 @@ foreach ($f in "episodes\$Ep.mp3","episodes\$Ep.mp4","episodes\$Ep.srt","episode
 if (-not $Chapters) { $Chapters = "$W\$Ep.chapters.in.json" }
 $castnote = ""
 if (Test-Path "$W\cast.json") { $cj = gc "$W\cast.json" -Raw | ConvertFrom-Json; if (-not $GuestVoice) { $HostVoice = $cj.host; $GuestVoice = $cj.guest; $Guest2Voice = $cj.guest2 }
-  $sd = if ($cj.seed) { "$($cj.seed)" } else { "n/a (explicit override)" }\n  $castnote = "Cast pick: mode=$($cj.mode), seed=$sd, genders required: $(($cj.genders_required | ConvertTo-Json -Compress)), F0 gaps (Hz): $(($cj.f0_gaps_hz | ConvertTo-Json -Compress)) - reproduce: $($cj.reproduce)" }
+  $sd = if ($cj.seed) { "$($cj.seed)" } else { "n/a (explicit override)" }
+  $castnote = "Cast pick: mode=$($cj.mode), seed=$sd, genders required: $(($cj.genders_required | ConvertTo-Json -Compress)), F0 gaps (Hz): $(($cj.f0_gaps_hz | ConvertTo-Json -Compress)) - reproduce: $($cj.reproduce)" }
 if (-not $GuestVoice) { Prog "ABORT no cast (no -GuestVoice and no $W\cast.json)"; exit 4 }
 Prog "cast: host=$HostVoice guest=$GuestVoice guest2=$Guest2Voice $castnote"
 $n = (gci "$W\seg??$SegSuffix.mp3").Count
