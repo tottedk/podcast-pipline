@@ -3,13 +3,13 @@ Start (returns at once; the job runs detached/hidden):
   powershell -NoProfile -ExecutionPolicy Bypass -File C:\grok\podcast\tools\start_burnout_society_ep1.ps1
 Poll with short calls:  Get-Content C:\grok\podcast\bb\STATUS.txt ; Get-Content C:\grok\podcast\bb\chain.log -Tail 15
 Dry run (checks everything, writes nothing, starts nothing, prints the exact commands):  ... -File ...\start_burnout_society_ep1.ps1 -DryRun
-Cast exactly as in the brief: Host Carter, Guest MAYA, Guest2 Marcus (-Guests Maya,Marcus; Maya is excluded from the RANDOM pool, the explicit override is allowed and only prints a warning). Fallback only if Maya fails preflight: -Guests Clara,Frank (-Guests 'Clara,Frank'; the script names Maya in the dialogue, so fallback voices would need a name swap).
-What it does: preflight (aborts on any problem) -> bb\segNN.json at the chapter starts (tools\split_segments.py, text untouched) + intro/sting/outro from ui1 -> detached wrapper -> run_episode.ps1 (-Tempo 0.93, -QcRetries 1, -Scheduled = vram_free hook, md_clean strip, 7B TTS + QC, FLUX backgrounds bb01-bb22, post: mix, duration gate 38-48 min, align, qc_mix, video, 64k mp3, CC BY credit for Marcus (Maya has none), registry entry)
+Cast (Thomas, final 2026-10-16): Host Carter, Guest CLARA, Guest2 Marcus (-Guests Clara,Marcus; both are in the random pool: no exclusion warning). Not Maya (excluded, sounds artificial): the dialogue was changed Maya -> Clara in 16 lines (backup burnout_society_ep1_script_pre_clara.json).
+What it does: preflight (aborts on any problem) -> bb\segNN.json at the chapter starts (tools\split_segments.py, text untouched) + intro/sting/outro from ui1 -> detached wrapper -> run_episode.ps1 (-Tempo 0.93, -QcRetries 1, -Scheduled = vram_free hook, md_clean strip, 7B TTS + QC, FLUX backgrounds bb01-bb22, post: mix, duration gate 38-48 min, align, qc_mix, video, 64k mp3, CC BY credits for Clara + Marcus, registry entry)
   -> if the duration gate fails SHORT (< 2280 s) the wrapper re-runs ONLY post with -SegGap 1.2 -StingPad 0.6 (no TTS); anything else outside 2280-2880 s stops with STATUS "STOP ..." for a human decision (never slow the tempo for length).
 Naming: default = one-off (title = subject, video corner label = date). -Multi = treat as series "Burnout Society" (title/label "Burnout Society #<n>").
 Backgrounds: bg_bb1\backgrounds.json is checked against the script length; if stale use -RescaleBackgrounds -FromLines <old line count> (keeps .bak_pre_rescale), only when needed.
 Never overwrites episodes\burnout_society_ep1.* (post aborts). Resumable: run it again (segments with mp3+qc.json are skipped, an existing bb\cast.json is reused).  #>
-param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0.93, [int]$QcRetries = 1, [string]$Guests = 'Maya,Marcus', [switch]$Multi, [switch]$RescaleBackgrounds, [int]$FromLines = 0, [switch]$Inner, [string]$Root = "C:\grok\podcast")
+param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0.93, [int]$QcRetries = 1, [string]$Guests = 'Clara,Marcus', [switch]$Multi, [switch]$RescaleBackgrounds, [int]$FromLines = 0, [switch]$Inner, [string]$Root = "C:\grok\podcast")
 $ErrorActionPreference = 'Continue'; cd $Root
 $Dir = 'bb'; $Ep = 'burnout_society_ep1'; $BgDir = 'bg_bb1'; $Suffix = '_bb1'; $W = "$Root\$Dir"
 $Title = "Why Are We So Tired? Byung-Chul Han's The Burnout Society"
@@ -64,10 +64,11 @@ $P = gc "$Root\bg_bb1\prompts.json" -Raw | ConvertFrom-Json; Chk ($P.images.Coun
 $B = gc "$Root\bg_bb1\backgrounds.json" -Raw | ConvertFrom-Json; Chk ($B.Count -eq 22) "backgrounds.json entries = $($B.Count)"
 $maxl = ($B.line | measure -Maximum).Maximum; $stale = ($maxl -lt [int]($S.Count * 0.8)); Chk (-not $stale -or $RescaleBackgrounds) "backgrounds fit the script (last image at line $maxl of $($S.Count))"
 Chk ((@($P.images.id) -join ',') -eq ((@($B.image) | % { $_ -replace '\.png$', '' }) -join ',')) 'prompt ids match backgrounds.json images'
-$crMarcus = [bool]$vo.voices.Marcus.credit; Chk $crMarcus 'CC BY credit line for Marcus in voices.json (post_episode appends it to notes + chapters)'
-Write-Host "NOTE: credits: Marcus yes; Maya has none in voices.json (VibeVoice demo voice; learn meta says no attribution needed)"
+Chk ([bool]($vo.voices.Clara.credit -and $vo.voices.Marcus.credit)) 'CC BY credit lines for Clara + Marcus in voices.json (post_episode appends them to notes + chapters)'
+Chk (-not ($S | ? { $_.text -match '\bMaya\b' })) 'dialogue no longer names Maya (cast is Clara)'
+Chk ((@($vo.pool.guests) -contains 'Clara') -and (@($vo.pool.guests) -contains 'Marcus')) 'Clara and Marcus are in the random pool (no exclusion warning)'
 $cast = & $py "$Root\pick_cast.py" --out "$env:TEMP\bb_cast_check.json" --host Carter --roles 'Guest,Guest2' --guests $Guests --force 2>&1 | Out-String
-$castWarnOk = ($cast -notmatch 'F0 gap' -and $cast -notmatch 'no pair') ; Chk ($cast -match "guest=$($gv[0]) guest2=$($gv[1])" -and $castWarnOk) "pick_cast override ok (only the pool-exclusion warning is expected): $($cast.Trim())"; Remove-Item "$env:TEMP\bb_cast_check.json" -ea 0
+$castWarnOk = ($cast -notmatch 'WARN') ; Chk ($cast -match "guest=$($gv[0]) guest2=$($gv[1])" -and $castWarnOk) "pick_cast override ok (no warnings expected): $($cast.Trim())"; Remove-Item "$env:TEMP\bb_cast_check.json" -ea 0
 foreach ($x in 'mp3', 'mp4', 'srt', 'json') { Chk (-not (Test-Path "$Root\episodes\$Ep.$x")) "episodes\$Ep.$x does not exist yet" }
 $plan = & $py "$Root\episodes_index.py" plan --ep $Ep --title $Title $(if ($Multi) { '--series'; 'Burnout Society'; '--multi' } else { '--oneoff' }) 2>&1 | Out-String | ConvertFrom-Json
 Chk ($plan.display_title -and $plan.display_title -notmatch 'Episode') "naming plan: #$($plan.number) overall, title '$($plan.display_title)', corner label '$($plan.label)'"
