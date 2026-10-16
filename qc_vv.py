@@ -1,8 +1,9 @@
-﻿"""qc_vv.py v2.1 (template v1.3, 2026-10-15: --soft f0_drift = soft flag, no retry on f0_drift alone; voices_extra lookup) - was v2 (2026-10-14) - QC + metrics + safe pause gate for VibeVoice output.
+﻿"""qc_vv.py v2.2 (template v1.7, 2026-10-16: noise events that are VOICED word tails (harmonic, energy mostly < 400 Hz - deep/high voices like Declan, Isla) are counted apart and no longer make a "noise" flag; "noise" is a SOFT flag by default; v2.1 (template v1.3, 2026-10-15: --soft f0_drift = soft flag, no retry on f0_drift alone; voices_extra lookup) - was v2 (2026-10-14) - QC + metrics + safe pause gate for VibeVoice output.
   python qc_vv.py audio script.json [--chunks DIR] [--gate OUT.wav] [--json OUT.json] [--model large-v3-turbo]
                   [--glossary glossary.json] [--host Carter --guest Frank] [--f0_tol 0.15]
 Per chunk (flags -> REDO list, plus a numeric 'score' used for best-take selection, lower = better):
   v1 checks: line coverage < 75%, chunk WER > 8%, octave jump on a low-prob word, > 2 low-prob words, noise events > max(6, dur/15)
+   v2.2: a noise event = >= 0.3 s outside the whisper words with >= 8 frames above speech-30 dB (unchanged), but events whose active frames are voiced and low-frequency (mean power share < 400 Hz >= --noise_voiced_lf dB and spectral flatness < --noise_voiced_flat) are "voiced tails" (noise_events_voiced) and do not count for the flag/score (noise_events_real). --noise_voiced_lf 99 = old behaviour.
   v2 checks (DE ep1 diagnosis):
    - line_wer: per-line WER (lines >= 4 words) > 0.25
    - glossary: a hard term of the line not recognised (original or respelling, fuzzy >= 0.7)
@@ -18,7 +19,8 @@ ap.add_argument("--chunks"); ap.add_argument("--gate"); ap.add_argument("--json"
 ap.add_argument("--glossary", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "glossary.json"))
 ap.add_argument("--host", default="Carter"); ap.add_argument("--guest", default="Frank"); ap.add_argument("--guest2", default=""); ap.add_argument("--f0_tol", type=float, default=0.15)
 ap.add_argument("--rescore", help="re-apply flags/thresholds to an existing qc json (no audio/whisper)"); ap.add_argument("--unrec_s", type=float, default=1.0)
-ap.add_argument("--soft", default="f0_drift", help="v1.3: comma list of SOFT flags - reported and scored (best-take) but they alone do NOT trigger a retry")
+ap.add_argument("--noise_voiced_lf", type=float, default=-6.0); ap.add_argument("--noise_voiced_flat", type=float, default=0.2)
+ap.add_argument("--soft", default="f0_drift,noise", help="v1.3: comma list of SOFT flags - reported and scored (best-take) but they alone do NOT trigger a retry")
 ap.add_argument("--rate_lo", type=float, default=2.1); ap.add_argument("--rate_hi", type=float, default=5.0)
 a = ap.parse_args()
 from faster_whisper import WhisperModel
@@ -118,15 +120,21 @@ def metrics(x, ww, ref):
     sp = 20*np.log10(np.sqrt((x[mask]**2).mean())+1e-9) if mask.any() else -99
     gap = x[~mask]; gdb = 20*np.log10(np.sqrt((gap**2).mean())+1e-9) - sp if len(gap) > 1600 else -99
     ns = float(((~fm) & (fdb > sp-35)).sum()*h/SR)
-    ev = []; k = 0
+    ev = []; ev_voiced = []; k = 0
+    fq_ = np.fft.rfftfreq(h, 1/SR); band_ = (fq_ > 100) & (fq_ < 7500); lo_ = fq_ < 400
     while k < n:
         if fm[k]: k += 1; continue
         j = k
         while j < n and not fm[j]: j += 1
-        if j - k >= 15 and (fdb[k+2:j-2] > sp-30).sum() >= 8: ev.append(round(k*h/SR, 2))
+        if j - k >= 15 and (fdb[k+2:j-2] > sp-30).sum() >= 8:
+            ev.append(round(k*h/SR, 2))
+            act_ = fdb[k+2:j-2] > sp-30   # v2.2: classify the event; voiced tail = harmonic energy below 400 Hz (the word's decay past whisper's end time), not noise
+            Pe = np.abs(np.fft.rfft(fr[k+2:j-2][act_]*np.hanning(h), axis=1))**2 + 1e-12
+            lf_ = float((10*np.log10(Pe[:, lo_].sum(1)/Pe.sum(1))).mean()); fl_ = float((np.exp(np.log(Pe[:, band_]).mean(1))/Pe[:, band_].mean(1)).mean())
+            if lf_ >= a.noise_voiced_lf and fl_ < a.noise_voiced_flat: ev_voiced.append(round(k*h/SR, 2))
         k = j
     pe_ = pitch_events(x)
-    return {"wer": round(wer(ref, " ".join(w for w,_,_ in ww)),4), "pitch_events": len(pe_), "pitch_t": pe_, "pitch_glitches": [t for t in pe_ if any(abs(t-b) < .8 for _, b, _ in LOWP)], "lowprob_words": LOWP, "gap_db": round(float(gdb),1), "nonspeech_s": round(ns,2), "noise_events": len(ev), "event_t": ev, "speech_db": round(float(sp),1), "unrecognised": unrecognised(x, ww, sp)}, mask
+    return {"wer": round(wer(ref, " ".join(w for w,_,_ in ww)),4), "pitch_events": len(pe_), "pitch_t": pe_, "pitch_glitches": [t for t in pe_ if any(abs(t-b) < .8 for _, b, _ in LOWP)], "lowprob_words": LOWP, "gap_db": round(float(gdb),1), "nonspeech_s": round(ns,2), "noise_events": len(ev), "event_t": ev, "noise_events_voiced": len(ev_voiced), "noise_events_real": len(ev) - len(ev_voiced), "event_voiced_t": ev_voiced, "speech_db": round(float(sp),1), "unrecognised": unrecognised(x, ww, sp)}, mask
 def fuzzy_has(term, rsp, hyp_toks):
     cands = set(hyp_toks + [hyp_toks[i]+hyp_toks[i+1] for i in range(len(hyp_toks)-1)] + [hyp_toks[i]+hyp_toks[i+1]+hyp_toks[i+2] for i in range(len(hyp_toks)-2)])
     tgt = ["".join(norm(term)), "".join(norm(rsp.replace("-", " ")))]
@@ -186,12 +194,12 @@ def finalize(res):
         cm["unrecognised_long"] = [u for u in cm["unrecognised"] if u["dur"] >= a.unrec_s]
         dur = cm.get("dur", 120)
         flags = {"wer": cm["wer"] > 0.08, "bad_lines": bool(cm["bad_lines"]), "pitch_glitch": bool(cm["pitch_glitches"]),
-                 "lowprob": len(cm["lowprob_words"]) > 2, "noise": cm["noise_events"] > max(6, dur/15),
+                 "lowprob": len(cm["lowprob_words"]) > 2, "noise": cm.get("noise_events_real", cm["noise_events"]) > max(6, dur/15),
                  "line_wer": bool(cm["line_wer"]), "glossary": bool(cm["glossary_missing"]),
                  "f0_drift": len(drift) >= 2 or bool(chunk_drift), "rate": bool(cm["rate_bad"]), "unrecognised": bool(cm["unrecognised_long"])}
         cm["flags"] = [k for k, v in flags.items() if v]
         SOFT = set(x for x in a.soft.split(",") if x); hard = [k for k in cm["flags"] if k not in SOFT]; cm["soft_flags"] = [k for k in cm["flags"] if k in SOFT]   # v1.3
-        cm["score"] = round(10*len(hard) + 3*len(cm["soft_flags"]) + 100*cm["wer"] + 3*len(cm["line_wer"]) + 5*len(drift) + 4*len(cm["rate_bad"]) + 5*sum(u["dur"] for u in cm["unrecognised_long"]) + cm["noise_events"]/2, 2)
+        cm["score"] = round(10*len(hard) + 3*len(cm["soft_flags"]) + 100*cm["wer"] + 3*len(cm["line_wer"]) + 5*len(drift) + 4*len(cm["rate_bad"]) + 5*sum(u["dur"] for u in cm["unrecognised_long"]) + cm.get("noise_events_real", cm["noise_events"])/2, 2)
         if hard: redo.append(cm["i"])   # v1.3: soft flags (f0_drift) never trigger a retry on their own
     res["redo"] = redo
 if a.rescore:

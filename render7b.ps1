@@ -1,5 +1,5 @@
 <#  render7b.ps1 (template v1.3, 2026-10-15) - DEFAULT TTS+QC driver: VibeVoice-7B Q8 GGUF (audio.cpp, Vulkan) -> QC after every take -> best take -> final QC -> post_segment.ps1.
-Per segment: vv7b_generate.py (seed 42) -> qc_vv.py -> qc_takes.py record -> retry flagged chunks with the next seed (up to -QcRetries; f0_drift is SOFT and never retries alone) -> qc_takes pick -> re-QC if best take != last -> post_segment.ps1.
+Per segment: vv7b_generate.py (seed 42) -> qc_vv.py -> qc_takes.py record -> retry flagged chunks with the next seed (up to -QcRetries; f0_drift and noise are SOFT and never retry alone (v1.7)) -> qc_takes pick -> re-QC if best take != last -> post_segment.ps1.
 Run DETACHED (Start-Process ... -WindowStyle Hidden) and poll <Dir>\STATUS.txt - foreground runs die when the tool session is interrupted. Segments that already have a finished mp3 are skipped (-Resume, default).
 Usage: .\render7b.ps1 -Dir ui1 [-Segs 00,01,...] [-HostVoice Carter] [-GuestVoice X -Guest2Voice Y]  (guests default to <Dir>\cast.json written by pick_cast.py / run_episode.ps1; there is NO default cast) [-Tempo 0.93] [-ChunkWords 275] [-QcRetries 2]   (inputs: <Dir>\segNN.json)  #>
 param([string]$Dir, [string[]]$Segs = @(), [string]$HostVoice = "Carter", [string]$GuestVoice = "", [string]$Guest2Voice = "",
