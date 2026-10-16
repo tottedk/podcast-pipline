@@ -30,7 +30,7 @@ $root = $PSScriptRoot
 if (-not $Glossary) { $Glossary = "$root\empty_glossary.json" }   # v1.3
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 $sw = [Diagnostics.Stopwatch]::StartNew()
-if (($Scheduled -or $env:PODCAST_SCHEDULED -eq '1') -and (Test-Path "$root\vram_free.ps1")) { & powershell -NoProfile -ExecutionPolicy Bypass -File "$root\vram_free.ps1" -Free -Scheduled 2>&1 | Out-String | Write-Host }   # v1.5: free VRAM for scheduled runs only
+if (($Scheduled -or $env:PODCAST_SCHEDULED -eq '1') -and (Test-Path "C:\grok\vram\vram_free.ps1")) { & powershell -NoProfile -ExecutionPolicy Bypass -File "C:\grok\vram\vram_free.ps1" -Free -Scheduled 2>&1 | Out-String | Write-Host }   # v1.5: free VRAM for scheduled runs only
 $Out = [IO.Path]::GetFullPath((Join-Path (Get-Location) $Out))
 $base = [IO.Path]::ChangeExtension($Out, $null).TrimEnd('.')
 $json = if ($Script) { $Script } else { "$base.script.json" }
