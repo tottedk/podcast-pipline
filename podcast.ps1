@@ -1,4 +1,4 @@
-<#  podcast.ps1 (v1.3 2026-10-15: BACKUP engine VibeVoice-1.5B; defaults ChunkWords 275, QcRetries 2, empty glossary, lighter post chain; DEFAULT engine is now render7b.ps1 = VibeVoice-7B Q8 via audio.cpp) (v2 2026-10-14: merge short lines, glossary respelling, QC every take + best take, final qc.json, safe gate) - notes.txt -> Gemma script -> VibeVoice-1.5B -> auto-QC/redo -> pause gate -> highpass/afftdn -> tempo -> loudnorm -> mp3
+<#  podcast.ps1 (v1.3 2026-10-15: BACKUP engine VibeVoice-1.5B; defaults ChunkWords 275, QcRetries 1 (v1.8; was 2), empty glossary, lighter post chain; DEFAULT engine is now render7b.ps1 = VibeVoice-7B Q8 via audio.cpp) (v2 2026-10-14: merge short lines, glossary respelling, QC every take + best take, final qc.json, safe gate) - notes.txt -> Gemma script -> VibeVoice-1.5B -> auto-QC/redo -> pause gate -> highpass/afftdn -> tempo -> loudnorm -> mp3
 Usage: .\podcast.ps1 notes.txt episode.mp3 -Topic "..." [-Lines 14] [-HostVoice Carter] [-GuestVoice X -Guest2Voice Y | none = random pick] [-Tempo 0.93] [-Pace sentence] [-Cfg 1.3] [-Script existing.json]
 #>
 param(
@@ -16,7 +16,7 @@ param(
   [string]$Script = "",
   [int]$ChunkWords = 275,      # v1.3: 275 on turn boundaries (v1.0-1.2: 175 for the 1.5B; 350 drifted in DE ep1)
   [int]$Steps = 10,
-  [int]$QcRetries = 2,          # auto-QC: regenerate flagged chunks up to N times; every take is QCed, best take ships
+  [int]$QcRetries = 1,          # auto-QC: regenerate flagged chunks up to N times; every take is QCed, best take ships
   [switch]$NoQc,
   [switch]$NoMerge,            # skip prep_script.py (merging of <=2-word interjection lines)
   [string]$Glossary = "",      # v1.3: respellings OFF by default (empty_glossary.json); opt in with -Glossary glossary.json

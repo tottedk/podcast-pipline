@@ -1,12 +1,13 @@
-<#  post_episode.ps1 (template v1.3, 2026-10-15) - segment mp3s -> mix -> duration gate -> align -> qc_mix -> make_video -> 64k mp3 -> credits. CPU only (+ffmpeg). Never overwrites existing episodes\<Ep>.* (aborts).
+<#  post_episode.ps1 (template v1.3, 2026-10-15; v1.8 2026-10-16: window 38-48 min, naming convention + episodes registry) - segment mp3s -> mix -> duration gate -> align -> qc_mix -> make_video -> 64k mp3 -> credits. CPU only (+ffmpeg). Never overwrites existing episodes\<Ep>.* (aborts).
 Mix (same as das Man v2 / UI ep1): intro (vol 0.6) + seg mp3s (+SegGap s pad) + sting (vol 0.35; +StingPad s silence before/after; none after the last segment) + outro (0.6) -> concat -> loudnorm I=-16 -> 128k mono.
-Duration gate: <MinDur,MaxDur> (default 2400-2700 s = 40-45 min) -> exit 3 BEFORE align/video if outside (fix with -Tempo / -SegGap / -StingPad, see the length rule in technical_v1.3.md).
+Duration gate (v1.8): <MinDur,MaxDur> (default 2280-2880 s = 38-48 min) -> exit 3 BEFORE align/video if outside. Do NOT slow the tempo for length (0.93 stays); only if the mix is < 38 min use -SegGap 1.2 -StingPad 0.6 (see technical_v1.8.md).
+Naming (v1.8, episodes_index.py): -Series "<Series>" -Multi = series with several episodes -> title/corner label "<Series> #<n>"; default / -OneOff = one-off -> title = -Title (subject; a trailing ", Episode 1" is stripped), corner label = date. "Episode 1" is never printed. The episode is appended to <Root>\episodes_index.json (+ .md) when the post finishes.
 Voice credits: every cast voice with a "credit" in voices.json (CC BY voices_extra: Clara, Isla, Marcus, Declan) is appended to episodes\<Ep>.notes.md and the end of <Ep>.chapters.txt.
 Cast: read from <Dir>\cast.json (pick_cast.py) unless -GuestVoice/-Guest2Voice are given; the cast, pick mode and pick seed are written into the notes.
-Usage: .\post_episode.ps1 -Dir ui1 -Ep uploaded_intelligence_ep1 -Bg bg_ui1\backgrounds.json -FrameSuffix _ui1 -Title "Uploaded Intelligence, Episode 1"  #>
+Usage: .\post_episode.ps1 -Dir ui1 -Ep uploaded_intelligence_ep1 -Bg bg_ui1\backgrounds.json -FrameSuffix _ui1 -Series "Uploaded Intelligence" -Multi -Title "Mind uploading and personal identity"  #>
 param([Parameter(Mandatory)][string]$Dir, [Parameter(Mandatory)][string]$Ep, [Parameter(Mandatory)][string]$Bg, [string]$FrameSuffix = "_ep",
   [string]$HostVoice = "Carter", [string]$GuestVoice = "", [string]$Guest2Voice = "", [string]$Title = "", [string]$Chapters = "", [string]$SegSuffix = "",
-  [double]$SegGap = 0.4, [double]$StingPad = 0, [int]$MinDur = 2400, [int]$MaxDur = 2700, [string]$Root = "C:\grok\podcast", [switch]$NoVideo)
+  [double]$SegGap = 0.4, [double]$StingPad = 0, [int]$MinDur = 2280, [int]$MaxDur = 2880, [string]$Series = "", [switch]$Multi, [switch]$OneOff, [string]$Root = "C:\grok\podcast", [switch]$NoVideo)
 $ErrorActionPreference = 'Continue'; (Get-Process -Id $PID).PriorityClass = 'Idle'; cd $Root
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 $W = if ([IO.Path]::IsPathRooted($Dir)) { $Dir } else { Join-Path $Root $Dir }; $P = "$W\post.log"
@@ -33,13 +34,19 @@ $f += "$($lab)concat=n=$($k):v=0:a=1,loudnorm=I=-16:TP=-1.5:LRA=11[out]"
 & ffmpeg -y -v error @in -filter_complex $f -map '[out]' -ar 44100 -ac 1 -b:a 128k "$W\$Ep.mp3"
 $dur = [double](ffprobe -v error -show_entries format=duration -of csv=p=0 "$W\$Ep.mp3"); Prog "mixed dur $dur s"
 if ($dur -lt $MinDur -or $dur -gt $MaxDur) { Prog "DURATION $dur s OUTSIDE $MinDur-$MaxDur - STOP before align/video"; exit 3 }
+# v1.8 naming plan + registry (episodes_index.py): multi-episode series "<Series> #<n>", one-offs subject only + date label; never "Episode 1"
+$ixa = @('--ep', $Ep); if ($Title) { $ixa += '--title', $Title }; if ($Series) { $ixa += '--series', $Series }; if ($Multi) { $ixa += '--multi' }; if ($OneOff) { $ixa += '--oneoff' }
+$plan = $null; try { $plan = (& venv_vv\Scripts\python.exe episodes_index.py plan @ixa 2>&1 | Out-String) | ConvertFrom-Json } catch { $plan = $null }
+if ($plan -and $plan.display_title) { Prog "naming: #$($plan.number) overall, series '$($plan.series)' multi=$($plan.multi) no=$($plan.series_no) -> title '$($plan.display_title)', corner label '$($plan.label)'"; $vtitle = " --title `"$($plan.display_title)`" --label `"$($plan.label)`""; $h1 = $plan.display_title
+  $subline = if ($plan.multi -and $plan.subject) { "$($plan.subject)`n" } else { "" }; $subline += "$($plan.date) - podcast #$($plan.number) overall`n`n" }
+else { Prog "WARNING naming plan failed - using -Title as is (episodes_index.py plan)"; $vtitle = ""; $h1 = if ($Title) { $Title } else { $Ep }; $subline = "" }
 # align + qc_mix
 $t = Get-Date; $al = Start-Process venv_whisper\Scripts\python.exe -ArgumentList "align.py $W\$Ep.mp3 $W\$Ep.json --threads 6" -NoNewWindow -PassThru -RedirectStandardOutput "$W\align.out.txt" -RedirectStandardError "$W\align.err.txt"
 $al.PriorityClass = 'Idle'; $al.WaitForExit(); Prog "align exit $($al.ExitCode) $([int]((Get-Date)-$t).TotalSeconds) s; $((gc $W\align.out.txt | sls matched) -join ' ')"
 & venv_whisper\Scripts\python.exe qc_mix.py "$W\$Ep.mp3" "$W\$Ep.timings.json" --host $HostVoice --guest $GuestVoice $(if ($Guest2Voice) { '--guest2'; $Guest2Voice }) --json "$W\${Ep}_mixqc.json" *> "$W\mixqc.txt"; Prog "qc_mix done: $((gc $W\mixqc.txt | ? {$_ -match '^(SILENCE|F0DRIFT|RATE|INTERP|MIXQC)'}) -join ' | ')"
 if (-not $NoVideo) {
   $t = Get-Date
-  $vp = Start-Process venv_video\Scripts\python.exe -ArgumentList "make_video.py $W\$Ep.mp3 $W\$Ep.json episodes\$Ep.mp4 --timings $W\$Ep.timings.json --chapters $Chapters --host $HostVoice --guest $GuestVoice $(if ($Guest2Voice) { "--guest2 $Guest2Voice" }) --fps 20 --backgrounds $Bg --layout speaker --frames-dir video_frames --frame-suffix $FrameSuffix --frame-times 300,1300,2200" -NoNewWindow -PassThru -RedirectStandardOutput "$W\video.out.txt" -RedirectStandardError "$W\video.err.txt"
+  $vp = Start-Process venv_video\Scripts\python.exe -ArgumentList "make_video.py $W\$Ep.mp3 $W\$Ep.json episodes\$Ep.mp4 --timings $W\$Ep.timings.json --chapters $Chapters --host $HostVoice --guest $GuestVoice $(if ($Guest2Voice) { "--guest2 $Guest2Voice" }) --fps 20 --backgrounds $Bg --layout speaker --frames-dir video_frames --frame-suffix $FrameSuffix --frame-times 300,1300,2200$vtitle" -NoNewWindow -PassThru -RedirectStandardOutput "$W\video.out.txt" -RedirectStandardError "$W\video.err.txt"
   $vp.PriorityClass = 'Idle'; $vp.WaitForExit(); Prog "make_video exit $($vp.ExitCode), $([int]((Get-Date)-$t).TotalSeconds) s"
 }
 Copy-Item "$W\$Ep.mp3","$W\$Ep.json" episodes\
@@ -49,6 +56,7 @@ $reg = gc "$Root\voices.json" -Raw | ConvertFrom-Json
 $cr = @(); foreach ($v in @($HostVoice,$GuestVoice,$Guest2Voice)) { if (-not $v) { continue }; $e = $reg.voices.$v; if ($e -and $e.credit) { $cr += $e.credit } }
 $ct = "episodes\$Ep.chapters.txt"
 if ($cr.Count -and (Test-Path $ct)) { Add-Content -Encoding utf8 $ct ("`n" + ($cr -join "`n")) }
-$notes = "# $(if ($Title) { $Title } else { $Ep })`n`nVoices: $HostVoice (host), $GuestVoice$(if ($Guest2Voice) { ", $Guest2Voice" }); VibeVoice-7B Q8 via audio.cpp.`n$castnote`n`n" + $(if (Test-Path $ct) { (gc $ct -Raw) } else { "" })
+$notes = "# $h1`n`n${subline}Voices: $HostVoice (host), $GuestVoice$(if ($Guest2Voice) { ", $Guest2Voice" }); VibeVoice-7B Q8 via audio.cpp.`n$castnote`n`n" + $(if (Test-Path $ct) { (gc $ct -Raw) } else { "" })
 Set-Content -Encoding utf8 "episodes\$Ep.notes.md" $notes
+$rg = & venv_vv\Scripts\python.exe episodes_index.py add @ixa --dur $dur --cast "$HostVoice, $GuestVoice$(if ($Guest2Voice) { ', ' + $Guest2Voice })" 2>&1 | Out-String; Prog "$($rg.Trim())"
 Prog "POST DONE (credits: $($cr.Count))"

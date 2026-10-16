@@ -4,10 +4,10 @@ Start (returns at once; the job runs detached/hidden):
 Poll with short calls:  Get-Content C:\grok\podcast\mm\STATUS.txt ; Get-Content C:\grok\podcast\mm\chain.log -Tail 15
 Dry run (checks everything, writes nothing, starts nothing, prints the exact commands):  ... -File ...\start_mike_ma_ep1.ps1 -DryRun
 What it does: preflight (aborts on any problem) -> mm\segNN.json from mike_ma_ep1_script.json at the chapter starts (tools\split_segments.py, text untouched) + intro/sting/outro from ui1 ->
-  detached wrapper -> run_episode.ps1 (cast Carter/Declan/Isla via -Guests, -Tempo 0.90, -Scheduled = vram_free hook; md_clean italic strip, 7B TTS + QC retries, FLUX backgrounds, post: mix, duration gate, align, qc_mix, video, 64k mp3, credits)
-  -> if the duration gate fails SHORT (<2400 s) the wrapper re-runs ONLY post with -SegGap 1.2 -StingPad 0.6 (no TTS); anything else outside 2400-2700 s stops with STATUS "STOP ..." for a human decision.
+  detached wrapper -> run_episode.ps1 (cast Carter/Declan/Isla via -Guests, -Tempo 0.93 (v1.8), -Scheduled = vram_free hook; md_clean italic strip, 7B TTS + QC retries, FLUX backgrounds, post: mix, duration gate, align, qc_mix, video, 64k mp3, credits)
+  -> if the duration gate fails SHORT (<2280 s, v1.8) the wrapper re-runs ONLY post with -SegGap 1.2 -StingPad 0.6 (no TTS); anything else outside 2280-2880 s stops with STATUS "STOP ..." for a human decision.
 Never overwrites episodes\mike_ma_ep1.* (post aborts). Resumable: run it again (segments with mp3+qc.json are skipped, an existing mm\cast.json is reused).  #>
-param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0.90, [switch]$RescaleBackgrounds, [switch]$Inner, [string]$Root = "C:\grok\podcast")
+param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0.93, [switch]$RescaleBackgrounds, [switch]$Inner, [string]$Root = "C:\grok\podcast")
 $ErrorActionPreference = 'Continue'; cd $Root
 $Dir = 'mm'; $Ep = 'mike_ma_ep1'; $BgDir = 'bg_mm1'; $Suffix = '_mm1'; $W = "$Root\$Dir"
 $Title = 'Mike Ma: Harassment Architecture and Gothic Violence, Episode 1'
@@ -24,11 +24,11 @@ if ($Inner) {
     $pe = [int]$matches[1]
     if ($pe -eq 3) {
       $dur = 0; $m = (gc "$W\post.log" -ErrorAction SilentlyContinue | sls 'mixed dur ([\d.]+) s' | select -Last 1); if ($m) { $dur = [double]$m.Matches[0].Groups[1].Value }
-      if ($dur -gt 0 -and $dur -lt 2400) {
-        St "post exit 3: mix $dur s < 2400 -> re-running POST ONLY with -SegGap 1.2 -StingPad 0.6 (no TTS)"
+      if ($dur -gt 0 -and $dur -lt 2280) {
+        St "post exit 3: mix $dur s < 2280 -> re-running POST ONLY with -SegGap 1.2 -StingPad 0.6 (no TTS)"
         & powershell -NoProfile -ExecutionPolicy Bypass -File "$Root\post_episode.ps1" -Dir $W -Ep $Ep -Bg "$BgDir\backgrounds.json" -FrameSuffix $Suffix -Title $Title -SegGap 1.2 -StingPad 0.6 *> "$W\post2.out.txt"
         $pe2 = $LASTEXITCODE
-        if ($pe2 -eq 0) { St "ALL DONE (post exit 0 after SegGap 1.2/StingPad 0.6 retry)" } else { St "STOP post retry exit $pe2 (mix still outside 2400-2700 s?): see post.log; next levers: re-post from kept raw wavs with -Tempo 0.90 already used -> stretch pauses (tools\stretch_pauses_repost_ui1.py pattern)" }
+        if ($pe2 -eq 0) { St "ALL DONE (post exit 0 after SegGap 1.2/StingPad 0.6 retry)" } else { St "STOP post retry exit $pe2 (mix still outside 2280-2880 s?): see post.log; next levers: re-post from kept raw wavs with -Tempo 0.93 (v1.8: do not slow down for length) -> stretch pauses (tools\stretch_pauses_repost_ui1.py pattern)" }
       } else { St "STOP duration gate failed (mix $dur s, exit 3): too long or unknown - needs a human decision (see post.log)" }
     } elseif ($pe -ne 0) { St "STOP post failed with exit $pe (see post.out.txt / post.log)" }
   } else { St "STOP run_episode ended without ALL DONE (see chain.log / render.log)" }
@@ -62,7 +62,7 @@ if ($bad.Count) { $bad | % { Write-Host "  FAIL $_" }; Write-Host "ABORT: $($bad
 if ($LASTEXITCODE) { Write-Host "ABORT: split failed"; exit 1 }
 if ($RescaleBackgrounds) { & $py "$Root\tools\split_segments.py" --rescale_bg "$Root\bg_mm1\backgrounds.json" --from_lines 165 --to_lines 207 $(if ($DryRun) { '--dry' }) }
 $cmd = "powershell -NoProfile -ExecutionPolicy Bypass -File $Root\run_episode.ps1 " + (($raArgs | % { if ($_ -match '\s') { "'$_'" } else { $_ } }) -join ' ')
-if ($DryRun) { Write-Host "DRY RUN: nothing written/started. The wrapper would run:`n  $cmd`n  (then the post-only retry with -SegGap 1.2 -StingPad 0.6 if the mix is < 2400 s)"; exit 0 }
+if ($DryRun) { Write-Host "DRY RUN: nothing written/started. The wrapper would run:`n  $cmd`n  (then the post-only retry with -SegGap 1.2 -StingPad 0.6 if the mix is < 2280 s)"; exit 0 }
 foreach ($f in 'intro.wav', 'sting.wav', 'outro.wav') { if (-not (Test-Path "$W\$f")) { Copy-Item "$Root\ui1\$f" "$W\$f" } }
 Remove-Item "$W\STATUS.txt" -ea 0; St 'launching detached wrapper'
 $a = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "$Root\tools\start_mike_ma_ep1.ps1", '-Inner', '-Tempo', "$Tempo"); if ($NoVramFree) { $a += '-NoVramFree' }

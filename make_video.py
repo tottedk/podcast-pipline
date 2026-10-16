@@ -1,5 +1,6 @@
 """make_video.py - narrated slideshow video from podcast mp3 + script json.
-Usage: python make_video.py episode.mp3 script.json out.mp4 [--title "Fanged Noumena - Episode 2"] [--layout speaker|quote]
+Usage: python make_video.py episode.mp3 script.json out.mp4 [--title "Uploaded Intelligence #2"] [--label "<top-right text>"] [--layout speaker|quote] [--dry-label]
+v1.8: --label = discreet top-right corner text (episodes_index.py: "<Series> #<n>" for multi-episode series, the date for one-offs); default = the title. "Episode N" is never printed (stripped from the title/label).
 Default layout (Oct 2026): speaker = name + pulsing level meter (from --timings, needs --backgrounds), chapter label top-left, subtitles; --layout quote = old key-quote cards.
        [--host Carter --guest Frank --sections 8 --fps 2 --frames-dir video_frames]
        [--timings episode.timings.json (from align.py)] [--chapters episode.chapters.json]
@@ -163,7 +164,7 @@ def render(cue, ctx):
         # discreet chapter label top-left, no centre quote
         d.text((70, 46), f"{cue['sec'] + 1}/{len(ctx['secs'])}  \u00b7  {sec['title']}", font=F["small"], fill=(225, 225, 235, 200))
         d.line([(70, 84), (70 + min(520, d.textlength(sec['title'], font=F['small']) + 90), 84)], fill=(240, 170, 60, 150), width=2)
-        d.text((W - 70 - d.textlength(ctx["title"], font=F["small"]), 46), ctx["title"], font=F["small"], fill=(190, 190, 205, 160))
+        if ctx.get("label"): d.text((W - 70 - d.textlength(ctx["label"], font=F["small"]), 46), ctx["label"], font=F["small"], fill=(190, 190, 205, 160))
     else:
         d.text((80, 50), ctx["title"], font=F["hdr"], fill=(200, 200, 215))
         d.text((80, 92), f"{cue['sec'] + 1}/{len(ctx['secs'])}  {sec['title']}", font=F["small"], fill=(150, 150, 170))
@@ -337,10 +338,15 @@ def load_backgrounds(path, lines_t, dur):
 def hms(t):
     t = int(t); return f"{t // 3600}:{t // 60 % 60:02}:{t % 60:02}" if t >= 3600 else f"{t // 60:02}:{t % 60:02}"
 
+def no_ep(t):
+    """v1.8: never print "Episode N" (title/label): strips a trailing ", Episode 1" / "- Episode 1" / "(v2)" """
+    t = re.sub(r"\s*\(v\d+\)\s*$", "", (t or "").strip())
+    return re.sub(r"\s*[,:;\u2013\u2014-]?\s*\b(?:episode|ep\.?)\s*#?\d+\b\s*$", "", t, flags=re.I).strip(" ,:;-\u2013\u2014")
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("mp3"); ap.add_argument("json"); ap.add_argument("out")
-    ap.add_argument("--title"); ap.add_argument("--topic"); ap.add_argument("--host", default="Carter"); ap.add_argument("--guest", default="Frank")
+    ap.add_argument("--title"); ap.add_argument("--label"); ap.add_argument("--dry-label", action="store_true", help="print the resolved title/label/topic as JSON and exit (no rendering)"); ap.add_argument("--topic"); ap.add_argument("--host", default="Carter"); ap.add_argument("--guest", default="Frank")
     ap.add_argument("--guest2", default="", help="name of the 2nd guest (script speaker 'Guest2'; crimson plate)")
     ap.add_argument("--burn-subs", action="store_true", help="burn subtitles into the frames + soft mov_text track (pre-v1.2 default); default: separate .srt only")
     ap.add_argument("--sections", type=int, default=8); ap.add_argument("--fps", type=float, default=2)
@@ -354,8 +360,7 @@ def main():
     lines = [l for l in json.load(open(a.json, encoding="utf-8")) if l.get("text", "").strip()]
     dur = ffprobe_dur(a.mp3)
     base = os.path.splitext(os.path.basename(a.mp3))[0]
-    m = re.search(r"ep(\d+)", base)
-    title = a.title or (f"Fanged Noumena - Episode {m.group(1)}" if m else base)
+    title = a.title or re.sub(r"_ep\d+(_v\d+)?$", "", base).replace("_", " ").title()   # v1.8: no hard-coded series / "Episode N"
     first = " ".join(l["text"] for l in lines[:4])
     ts = [s for s in sentences(first) if re.search(r"\btoday\b", s, re.I)]
     topic = ts[0] if ts else sentences(lines[0]["text"])[0]
@@ -373,6 +378,9 @@ def main():
     else:
         secs = make_sections(lines, a.sections)
     if a.topic: topic = a.topic
+    title = no_ep(title); label = no_ep(a.label) if a.label is not None else title   # v1.8: corner label (top right) separate from the title card
+    if a.dry_label:
+        print(json.dumps({"title": title, "label": label, "topic": topic}, ensure_ascii=True)); return
     sec_of = {}
     for i, s in enumerate(secs):
         for k in range(s["start"], s["end"]): sec_of[k] = i
@@ -423,7 +431,7 @@ def main():
         for i, s in enumerate(secs):
             e = secs[i + 1]["time"] if i + 1 < len(secs) else dur
             f.write(f"[CHAPTER]\nTIMEBASE=1/1000\nSTART={int(s['time'] * 1000)}\nEND={int(e * 1000)}\ntitle={esc(s['title'])}\n")
-    ctx = {"title": title, "topic": topic, "secs": secs, "host": a.host, "guest": a.guest, "guest2": a.guest2, "burn": a.burn_subs, "bgmode": bool(a.backgrounds), "layout": a.layout}
+    ctx = {"title": title, "label": label, "topic": topic, "secs": secs, "host": a.host, "guest": a.guest, "guest2": a.guest2, "burn": a.burn_subs, "bgmode": bool(a.backgrounds), "layout": a.layout}
     lst, n, t = [], 0, 0.0
     def add(cue, t1):
         nonlocal n, t

@@ -45,7 +45,8 @@
    "accent": "Irish (Dublin)",
    "source": "VCTK 0.92 speaker p245",
    "license": "CC BY 4.0",
-   "credit": "Voice credit: the voice of Declan is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p245; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645)."
+   "credit": "Voice credit: the voice of Declan is synthesized from a reference recording from the CSTR VCTK Corpus (speaker p245; J. Yamagishi, C. Veaux, K. MacDonald, University of Edinburgh, 2019; CC BY 4.0, https://doi.org/10.7488/ds/2645).",
+   "status": "EXCLUDED from the random guest pool 2026-10-16 (Thomas: voice sounds too machine-like); explicit -Guests override only, with a warning. F0 data kept (voice_f0.json). Used in Mike Ma ep1."
   },
   "Willa": {
    "file": "voices_extra/en-Willa_woman.wav",
@@ -130,7 +131,6 @@
    "Clara",
    "Isla",
    "Marcus",
-   "Declan",
    "Willa",
    "Zara",
    "Imogen",
@@ -142,8 +142,9 @@
    "Samuel"
   ],
   "excluded": {
-   "Maya": "excluded from the random pool 2026-10-15 (Thomas: sounds artificial); entry and F0 data kept; usable only via explicit -Guests override (pick_cast.py warns)"
+   "Maya": "excluded from the random pool 2026-10-15 (Thomas: sounds artificial); entry and F0 data kept; usable only via explicit -Guests override (pick_cast.py warns)",
+   "Declan": "excluded from the random pool 2026-10-16 (Thomas: voice sounds too machine-like); entry and F0 data kept; usable only via explicit -Guests override (pick_cast.py warns). Used in Mike Ma ep1 (Carter + Declan + Isla)."
   },
-  "_doc": "v1.3 (clarified 2026-10-15): NO default cast. Only the host is fixed (Carter unless Thomas says otherwise). Guests are picked at random per episode by pick_cast.py from this pool (Frank, Clara, Isla, Marcus, Declan, Willa, Zara, Imogen, Elliot, Hugh, Lachlan; Samuel weight 0.25; Maya excluded 15 Oct per Thomas, override only), respecting script gender and a >= 12 Hz F0 gap to host and to the other guest. Willa..Lachlan added 15 Oct (VCTK, CC BY 4.0, credit auto-added)."
+  "_doc": "v1.3 (clarified 2026-10-15): NO default cast. Only the host is fixed (Carter unless Thomas says otherwise). Guests are picked at random per episode by pick_cast.py from this pool (Frank, Clara, Isla, Marcus, Willa, Zara, Imogen, Elliot, Hugh, Lachlan; Samuel weight 0.25; Maya excluded 15 Oct and Declan excluded 16 Oct per Thomas, override only), respecting script gender and a >= 12 Hz F0 gap to host and to the other guest. Willa..Lachlan added 15 Oct (VCTK, CC BY 4.0, credit auto-added)."
  }
 }

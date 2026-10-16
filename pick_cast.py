@@ -4,10 +4,10 @@ Usage: python pick_cast.py --out <Dir>\\cast.json [--host Carter] [--roles Guest
   --genders  gender the script requires for each role in order (M/F/any), e.g. "M,F" = Guest male, Guest2 female. Also read from <Dir>\\cast_request.json {"Guest":"M","Guest2":"F"} if present.
   --guests   explicit override (validated, never accepts blocked voices; F0/gender problems are only warnings).
   --seed     pick seed; omitted -> a fresh random seed, which is WRITTEN to cast.json so the pick can be reproduced with --seed.
-Rules: pool = voices.json "pool" (Frank, Clara, Isla, Marcus, Declan; Maya excluded 15 Oct, override only with a warning) + low-priority Samuel (weight 0.25); never Alice, Mary, Thomas, never the host.
+Rules: pool = voices.json "pool" (Frank, Clara, Isla, Marcus, Willa, Zara, Imogen, Elliot, Hugh, Lachlan; Maya excluded 15 Oct and Declan excluded 16 Oct (v1.8): override only with a warning) + low-priority Samuel (weight 0.25); never Alice, Mary, Thomas, never the host.
  - gender per role respected when the script says so
  - |F0 guest - F0 host| >= min_gap (12 Hz) and |F0 guest - F0 other guest| >= min_gap, F0 from voice_f0.json (measured 7B, 3-speaker)
-   -> with host Carter (132 Hz): Frank (131) and Samuel (132) are excluded, so male guests are Marcus (152) / Declan (95); Maya (202) is excluded from the pool (override only).
+   -> with host Carter (132 Hz): Frank (131) and Samuel (132) are excluded, so male guests are Marcus (152) / Elliot / Lachlan (Hugh falls out on the gap rule); Maya and Declan are excluded from the pool (override only).
  - candidates = all valid (guest, guest2) pairs; weighted random choice with the seed (low-priority voices weigh 0.25); if nothing satisfies the F0 gap the pair with the largest minimum gap is used and a WARNING is written."""
 import argparse, json, os, random, sys, time, itertools
 ap = argparse.ArgumentParser()

@@ -1,0 +1,235 @@
+{
+ "_doc": "Episode registry (episodes_index.py, template v1.8). number = running number across all podcasts; series_no = number inside a multi-episode series; re-renders (_v2) keep the number. Naming: multi series '<Series> #<n>', one-offs subject only, corner label = date.",
+ "series": {
+  "Fanged Noumena": {
+   "multi": true
+  },
+  "Patchwork": {
+   "multi": false
+  },
+  "Dark Enlightenment": {
+   "multi": false
+  },
+  "Das Man": {
+   "multi": false
+  },
+  "Uploaded Intelligence": {
+   "multi": true
+  },
+  "Mike Ma": {
+   "multi": false
+  }
+ },
+ "episodes": [
+  {
+   "ep": "fanged_ep1",
+   "number": 1,
+   "series": "Fanged Noumena",
+   "multi": true,
+   "series_no": 1,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Fanged Noumena #1",
+   "subject": "Fanged Noumena",
+   "label": "Fanged Noumena #1",
+   "date": "2026-10-12",
+   "duration_s": 2554.4,
+   "cast": "",
+   "legacy_title": null,
+   "files": [
+    ".mp3"
+   ]
+  },
+  {
+   "ep": "fanged_ep2",
+   "number": 2,
+   "series": "Fanged Noumena",
+   "multi": true,
+   "series_no": 2,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Fanged Noumena #2",
+   "subject": "Fanged Noumena",
+   "label": "Fanged Noumena #2",
+   "date": "2026-10-13",
+   "duration_s": 2604.1,
+   "cast": "",
+   "legacy_title": null,
+   "files": [
+    ".chapters.txt",
+    ".mp3",
+    ".mp4"
+   ]
+  },
+  {
+   "ep": "fanged_ep3",
+   "number": 3,
+   "series": "Fanged Noumena",
+   "multi": true,
+   "series_no": 3,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Fanged Noumena #3",
+   "subject": "Fanged Noumena",
+   "label": "Fanged Noumena #3",
+   "date": "2026-10-13",
+   "duration_s": 2594.2,
+   "cast": "",
+   "legacy_title": null,
+   "files": [
+    ".chapters.txt",
+    ".mp3",
+    ".mp4"
+   ]
+  },
+  {
+   "ep": "patchwork_ep1",
+   "number": 4,
+   "series": "Patchwork",
+   "multi": false,
+   "series_no": null,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Patchwork",
+   "subject": "Patchwork",
+   "label": "2026-10-13",
+   "date": "2026-10-13",
+   "duration_s": 2866.7,
+   "cast": "",
+   "legacy_title": null,
+   "files": [
+    ".chapters.txt",
+    ".mp3",
+    ".mp4"
+   ]
+  },
+  {
+   "ep": "dark_enlightenment_ep1",
+   "number": 5,
+   "series": "Dark Enlightenment",
+   "multi": false,
+   "series_no": null,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "The Dark Enlightenment",
+   "subject": "The Dark Enlightenment",
+   "label": "2026-10-13",
+   "date": "2026-10-13",
+   "duration_s": 2514.5,
+   "cast": "",
+   "legacy_title": "The Dark Enlightenment, Episode 1",
+   "files": [
+    ".chapters.json",
+    ".chapters.txt",
+    ".json",
+    ".mp3",
+    ".mp4",
+    ".srt",
+    "_64k.mp3"
+   ]
+  },
+  {
+   "ep": "das_man_ep1",
+   "number": 6,
+   "series": "Das Man",
+   "multi": false,
+   "series_no": null,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "das Man in the modern world",
+   "subject": "das Man in the modern world",
+   "label": "2026-10-14",
+   "date": "2026-10-14",
+   "duration_s": 2436.4,
+   "cast": "",
+   "legacy_title": "das Man in the modern world",
+   "files": [
+    ".chapters.json",
+    ".chapters.txt",
+    ".json",
+    ".mp3",
+    ".mp4",
+    ".srt",
+    "_64k.mp3"
+   ]
+  },
+  {
+   "ep": "das_man_ep1_v2",
+   "number": 6,
+   "series": "Das Man",
+   "multi": false,
+   "series_no": null,
+   "version": 2,
+   "rerender_of": "das_man_ep1",
+   "display_title": "das Man in the modern world (v2)",
+   "subject": "das Man in the modern world",
+   "label": "2026-10-14",
+   "date": "2026-10-14",
+   "duration_s": 2437.4,
+   "cast": "",
+   "legacy_title": "das Man in the modern world",
+   "files": [
+    ".chapters.json",
+    ".chapters.txt",
+    ".json",
+    ".mp3",
+    ".mp4",
+    ".notes.md",
+    ".srt",
+    "_64k.mp3"
+   ]
+  },
+  {
+   "ep": "uploaded_intelligence_ep1",
+   "number": 7,
+   "series": "Uploaded Intelligence",
+   "multi": true,
+   "series_no": 1,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Uploaded Intelligence #1",
+   "subject": "Uploaded Intelligence",
+   "label": "Uploaded Intelligence #1",
+   "date": "2026-10-15",
+   "duration_s": 2445.7,
+   "cast": "",
+   "legacy_title": "Uploaded Intelligence, Episode 1",
+   "files": [
+    ".chapters.json",
+    ".chapters.txt",
+    ".json",
+    ".mp3",
+    ".mp4",
+    ".notes.md",
+    ".srt",
+    "_64k.mp3"
+   ]
+  },
+  {
+   "ep": "mike_ma_ep1",
+   "number": 8,
+   "series": "Mike Ma",
+   "multi": false,
+   "series_no": null,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Mike Ma: Harassment Architecture and Gothic Violence",
+   "subject": "Mike Ma: Harassment Architecture and Gothic Violence",
+   "label": "2026-10-16",
+   "date": "2026-10-16",
+   "duration_s": 2520.0,
+   "cast": "",
+   "legacy_title": "Mike Ma: Harassment Architecture and Gothic Violence, Episode 1",
+   "files": [
+    ".chapters.json",
+    ".chapters.txt",
+    ".json",
+    ".mp3",
+    ".mp4",
+    ".notes.md",
+    ".srt",
+    "_64k.mp3"
+   ]
+  }
+ ]
+}
