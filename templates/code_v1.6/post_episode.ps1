@@ -36,11 +36,11 @@ if ($dur -lt $MinDur -or $dur -gt $MaxDur) { Prog "DURATION $dur s OUTSIDE $MinD
 # align + qc_mix
 $t = Get-Date; $al = Start-Process venv_whisper\Scripts\python.exe -ArgumentList "align.py $W\$Ep.mp3 $W\$Ep.json --threads 6" -NoNewWindow -PassThru -RedirectStandardOutput "$W\align.out.txt" -RedirectStandardError "$W\align.err.txt"
 $al.PriorityClass = 'Idle'; $al.WaitForExit(); Prog "align exit $($al.ExitCode) $([int]((Get-Date)-$t).TotalSeconds) s; $((gc $W\align.out.txt | sls matched) -join ' ')"
-& venv_whisper\Scripts\python.exe qc_mix.py "$W\$Ep.mp3" "$W\$Ep.timings.json" --host $HostVoice --guest $GuestVoice $(if ($Guest2Voice) { "--guest2 $Guest2Voice" }) --json "$W\${Ep}_mixqc.json" *> "$W\mixqc.txt"; Prog "qc_mix done: $((gc $W\mixqc.txt | ? {$_ -match '^(SILENCE|F0DRIFT|RATE|INTERP|MIXQC)'}) -join ' | ')"
+& venv_whisper\Scripts\python.exe qc_mix.py "$W\$Ep.mp3" "$W\$Ep.timings.json" --host $HostVoice --guest $GuestVoice $(if ($Guest2Voice) { '--guest2'; $Guest2Voice }) --json "$W\${Ep}_mixqc.json" *> "$W\mixqc.txt"; Prog "qc_mix done: $((gc $W\mixqc.txt | ? {$_ -match '^(SILENCE|F0DRIFT|RATE|INTERP|MIXQC)'}) -join ' | ')"
 if (-not $NoVideo) {
   $t = Get-Date
-  $p = Start-Process venv_video\Scripts\python.exe -ArgumentList "make_video.py $W\$Ep.mp3 $W\$Ep.json episodes\$Ep.mp4 --timings $W\$Ep.timings.json --chapters $Chapters --host $HostVoice --guest $GuestVoice $(if ($Guest2Voice) { "--guest2 $Guest2Voice" }) --fps 20 --backgrounds $Bg --layout speaker --frames-dir video_frames --frame-suffix $FrameSuffix --frame-times 300,1300,2200" -NoNewWindow -PassThru -RedirectStandardOutput "$W\video.out.txt" -RedirectStandardError "$W\video.err.txt"
-  $p.PriorityClass = 'Idle'; $p.WaitForExit(); Prog "make_video exit $($p.ExitCode), $([int]((Get-Date)-$t).TotalSeconds) s"
+  $vp = Start-Process venv_video\Scripts\python.exe -ArgumentList "make_video.py $W\$Ep.mp3 $W\$Ep.json episodes\$Ep.mp4 --timings $W\$Ep.timings.json --chapters $Chapters --host $HostVoice --guest $GuestVoice $(if ($Guest2Voice) { "--guest2 $Guest2Voice" }) --fps 20 --backgrounds $Bg --layout speaker --frames-dir video_frames --frame-suffix $FrameSuffix --frame-times 300,1300,2200" -NoNewWindow -PassThru -RedirectStandardOutput "$W\video.out.txt" -RedirectStandardError "$W\video.err.txt"
+  $vp.PriorityClass = 'Idle'; $vp.WaitForExit(); Prog "make_video exit $($vp.ExitCode), $([int]((Get-Date)-$t).TotalSeconds) s"
 }
 Copy-Item "$W\$Ep.mp3","$W\$Ep.json" episodes\
 & ffmpeg -y -v error -i "episodes\$Ep.mp3" -ac 1 -b:a 64k "episodes\${Ep}_64k.mp3"
