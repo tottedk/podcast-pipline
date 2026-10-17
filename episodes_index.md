@@ -11,3 +11,4 @@
 | 6 | Das Man | das Man in the modern world (v2) | 2026-10-14 | 40:37 | das_man_ep1_v2 |
 | 7 | Uploaded Intelligence (multi) | Uploaded Intelligence #1 | 2026-10-15 | 40:46 | uploaded_intelligence_ep1 |
 | 8 | Mike Ma | Mike Ma: Harassment Architecture and Gothic Violence | 2026-10-16 | 42:00 | mike_ma_ep1 |
+| 9 | Burnout Society | Why Are We So Tired? Byung-Chul Han's The Burnout Society | 2026-10-17 | 40:27 | burnout_society_ep1 |

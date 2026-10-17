@@ -72,3 +72,4 @@ noise_check/words/
 noise_check/words_takes/
 noise_check/*.out
 noise_check/clips_staging/
+bb/

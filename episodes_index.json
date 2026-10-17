@@ -18,6 +18,9 @@
   },
   "Mike Ma": {
    "multi": false
+  },
+  "Burnout Society": {
+   "multi": false
   }
  },
  "episodes": [
@@ -230,6 +233,21 @@
     ".srt",
     "_64k.mp3"
    ]
+  },
+  {
+   "ep": "burnout_society_ep1",
+   "number": 9,
+   "series": "Burnout Society",
+   "multi": false,
+   "series_no": null,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Why Are We So Tired? Byung-Chul Han's The Burnout Society",
+   "subject": "Why Are We So Tired? Byung-Chul Han's The Burnout Society",
+   "label": "2026-10-17",
+   "date": "2026-10-17",
+   "duration_s": 2426.793492,
+   "cast": "Carter, Clara, Marcus"
   }
  ]
 }
