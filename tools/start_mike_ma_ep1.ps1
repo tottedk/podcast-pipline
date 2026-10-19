@@ -7,17 +7,17 @@ What it does: preflight (aborts on any problem) -> mm\segNN.json from mike_ma_ep
   detached wrapper -> run_episode.ps1 (cast Carter/Declan/Isla via -Guests, -Tempo 0.93 (v1.8), -Scheduled = vram_free hook; md_clean italic strip, 7B TTS + QC retries, FLUX backgrounds, post: mix, duration gate, align, qc_mix, video, 64k mp3, credits)
   -> if the duration gate fails SHORT (<2280 s, v1.8) the wrapper re-runs ONLY post with -SegGap 1.2 -StingPad 0.6 (no TTS); anything else outside 2280-2880 s stops with STATUS "STOP ..." for a human decision.
 Never overwrites episodes\mike_ma_ep1.* (post aborts). Resumable: run it again (segments with mp3+qc.json are skipped, an existing mm\cast.json is reused).  #>
-param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0.93, [switch]$RescaleBackgrounds, [switch]$Inner, [string]$Root = "C:\grok\podcast")
+param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0, [ValidateSet('7b','drama3')][string]$Engine = 'drama3', [switch]$RescaleBackgrounds, [switch]$Inner, [string]$Root = "C:\grok\podcast")
 $ErrorActionPreference = 'Continue'; cd $Root
 $Dir = 'mm'; $Ep = 'mike_ma_ep1'; $BgDir = 'bg_mm1'; $Suffix = '_mm1'; $W = "$Root\$Dir"
 $Title = 'Mike Ma: Harassment Architecture and Gothic Violence, Episode 1'
 $py = "$Root\venv_vv\Scripts\python.exe"
 function St($m) { Set-Content "$W\STATUS.txt" "$(Get-Date -f 'yyyy-MM-dd HH:mm:ss') $m"; Add-Content "$W\chain.log" "$(Get-Date -f 'HH:mm:ss') $m" }
-$raArgs = @('-Dir', $Dir, '-Ep', $Ep, '-BgDir', $BgDir, '-FrameSuffix', $Suffix, '-Title', $Title, '-Guests', 'Declan,Isla', '-Tempo', "$Tempo")
+$raArgs = @('-Dir', $Dir, '-Ep', $Ep, '-BgDir', $BgDir, '-FrameSuffix', $Suffix, '-Title', $Title, '-Guests', 'Declan,Isla', '-Tempo', "$Tempo", '-Engine', $Engine)
 if (-not $NoVramFree) { $raArgs += '-Scheduled' }
 
 if ($Inner) {
-  St "wrapper started (pid $PID) tempo=$Tempo vram_free=$(-not $NoVramFree)"
+  St "wrapper started (pid $PID) engine=$Engine tempo=$Tempo vram_free=$(-not $NoVramFree)"
   & powershell -NoProfile -ExecutionPolicy Bypass -File "$Root\run_episode.ps1" @raArgs
   $last = (gc "$W\STATUS.txt" -Raw)
   if ($last -match 'ALL DONE \(post exit (\d+)\)') {
@@ -66,6 +66,6 @@ $cmd = "powershell -NoProfile -ExecutionPolicy Bypass -File $Root\run_episode.ps
 if ($DryRun) { Write-Host "DRY RUN: nothing written/started. The wrapper would run:`n  $cmd`n  (then the post-only retry with -SegGap 1.2 -StingPad 0.6 if the mix is < 2280 s)"; exit 0 }
 foreach ($f in 'intro.wav', 'sting.wav', 'outro.wav') { if (-not (Test-Path "$W\$f")) { Copy-Item "$Root\ui1\$f" "$W\$f" } }
 Remove-Item "$W\STATUS.txt" -ea 0; St 'launching detached wrapper'
-$a = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "$Root\tools\start_mike_ma_ep1.ps1", '-Inner', '-Tempo', "$Tempo"); if ($NoVramFree) { $a += '-NoVramFree' }
+$a = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "$Root\tools\start_mike_ma_ep1.ps1", '-Inner', '-Tempo', "$Tempo", '-Engine', $Engine); if ($NoVramFree) { $a += '-NoVramFree' }
 $p = Start-Process powershell -ArgumentList $a -WindowStyle Hidden -PassThru
 Write-Host "STARTED detached wrapper pid $($p.Id) at $(Get-Date -f 'HH:mm:ss'). Poll: Get-Content $W\STATUS.txt ; Get-Content $W\chain.log -Tail 15"

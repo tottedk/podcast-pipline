@@ -1,0 +1,52 @@
+{
+ "_doc": "v1.3 (2026-10-15): median F0 (Hz) of GENERATED speech per voice, VibeVoice-7B Q8 (audio.cpp), 3-speaker context, qc_vv.py f0_track method (lines >= 5 words, final shipped takes). Used as the f0_drift reference (+/-15%, SOFT flag in v1.3). Unknown voices fall back to the file median / voice-prompt F0. Previous 1.5B 2-speaker values (v1.2): Carter 131.1, Frank 127.5.",
+ "Carter": 132.2,
+ "Frank": 130.6,
+ "Clara": 228.6,
+ "Maya": 202.5,
+ "Isla": 200.0,
+ "Marcus": 152.4,
+ "Declan": 95.2,
+ "_source": {
+  "Carter": "81 lines: das Man ep1 v2 (40) + Uploaded Intelligence ep1 (41); medians 132.2 / 131.1",
+  "Frank": "80 lines: das Man v2 (42, median 132.2) + UI ep1 (38, median 127.5); pooled 130.6",
+  "Clara": "35 lines, das Man ep1 v2 (median 228.6); voice-eval single test line 225.4 (prompt 222.2)",
+  "Maya": "39 lines, Uploaded Intelligence ep1 (median 202.5); voice-eval test line 205.1 (prompt 197.5)",
+  "Isla": "PROVISIONAL: one 41-word 7B test line (seed 42, 1 speaker) = 200.0; prompt 183.9; no episode data yet",
+  "Marcus": "PROVISIONAL: one 41-word 7B test line = 152.4; prompt 137.9; no episode data yet",
+  "Declan": "PROVISIONAL: one 41-word 7B test line = 95.2; prompt 89.9; no episode data yet",
+  "Samuel": "PROVISIONAL: shootout2 (7B, Carter/Frank/Samuel, das Man excerpt) median 132.2 Hz; prompt 101.3",
+  "Willa": "PROVISIONAL: one 41-word 7B test line (seed 42, 1 speaker, 15 Oct candidate batch) = 165; no episode data yet",
+  "Zara": "PROVISIONAL: one 41-word 7B test line (seed 42, 1 speaker, 15 Oct candidate batch) = 178; no episode data yet",
+  "Imogen": "PROVISIONAL: one 41-word 7B test line (seed 42, 1 speaker, 15 Oct candidate batch) = 219; no episode data yet",
+  "Elliot": "PROVISIONAL: one 41-word 7B test line (seed 42, 1 speaker, 15 Oct candidate batch) = 110; no episode data yet",
+  "Hugh": "PROVISIONAL: one 41-word 7B test line (seed 42, 1 speaker, 15 Oct candidate batch) = 144; no episode data yet",
+  "Lachlan": "PROVISIONAL: one 41-word 7B test line (seed 42, 1 speaker, 15 Oct candidate batch) = 83; no episode data yet"
+ },
+ "_observed_p10_p90_hz": {
+  "Carter": [
+   117,
+   146
+  ],
+  "Frank": [
+   117,
+   149
+  ],
+  "Clara": [
+   208,
+   246
+  ],
+  "Maya": [
+   190,
+   216
+  ]
+ },
+ "_note": "Carter and Frank medians are almost identical (130-132 Hz) - F0 cannot tell them apart; spk_check.py (log-mel) is the speaker-ID check.",
+ "Willa": 165,
+ "Zara": 178,
+ "Imogen": 219,
+ "Elliot": 110,
+ "Hugh": 144,
+ "Lachlan": 83,
+ "Samuel": 132.2
+}

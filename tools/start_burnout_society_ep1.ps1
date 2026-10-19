@@ -9,19 +9,19 @@ What it does: preflight (aborts on any problem) -> bb\segNN.json at the chapter 
 Naming: default = one-off (title = subject, video corner label = date). -Multi = treat as series "Burnout Society" (title/label "Burnout Society #<n>").
 Backgrounds: bg_bb1\backgrounds.json is checked against the script length; if stale use -RescaleBackgrounds -FromLines <old line count> (keeps .bak_pre_rescale), only when needed.
 Never overwrites episodes\burnout_society_ep1.* (post aborts). Resumable: run it again (segments with mp3+qc.json are skipped, an existing bb\cast.json is reused).  #>
-param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0.93, [int]$QcRetries = 1, [string]$Guests = 'Clara,Marcus', [switch]$Multi, [switch]$RescaleBackgrounds, [int]$FromLines = 0, [switch]$Inner, [string]$Root = "C:\grok\podcast")
+param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0, [ValidateSet('7b','drama3')][string]$Engine = 'drama3', [int]$QcRetries = 1, [string]$Guests = 'Clara,Marcus', [switch]$Multi, [switch]$RescaleBackgrounds, [int]$FromLines = 0, [switch]$Inner, [string]$Root = "C:\grok\podcast")
 $ErrorActionPreference = 'Continue'; cd $Root
 $Dir = 'bb'; $Ep = 'burnout_society_ep1'; $BgDir = 'bg_bb1'; $Suffix = '_bb1'; $W = "$Root\$Dir"
 $Title = "Why Are We So Tired? Byung-Chul Han's The Burnout Society"
 $ScriptSrc = "$Root\burnout_society_ep1_script.json"; $ExpLines = 232; $ExpWords = 6129
 $py = "$Root\venv_vv\Scripts\python.exe"
 function St($m) { Set-Content "$W\STATUS.txt" "$(Get-Date -f 'yyyy-MM-dd HH:mm:ss') $m"; Add-Content "$W\chain.log" "$(Get-Date -f 'HH:mm:ss') $m" }
-$raArgs = @('-Dir', $Dir, '-Ep', $Ep, '-BgDir', $BgDir, '-FrameSuffix', $Suffix, '-Title', $Title, '-Guests', $Guests, '-Tempo', "$Tempo", '-QcRetries', "$QcRetries")
+$raArgs = @('-Dir', $Dir, '-Ep', $Ep, '-BgDir', $BgDir, '-FrameSuffix', $Suffix, '-Title', $Title, '-Guests', $Guests, '-Tempo', "$Tempo", '-Engine', $Engine, '-QcRetries', "$QcRetries")
 if ($Multi) { $raArgs += @('-Series', 'Burnout Society', '-Multi') } else { $raArgs += '-OneOff' }
 if (-not $NoVramFree) { $raArgs += '-Scheduled' }
 
 if ($Inner) {
-  St "wrapper started (pid $PID) guests=$Guests tempo=$Tempo qcretries=$QcRetries vram_free=$(-not $NoVramFree) multi=$Multi"
+  St "wrapper started (pid $PID) engine=$Engine guests=$Guests tempo=$Tempo qcretries=$QcRetries vram_free=$(-not $NoVramFree) multi=$Multi"
   & powershell -NoProfile -ExecutionPolicy Bypass -File "$Root\run_episode.ps1" @raArgs
   $last = (gc "$W\STATUS.txt" -Raw)
   if ($last -match 'ALL DONE \(post exit (\d+)\)') {
@@ -89,6 +89,6 @@ $cmd = "powershell -NoProfile -ExecutionPolicy Bypass -File $Root\run_episode.ps
 if ($DryRun) { Write-Host "DRY RUN: nothing written/started. The wrapper would run:`n  $cmd`n  (then the post-only retry with -SegGap 1.2 -StingPad 0.6 if the mix is < 2280 s)"; exit 0 }
 foreach ($f in 'intro.wav', 'sting.wav', 'outro.wav') { if (-not (Test-Path "$W\$f")) { Copy-Item "$Root\ui1\$f" "$W\$f" } }
 Remove-Item "$W\STATUS.txt" -ea 0; St 'launching detached wrapper'
-$a = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "$Root\tools\start_burnout_society_ep1.ps1", '-Inner', '-Tempo', "$Tempo", '-QcRetries', "$QcRetries", '-Guests', $Guests); if ($NoVramFree) { $a += '-NoVramFree' }; if ($Multi) { $a += '-Multi' }
+$a = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "$Root\tools\start_burnout_society_ep1.ps1", '-Inner', '-Tempo', "$Tempo", '-Engine', $Engine, '-QcRetries', "$QcRetries", '-Guests', $Guests); if ($NoVramFree) { $a += '-NoVramFree' }; if ($Multi) { $a += '-Multi' }
 $p = Start-Process powershell -ArgumentList $a -WindowStyle Hidden -PassThru
 Write-Host "STARTED detached wrapper pid $($p.Id) at $(Get-Date -f 'HH:mm:ss'). Poll: Get-Content $W\STATUS.txt ; Get-Content $W\chain.log -Tail 15"

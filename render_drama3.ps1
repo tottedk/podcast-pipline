@@ -1,11 +1,11 @@
-<#  render_drama3.ps1 (template v1.9, 2026-10-19) - EXPERIMENTAL TTS+QC driver: Fish Audio Drama 3 Q4_K_S GGUF (audio.cpp v0.9.2-drama3-base-small, Vulkan) -> QC after every take -> best take -> final QC -> post_segment.ps1.
+<#  render_drama3.ps1 (template v1.9, 2026-10-19; v1.10: DEFAULT engine, tempo 1.05) - TTS+QC driver: Fish Audio Drama 3 Q4_K_S GGUF (audio.cpp v0.9.2-drama3-base-small, Vulkan) -> QC after every take -> best take -> final QC -> post_segment.ps1.
 Same interface and outputs as render7b.ps1 (segNN.raw.wav + .chunks\cNNN.wav/chunks.json at 24 kHz, segNN.qc.json, segNN.mp3, STATUS.txt, SEGDONE/ALLDONE lines), so run_episode.ps1 / post_episode.ps1 / qc_vv.py / qc_takes.py / align.py work unchanged.
-Selected with run_episode.ps1 -Engine drama3 (default engine stays 7b). Generator = drama3_generate.py; clone refs = drama3_refs.py (voices.json refs, cut <= 20 s, whisper transcript, cached in <Root>\drama3_refs\).
+DEFAULT engine since v1.10 (run_episode.ps1 -Engine drama3, default tempo 1.05 ~155 wpm; -Engine 7b = VibeVoice-7B fallback, tempo 0.93). Generator = drama3_generate.py; clone refs = drama3_refs.py (voices.json refs, cut <= 20 s, whisper transcript, cached in <Root>\drama3_refs\).
 Drama 3 specifics: -ChunkWords default 150 (3 refs + text must fit context 4096); -Cfg/-Steps accepted but ignored; [sighs]/[laughs]/[whispers] tags are performed, not spoken, and are stripped from the QC texts.
 GPU hygiene: waits until Ollama is empty AND no other audiocpp_cli runs before each TTS call (one GPU model at a time); the CLI exits after each call (model unloaded); a leftover Drama 3 audiocpp_cli is killed in finally. No -Pin (pin_experts needs ~17 GB extra RAM).
-Usage: .\render_drama3.ps1 -Dir ui1 [-Segs 00,01,...] [-HostVoice Carter] [-GuestVoice X -Guest2Voice Y] (default: <Dir>\cast.json) [-Tempo 0.93] [-ChunkWords 150] [-QcRetries 1] [-D3Home C:\grok\drama3]  #>
+Usage: .\render_drama3.ps1 -Dir ui1 [-Segs 00,01,...] [-HostVoice Carter] [-GuestVoice X -Guest2Voice Y] (default: <Dir>\cast.json) [-Tempo 1.05] [-ChunkWords 150] [-QcRetries 1] [-D3Home C:\grok\drama3]  #>
 param([string]$Dir, [string[]]$Segs = @(), [string]$HostVoice = "Carter", [string]$GuestVoice = "", [string]$Guest2Voice = "",
-  [double]$Tempo = 0.93, [int]$ChunkWords = 150, [int]$QcRetries = 1, [int[]]$Seeds = @(42,1988,3042,4096), [string]$Glossary = "",
+  [double]$Tempo = 1.05, [int]$ChunkWords = 150, [int]$QcRetries = 1, [int[]]$Seeds = @(42,1988,3042,4096), [string]$Glossary = "",
   [double]$Cfg = 1.3, [int]$Steps = 10, [double]$AfftdnNr = 0, [switch]$NoResume, [string]$Root = "C:\grok\podcast",
   [string]$D3Home = "C:\grok\drama3", [int]$CacheSize = 8, [int]$CtxLen = 4096)
 $ErrorActionPreference = 'Continue'; (Get-Process -Id $PID).PriorityClass = 'Idle'

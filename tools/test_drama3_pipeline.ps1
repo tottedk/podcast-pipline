@@ -46,7 +46,7 @@ R.append(f"QC final redo={q.get('redo')} file_wer={q.get('wer')}")
 tk = cj + r"\takes\takes.json"
 if os.path.exists(tk): R.append("takes: " + "; ".join(f"{k}: " + ",".join(f"p{t['pass']}/s{t['seed']}={t['score']}" for t in v) for k, v in json.load(open(tk)).items()))
 R.append(f"words {words} raw {raw:.1f}s -> {words/raw if raw else 0:.2f} w/s raw; mp3 {mp3:.1f}s -> {words/mp3 if mp3 else 0:.2f} w/s ({60*words/mp3 if mp3 else 0:.0f} wpm) final; target 2.6 w/s (155 wpm)")
-if mp3: R.append(f"tempo for 2.6 w/s: {0.93*2.6/(words/mp3):.3f} (current 0.93)")
+if mp3: R.append(f"tempo for 2.6 w/s: {1.05*2.6/(words/mp3):.3f} (current 1.05)")
 tj = T + r"\seg00.timings.json"
 if os.path.exists(tj):
     L = json.load(open(tj))["lines"]; sp = sum(l["end"] - l["start"] for l in L); R.append(f"align: {len(L)} lines, speech-only {sp:.1f}s -> {words/sp:.2f} w/s inside lines; per-line w/s " + ", ".join(f"{l['speaker'][0]}{l['speaker'][-1] if l['speaker'][-1]=='2' else ''}:{len(TAG.sub(' ', l['text']).split())/max(0.1,l['end']-l['start']):.1f}" for l in L))
