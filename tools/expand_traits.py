@@ -2,10 +2,10 @@
 Usage: python tools\\expand_traits.py --seed templates\\guest_traits_seed_v1.json --out templates\\guest_traits_v1.json [--model gemma4:26b-a4b-it-qat] [--target 35] [--max 40] [--no-llm]
 Asks for STRICT JSON (Ollama structured output), validates tags against tag_vocab, dedupes (normalised text + difflib ratio >= 0.72), merges, caps at --max per category.
 Run `ollama stop <model>` afterwards (Thomas games on this PC)."""
-import argparse, json, re, difflib, urllib.request, time
+import argparse, json, re, difflib, urllib.request, urllib.error, time
 ap = argparse.ArgumentParser(); ap.add_argument("--seed", required=True); ap.add_argument("--out", required=True)
 ap.add_argument("--model", default="gemma4:26b-a4b-it-qat"); ap.add_argument("--target", type=int, default=35); ap.add_argument("--max", type=int, default=40)
-ap.add_argument("--host", default="http://127.0.0.1:11434"); ap.add_argument("--no-llm", action="store_true"); ap.add_argument("--rounds", type=int, default=2)
+ap.add_argument("--host", default="http://127.0.0.1:11434"); ap.add_argument("--no-llm", action="store_true"); ap.add_argument("--rounds", type=int, default=4); ap.add_argument("--batch", type=int, default=12)
 a = ap.parse_args()
 lib = json.load(open(a.seed, encoding="utf-8-sig")); vocab = set(lib["tag_vocab"])
 SCHEMA = {"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object", "properties": {
@@ -23,10 +23,19 @@ def ask(cat, c, need):
          f"max 22 words, English, audio-only (no visual-only gestures). Vary tone: funny, petty, sad, proud, stubborn. "
          f"tags: choose 0-2 from this exact list only: {sorted(vocab)}. {side_rule} rare: true only for dramatic, seldom-used behaviour (e.g. walking out). "
          f"Return strict JSON: {{\"items\":[{{\"text\":...,\"tags\":[...],\"side\":...,\"rare\":false}}]}}")
-    body = json.dumps({"model": a.model, "prompt": p, "stream": False, "format": SCHEMA, "keep_alive": "10m",
-                       "options": {"temperature": 0.9, "num_ctx": 8192, "num_predict": 4096}}).encode()
-    r = json.load(urllib.request.urlopen(urllib.request.Request(a.host + "/api/generate", data=body, headers={"Content-Type": "application/json"}), timeout=420))
-    return json.loads(r["response"]).get("items", [])
+    opts = {"temperature": 0.9, "num_ctx": 8192, "num_predict": 8192}
+    for think in (False, None):
+        d = {"model": a.model, "prompt": p, "stream": False, "format": SCHEMA, "keep_alive": "10m", "options": opts}
+        if think is not None: d["think"] = think
+        try: r = json.load(urllib.request.urlopen(urllib.request.Request(a.host + "/api/generate", data=json.dumps(d).encode(), headers={"Content-Type": "application/json"}), timeout=420))
+        except urllib.error.HTTPError as e:
+            if think is not None: continue
+            raise
+        txt = (r.get("response") or "").strip()
+        if not txt:
+            th = r.get("thinking") or ""; m = re.search(r"\{.*\}", th, re.S); txt = m.group(0) if m else ""
+        if not txt: raise ValueError(f"empty response (done_reason={r.get('done_reason')}, eval_count={r.get('eval_count')})")
+        return json.loads(txt).get("items", [])
 stats = {}
 for cat, c in lib["categories"].items():
     added = rej = 0
@@ -34,7 +43,7 @@ for cat, c in lib["categories"].items():
         need = a.target - len(c["items"])
         if need <= 0: break
         t0 = time.time()
-        try: new = ask(cat, c, need + 6)
+        try: new = ask(cat, c, min(need + 3, a.batch))
         except Exception as e: print(f"{cat} round {rnd}: LLM error {e}"); continue
         for x in new:
             t = " ".join(str(x.get("text", "")).split())

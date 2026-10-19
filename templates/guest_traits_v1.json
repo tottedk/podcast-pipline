@@ -165,6 +165,250 @@
      "rare": false,
      "source": "seed",
      "id": "qu14"
+    },
+    {
+     "text": "Repeats the last three words of the opponent's sentence with a mocking, questioning inflection.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu15"
+    },
+    {
+     "text": "Refuses to answer a question until the host repeats it exactly as phrased.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu16"
+    },
+    {
+     "text": "Corrects the opponent's pronunciation of a specific historical figure or city name mid-sentence.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu17"
+    },
+    {
+     "text": "Sighs loudly through their nose before delivering a rebuttal.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu18"
+    },
+    {
+     "text": "Uses excessive, heavy-handed statistics that sound suspiciously made up or unverified.",
+     "tags": [
+      "data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu19"
+    },
+    {
+     "text": "Suddenly drops into an extremely low, hushed whisper to force the host to turn up the volume.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu20"
+    },
+    {
+     "text": "Refers to their opponent by a patronizing nickname like 'Champ' or 'Sunshine'.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu21"
+    },
+    {
+     "text": "Stammers with a heavy, nervous stutter only when discussing their own past mistakes.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu22"
+    },
+    {
+     "text": "Starts a sentence with 'The reality is...' and then spends two minutes circling back to the same point.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu23"
+    },
+    {
+     "text": "abruptly cuts the opponent off by saying 'I'm sorry, but...' and then ignores the interruption.",
+     "tags": [
+      "interrupter",
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu24"
+    },
+    {
+     "text": "Ends every single sentence with a rising intonation, making every statement sound like a question.",
+     "tags": [
+      "yielding"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu25"
+    },
+    {
+     "text": "Simply stops speaking and remains silent for ten seconds after being asked a direct question.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu26"
+    },
+    {
+     "text": "Refers to the host's studio as 'this echo chamber' or 'this little circus' whenever they feel unheard.",
+     "tags": [
+      "sarcastic",
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu27"
+    },
+    {
+     "text": "Clears their throat loudly and painfully right before delivering a devastating personal critique.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu28"
+    },
+    {
+     "text": "Always starts a sentence with 'If we are being intellectually honest...' even when being completely dishonest.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu29"
+    },
+    {
+     "text": "Abruptly shifts from rapid-fire speech to a slow, deliberate, condescending drawl when explaining basic concepts.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu30"
+    },
+    {
+     "text": "Repeatedly uses the phrase 'At the end of the day' to shut down complex nuances.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu31"
+    },
+    {
+     "text": "Mumbles a derogatory insult under their breath that is just barely audible to the microphone.",
+     "tags": [
+      "crude",
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu32"
+    },
+    {
+     "text": "Constantly cites a specific, unnamed 'high-ranking source' or 'expert colleague' to bolster every claim.",
+     "tags": [
+      "data",
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu33"
+    },
+    {
+     "text": "Pauses mid-sentence to check their watch and sighs as if the conversation is a waste of their time.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu34"
+    },
+    {
+     "text": "Uses overly flowery, archaic vocabulary to make their opponent's modern arguments sound uneducated.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu35"
+    },
+    {
+     "text": "Begins a response by saying 'Let's look at the macro level' then only discusses tiny, irrelevant details.",
+     "tags": [
+      "data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu36"
+    },
+    {
+     "text": "Stops speaking entirely and begins a rhythmic, audible tapping of a pen against a glass.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu37"
+    },
+    {
+     "text": "Suddenly breaks character from a heated debate to express a deeply personal, unrelated childhood memory.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "qu38"
     }
    ]
   },
@@ -313,6 +557,237 @@
      "rare": false,
      "source": "seed",
      "id": "de15"
+    },
+    {
+     "text": "Uses hyper-empathetic language to frame any disagreement as a lack of compassion for victims.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de16"
+    },
+    {
+     "text": "Dismisses a complex policy argument by labeling it as 'common sense' for the average person.",
+     "tags": [
+      "crude"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de17"
+    },
+    {
+     "text": "Plays the victim, claiming the host and opponent are working together to silence their truth.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de18"
+    },
+    {
+     "text": "Uses a high-pitched, condescending laugh to signal that the opponent's point is fundamentally ridiculous.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de19"
+    },
+    {
+     "text": "Aims for the 'moral high ground' by refusing to engage with the prompt entirely.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de20"
+    },
+    {
+     "text": "Redefines words mid-argument, changing the meaning of terms like 'freedom' or 'justice' on the fly.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de21"
+    },
+    {
+     "text": "Lauds the opponent's 'intentions' while ruthlessly attacking their intelligence or competence.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de22"
+    },
+    {
+     "text": "Shouts over the opponent to create a sense of chaos and dominance during a disagreement.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de23"
+    },
+    {
+     "text": "Falls into a heavy, disappointed silence to imply the opponent has just said something shameful.",
+     "tags": [
+      "patient"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de24"
+    },
+    {
+     "text": "Uses 'I've seen it with my own eyes' to shut down any statistical counter-argument.",
+     "tags": [
+      "anti_data",
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de25"
+    },
+    {
+     "text": "Abruptly stops speaking and walks out of the studio when a point hits too close to home.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de26"
+    },
+    {
+     "text": "Accuses the opponent of reading from a teleprompter or a script written by handlers.",
+     "tags": [
+      "crude"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de27"
+    },
+    {
+     "text": "Uses a patronizing 'Listen, honey' or 'Look, friend' to imply the opponent is too naive to understand reality.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de28"
+    },
+    {
+     "text": "Recites a long list of names to imply a vast, shadowy conspiracy is behind the opponent's views.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de29"
+    },
+    {
+     "text": "Deliberately mispronounces the opponent's favorite academic term to make them look uneducated and silly.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de30"
+    },
+    {
+     "text": "Repeatedly uses 'everyone knows' to create a false sense of consensus around their personal opinion.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de31"
+    },
+    {
+     "text": "Speaks in a hushed, trembling voice to imply the opponent's argument is a direct assault on their dignity.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de32"
+    },
+    {
+     "text": "Interjects with a loud, performative sigh every time the opponent begins a new sentence.",
+     "tags": [
+      "interrupter"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de33"
+    },
+    {
+     "text": "Claims they are too tired or exhausted by the 'lies' to continue the debate.",
+     "tags": [
+      "yielding"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de34"
+    },
+    {
+     "text": "Reduces every complex sociological trend to a simple, crude metaphor about animals or predators.",
+     "tags": [
+      "crude"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de35"
+    },
+    {
+     "text": "Stares into the microphone and counts to three in total silence to make the opponent's point feel awkward.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de36"
+    },
+    {
+     "text": "Accuses the host of being a 'gatekeeper' for the establishment to deflect from the actual question.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de37"
+    },
+    {
+     "text": "Suddenly pivots to a profound, poetic monologue that ignores the data entirely to evoke raw emotion.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "de38"
     }
    ]
   },
@@ -429,6 +904,246 @@
      "rare": false,
      "source": "seed",
      "id": "em12"
+    },
+    {
+     "text": "Starts reciting statistics rapidly to drown out a personal insult; voice becomes robotic and monotone.",
+     "tags": [
+      "data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em13"
+    },
+    {
+     "text": "Mumbles a series of profanities under their breath when their core values are questioned.",
+     "tags": [
+      "crude"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em14"
+    },
+    {
+     "text": "Slowly repeats the opponent's words back to them with a mocking, condescending tone.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em15"
+    },
+    {
+     "text": "Sudden, sharp silence follows an emotional accusation, leaving a heavy, uncomfortable void in the audio.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": true,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em16"
+    },
+    {
+     "text": "Begins stuttering or losing their train of thought when the topic shifts to personal morality.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em17"
+    },
+    {
+     "text": "Uses overly sophisticated, academic jargon to distance themselves from a simple, devastating point.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em18"
+    },
+    {
+     "text": "Aggressively cuts off the opponent mid-sentence, then immediately tries to take back the interruption.",
+     "tags": [
+      "interrupter",
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em19"
+    },
+    {
+     "text": "Becomes incredibly soft-spoken and gentle when discussing the human cost of a specific policy.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em20"
+    },
+    {
+     "text": "Dismisses every piece of evidence presented as 'fake news' or 'propaganda' with a sharp scoff.",
+     "tags": [
+      "stubborn",
+      "anti_data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em21"
+    },
+    {
+     "text": "Nodding audibly and making 'tsk-tsk' sounds while the opponent is speaking.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em22"
+    },
+    {
+     "text": "Refuses to answer a direct question, instead pivoting to a rehearsed, repetitive talking point.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em23"
+    },
+    {
+     "text": "Abruptly cuts the mic or stops speaking mid-sentence in a sudden, dramatic protest.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": true,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em24"
+    },
+    {
+     "text": "A sharp, inhaled breath through the teeth whenever the opponent starts a sentence.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em25"
+    },
+    {
+     "text": "Begins speaking in a whisper to force the host to lower the volume for everyone.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em26"
+    },
+    {
+     "text": "Repeatedly uses the word 'actually' in a sharp, corrective tone to signal intellectual superiority.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em27"
+    },
+    {
+     "text": "The sound of heavy, rhythmic tapping of a pen against a desk during long pauses.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em28"
+    },
+    {
+     "text": "Starts a sentence with a booming, triumphant 'Exactly!' before the opponent has even finished.",
+     "tags": [
+      "interrupter"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em29"
+    },
+    {
+     "text": "Goes on a rambling, sentimental anecdote about a neighbor to avoid answering a policy question.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em30"
+    },
+    {
+     "text": "Deep, guttural groan of frustration that sounds like a physical weight is being dropped.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em31"
+    },
+    {
+     "text": "Uses highly technical, Latinate terminology to make a very simple concept sound impenetrable.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em32"
+    },
+    {
+     "text": "A sudden, sharp intake of air followed by a long, shaky exhale of disbelief.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em33"
+    },
+    {
+     "text": "Begins reciting a long list of historical dates with increasing speed and zero inflection.",
+     "tags": [
+      "data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em34"
+    },
+    {
+     "text": "A low, rhythmic, condescending chuckle that sounds more like a huff of derision.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em35"
+    },
+    {
+     "text": "Stops mid-sentence and lets the silence stretch for five seconds after a personal jab.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": true,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "em36"
     }
    ]
   },
@@ -530,6 +1245,251 @@
      "rare": false,
      "source": "seed",
      "id": "bl12"
+    },
+    {
+     "text": "Convinced that any compromise with the opposition is a total surrender of principle.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl13"
+    },
+    {
+     "text": "Dismisses complex sociological data as nothing more than 'woke' fabrication.",
+     "tags": [
+      "anti_data",
+      "stubborn"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl14"
+    },
+    {
+     "text": "Believes their personal lifestyle choices are universally standard and morally superior.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl15"
+    },
+    {
+     "text": "Assumes their side's specific economic theory is basic common sense.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl16"
+    },
+    {
+     "text": "Claims the opponent is always talking over them, even when they are the one interrupting.",
+     "tags": [
+      "volatile",
+      "interrupter"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl17"
+    },
+    {
+     "text": "Views every minor inconvenience as part of a massive, coordinated conspiracy.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl18"
+    },
+    {
+     "text": "Refuses to acknowledge how their own extreme rhetoric fuels the very chaos they condemn.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl19"
+    },
+    {
+     "text": "Sees their own side's policy failures as 'unfortunate necessities' of the bigger struggle.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl20"
+    },
+    {
+     "text": "Uses academic jargon to hide the fact that they have no concrete solution.",
+     "tags": [
+      "formal",
+      "sarcastic"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl21"
+    },
+    {
+     "text": "Believes they are the only ones capable of seeing the 'truth' through the lies.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl22"
+    },
+    {
+     "text": "Ignores statistical evidence of progress, focusing only on isolated, negative anecdotes.",
+     "tags": [
+      "anti_data",
+      "stubborn"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl23"
+    },
+    {
+     "text": "Suddenly stands up and storms out of the studio because a question was too direct.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl24"
+    },
+    {
+     "text": "Believes their side's candidate is a saintly hero, ignoring documented corruption or scandals.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl25"
+    },
+    {
+     "text": "Dismisses any criticism of their ideology as a coordinated attack by 'the elites'.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl26"
+    },
+    {
+     "text": "Assumes anyone who disagrees with their specific radical solution is inherently evil or malicious.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl27"
+    },
+    {
+     "text": "Believes their specific ethnic or national identity is the only true measure of a citizen.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl28"
+    },
+    {
+     "text": "Views any attempt at nuance or middle ground as a sign of moral weakness.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl29"
+    },
+    {
+     "text": "Assumes their side's identity politics are the only valid way to discuss justice.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl30"
+    },
+    {
+     "text": "Claims the economy is failing because of a specific group of people rather than systemic factors.",
+     "tags": [
+      "crude"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl31"
+    },
+    {
+     "text": "Dismisses all mainstream news outlets as being entirely owned by corporate interests.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl32"
+    },
+    {
+     "text": "Refuses to acknowledge that their own policies would negatively impact the very people they claim to help.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl33"
+    },
+    {
+     "text": "Believes that history is a simple, inevitable march toward their specific political vision.",
+     "tags": [
+      "formal"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl34"
+    },
+    {
+     "text": "Uses 'common sense' as a shield to avoid explaining the actual mechanics of their proposals.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl35"
+    },
+    {
+     "text": "Immediately shuts down a debate if the opponent brings up a factually accurate, inconvenient statistic.",
+     "tags": [
+      "volatile",
+      "anti_data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "bl36"
     }
    ]
   },
@@ -639,6 +1599,252 @@
      "rare": false,
      "source": "seed",
      "id": "ba13"
+    },
+    {
+     "text": "Spent their life savings on a failed community center project that everyone now mocks.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba14"
+    },
+    {
+     "text": "A former high-flying corporate lawyer who burned their bridges to live in a commune.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba15"
+    },
+    {
+     "text": "Lost their local business due to a zoning law they feel was used as a weapon.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba16"
+    },
+    {
+     "text": "Was a student activist who now works in middle management and hates both sides.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba17"
+    },
+    {
+     "text": "Always the smartest person in the room, driven by a desperate need for validation.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba18"
+    },
+    {
+     "text": "A victim of a clerical error that cost them their social security benefits.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba19"
+    },
+    {
+     "text": "Refuses to use any technology produced by companies they deem unethical.",
+     "tags": [
+      "stubborn",
+      "anti_data"
+     ],
+     "side": "left",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba20"
+    },
+    {
+     "text": "The child of a disgraced politician trying to reclaim the family name.",
+     "tags": [
+      "formal"
+     ],
+     "side": "right",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba21"
+    },
+    {
+     "text": "Convinced a massive conspiracy is happening because of a glitch in their own banking app.",
+     "tags": [
+      "crude",
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba22"
+    },
+    {
+     "text": "Once gave a keynote speech that was so boring it actually changed someone's mind.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba23"
+    },
+    {
+     "text": "Raised in a household where every meal was a debate about foreign policy.",
+     "tags": [
+      "patient"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba24"
+    },
+    {
+     "text": "An academic who spent ten years researching something that turned out to be completely irrelevant.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba25"
+    },
+    {
+     "text": "Was a child star in a religious cult and now sees manipulation in every government policy.",
+     "tags": [
+      "earnest",
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba26"
+    },
+    {
+     "text": "Lost their childhood home to a predatory bank foreclosure during the 2008 crash.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba27"
+    },
+    {
+     "text": "Operated a niche hobby shop that closed when the local mall was replaced by luxury condos.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba28"
+    },
+    {
+     "text": "The former valet to a billionaire who realized the system was rigged from the inside.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba29"
+    },
+    {
+     "text": "Spent twenty years as a public defender before deciding the law was a joke.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba30"
+    },
+    {
+     "text": "Once survived a violent riot and now treats every protest like a combat zone.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba31"
+    },
+    {
+     "text": "A former professional athlete whose career ended due to a systemic lack of healthcare.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba32"
+    },
+    {
+     "text": "Only cares about the economy because they grew up in extreme, avoidable poverty.",
+     "tags": [
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba33"
+    },
+    {
+     "text": "An ex-intelligence analyst who sees patterns in everything, even the weather.",
+     "tags": [
+      "data",
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba34"
+    },
+    {
+     "text": "Was once a local hero for a charity project that got swallowed by bureaucracy.",
+     "tags": [
+      "sarcastic",
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba35"
+    },
+    {
+     "text": "Refuses to speak to anyone who hasn't worked a manual labor job.",
+     "tags": [
+      "crude",
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba36"
+    },
+    {
+     "text": "Walks out of the studio if the moderator interrupts them even once.",
+     "tags": [
+      "interrupter"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "llm:gemma4:26b-a4b-it-qat",
+     "id": "ba37"
     }
    ]
   }
@@ -646,28 +1852,28 @@
  "expanded_with": "gemma4:26b-a4b-it-qat",
  "stats": {
   "quirks": {
-   "total": 14,
-   "llm_added": 0,
+   "total": 38,
+   "llm_added": 24,
    "rejected_dupes_or_invalid": 0
   },
   "debate_tactics": {
-   "total": 15,
-   "llm_added": 0,
+   "total": 38,
+   "llm_added": 23,
    "rejected_dupes_or_invalid": 0
   },
   "emotional": {
-   "total": 12,
-   "llm_added": 0,
+   "total": 36,
+   "llm_added": 24,
    "rejected_dupes_or_invalid": 0
   },
   "blind_spots": {
-   "total": 12,
-   "llm_added": 0,
+   "total": 36,
+   "llm_added": 24,
    "rejected_dupes_or_invalid": 0
   },
   "backstory_hooks": {
-   "total": 13,
-   "llm_added": 0,
+   "total": 37,
+   "llm_added": 24,
    "rejected_dupes_or_invalid": 0
   }
  }
