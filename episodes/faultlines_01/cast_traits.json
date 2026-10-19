@@ -1,0 +1,150 @@
+{
+ "host": "Carter",
+ "host_traits": "NONE - fixed personality (content_style_v2.4, 'Carter')",
+ "seed": 275136507,
+ "counts": "quirks=1-2,debate_tactics=2,emotional=1-2,blind_spots=1,backstory_hooks=1",
+ "library": "v1",
+ "guests": {
+  "Guest": {
+   "voice": "Elliot",
+   "side": "right",
+   "tags": [
+    "crude",
+    "patient",
+    "sarcastic",
+    "stubborn",
+    "volatile"
+   ],
+   "traits": {
+    "quirks": [
+     {
+      "id": "qu20",
+      "text": "Suddenly drops into an extremely low, hushed whisper to force the host to turn up the volume.",
+      "tags": [
+       "volatile"
+      ]
+     }
+    ],
+    "debate_tactics": [
+     {
+      "id": "de24",
+      "text": "Falls into a heavy, disappointed silence to imply the opponent has just said something shameful.",
+      "tags": [
+       "patient"
+      ]
+     },
+     {
+      "id": "de21",
+      "text": "Redefines words mid-argument, changing the meaning of terms like 'freedom' or 'justice' on the fly.",
+      "tags": [
+       "stubborn"
+      ]
+     }
+    ],
+    "emotional": [
+     {
+      "id": "em07",
+      "text": "Audible contemptuous sighs and 'oh, come on' under the breath.",
+      "tags": [
+       "sarcastic"
+      ]
+     }
+    ],
+    "blind_spots": [
+     {
+      "id": "bl31",
+      "text": "Claims the economy is failing because of a specific group of people rather than systemic factors.",
+      "tags": [
+       "crude"
+      ]
+     }
+    ],
+    "backstory_hooks": [
+     {
+      "id": "ba02",
+      "text": "Lost a job after a post went viral; still bitter about it.",
+      "tags": []
+     }
+    ]
+   }
+  },
+  "Guest2": {
+   "voice": "Clara",
+   "side": "left",
+   "tags": [
+    "anti_data",
+    "formal",
+    "interrupter",
+    "sarcastic",
+    "stubborn",
+    "volatile"
+   ],
+   "traits": {
+    "quirks": [
+     {
+      "id": "qu16",
+      "text": "Refuses to answer a question until the host repeats it exactly as phrased.",
+      "tags": [
+       "stubborn"
+      ]
+     },
+     {
+      "id": "qu02",
+      "text": "Calls the host 'Mr. Carter' only when irritated with him.",
+      "tags": []
+     }
+    ],
+    "debate_tactics": [
+     {
+      "id": "de09",
+      "text": "Dismisses statistics as elite manipulation and trusts lived experience instead.",
+      "tags": [
+       "anti_data"
+      ]
+     },
+     {
+      "id": "de11",
+      "text": "Motte-and-bailey: retreats to a modest claim when pressed, expands it again later.",
+      "tags": []
+     }
+    ],
+    "emotional": [
+     {
+      "id": "em25",
+      "text": "A sharp, inhaled breath through the teeth whenever the opponent starts a sentence.",
+      "tags": [
+       "volatile"
+      ]
+     },
+     {
+      "id": "em29",
+      "text": "Starts a sentence with a booming, triumphant 'Exactly!' before the opponent has even finished.",
+      "tags": [
+       "interrupter"
+      ]
+     }
+    ],
+    "blind_spots": [
+     {
+      "id": "bl21",
+      "text": "Uses academic jargon to hide the fact that they have no concrete solution.",
+      "tags": [
+       "formal",
+       "sarcastic"
+      ]
+     }
+    ],
+    "backstory_hooks": [
+     {
+      "id": "ba13",
+      "text": "Once wrote a book they now half regret.",
+      "tags": []
+     }
+    ]
+   }
+  }
+ },
+ "picked_at": "2026-10-19 19:04:54",
+ "prompt_block": "GUEST TRAITS (use naturally, not all at once; show them, never announce them):\nGuest (Elliot, right):\n  - [quirks] Suddenly drops into an extremely low, hushed whisper to force the host to turn up the volume.\n  - [debate_tactics] Falls into a heavy, disappointed silence to imply the opponent has just said something shameful.\n  - [debate_tactics] Redefines words mid-argument, changing the meaning of terms like 'freedom' or 'justice' on the fly.\n  - [emotional] Audible contemptuous sighs and 'oh, come on' under the breath.\n  - [blind_spots] Claims the economy is failing because of a specific group of people rather than systemic factors.\n  - [backstory_hooks] Lost a job after a post went viral; still bitter about it.\nGuest2 (Clara, left):\n  - [quirks] Refuses to answer a question until the host repeats it exactly as phrased.\n  - [quirks] Calls the host 'Mr. Carter' only when irritated with him.\n  - [debate_tactics] Dismisses statistics as elite manipulation and trusts lived experience instead.\n  - [debate_tactics] Motte-and-bailey: retreats to a modest claim when pressed, expands it again later.\n  - [emotional] A sharp, inhaled breath through the teeth whenever the opponent starts a sentence.\n  - [emotional] Starts a sentence with a booming, triumphant 'Exactly!' before the opponent has even finished.\n  - [blind_spots] Uses academic jargon to hide the fact that they have no concrete solution.\n  - [backstory_hooks] Once wrote a book they now half regret.",
+ "reproduce": "python pick_traits.py --cast episodes\\faultlines_01\\cast.json --out episodes\\faultlines_01\\cast_traits.json --sides Guest=right,Guest2=left --counts quirks=1-2,debate_tactics=2,emotional=1-2,blind_spots=1,backstory_hooks=1 --seed 275136507 --force"
+}

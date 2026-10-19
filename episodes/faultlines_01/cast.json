@@ -1,0 +1,38 @@
+{
+ "host": "Carter",
+ "guest": "Elliot",
+ "guest2": "Clara",
+ "mode": "random",
+ "seed": 548870699,
+ "genders_required": {
+  "Guest": "any",
+  "Guest2": "any"
+ },
+ "f0": {
+  "Host": 132.2,
+  "Guest": 110,
+  "Guest2": 228.6
+ },
+ "f0_gaps_hz": {
+  "Host-Guest": 22.2,
+  "Host-Guest2": 96.4,
+  "Guest-Guest2": 118.6
+ },
+ "pool": [
+  "Frank",
+  "Clara",
+  "Isla",
+  "Marcus",
+  "Willa",
+  "Zara",
+  "Imogen",
+  "Elliot",
+  "Hugh",
+  "Lachlan",
+  "Samuel"
+ ],
+ "min_gap": 12.0,
+ "warnings": [],
+ "picked_at": "2026-10-19 19:04:54",
+ "reproduce": "python pick_cast.py --out cast.json --host Carter --roles Guest,Guest2 --genders any,any --seed 548870699 --force"
+}
