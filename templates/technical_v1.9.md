@@ -40,3 +40,9 @@ VRAM peak 11.3 GB total (~9.4 GB net of desktop), RAM private peak 12 GB, RTF ~1
 - PowerShell parse check of post_episode, run_episode, render7b, podcast, post_segment, vram_free, start_mike_ma_ep1: 0 errors; `make_video.py` / `episodes_index.py` / `pick_cast.py` compile.
 - `make_video.py --dry-label` on the real Mike Ma / UI / das Man v2 files: legacy chapters titles ", Episode 1" are stripped; one-off -> title = subject, label = date; multi -> "Uploaded Intelligence #1" both.
 - The naming block of `post_episode.ps1` executed standalone for: new one-off, next episode of a registered multi series (-> "#2"), new multi series, re-render `_v2`, already registered: titles/labels/notes line as designed; registry unchanged by `plan`; `add` tested on a temp index (idempotent).
+## v1.9 test render (2026-10-19 13:49-13:58, tools\test_drama3_pipeline.ps1)
+- Input: agentic_ai_ep1 chapter 9 "The surprise call", script lines 181-190 (225 words), Host Carter / Guest Clara / Guest2 Lachlan, one [laughs] tag added. Output: tests\drama3_pipeline\seg00.mp3 (97.5 s), seg00.raw.wav (90.7 s).
+- Refs: Carter 20.1 s, Clara 19.8 s, Lachlan 20.2 s (cut at word boundaries). 2 chunks (150 words).
+- TTS: 88.2 s audio in 197 s wall (RTF 2.23 incl. load; gen 2.25 / 1.89); QC retry of chunk 1 (seed 1988, 57.4 s in 132 s, RTF 2.3). VRAM peak 10.0 GB total (base 1.9 GB), commit peak 10.9 GB, RSS 17.2 GB (mostly mapped GGUF), min free RAM 6.9 GB. Whole render+QC+post 496 s; no audiocpp process and no Ollama model left afterwards.
+- QC v2.2: final no hard flags; WER 2.2 % / 1.1 %; only soft f0_drift (voice_f0.json is calibrated on the 7B voices). Align OK (20 s).
+- Pace: raw 2.48 w/s; after post tempo 0.93 = 2.31 w/s (139 wpm) vs target 2.6 w/s (155 wpm). Drama 3 is NOT too fast in the pipeline; tempo 1.0 would give ~2.48 w/s (149 wpm), ~1.05 hits 2.6. Tempo for -Engine drama3 not changed yet (decision for Thomas after listening).
