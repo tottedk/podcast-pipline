@@ -1,0 +1,111 @@
+{
+ "style": "moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore",
+ "negative": "",
+ "images": [
+  {
+   "id": "fl01",
+   "line": 0,
+   "prompt": "a single microphone on a stand in an empty debate hall, a cold spotlight from above, rows of empty seats fading into darkness, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl02",
+   "line": 7,
+   "prompt": "a cluttered desk under a harsh desk lamp, scattered blank printouts and an open laptop glowing in the dark, an empty office chair pushed back, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl03",
+   "line": 13,
+   "prompt": "two long wooden tables facing each other across a wide dark hall floor, a thin glowing red line painted on the floor between them, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl04",
+   "line": 19,
+   "prompt": "storm clouds and distant lightning above a generic neoclassical domed government building at night, empty plaza, wet stone, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl05",
+   "line": 25,
+   "prompt": "a hall of mirrors endlessly reflecting a single empty podium, warm amber light against deep shadow, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl06",
+   "line": 32,
+   "prompt": "hundreds of glowing phone screens held up in a dark crowd seen from far behind as soft silhouettes, a sea of small lights, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl07",
+   "line": 40,
+   "prompt": "an old leather-bound book lying open on a dark oak table beside a brass compass and a candle, a shadowy study, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl08",
+   "line": 47,
+   "prompt": "the interior of a vast dark industrial machine with gears and conveyor belts sorting identical paper cut-out figures into two piles, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl09",
+   "line": 54,
+   "prompt": "an empty office at night with a cardboard box of personal belongings on the desk, rain streaking the window, city lights outside, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl10",
+   "line": 61,
+   "prompt": "a chessboard mid-game with a black and a white king facing each other in the centre, dramatic side light, smoke in the air, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl11",
+   "line": 67,
+   "prompt": "an empty fencing piste in a dark arena, two sabres lying crossed on the floor under a single overhead light, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl12",
+   "line": 73,
+   "prompt": "a long empty negotiating table with two chairs pushed back, one chair knocked over, cold window light, papers left behind, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl13",
+   "line": 80,
+   "prompt": "a cracked concrete wall dividing a city street at night, warm lit windows on one side, cold blue windows on the other, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl14",
+   "line": 88,
+   "prompt": "abstract glowing bars of light rising out of darkness like a city skyline, red and teal, a minimal data landscape, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl15",
+   "line": 96,
+   "prompt": "a wall of flickering candles and laid flowers in the rain, seen from a distance, quiet and respectful, no people, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl16",
+   "line": 106,
+   "prompt": "two rustic wooden cabins facing each other across a clearing in an Oklahoma forest at dusk, a scorched cloth pennant hanging on a pole, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl17",
+   "line": 114,
+   "prompt": "a thick tug-of-war rope stretched across a muddy field at dusk, fraying in the middle, no people, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl18",
+   "line": 121,
+   "prompt": "a calm Scandinavian harbour town at blue hour, colourful old houses reflected in still water, warm windows, soft fog, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl19",
+   "line": 129,
+   "prompt": "a vast empty stadium at night, a single shaft of warm light falling onto the centre of the dark field, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl20",
+   "line": 141,
+   "prompt": "a kitchen table at dawn with two empty chairs and two coffee cups, one cup untouched, soft grey light through the window, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  },
+  {
+   "id": "fl21",
+   "line": 155,
+   "prompt": "a long empty road through a dark landscape toward a warm glowing horizon, a crack running along the centre line of the asphalt, subject in the lower third, empty space above, moody cinematic editorial concept art, semi-realistic, visible brush strokes, deep navy and oxblood palette with warm amber highlights, volumetric light, wide low-angle cinematic shot, film grain, no text, no letters, no faces, no recognizable people, no gore"
+  }
+ ]
+}
