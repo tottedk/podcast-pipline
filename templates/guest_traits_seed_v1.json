@@ -1,0 +1,580 @@
+{
+ "version": "seed_v1",
+ "created": "2026-10-19",
+ "tag_vocab": [
+  "volatile",
+  "calm",
+  "stubborn",
+  "yielding",
+  "data",
+  "anti_data",
+  "formal",
+  "crude",
+  "interrupter",
+  "patient",
+  "sarcastic",
+  "earnest"
+ ],
+ "exclusive_tags": [
+  [
+   "volatile",
+   "calm"
+  ],
+  [
+   "stubborn",
+   "yielding"
+  ],
+  [
+   "data",
+   "anti_data"
+  ],
+  [
+   "formal",
+   "crude"
+  ],
+  [
+   "interrupter",
+   "patient"
+  ]
+ ],
+ "notes": "Guest-only trait library (content_style v2.4). Never assign to the Host. side: right/left/any; rare=true -> weight 0.3 in pick_traits.py.",
+ "categories": {
+  "quirks": {
+   "desc": "Verbal tics, pet phrases, habits and small physical/sonic mannerisms that show in speech (audio only).",
+   "items": [
+    {
+     "text": "Starts every big claim with 'Look-' and then pauses as if waiting for permission.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Calls the host 'Mr. Carter' only when irritated with him.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Counts arguments on fingers out loud and loses track ('point four... no, three').",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Says 'with respect' right before saying something disrespectful.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Quotes a grandmother's sayings as if they were scripture.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Can't resist explaining the etymology of political words.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Mentions coffee constantly and asks for a refill when cornered.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Uses football and boxing metaphors for everything.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Answers a hard question with a question when unsure.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Laughs at their own joke a beat before the punchline.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Slips into academic jargon when losing, then catches themself and translates.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Swears casually, then apologises 'to the listeners' and swears again.",
+     "tags": [
+      "crude"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Gets the other guest's name slightly wrong once, maybe on purpose.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Hums or drums on the table while the other guest talks too long.",
+     "tags": [
+      "interrupter"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    }
+   ]
+  },
+  "debate_tactics": {
+   "desc": "How the guest argues: rhetorical moves, fair and unfair.",
+   "items": [
+    {
+     "text": "Strawmans the opponent's view into its most extreme version and attacks that.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Stands their ground: repeats the core claim calmly and refuses to move.",
+     "tags": [
+      "stubborn"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Concedes small points readily to look reasonable, then presses the big one.",
+     "tags": [
+      "yielding"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Whataboutism: answers criticism of their side with the sins of the other side.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Appeals to authority: credentials, years in the field, 'as a historian...'.",
+     "tags": [
+      "formal"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Goes personal when cornered: questions the opponent's motives or biography.",
+     "tags": [
+      "crude"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Cites data obsessively, with exact figures, and demands the other's sources.",
+     "tags": [
+      "data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Interrupts to fact-check mid-sentence.",
+     "tags": [
+      "interrupter",
+      "data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Dismisses statistics as elite manipulation and trusts lived experience instead.",
+     "tags": [
+      "anti_data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Steelmans the opponent sarcastically before demolishing it.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Motte-and-bailey: retreats to a modest claim when pressed, expands it again later.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Reframes the question before answering, so it is never quite the question asked.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Treats one vivid anecdote as decisive proof.",
+     "tags": [
+      "anti_data"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Lets silence work: waits, lets the opponent overreach, then pounces.",
+     "tags": [
+      "patient"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Fires gotcha yes-or-no questions and demands a one-word answer.",
+     "tags": [
+      "interrupter"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    }
+   ]
+  },
+  "emotional": {
+   "desc": "Emotional triggers and how the emotion shows (voice, words, pauses).",
+   "items": [
+    {
+     "text": "Gets heated fast, voice rises, then over-apologises a minute later.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Turns dry and sarcastic when hurt instead of admitting it.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Visibly hurt when called a bigot or an extremist; goes quiet for a while.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Laughs things off; humour is armour.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Storms toward leaving ('I don't need this') but stays when the host appeals.",
+     "tags": [
+      "volatile"
+     ],
+     "side": "any",
+     "rare": true,
+     "source": "seed"
+    },
+    {
+     "text": "Voice cracks when talking about their home town or family.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Audible contemptuous sighs and 'oh, come on' under the breath.",
+     "tags": [
+      "sarcastic"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Ice-cold calm that gets colder the angrier they are.",
+     "tags": [
+      "calm"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Defensive about class background when mocked as elite or as uneducated.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Bursts out laughing at a claim they find absurd and can't stop.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Embarrassed when caught in a factual error and overcorrects for minutes.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Righteous fury about victims of the other side's policies.",
+     "tags": [
+      "volatile",
+      "earnest"
+     ],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    }
+   ]
+  },
+  "blind_spots": {
+   "desc": "Biases and blind spots the guest doesn't see in themselves (side-tagged where ideological).",
+   "items": [
+    {
+     "text": "Sees left-wing violence as systemic and right-wing violence as lone wolves.",
+     "tags": [],
+     "side": "right",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Romanticises a past (the 1950s, 'old Denmark') that excluded many people.",
+     "tags": [],
+     "side": "right",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Treats every cultural change as decline and misses their own side's novelty.",
+     "tags": [],
+     "side": "right",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Trusts the nation and the market but not the state that built both.",
+     "tags": [],
+     "side": "right",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Sees right-wing violence as systemic and left-wing violence as understandable reaction.",
+     "tags": [],
+     "side": "left",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Dismisses rural and religious voters as manipulated rather than as having reasons.",
+     "tags": [],
+     "side": "left",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Lumps everyone from conservatives to neo-Nazis into one 'far right'.",
+     "tags": [],
+     "side": "left",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Assumes more education means more moral correctness.",
+     "tags": [],
+     "side": "left",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Blind to their own secure, urban, academic class position.",
+     "tags": [],
+     "side": "left",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Thinks their own side's media reports and the other side's spreads propaganda.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Overestimates how extreme the average opponent is (the perception gap).",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Believes their side is the underdog even when it holds power.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    }
+   ]
+  },
+  "backstory_hooks": {
+   "desc": "Personal history that makes the guest human and explains some of their passion.",
+   "items": [
+    {
+     "text": "Grew up in a family that voted the opposite way; estranged from a sibling.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Lost a job after a post went viral; still bitter about it.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Used to belong to the opposite camp and converted in their twenties.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Child of immigrants; their parents' story is central to their politics.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Rural working-class parents; first in the family at university.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Was assaulted at a demonstration years ago.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Ex-soldier who served abroad.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Former union organiser at a factory that closed.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Has a teenage kid drifting toward the other side's politics.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Divorced, partly over politics.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Lives in a small town where they are the only one of their kind.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Left a strict religious upbringing, or came back to it late.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    },
+    {
+     "text": "Once wrote a book they now half regret.",
+     "tags": [],
+     "side": "any",
+     "rare": false,
+     "source": "seed"
+    }
+   ]
+  }
+ }
+}
