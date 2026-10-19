@@ -1,10 +1,11 @@
-<#  run_episode.ps1 (template v1.3, 2026-10-15; v1.8: -QcRetries 1 default, -Series/-Multi/-OneOff naming passthrough) - DETACHED orchestrator: CAST PICK (pick_cast.py -> <Dir>\cast.json) -> render7b -> unload check -> FLUX backgrounds (only missing images) -> post_episode. Writes <Dir>\STATUS.txt + chain.log.
+<#  run_episode.ps1 (template v1.3, 2026-10-15; v1.8: -QcRetries 1 default, -Series/-Multi/-OneOff naming passthrough; v1.9: -Engine 7b|drama3, default 7b) - DETACHED orchestrator: CAST PICK (pick_cast.py -> <Dir>\cast.json) -> render7b -> unload check -> FLUX backgrounds (only missing images) -> post_episode. Writes <Dir>\STATUS.txt + chain.log.
 Start it detached and poll STATUS.txt with short calls:
   Start-Process powershell -ArgumentList '-ExecutionPolicy','Bypass','-File','C:\grok\podcast\run_episode.ps1','-Dir','ui1','-Ep','uploaded_intelligence_ep1','-BgDir','bg_ui1','-FrameSuffix','_ui1','-Guest2Voice','Maya' -WindowStyle Hidden
 Cast: NO default cast; host = Carter unless -HostVoice. Guests are picked at random from the pool (pick_cast.py; seed logged to cast.json, STATUS.txt and the notes). -GuestGenders "M,F" = script wants Guest male, Guest2 female. -Guests "Marcus,Isla" overrides. -CastSeed N reproduces a pick. An existing <Dir>\cast.json is reused (resume).
+Engine (v1.9): -Engine 7b (default, render7b.ps1 = VibeVoice-7B Q8) or -Engine drama3 (render_drama3.ps1 = Fish Audio Drama 3 Q4_K_S, experimental, same outputs).
 Needs in <Dir>: segNN.json, intro.wav, sting.wav, outro.wav, <Ep>.chapters.in.json; in <BgDir>: prompts.json + backgrounds.json.  #>
 param([Parameter(Mandatory)][string]$Dir, [Parameter(Mandatory)][string]$Ep, [Parameter(Mandatory)][string]$BgDir, [string]$FrameSuffix = "_ep", [string]$Title = "",
-  [string]$HostVoice = "Carter", [string]$Guests = "", [string]$GuestGenders = "", [int]$CastSeed = 0, [double]$Tempo = 0.93, [double]$SegGap = 0.4, [double]$StingPad = 0, [int]$QcRetries = 1, [string]$Series = "", [switch]$Multi, [switch]$OneOff, [string]$Root = "C:\grok\podcast", [switch]$Scheduled)
+  [string]$HostVoice = "Carter", [string]$Guests = "", [string]$GuestGenders = "", [int]$CastSeed = 0, [double]$Tempo = 0.93, [double]$SegGap = 0.4, [double]$StingPad = 0, [int]$QcRetries = 1, [ValidateSet("7b","drama3")][string]$Engine = "7b", [string]$Series = "", [switch]$Multi, [switch]$OneOff, [string]$Root = "C:\grok\podcast", [switch]$Scheduled)
 $ErrorActionPreference = 'Continue'; (Get-Process -Id $PID).PriorityClass = 'Idle'; cd $Root
 $W = if ([IO.Path]::IsPathRooted($Dir)) { $Dir } else { Join-Path $Root $Dir }; $tpl = Split-Path $MyInvocation.MyCommand.Path
 function Tool($n) { if (Test-Path "$Root\$n") { "$Root\$n" } else { "$tpl\$n" } }
@@ -25,8 +26,10 @@ foreach ($sj in (gci "$W\seg??.json")) { $mo = & "$Root\venv_vv\Scripts\python.e
 # --- v1.5: nightly/scheduled runs only (-Scheduled or env PODCAST_SCHEDULED=1): free GPU VRAM by closing configured GPU-hungry apps GRACEFULLY (C:\grok\vram\vram_free.ps1 -Free -Scheduled; guarded: user idle, foreground, audio, fullscreen; never kills; log in hwlogs\vram_free_<date>.log). Manual runs while Thomas is at the PC do nothing here.
 if ($Scheduled -or $env:PODCAST_SCHEDULED -eq '1') { $vf = 'C:\grok\vram\vram_free.ps1'; if (Test-Path $vf) { $vo = & powershell -NoProfile -ExecutionPolicy Bypass -File $vf -Free -Scheduled 2>&1 | Out-String; Add-Content "$W\chain.log" $vo.Trim() } }
 while (((Invoke-RestMethod http://localhost:11434/api/ps -EA SilentlyContinue).models).Count -gt 0) { St 'waiting for Ollama to be empty'; Start-Sleep 15 }
-& powershell -ExecutionPolicy Bypass -File (Tool 'render7b.ps1') -Dir $W -HostVoice $HostVoice -Tempo $Tempo -QcRetries $QcRetries *> "$W\render.log"
-St "step=TTS done $((gc $W\render.log | sls SEGDONE).Count) segs"
+$rs = if ($Engine -eq 'drama3') { 'render_drama3.ps1' } else { 'render7b.ps1' }   # v1.9: TTS engine switch (default 7b)
+St "step=TTS engine=$Engine ($rs)"
+& powershell -ExecutionPolicy Bypass -File (Tool $rs) -Dir $W -HostVoice $HostVoice -Tempo $Tempo -QcRetries $QcRetries *> "$W\render.log"
+St "step=TTS done engine=$Engine $((gc $W\render.log | sls SEGDONE).Count) segs"
 while (Get-Process audiocpp_cli -EA 0) { Start-Sleep 5 }
 $imgs = (gc -Raw "$BgDir\prompts.json" | ConvertFrom-Json).images.id | ? { -not (Test-Path "$BgDir\$_.png") }
 if ($imgs) { $env:HIP_VISIBLE_DEVICES = '1'; St "step=FLUX $($imgs.Count) images"; $t = Get-Date
