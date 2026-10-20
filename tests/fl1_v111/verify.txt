@@ -1,0 +1,92 @@
+== render.log key lines
+=== seg00 17:26:15
+chunk 1/5 seed 42: 12.4s audio in 49.1s (rtf 3.95725) clamp 12.4->12.4s (0 long pauses)
+chunk 2/5 seed 42: 18.8s audio in 30.6s (rtf 1.63134) clamp 18.8->18.8s (0 long pauses)
+chunk 3/5 seed 42: 13.7s audio in 23.9s (rtf 1.74126) clamp 13.7->13.7s (0 long pauses)
+chunk 4/5 seed 42: 13.0s audio in 23.0s (rtf 1.76512) clamp 13.0->13.0s (0 long pauses)
+chunk 5/5 seed 42: 12.8s audio in 23.1s (rtf 1.8125) clamp 12.8->12.8s (0 long pauses)
+D3RUN attempt 0 wall 163.1s rc 0 vram_peak 10713 MB (base 2692) commit_peak 10978.0 MB rss_peak 17108.0 MB sys_free_min 2260 MB regenerate []
+chunk 1 seed 42 score 2.63 flags []
+chunk 2 seed 42 score 34.88 flags ['wer', 'rate']
+chunk 3 seed 42 score 0.5 flags []
+chunk 4 seed 42 score 0.0 flags []
+chunk 5 seed 42 score 30.06 flags ['unrecognised']
+[VOICE] SPKSUMMARY ok=5 fail=0 units=5 centroids=Guest,Guest2
+[QC] pass 0 flagged qc=2,5 voice= -> regenerate 2:1988,5:1988
+chunk 2/5 seed 1988: 14.6s audio in 49.4s (rtf 3.37755) clamp 14.6->14.6s (0 long pauses)
+chunk 5/5 seed 1988: 12.3s audio in 23.7s (rtf 1.93187) clamp 12.3->12.3s (0 long pauses)
+D3RUN attempt 0 wall 85.0s rc 0 vram_peak 10740 MB (base 2634) commit_peak 10832.0 MB rss_peak 16996.0 MB sys_free_min 2411 MB regenerate []
+chunk 1 seed 42 score 2.63 flags []
+chunk 2 seed 1988 score 20.88 flags ['wer']
+chunk 3 seed 42 score 0.5 flags []
+chunk 4 seed 42 score 0.0 flags []
+chunk 5 seed 1988 score 16.2 flags ['unrecognised']
+[VOICE] SPK c005 Host=Carter 12.26s -> Carter margin 0.578 FAIL windows [[0.0, -0.175, 'Elliot']]
+[VOICE] SPKSUMMARY ok=4 fail=1 units=5 centroids=Guest,Guest2
+[QC] pass 1 flagged qc=2,5 voice=5 -> regenerate 5:3042
+chunk 5/5 seed 3042: 11.1s audio in 44.1s (rtf 3.95316) clamp 11.1->11.1s (0 long pauses)
+D3RUN attempt 0 wall 57.0s rc 0 vram_peak 9391 MB (base 2634) commit_peak 10560.0 MB rss_peak 16755.0 MB sys_free_min 2791 MB regenerate []
+chunk 1 seed 42 score 2.63 flags []
+chunk 2 seed 1988 score 20.88 flags ['wer']
+chunk 3 seed 42 score 0.5 flags []
+chunk 4 seed 42 score 0.0 flags []
+chunk 5 seed 3042 score 8.03 flags []
+[VOICE] SPKSUMMARY ok=5 fail=0 units=5 centroids=Guest,Guest2
+[QC] pass 2 still flagged: qc=2 voice= (retries exhausted)
+[QC] WARNING shipped chunk(s) still flagged (hard flags): 2
+[gate] GATECUT 0 0 s (corr 0.949, offset 0.0 s)
+POST C:\grok\podcast\tests\fl1_v111\seg00.mp3  [highpass=f=70,equalizer=f=3000:t=o:w=2:g=1.5,deesser=i=0.4:m=0.5:f=0.5,atempo=0.9,loudnorm=I=-16:TP=-1.5:LRA=11]  dur 74.097188 s
+SEGDONE seg00 dur 74.097188 s in 478 s
+=== seg01 17:34:12
+chunk 1/6 seed 42: 13.5s audio in 48.5s (rtf 3.59995) clamp 13.5->13.5s (0 long pauses)
+chunk 2/6 seed 42: 25.6s audio in 42.3s (rtf 1.65297) clamp 25.6->25.6s (0 long pauses)
+chunk 3/6 seed 42: 9.5s audio in 16.8s (rtf 1.77669) clamp 9.5->9.5s (0 long pauses)
+chunk 4/6 seed 42: 3.9s audio in 7.5s (rtf 1.89322) clamp 3.9->3.9s (0 long pauses)
+chunk 5/6 seed 42: 20.3s audio in 34.5s (rtf 1.69821) clamp 20.3->20.3s (0 long pauses)
+chunk 6/6 seed 42: 19.8s audio in 34.3s (rtf 1.73615) clamp 19.8->19.8s (0 long pauses)
+D3RUN attempt 0 wall 196.1s rc 0 vram_peak 10713 MB (base 2634) commit_peak 10839.0 MB rss_peak 17126.0 MB sys_free_min 2362 MB regenerate []
+chunk 1 seed 42 score 0.0 flags []
+chunk 2 seed 42 score 3.62 flags []
+chunk 3 seed 42 score 3.62 flags []
+chunk 4 seed 42 score 0.0 flags []
+chunk 5 seed 42 score 1.69 flags []
+chunk 6 seed 42 score 1.75 flags []
+[VOICE] SPKSUMMARY ok=6 fail=0 units=6 centroids=Guest,Guest2,Host
+[QC] pass 0 ok (voices ok)
+[QC] final: no hard flags
+[gate] GATECUT 0 0 s (corr 0.957, offset 0.0 s)
+POST C:\grok\podcast\tests\fl1_v111\seg01.mp3  [highpass=f=70,equalizer=f=3000:t=o:w=2:g=1.5,deesser=i=0.4:m=0.5:f=0.5,atempo=0.9,loudnorm=I=-16:TP=-1.5:LRA=11]  dur 105.199388 s
+SEGDONE seg01 dur 105.199388 s in 284 s
+ALLDONE 17:38:57
+== seg00 voice gate (independent re-run)
+SPK c001 Guest2=Clara 12.4s -> Clara margin 0.605 ok
+SPK c002 Guest=Elliot 14.63s -> Elliot margin 0.728 ok
+SPK c003 Guest2=Clara 13.74s -> Clara margin 0.61 ok
+SPK c004 Guest=Elliot 13.05s -> Elliot margin 0.666 ok
+SPK c005 Host=Carter 11.15s -> Carter margin 0.729 ok
+SPKREDO 
+SPKSUMMARY ok=5 fail=0 units=5 centroids=Guest,Guest2
+== seg00 cut-word check raw vs mp3 (tempo 0.90)
+GATECUT 0 0 s (corr 0.94, offset -0.01 s)
+== seg01 voice gate (independent re-run)
+SPK c001 Host=Carter 13.47s -> Carter margin 0.77 ok
+SPK c002 Guest=Elliot 25.59s -> Elliot margin 0.801 ok
+SPK c003 Guest2=Clara 9.47s -> Clara margin 0.777 ok
+SPK c004 Host=Carter 3.95s -> Carter margin 0.721 ok
+SPK c005 Guest2=Clara 20.34s -> Clara margin 0.717 ok
+SPK c006 Guest=Elliot 19.78s -> Elliot margin 0.837 ok
+SPKREDO 
+SPKSUMMARY ok=6 fail=0 units=6 centroids=Guest,Guest2,Host
+== seg01 cut-word check raw vs mp3 (tempo 0.90)
+GATECUT 0 0 s (corr 0.935, offset -0.01 s)
+== whisper word check + pauses + wpm
+seg00: 5 lines, 180 words, mp3 74.1s -> 146 wpm (incl. pauses); line endings found 5/5
+  word 'assassination,' 50.94-51.64 (0.70s, p=1.00)
+  longest pauses: 0.84s at 18.5s after 'soldiers,' before 'people'; 0.74s at 17.2s after 'firefighters,' before 'soldiers,'; 0.74s at 14.8s after 'on.' before 'Teachers,'
+seg01: 6 lines, 269 words, mp3 105.2s -> 153 wpm (incl. pauses); line endings found 6/6
+  longest pauses: 0.94s at 17.5s after 'Utah.' before 'Utah'; 0.68s at 54.3s after 'class' before 'It's'; 0.68s at 6.9s after 'debate.' before 'A'
+TOTAL 449 words in 179.3s -> 150 wpm (mp3, incl. pauses)
+== GPU / models
+ollama ps: NAME ID SIZE PROCESSOR CONTEXT RUNNER UNTIL
+audiocpp processes: 0
+python GPU/TTS jobs: 0

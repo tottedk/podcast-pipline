@@ -1,4 +1,4 @@
-﻿"""qc_vv.py v2.2 (template v1.7, 2026-10-16: noise events that are VOICED word tails (harmonic, energy mostly < 400 Hz - deep/high voices like Declan, Isla) are counted apart and no longer make a "noise" flag; "noise" is a SOFT flag by default; v2.1 (template v1.3, 2026-10-15: --soft f0_drift = soft flag, no retry on f0_drift alone; voices_extra lookup) - was v2 (2026-10-14) - QC + metrics + safe pause gate for VibeVoice output.
+﻿"""qc_vv.py v2.3 (template v1.11, 2026-10-20: (a) --gate never mutes speech-level audio: frames within --gate_protect_db (24) dB of the speech level are restored (+30 ms) - v2.2 muted word tails after early whisper word ends (Fault Lines #1 0:53 "assassination" tail muted 0.22 s; 11 such cuts in seg00 alone), the result reports gate_restored_s; (b) new HARD flag end_missing: the last word of a line (>= 3 words) is not recognised in the chunk transcript (cut-off/dropped line ending) -> retry. v2.2 (template v1.7, 2026-10-16: noise events that are VOICED word tails (harmonic, energy mostly < 400 Hz - deep/high voices like Declan, Isla) are counted apart and no longer make a "noise" flag; "noise" is a SOFT flag by default; v2.1 (template v1.3, 2026-10-15: --soft f0_drift = soft flag, no retry on f0_drift alone; voices_extra lookup) - was v2 (2026-10-14) - QC + metrics + safe pause gate for VibeVoice output.
   python qc_vv.py audio script.json [--chunks DIR] [--gate OUT.wav] [--json OUT.json] [--model large-v3-turbo]
                   [--glossary glossary.json] [--host Carter --guest Frank] [--f0_tol 0.15]
 Per chunk (flags -> REDO list, plus a numeric 'score' used for best-take selection, lower = better):
@@ -22,6 +22,7 @@ ap.add_argument("--rescore", help="re-apply flags/thresholds to an existing qc j
 ap.add_argument("--noise_voiced_lf", type=float, default=-6.0); ap.add_argument("--noise_voiced_flat", type=float, default=0.2)
 ap.add_argument("--soft", default="f0_drift,noise", help="v1.3: comma list of SOFT flags - reported and scored (best-take) but they alone do NOT trigger a retry")
 ap.add_argument("--rate_lo", type=float, default=2.1); ap.add_argument("--rate_hi", type=float, default=5.0)
+ap.add_argument("--gate_protect_db", type=float, default=24.0)
 a = ap.parse_args()
 from faster_whisper import WhisperModel
 SR = 16000
@@ -163,6 +164,11 @@ def line_checks(cx, CW, c, spk):
             r["f0"] = round(med_f0(cx[int(b*SR):int(e*SR)]), 1)
             win = hyp[max(0,h0-3):h1+4]
         else: r["wer"] = 1.0; win = []
+        # v2.3: line ending present? last script token matched, or a fuzzy match (>= 0.6) near the end of the line's hypothesis
+        lq = qs[-1]; ltok = st[lq]
+        if len(qs) >= 3 and st_h[lq] < 0 and not re.search(r"\d", ltok):
+            near = hyp[max(0, (max(hs) if hs else 0) - 2):(max(hs) if hs else 0) + 4]
+            if not any(difflib.SequenceMatcher(None, ltok, hh).ratio() >= 0.6 for hh in near): r["end_missing"] = ltok
         miss = [g for g in GL if re.search(r"\b"+re.escape(g.lower())+r"\b", t.lower()) and not fuzzy_has(g, GL[g], win)]
         if miss: r["glossary_missing"] = miss
         res.append(r)
@@ -196,7 +202,8 @@ def finalize(res):
         flags = {"wer": cm["wer"] > 0.08, "bad_lines": bool(cm["bad_lines"]), "pitch_glitch": bool(cm["pitch_glitches"]),
                  "lowprob": len(cm["lowprob_words"]) > 2, "noise": cm.get("noise_events_real", cm["noise_events"]) > max(6, dur/15),
                  "line_wer": bool(cm["line_wer"]), "glossary": bool(cm["glossary_missing"]),
-                 "f0_drift": len(drift) >= 2 or bool(chunk_drift), "rate": bool(cm["rate_bad"]), "unrecognised": bool(cm["unrecognised_long"])}
+                 "f0_drift": len(drift) >= 2 or bool(chunk_drift), "rate": bool(cm["rate_bad"]), "unrecognised": bool(cm["unrecognised_long"]),
+                 "end_missing": bool(cm.get("end_missing"))}
         cm["flags"] = [k for k, v in flags.items() if v]
         SOFT = set(x for x in a.soft.split(",") if x); hard = [k for k in cm["flags"] if k not in SOFT]; cm["soft_flags"] = [k for k in cm["flags"] if k in SOFT]   # v1.3
         cm["score"] = round(10*len(hard) + 3*len(cm["soft_flags"]) + 100*cm["wer"] + 3*len(cm["line_wer"]) + 5*len(drift) + 4*len(cm["rate_bad"]) + 5*sum(u["dur"] for u in cm["unrecognised_long"]) + cm.get("noise_events_real", cm["noise_events"])/2, 2)
@@ -223,6 +230,7 @@ if a.chunks and os.path.exists(os.path.join(a.chunks, "chunks.json")):
         cm["bad_lines"] = [(r["k"], r["cov"]) for r in L if r["cov"] < 0.75]
         cm["line_wer"] = [(r["k"], r["wer"]) for r in L if r["n"] >= 4 and r["wer"] > 0.25]
         cm["glossary_missing"] = [(r["k"], r["glossary_missing"]) for r in L if r.get("glossary_missing")]
+        cm["end_missing"] = [(r["k"], r["end_missing"]) for r in L if r.get("end_missing")]
         cm["dur"] = round(len(cx)/SR, 2)
         res["chunks"].append(cm)
     finalize(res)
@@ -247,6 +255,13 @@ if a.gate:
                 g[s:e] = fl
                 r = np.linspace(1, fl, min(fade, (e-s)//2)); g[s:s+len(r)] = r; g[e-len(r):e] = r[::-1]
         i = j
+    # v2.3: never mute speech-level audio (word tails/onsets outside whisper's word times): restore frames within gate_protect_db of speech, +30 ms
+    fh = int(.01*sr); nf_ = len(y)//fh; fdb_ = 20*np.log10(np.sqrt((y[:nf_*fh].reshape(nf_, fh)**2).mean(1))+1e-9)
+    prot = fdb_ > res["speech_db"] - a.gate_protect_db; prot = np.convolve(prot.astype(float), np.ones(7), "same") > 0
+    pm = np.zeros(len(y), bool); pm[:nf_*fh] = np.repeat(prot, fh)
+    restored = float(((g < 0.99) & pm).sum())/sr; g[pm] = 1.0
+    g = np.convolve(g, np.ones(int(.005*sr))/int(.005*sr), "same").astype(np.float32)   # smooth the restored edges (5 ms)
+    res["gate_restored_s"] = round(restored, 2)
     pcm = (np.clip(y*g,-1,1)*32767).astype(np.int16).tobytes()
     subprocess.run(["ffmpeg","-v","error","-y","-f","s16le","-ar",str(sr),"-ac","1","-i","-",a.gate],input=pcm,check=True)
     res["gated"] = a.gate; res["gate_kept"] = kept

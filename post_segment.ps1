@@ -1,6 +1,8 @@
-<#  post_segment.ps1 (template v1.3, 2026-10-15) - raw wav -> safe pause gate -> lighter post chain -> 128k mono mp3. CPU/ffmpeg only (qc_vv.py --gate runs whisper on CPU).
+<#  post_segment.ps1 (template v1.11, 2026-10-20; was v1.3) - raw wav -> safe pause gate -> lighter post chain -> 128k mono mp3. CPU/ffmpeg only (qc_vv.py --gate runs whisper on CPU).
 Chain v1.3: highpass 70 -> [afftdn only if -AfftdnNr > 0] -> presence bell +1.5 dB @ 3 kHz (2-4 kHz) -> de-esser (i=0.4) -> atempo -> loudnorm I=-16 TP=-1.5 LRA=11
 v1.0-1.2 chain was: highpass 70, afftdn nf=-45 nr=10 tn=1, atempo 0.93, loudnorm.   -Old reproduces it exactly.
+v1.11: CUT-WORD GATE - after the pause gate (qc_vv.py v2.3 --gate, never mutes speech-level audio) gate_cut_check.py compares raw vs gated; if any speech
+  is muted (GATECUT n > 0) the segment falls back to the UNGATED raw audio (a cut word is worse than a quiet breath), logged as GATECUT ... -> raw.
 Usage: .\post_segment.ps1 -Raw dm_v2\seg02.raw.wav -Script dm_v2\seg02.json -Out dm_v2\seg02.mp3 [-Tempo 0.93] [-Gated already_gated.wav] [-Old]  #>
 param([Parameter(Mandatory)][string]$Raw, [Parameter(Mandatory)][string]$Script, [Parameter(Mandatory)][string]$Out,
   [double]$Tempo = 0.93,        # length rule: 0.93 default; 0.90-0.97 allowed (see technical_v1.3.md)
@@ -16,6 +18,12 @@ if (-not $Gated) {
   $gq = cmd /c "`"$Root\venv_whisper\Scripts\python.exe`" `"$Root\qc_vv.py`" `"$Raw`" `"$Script`" --gate `"$Gated`" 2>&1" | % { "$_" }
   $gq | ? { $_ -match 'gate_kept' } | select -Last 1
   if (-not (Test-Path $Gated)) { Write-Host "[gate] failed, using raw"; $Gated = $Raw; $own = $false }
+  else {   # v1.11 cut-word gate: speech muted by the gate? -> use the raw audio for this segment
+    $gc_ = if (Test-Path "$Root\gate_cut_check.py") { "$Root\gate_cut_check.py" } else { Join-Path (Split-Path $MyInvocation.MyCommand.Path) 'gate_cut_check.py' }
+    $cc = cmd /c "`"$Root\venv_whisper\Scripts\python.exe`" `"$gc_`" `"$Raw`" `"$Gated`" --json `"$([IO.Path]::ChangeExtension($Out, $null).TrimEnd('.')).gatecut.json`" 2>&1" | % { "$_" }
+    $gl = $cc | ? { $_ -match '^GATECUT' } | select -Last 1; Write-Host "[gate] $gl"
+    if (-not $gl -or $gl -notmatch '^GATECUT 0 ') { Write-Host "[gate] GATECUT: speech muted by the gate (or check failed) -> using the UNGATED raw audio"; Remove-Item $Gated -EA 0; $Gated = $Raw; $own = $false }
+  }
 }
 $f = @('highpass=f=70')
 if ($Old) { $f += 'afftdn=nf=-45:nr=10:tn=1' } else {
