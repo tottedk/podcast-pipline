@@ -19,3 +19,4 @@
   - **episodes_index.py:** `__main__` guard and an `update` subcommand; new `tools\launcher_lib.ps1`.
   - **Registry:** Fault Lines #1 updated to 43:13.
   - **Files:** technical_v1.12.md, code_v1.12\ (+ SHA256SUMS).
+  - v1.12 addendum (2026-10-21, Thomas): **Carter tempo 0.90 -> 0.86** in drama3_tempo.json (v1.12 seg01 test: 181.6 wpm at 0.90 > 175 gate; re-applied 0.86 = 174.0 wpm); code_v1.12\drama3_tempo.json + SHA256SUMS updated. **Elliot is left out of the next episode's cast** (Elliot_v2 fixed pace/pauses but not the monotone): nothing in v1.12 forces Elliot (no default guest; cast is picked per episode) - exclude him when picking the cast (pick_cast / run_episode -Guests). The Elliot -> Elliot_v2 ref map stays for any later use.
