@@ -13,6 +13,7 @@ FINAL SWAP only when everything passed (post exit 0, mix 2280-2880 s, all 10 seg
 Cleanup at the end: every Ollama model stopped, leftover audiocpp/python GPU jobs of this run stopped, ollama ps logged. Never reboots, no admin, never touches C:\grok\drama3 (read-only use of the CLI/model).  #>
 param([switch]$DryRun, [switch]$NoVramFree, [double]$Tempo = 0, [ValidateSet('7b','drama3')][string]$Engine = 'drama3', [int]$QcRetries = 1, [string]$Guests = 'Elliot,Clara', [switch]$OneOff, [switch]$Inner, [switch]$FromTask, [string]$Root = "C:\grok\podcast")
 $ErrorActionPreference = 'Continue'; cd $Root
+. "$Root\tools\launcher_lib.ps1"   # v1.12: Update-EpisodeIndex / Get-PostExitText
 $Dir = 'fl1b'; $Ep = 'faultlines_01'; $BgDir = 'bg_fl1'; $Suffix = '_fl1b'; $W = "$Root\$Dir"; $TaskName = 'PodcastFaultlines01b'
 $Stage = "episodes\_staging_faultlines_01b"; $Rej = "$Root\episodes\_rejected\faultlines_01_v110"
 $Title = "Left vs Right: Is It Becoming a War?"; $Series = 'Fault Lines'
@@ -52,13 +53,13 @@ if ($Inner) {
           foreach ($f in @(gci "$Root\episodes" -File | ? { $_.Name -like "$Ep.*" -or $_.Name -eq "${Ep}_64k.mp3" })) { Move-Item $f.FullName $Rej -Force; $moved += $f.Name }
           Add-Content "$W\chain.log" "swap: moved rejected v1.10 files to $Rej : $($moved -join ', ')"
           foreach ($f in @(gci "$Root\$Stage" -File)) { Move-Item $f.FullName "$Root\episodes\" }
-          $ro = & $py -c "import sys,json;sys.path.insert(0,r'$Root');import episodes_index as E;p=r'$Root\episodes_index.json';ix=E.load(p);e=[x for x in ix['episodes'] if x['ep']=='$Ep'][0];e['duration_s']=$dur;e['date']='$(Get-Date -f yyyy-MM-dd)';e['note']='re-render v1.11 (v1.10 render rejected, moved to episodes/_rejected/faultlines_01_v110)';E.write(ix,p,p[:-5]+'.md');print('registry updated',e['number'],e['duration_s'])" 2>&1 | Out-String
+          $ro = Update-EpisodeIndex -Py $py -Root $Root -Ep $Ep -Dur $dur -Date (Get-Date -f yyyy-MM-dd) -Note 're-render v1.11 (v1.10 render rejected, moved to episodes/_rejected/faultlines_01_v110)'   # v1.12 fix: CLI 'update' (inline import ran argparse and failed)
           Add-Content "$W\chain.log" "swap: new files in episodes\: $((gci "$Root\episodes" -File | ? { $_.Name -like "$Ep*" } | % { $_.Name }) -join ', '); $($ro.Trim())"
           $res = "ALL DONE (post exit 0, mix $([math]::Round($dur/60,1)) min, all gates passed, swapped into episodes\)" }
       }
       elseif ($pe -eq 3) { $dur = 0; $m = (gc "$W\post.log" -EA 0 | sls 'mixed dur ([\d.]+) s' | select -Last 1); if ($m) { $dur = [double]$m.Matches[0].Groups[1].Value }
         $res = "STOP duration gate failed (mix $dur s, outside 2280-2880 s): needs Thomas' decision (see $W\post.log); old episode untouched" }
-      else { $res = "STOP post failed with exit $pe (see post.out.txt / post.log); old episode untouched" }
+      else { $res = "STOP $(Get-PostExitText $pe) (exit $pe, see post.out.txt / post.log); old episode untouched" }
     } else { $res = "STOP run_episode ended without ALL DONE: $($last.Trim()) (see chain.log / render.log); old episode untouched" }
   }
   # ---- cleanup: no model / GPU job left behind (never reboots) ----

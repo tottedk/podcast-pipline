@@ -1,0 +1,7414 @@
+{
+ "S": {
+  "Host": {
+   "name": "Carter",
+   "lines": 59,
+   "words": 2304,
+   "speech_s": 834.6,
+   "wpm_incl": 165.6,
+   "wpm_excl_gt05": 181.0,
+   "wpm_artic": 190.9,
+   "n_gt05": 105,
+   "s_gt05": 71.0,
+   "n_gt10": 0,
+   "s_gt10": 0,
+   "per100w_gt05": 4.56,
+   "whisper_gaps_gt05": 35,
+   "whisper_gaps_gt10": 2,
+   "f0_med_hz": 130.8,
+   "f0_std_st": 4.26,
+   "f0_p5_95_st": 14.0,
+   "f0_within_line_std_st": 4.2,
+   "hist": {
+    "0.25-0.5": 102,
+    "0.5-0.7": 72,
+    "0.7-1.0": 37,
+    "1.0-1.5": 0,
+    ">1.5": 0
+   }
+  },
+  "Guest": {
+   "name": "Elliot",
+   "lines": 50,
+   "words": 1865,
+   "speech_s": 825.1,
+   "wpm_incl": 135.6,
+   "wpm_excl_gt05": 160.8,
+   "wpm_artic": 170.0,
+   "n_gt05": 123,
+   "s_gt05": 129.2,
+   "n_gt10": 50,
+   "s_gt10": 77.9,
+   "per100w_gt05": 6.6,
+   "whisper_gaps_gt05": 93,
+   "whisper_gaps_gt10": 37,
+   "f0_med_hz": 115.2,
+   "f0_std_st": 2.92,
+   "f0_p5_95_st": 8.4,
+   "f0_within_line_std_st": 2.59,
+   "hist": {
+    "0.25-0.5": 97,
+    "0.5-0.7": 42,
+    "0.7-1.0": 35,
+    "1.0-1.5": 36,
+    ">1.5": 15
+   }
+  },
+  "Guest2": {
+   "name": "Clara",
+   "lines": 53,
+   "words": 2012,
+   "speech_s": 825.0,
+   "wpm_incl": 146.3,
+   "wpm_excl_gt05": 153.8,
+   "wpm_artic": 163.1,
+   "n_gt05": 60,
+   "s_gt05": 40.1,
+   "n_gt10": 1,
+   "s_gt10": 1.1,
+   "per100w_gt05": 2.98,
+   "whisper_gaps_gt05": 19,
+   "whisper_gaps_gt10": 0,
+   "f0_med_hz": 217.5,
+   "f0_std_st": 3.33,
+   "f0_p5_95_st": 10.8,
+   "f0_within_line_std_st": 3.2,
+   "hist": {
+    "0.25-0.5": 118,
+    "0.5-0.7": 44,
+    "0.7-1.0": 21,
+    "1.0-1.5": 1,
+    ">1.5": 0
+   }
+  }
+ },
+ "C": {
+  "Host": {
+   "w": 2306,
+   "d": 743.83,
+   "g": 756.63,
+   "nc": 57,
+   "ncl": 23,
+   "cl_s": 12.73
+  },
+  "Guest": {
+   "w": 1865,
+   "d": 746.5699999999999,
+   "g": 767.0699999999998,
+   "nc": 50,
+   "ncl": 8,
+   "cl_s": 17.09
+  },
+  "Guest2": {
+   "w": 2012,
+   "d": 735.2899999999998,
+   "g": 736.55,
+   "nc": 53,
+   "ncl": 2,
+   "cl_s": 1.19
+  }
+ },
+ "SIM": {
+  "Carter t0.90 capNone": {
+   "wpm": 165.6,
+   "speech_s": 834.6,
+   "delta_s": 0.0
+  },
+  "Carter t0.90 cap0.6": {
+   "wpm": 167.5,
+   "speech_s": 825.2,
+   "delta_s": -9.4
+  },
+  "Carter t0.90 cap0.45": {
+   "wpm": 170.6,
+   "speech_s": 810.4,
+   "delta_s": -24.2
+  },
+  "Carter t0.95 capNone": {
+   "wpm": 174.8,
+   "speech_s": 790.6,
+   "delta_s": -43.9
+  },
+  "Carter t0.95 cap0.6": {
+   "wpm": 176.3,
+   "speech_s": 784.0,
+   "delta_s": -50.5
+  },
+  "Carter t0.95 cap0.45": {
+   "wpm": 179.4,
+   "speech_s": 770.5,
+   "delta_s": -64.1
+  },
+  "Carter t1.00 capNone": {
+   "wpm": 184.1,
+   "speech_s": 751.1,
+   "delta_s": -83.5
+  },
+  "Carter t1.00 cap0.6": {
+   "wpm": 185.1,
+   "speech_s": 746.7,
+   "delta_s": -87.8
+  },
+  "Carter t1.00 cap0.45": {
+   "wpm": 188.2,
+   "speech_s": 734.5,
+   "delta_s": -100.1
+  },
+  "Carter t1.05 capNone": {
+   "wpm": 193.3,
+   "speech_s": 715.3,
+   "delta_s": -119.2
+  },
+  "Carter t1.05 cap0.6": {
+   "wpm": 194.0,
+   "speech_s": 712.4,
+   "delta_s": -122.1
+  },
+  "Carter t1.05 cap0.45": {
+   "wpm": 197.0,
+   "speech_s": 701.7,
+   "delta_s": -132.9
+  },
+  "Elliot t0.90 capNone": {
+   "wpm": 135.6,
+   "speech_s": 825.1,
+   "delta_s": 0.0
+  },
+  "Elliot t0.90 cap0.6": {
+   "wpm": 145.6,
+   "speech_s": 768.5,
+   "delta_s": -56.6
+  },
+  "Elliot t0.90 cap0.45": {
+   "wpm": 149.1,
+   "speech_s": 750.6,
+   "delta_s": -74.5
+  },
+  "Elliot t0.95 capNone": {
+   "wpm": 143.1,
+   "speech_s": 781.7,
+   "delta_s": -43.4
+  },
+  "Elliot t0.95 cap0.6": {
+   "wpm": 153.0,
+   "speech_s": 731.2,
+   "delta_s": -93.9
+  },
+  "Elliot t0.95 cap0.45": {
+   "wpm": 156.6,
+   "speech_s": 714.5,
+   "delta_s": -110.7
+  },
+  "Elliot t1.00 capNone": {
+   "wpm": 150.7,
+   "speech_s": 742.6,
+   "delta_s": -82.5
+  },
+  "Elliot t1.00 cap0.6": {
+   "wpm": 160.4,
+   "speech_s": 697.5,
+   "delta_s": -127.6
+  },
+  "Elliot t1.00 cap0.45": {
+   "wpm": 164.2,
+   "speech_s": 681.7,
+   "delta_s": -143.5
+  },
+  "Elliot t1.05 capNone": {
+   "wpm": 158.2,
+   "speech_s": 707.3,
+   "delta_s": -117.9
+  },
+  "Elliot t1.05 cap0.6": {
+   "wpm": 167.8,
+   "speech_s": 666.8,
+   "delta_s": -158.3
+  },
+  "Elliot t1.05 cap0.45": {
+   "wpm": 171.7,
+   "speech_s": 651.8,
+   "delta_s": -173.4
+  },
+  "Clara t0.90 capNone": {
+   "wpm": 146.3,
+   "speech_s": 825.0,
+   "delta_s": 0.0
+  },
+  "Clara t0.90 cap0.6": {
+   "wpm": 147.3,
+   "speech_s": 819.6,
+   "delta_s": -5.4
+  },
+  "Clara t0.90 cap0.45": {
+   "wpm": 148.8,
+   "speech_s": 811.4,
+   "delta_s": -13.7
+  },
+  "Clara t0.95 capNone": {
+   "wpm": 154.4,
+   "speech_s": 781.6,
+   "delta_s": -43.4
+  },
+  "Clara t0.95 cap0.6": {
+   "wpm": 155.3,
+   "speech_s": 777.5,
+   "delta_s": -47.6
+  },
+  "Clara t0.95 cap0.45": {
+   "wpm": 156.7,
+   "speech_s": 770.5,
+   "delta_s": -54.6
+  },
+  "Clara t1.00 capNone": {
+   "wpm": 162.6,
+   "speech_s": 742.5,
+   "delta_s": -82.5
+  },
+  "Clara t1.00 cap0.6": {
+   "wpm": 163.3,
+   "speech_s": 739.4,
+   "delta_s": -85.6
+  },
+  "Clara t1.00 cap0.45": {
+   "wpm": 164.6,
+   "speech_s": 733.5,
+   "delta_s": -91.6
+  },
+  "Clara t1.05 capNone": {
+   "wpm": 170.7,
+   "speech_s": 707.2,
+   "delta_s": -117.9
+  },
+  "Clara t1.05 cap0.6": {
+   "wpm": 171.3,
+   "speech_s": 704.8,
+   "delta_s": -120.2
+  },
+  "Clara t1.05 cap0.45": {
+   "wpm": 172.5,
+   "speech_s": 699.8,
+   "delta_s": -125.2
+  }
+ },
+ "worst": [
+  {
+   "i": 143,
+   "spk": "Guest",
+   "t": 2324.41,
+   "end": 2334.53,
+   "words": 11,
+   "span": 10.120000000000346,
+   "sil": [
+    [
+     2324.55,
+     0.44
+    ],
+    [
+     2326.48,
+     0.5
+    ],
+    [
+     2327.17,
+     0.43
+    ],
+    [
+     2330.37,
+     0.8
+    ],
+    [
+     2332.04,
+     1.33
+    ]
+   ],
+   "wgap": [
+    [
+     2326.53,
+     2.24
+    ],
+    [
+     2330.15,
+     1.1
+    ],
+    [
+     2331.91,
+     1.06
+    ]
+   ],
+   "tags": [
+    "[sighs]"
+   ],
+   "text": "[sighs] That's... I'm sorry, Clara. I mean it. That's a real loss.",
+   "wpm": 65.2173913043456,
+   "maxp": 1.33,
+   "wpm_ex": 82.6032540675809,
+   "maxp_t": 2332.04
+  },
+  {
+   "i": 63,
+   "spk": "Guest",
+   "t": 1054.91,
+   "end": 1066.78,
+   "words": 16,
+   "span": 11.86999999999989,
+   "sil": [
+    [
+     1055.05,
+     0.49
+    ],
+    [
+     1056.57,
+     3.04
+    ],
+    [
+     1060.74,
+     1.37
+    ]
+   ],
+   "wgap": [
+    [
+     1063.42,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "I'm the danger. Marvellous. I've been called worse, usually by people in nicer flats than mine.",
+   "wpm": 80.87615838247758,
+   "maxp": 3.04,
+   "wpm_ex": 128.6863270777499,
+   "maxp_t": 1056.57
+  },
+  {
+   "i": 51,
+   "spk": "Guest",
+   "t": 868.46,
+   "end": 876.06,
+   "words": 11,
+   "span": 7.599999999999909,
+   "sil": [
+    [
+     868.53,
+     0.45
+    ],
+    [
+     872.98,
+     1.14
+    ]
+   ],
+   "wgap": [
+    [
+     869.98,
+     1.14
+    ],
+    [
+     872.8,
+     0.78
+    ]
+   ],
+   "tags": [
+    "[sighs]"
+   ],
+   "text": "[sighs] Sick. I felt sick. I said so at the time, privately.",
+   "wpm": 86.84210526315894,
+   "maxp": 1.14,
+   "wpm_ex": 102.16718266254013,
+   "maxp_t": 872.98
+  },
+  {
+   "i": 26,
+   "spk": "Guest",
+   "t": 448.78,
+   "end": 459.66,
+   "words": 20,
+   "span": 10.880000000000052,
+   "sil": [
+    [
+     448.89,
+     0.39
+    ],
+    [
+     451.19,
+     0.75
+    ],
+    [
+     453.59,
+     0.25
+    ],
+    [
+     455.99,
+     0.58
+    ],
+    [
+     456.64,
+     0.27
+    ]
+   ],
+   "wgap": [
+    [
+     451.0,
+     0.9
+    ],
+    [
+     452.5,
+     1.1
+    ],
+    [
+     455.64,
+     0.76
+    ]
+   ],
+   "tags": [
+    "[sighs]"
+   ],
+   "text": "[sighs] My side grieved. Genuinely. Thousands of young people in tears, a widow standing in a stadium. That's what I saw.",
+   "wpm": 110.2941176470583,
+   "maxp": 0.75,
+   "wpm_ex": 125.65445026177942,
+   "maxp_t": 451.19
+  },
+  {
+   "i": 148,
+   "spk": "Guest",
+   "t": 2345.51,
+   "end": 2375.81,
+   "words": 57,
+   "span": 30.299999999999727,
+   "sil": [
+    [
+     2345.51,
+     0.38
+    ],
+    [
+     2346.63,
+     0.85
+    ],
+    [
+     2348.37,
+     1.02
+    ],
+    [
+     2350.86,
+     0.8
+    ],
+    [
+     2353.24,
+     0.35
+    ],
+    [
+     2354.64,
+     0.81
+    ],
+    [
+     2357.31,
+     0.64
+    ],
+    [
+     2359.59,
+     0.51
+    ],
+    [
+     2362.21,
+     0.89
+    ],
+    [
+     2365.4,
+     0.47
+    ],
+    [
+     2366.9,
+     0.42
+    ],
+    [
+     2369.67,
+     1.17
+    ],
+    [
+     2373.74,
+     1.2
+    ]
+   ],
+   "wgap": [
+    [
+     2346.51,
+     0.7
+    ],
+    [
+     2348.23,
+     0.68
+    ],
+    [
+     2350.71,
+     0.54
+    ],
+    [
+     2353.09,
+     0.32
+    ],
+    [
+     2354.53,
+     0.56
+    ],
+    [
+     2369.51,
+     0.84
+    ],
+    [
+     2373.45,
+     1.02
+    ]
+   ],
+   "tags": [],
+   "text": "My brother. Younger brother. He lives in Aarhus, teaches at a gymnasium, a decent man. After my institute business he wrote me a long email saying he couldn't defend me any more, that my ideas made him afraid for his students. We haven't spoken in five years. My daughter sees his children at Christmas. I don't go.",
+   "wpm": 112.87128712871389,
+   "maxp": 1.2,
+   "wpm_ex": 152.61044176707014,
+   "maxp_t": 2373.74
+  },
+  {
+   "i": 1,
+   "spk": "Guest",
+   "t": 22.92,
+   "end": 39.22,
+   "words": 31,
+   "span": 16.299999999999997,
+   "sil": [
+    [
+     22.92,
+     0.28
+    ],
+    [
+     23.93,
+     0.59
+    ],
+    [
+     25.31,
+     0.37
+    ],
+    [
+     26.51,
+     0.49
+    ],
+    [
+     27.75,
+     0.64
+    ],
+    [
+     29.52,
+     0.57
+    ],
+    [
+     35.23,
+     0.68
+    ],
+    [
+     37.36,
+     0.27
+    ]
+   ],
+   "wgap": [
+    [
+     23.82,
+     0.76
+    ],
+    [
+     25.0,
+     0.6
+    ],
+    [
+     26.2,
+     0.76
+    ],
+    [
+     27.48,
+     0.84
+    ],
+    [
+     29.44,
+     0.5
+    ],
+    [
+     35.12,
+     0.28
+    ],
+    [
+     37.0,
+     0.58
+    ]
+   ],
+   "tags": [],
+   "text": "Oh, come on. Teachers, firefighters, soldiers, people with mortgages, hunted down by a website with a submission form. Sixty-three thousand entries, Clara. That isn't accountability, that's a census of the disloyal.",
+   "wpm": 114.11042944785278,
+   "maxp": 0.68,
+   "wpm_ex": 134.58755426917514,
+   "maxp_t": 35.23
+  },
+  {
+   "i": 132,
+   "spk": "Guest",
+   "t": 2185.27,
+   "end": 2200.29,
+   "words": 29,
+   "span": 15.019999999999982,
+   "sil": [
+    [
+     2187.87,
+     0.41
+    ],
+    [
+     2188.34,
+     1.76
+    ],
+    [
+     2192.49,
+     0.5
+    ],
+    [
+     2194.1,
+     1.18
+    ],
+    [
+     2198.67,
+     0.44
+    ]
+   ],
+   "wgap": [
+    [
+     2187.79,
+     2.0
+    ],
+    [
+     2191.63,
+     0.46
+    ],
+    [
+     2192.35,
+     0.56
+    ],
+    [
+     2193.85,
+     0.9
+    ],
+    [
+     2196.41,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "That's a fair hit, and I don't like it. But you're describing grief, Clara, not politics. A family can forgive. A state that forgives everything stops being a state.",
+   "wpm": 115.84553928095886,
+   "maxp": 1.76,
+   "wpm_ex": 144.03973509933797,
+   "maxp_t": 2188.34
+  },
+  {
+   "i": 7,
+   "spk": "Guest",
+   "t": 117.84,
+   "end": 125.06,
+   "words": 14,
+   "span": 7.219999999999999,
+   "sil": [
+    [
+     118.91,
+     0.53
+    ],
+    [
+     119.77,
+     0.93
+    ],
+    [
+     123.52,
+     0.34
+    ]
+   ],
+   "wgap": [
+    [
+     118.72,
+     1.62
+    ],
+    [
+     121.4,
+     0.34
+    ]
+   ],
+   "tags": [],
+   "text": "Thank you, Carter. For the record, nobody reads enough Schmitt. That's half the problem.",
+   "wpm": 116.34349030470916,
+   "maxp": 0.93,
+   "wpm_ex": 145.83333333333334,
+   "maxp_t": 119.77
+  },
+  {
+   "i": 103,
+   "spk": "Guest",
+   "t": 1689.1,
+   "end": 1713.05,
+   "words": 47,
+   "span": 23.950000000000045,
+   "sil": [
+    [
+     1689.1,
+     0.28
+    ],
+    [
+     1698.76,
+     0.41
+    ],
+    [
+     1703.23,
+     2.39
+    ],
+    [
+     1707.09,
+     0.29
+    ],
+    [
+     1708.35,
+     1.18
+    ],
+    [
+     1710.7,
+     0.74
+    ]
+   ],
+   "wgap": [
+    [
+     1690.78,
+     1.82
+    ],
+    [
+     1703.12,
+     1.57
+    ],
+    [
+     1708.17,
+     0.78
+    ],
+    [
+     1710.21,
+     1.34
+    ]
+   ],
+   "tags": [],
+   "text": "It means I'm tired, Carter. I'm tired of a debate where my dead are statistics and her dead are martyrs. We have reached the point where every corpse is evidence for somebody. That's what a war looks like, from the inside. Not tanks. Spreadsheets of the dead.",
+   "wpm": 117.74530271398726,
+   "maxp": 2.39,
+   "wpm_ex": 143.5845213849284,
+   "maxp_t": 1703.23
+  },
+  {
+   "i": 96,
+   "spk": "Guest",
+   "t": 1628.12,
+   "end": 1639.82,
+   "words": 23,
+   "span": 11.700000000000045,
+   "sil": [
+    [
+     1628.31,
+     0.44
+    ],
+    [
+     1629.14,
+     0.48
+    ],
+    [
+     1632.24,
+     0.99
+    ]
+   ],
+   "wgap": [],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Oh, now numbers are allowed? Thirty seconds ago statistics were the ruling class's favourite weapon. Now you've got a spreadsheet in each hand.",
+   "wpm": 117.94871794871749,
+   "maxp": 0.99,
+   "wpm_ex": 128.85154061624596,
+   "maxp_t": 1632.24
+  }
+ ],
+ "rows": [
+  {
+   "i": 0,
+   "spk": "Guest2",
+   "t": 8.72,
+   "end": 22.54,
+   "words": 36,
+   "span": 13.819999999999999,
+   "sil": [
+    [
+     10.45,
+     0.29
+    ],
+    [
+     16.85,
+     0.38
+    ]
+   ],
+   "wgap": [
+    [
+     9.24,
+     0.38
+    ],
+    [
+     10.28,
+     0.44
+    ]
+   ],
+   "tags": [],
+   "text": "No, no, no. Accountability is not a purge. If you post something gloating about a man bleeding out on a stage, you don't get to keep teaching seventeen-year-olds the next morning and call yourself a martyr."
+  },
+  {
+   "i": 1,
+   "spk": "Guest",
+   "t": 22.92,
+   "end": 39.22,
+   "words": 31,
+   "span": 16.299999999999997,
+   "sil": [
+    [
+     22.92,
+     0.28
+    ],
+    [
+     23.93,
+     0.59
+    ],
+    [
+     25.31,
+     0.37
+    ],
+    [
+     26.51,
+     0.49
+    ],
+    [
+     27.75,
+     0.64
+    ],
+    [
+     29.52,
+     0.57
+    ],
+    [
+     35.23,
+     0.68
+    ],
+    [
+     37.36,
+     0.27
+    ]
+   ],
+   "wgap": [
+    [
+     23.82,
+     0.76
+    ],
+    [
+     25.0,
+     0.6
+    ],
+    [
+     26.2,
+     0.76
+    ],
+    [
+     27.48,
+     0.84
+    ],
+    [
+     29.44,
+     0.5
+    ],
+    [
+     35.12,
+     0.28
+    ],
+    [
+     37.0,
+     0.58
+    ]
+   ],
+   "tags": [],
+   "text": "Oh, come on. Teachers, firefighters, soldiers, people with mortgages, hunted down by a website with a submission form. Sixty-three thousand entries, Clara. That isn't accountability, that's a census of the disloyal.",
+   "wpm": 114.11042944785278,
+   "maxp": 0.68,
+   "wpm_ex": 134.58755426917514,
+   "maxp_t": 35.23
+  },
+  {
+   "i": 2,
+   "spk": "Guest2",
+   "t": 39.8,
+   "end": 54.86,
+   "words": 40,
+   "span": 15.060000000000002,
+   "sil": [
+    [
+     40.74,
+     0.73
+    ],
+    [
+     42.94,
+     0.48
+    ]
+   ],
+   "wgap": [
+    [
+     40.44,
+     0.5
+    ],
+    [
+     42.68,
+     0.36
+    ],
+    [
+     44.14,
+     0.36
+    ],
+    [
+     50.84,
+     0.4
+    ]
+   ],
+   "tags": [],
+   "text": "Exactly! And who ran the census? Your side. Your Vice President went on air and told people to report anyone celebrating the killing to their employers. Don't you dare call it a purge when you're the ones holding the clipboard."
+  },
+  {
+   "i": 3,
+   "spk": "Guest",
+   "t": 55.1,
+   "end": 69.78,
+   "words": 37,
+   "span": 14.68,
+   "sil": [
+    [
+     55.1,
+     0.38
+    ],
+    [
+     56.85,
+     0.87
+    ],
+    [
+     60.88,
+     0.67
+    ],
+    [
+     67.14,
+     0.99
+    ]
+   ],
+   "wgap": [
+    [
+     56.7,
+     0.54
+    ],
+    [
+     67.04,
+     0.62
+    ]
+   ],
+   "tags": [],
+   "text": "I didn't hold anything. I'm saying a country where people cheer an assassination and a country where people lose their livelihoods for a bad joke is the same sick country, and you only see half of it.",
+   "wpm": 151.22615803814713,
+   "maxp": 0.99,
+   "wpm_ex": 182.71604938271608,
+   "maxp_t": 67.14
+  },
+  {
+   "i": 4,
+   "spk": "Host",
+   "t": 69.78,
+   "end": 82.62,
+   "words": 33,
+   "span": 12.840000000000003,
+   "sil": [
+    [
+     69.88,
+     0.47
+    ],
+    [
+     70.95,
+     0.57
+    ],
+    [
+     71.97,
+     0.56
+    ],
+    [
+     78.45,
+     0.6
+    ],
+    [
+     81.63,
+     0.5
+    ]
+   ],
+   "wgap": [
+    [
+     71.8,
+     0.54
+    ],
+    [
+     74.18,
+     0.26
+    ],
+    [
+     78.26,
+     0.54
+    ]
+   ],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Okay. Okay. I haven't even said hello, there's a coffee in my hand, and you two have already set fire to the studio. Welcome to Fault Lines. This is episode one. I'm Carter."
+  },
+  {
+   "i": 5,
+   "spk": "Host",
+   "t": 82.96,
+   "end": 96.28,
+   "words": 46,
+   "span": 13.320000000000007,
+   "sil": [
+    [
+     82.96,
+     0.48
+    ],
+    [
+     92.44,
+     0.31
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "And the question for this first episode is simple to say and horrible to answer. Is the split between left and right in the West turning into a war? And if it is, why is everybody so much angrier with each other than twenty years ago?"
+  },
+  {
+   "i": 6,
+   "spk": "Host",
+   "t": 96.5,
+   "end": 117.32,
+   "words": 54,
+   "span": 20.819999999999993,
+   "sil": [
+    [
+     96.5,
+     0.39
+    ],
+    [
+     97.93,
+     0.43
+    ],
+    [
+     100.05,
+     0.71
+    ],
+    [
+     103.22,
+     0.68
+    ],
+    [
+     106.54,
+     0.34
+    ],
+    [
+     108.76,
+     0.67
+    ],
+    [
+     112.23,
+     0.47
+    ],
+    [
+     114.97,
+     0.28
+    ]
+   ],
+   "wgap": [
+    [
+     103.12,
+     0.46
+    ],
+    [
+     106.46,
+     0.44
+    ],
+    [
+     107.48,
+     0.46
+    ],
+    [
+     108.52,
+     0.34
+    ],
+    [
+     116.78,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "To help me with that, or more likely to prove my point, I have two guests who agree on almost nothing. Dr. Elliot Brandt is a political theorist, half British, half Danish, a former adviser to a national-conservative party, and a man who has read more Carl Schmitt than is probably healthy. Elliot, welcome."
+  },
+  {
+   "i": 7,
+   "spk": "Guest",
+   "t": 117.84,
+   "end": 125.06,
+   "words": 14,
+   "span": 7.219999999999999,
+   "sil": [
+    [
+     118.91,
+     0.53
+    ],
+    [
+     119.77,
+     0.93
+    ],
+    [
+     123.52,
+     0.34
+    ]
+   ],
+   "wgap": [
+    [
+     118.72,
+     1.62
+    ],
+    [
+     121.4,
+     0.34
+    ]
+   ],
+   "tags": [],
+   "text": "Thank you, Carter. For the record, nobody reads enough Schmitt. That's half the problem.",
+   "wpm": 116.34349030470916,
+   "maxp": 0.93,
+   "wpm_ex": 145.83333333333334,
+   "maxp_t": 119.77
+  },
+  {
+   "i": 8,
+   "spk": "Host",
+   "t": 126.32,
+   "end": 141.56,
+   "words": 39,
+   "span": 15.240000000000009,
+   "sil": [
+    [
+     126.89,
+     0.96
+    ],
+    [
+     136.7,
+     0.52
+    ]
+   ],
+   "wgap": [
+    [
+     126.82,
+     1.06
+    ],
+    [
+     131.54,
+     0.26
+    ],
+    [
+     135.4,
+     0.28
+    ],
+    [
+     136.62,
+     0.42
+    ]
+   ],
+   "tags": [],
+   "text": "Noted. And Dr. Clara Holm-Reyes is a sociologist of social movements, a former union organiser, a socialist with a capital S and, I'm told, the reason at least one think tank had to change its security code. Clara, welcome."
+  },
+  {
+   "i": 9,
+   "spk": "Guest2",
+   "t": 141.9,
+   "end": 148.98,
+   "words": 14,
+   "span": 7.079999999999984,
+   "sil": [
+    [
+     141.9,
+     0.29
+    ],
+    [
+     144.16,
+     0.65
+    ],
+    [
+     145.84,
+     0.92
+    ],
+    [
+     147.9,
+     0.61
+    ]
+   ],
+   "wgap": [
+    [
+     145.66,
+     0.84
+    ],
+    [
+     147.84,
+     0.58
+    ]
+   ],
+   "tags": [],
+   "text": "It was two think tanks, but thank you, Carter. Happy to be here, mostly."
+  },
+  {
+   "i": 10,
+   "spk": "Host",
+   "t": 149.36,
+   "end": 176.14,
+   "words": 76,
+   "span": 26.779999999999973,
+   "sil": [
+    [
+     149.36,
+     0.32
+    ],
+    [
+     152.6,
+     0.39
+    ],
+    [
+     163.28,
+     0.36
+    ],
+    [
+     174.29,
+     0.58
+    ]
+   ],
+   "wgap": [
+    [
+     152.42,
+     0.38
+    ],
+    [
+     155.7,
+     0.34
+    ],
+    [
+     159.4,
+     0.52
+    ],
+    [
+     162.98,
+     0.34
+    ],
+    [
+     167.76,
+     0.34
+    ]
+   ],
+   "tags": [],
+   "text": "Now, this series works with an object of focus, one concrete thing we keep coming back to. Today it's the killing of Charlie Kirk. On the tenth of September 2025, Kirk, thirty-one, co-founder of Turning Point USA, was debating students outdoors at Utah Valley University in Orem, Utah, with about three thousand people there. He was shot once in the neck from a rooftop roughly a hundred and thirty metres away, and he died in hospital."
+  },
+  {
+   "i": 11,
+   "spk": "Host",
+   "t": 176.36,
+   "end": 196.98,
+   "words": 55,
+   "span": 20.619999999999976,
+   "sil": [
+    [
+     176.36,
+     0.37
+    ],
+    [
+     185.7,
+     0.81
+    ],
+    [
+     187.15,
+     0.42
+    ],
+    [
+     189.51,
+     0.26
+    ],
+    [
+     193.11,
+     0.26
+    ],
+    [
+     195.59,
+     0.66
+    ]
+   ],
+   "wgap": [
+    [
+     185.58,
+     0.6
+    ],
+    [
+     192.96,
+     0.4
+    ],
+    [
+     195.44,
+     0.36
+    ]
+   ],
+   "tags": [],
+   "text": "And the last exchange is almost unbearable. A student asked him how many transgender Americans had been mass shooters in the last ten years. Kirk said, 'Too many.' The student said five, and asked how many mass shooters there had been in total. Kirk answered, 'Counting or not counting gang violence?' And then the shot."
+  },
+  {
+   "i": 12,
+   "spk": "Host",
+   "t": 197.14,
+   "end": 222.86,
+   "words": 73,
+   "span": 25.720000000000027,
+   "sil": [
+    [
+     197.14,
+     0.34
+    ],
+    [
+     205.89,
+     0.44
+    ],
+    [
+     207.8,
+     0.63
+    ],
+    [
+     213.61,
+     0.78
+    ],
+    [
+     216.04,
+     0.8
+    ],
+    [
+     218.92,
+     0.4
+    ]
+   ],
+   "wgap": [
+    [
+     207.68,
+     0.3
+    ],
+    [
+     213.42,
+     0.56
+    ],
+    [
+     215.9,
+     0.7
+    ],
+    [
+     220.66,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "The accused is Tyler Robinson, twenty-two, from a Republican family in southern Utah. He turned himself in the next day. He's charged with aggravated murder, the state wants the death penalty, and on the first of September this year a judge sent the case to trial. He has pleaded not guilty. So I'll say it once, clearly: no court has established a motive, and he is presumed innocent. Everything after that is politics."
+  },
+  {
+   "i": 13,
+   "spk": "Host",
+   "t": 227.18,
+   "end": 242.32,
+   "words": 45,
+   "span": 15.139999999999986,
+   "sil": [
+    [
+     234.44,
+     0.9
+    ],
+    [
+     236.03,
+     0.69
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "So, first question, to both of you. A man is shot mid-sentence, answering a question about gun violence, at a debate. A debate! Is that the moment it became a war? Or are we turning one killing into a war because it suits us? Elliot."
+  },
+  {
+   "i": 14,
+   "spk": "Guest",
+   "t": 242.32,
+   "end": 271.06,
+   "words": 64,
+   "span": 28.74000000000001,
+   "sil": [
+    [
+     242.35,
+     0.5
+    ],
+    [
+     245.15,
+     1.05
+    ],
+    [
+     250.06,
+     0.51
+    ],
+    [
+     255.44,
+     0.72
+    ],
+    [
+     258.33,
+     0.37
+    ],
+    [
+     260.67,
+     1.0
+    ],
+    [
+     269.27,
+     0.62
+    ]
+   ],
+   "wgap": [
+    [
+     260.38,
+     0.94
+    ],
+    [
+     269.12,
+     0.56
+    ]
+   ],
+   "tags": [],
+   "text": "It became a war long before Utah. Utah is just the moment the shooting stopped being metaphorical. For decades the left has been taking apart every pillar a people stands on: nation, family, faith, borders. You call it progress. The people on the receiving end experience it as an occupation. Schmitt would say the political had simply returned to its essence: friend and enemy.",
+   "wpm": 133.61169102296446,
+   "maxp": 1.05,
+   "wpm_ex": 154.58937198067628,
+   "maxp_t": 245.15
+  },
+  {
+   "i": 15,
+   "spk": "Guest2",
+   "t": 271.36,
+   "end": 281.74,
+   "words": 32,
+   "span": 10.379999999999995,
+   "sil": [
+    [
+     271.36,
+     0.3
+    ],
+    [
+     272.44,
+     0.29
+    ]
+   ],
+   "wgap": [
+    [
+     274.62,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "There it is, Schmitt in the first two minutes. Carter, I want it on record that he skipped straight to the end of the world before we'd even said the word class."
+  },
+  {
+   "i": 16,
+   "spk": "Host",
+   "t": 282.24,
+   "end": 286.8,
+   "words": 11,
+   "span": 4.560000000000002,
+   "sil": [
+    [
+     282.24,
+     0.36
+    ],
+    [
+     283.44,
+     0.32
+    ],
+    [
+     284.01,
+     0.29
+    ],
+    [
+     285.7,
+     0.3
+    ]
+   ],
+   "wgap": [
+    [
+     285.56,
+     0.32
+    ]
+   ],
+   "tags": [],
+   "text": "It's on record. But answer the question, Clara. War or not?"
+  },
+  {
+   "i": 17,
+   "spk": "Guest2",
+   "t": 286.8,
+   "end": 309.88,
+   "words": 59,
+   "span": 23.079999999999984,
+   "sil": [
+    [
+     286.88,
+     0.51
+    ],
+    [
+     292.82,
+     0.29
+    ],
+    [
+     297.92,
+     0.39
+    ],
+    [
+     299.45,
+     0.41
+    ]
+   ],
+   "wgap": [
+    [
+     291.06,
+     0.36
+    ],
+    [
+     296.7,
+     0.28
+    ],
+    [
+     297.86,
+     0.48
+    ],
+    [
+     299.4,
+     0.36
+    ]
+   ],
+   "tags": [],
+   "text": "There is a war, yes. It's just not the one he's describing. It's a class war, and it's been fought from the top down for forty years. Wages flat, rents through the roof, public services sold off for parts. What people like Elliot call polarization is the moment the people at the bottom finally stop being polite about it."
+  },
+  {
+   "i": 18,
+   "spk": "Guest",
+   "t": 309.88,
+   "end": 332.08,
+   "words": 57,
+   "span": 22.19999999999999,
+   "sil": [
+    [
+     309.88,
+     0.45
+    ],
+    [
+     314.74,
+     0.32
+    ],
+    [
+     318.29,
+     0.71
+    ],
+    [
+     320.23,
+     0.38
+    ],
+    [
+     322.74,
+     0.25
+    ],
+    [
+     323.98,
+     0.28
+    ]
+   ],
+   "wgap": [
+    [
+     318.16,
+     0.28
+    ],
+    [
+     320.02,
+     0.28
+    ],
+    [
+     321.52,
+     0.38
+    ],
+    [
+     322.56,
+     0.44
+    ]
+   ],
+   "tags": [],
+   "text": "Forty years of class war, and yet the people supposedly at the bottom keep voting for my side. Have you noticed that, Clara? The factory towns, the fishing villages, the estates. They left you. They didn't leave because a billionaire tricked them. They left because your side started talking about them as a problem to be educated.",
+   "wpm": 154.05405405405412,
+   "maxp": 0.71,
+   "wpm_ex": 159.143787808283,
+   "maxp_t": 318.29
+  },
+  {
+   "i": 19,
+   "spk": "Guest2",
+   "t": 332.4,
+   "end": 357.6,
+   "words": 68,
+   "span": 25.200000000000045,
+   "sil": [
+    [
+     332.4,
+     0.34
+    ],
+    [
+     334.03,
+     0.4
+    ],
+    [
+     338.48,
+     0.36
+    ],
+    [
+     342.84,
+     0.27
+    ],
+    [
+     346.1,
+     0.37
+    ],
+    [
+     351.2,
+     0.35
+    ]
+   ],
+   "wgap": [
+    [
+     341.06,
+     0.32
+    ],
+    [
+     344.0,
+     0.26
+    ],
+    [
+     350.86,
+     0.38
+    ]
+   ],
+   "tags": [],
+   "text": "They didn't leave me, they left the social democrats who sold them out to the banks and then lectured them about recycling. That's a different thing. And yes, some of them went to your lot, because you're the only ones who bothered to sound angry. Anger is cheap. You offer them a flag and an enemy, and then you vote for the same tax cuts as everyone else."
+  },
+  {
+   "i": 20,
+   "spk": "Host",
+   "t": 357.94,
+   "end": 368.76,
+   "words": 35,
+   "span": 10.819999999999993,
+   "sil": [
+    [
+     357.94,
+     0.31
+    ],
+    [
+     359.04,
+     0.66
+    ],
+    [
+     365.8,
+     0.71
+    ]
+   ],
+   "wgap": [
+    [
+     358.94,
+     0.44
+    ],
+    [
+     363.66,
+     0.26
+    ],
+    [
+     365.66,
+     0.46
+    ]
+   ],
+   "tags": [],
+   "text": "Hang on, though. Two minutes ago you were saying this was about accountability for a few bad posts. Now it's forty years of class war. That's a big drawer to keep pulling things out of."
+  },
+  {
+   "i": 21,
+   "spk": "Guest2",
+   "t": 369.02,
+   "end": 381.8,
+   "words": 27,
+   "span": 12.78000000000003,
+   "sil": [
+    [
+     369.02,
+     0.26
+    ],
+    [
+     371.58,
+     0.35
+    ],
+    [
+     374.14,
+     0.32
+    ],
+    [
+     375.55,
+     0.62
+    ],
+    [
+     379.17,
+     0.74
+    ]
+   ],
+   "wgap": [
+    [
+     371.4,
+     0.26
+    ],
+    [
+     372.98,
+     0.3
+    ],
+    [
+     374.04,
+     0.28
+    ],
+    [
+     375.44,
+     0.66
+    ],
+    [
+     379.08,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "It's the same drawer, Carter. That's my whole point. Okay, fine, the narrow claim: some people deserved consequences for what they wrote. The broad claim stands too."
+  },
+  {
+   "i": 22,
+   "spk": "Host",
+   "t": 382.12,
+   "end": 393.74,
+   "words": 36,
+   "span": 11.620000000000005,
+   "sil": [
+    [
+     382.12,
+     0.36
+    ],
+    [
+     390.01,
+     0.49
+    ]
+   ],
+   "wgap": [
+    [
+     385.64,
+     0.28
+    ],
+    [
+     389.9,
+     0.4
+    ]
+   ],
+   "tags": [],
+   "text": "I'll let that slide for now, but I'm watching you. Elliot, you said the left took apart the pillars and the response is now violent. Be careful. That sounds an awful lot like explaining a rifle."
+  },
+  {
+   "i": 23,
+   "spk": "Guest",
+   "t": 394.04,
+   "end": 413.6,
+   "words": 40,
+   "span": 19.560000000000002,
+   "sil": [
+    [
+     394.04,
+     0.39
+    ],
+    [
+     401.62,
+     0.51
+    ],
+    [
+     403.06,
+     0.58
+    ],
+    [
+     404.53,
+     1.04
+    ],
+    [
+     412.45,
+     0.54
+    ]
+   ],
+   "wgap": [
+    [
+     401.48,
+     0.54
+    ]
+   ],
+   "tags": [],
+   "text": "I'm describing, Carter, not endorsing. If you spend years treating your neighbour as a moral problem to be managed, re-educated, deplatformed, you shouldn't act surprised when politics stops being a seminar. That's an observation about human beings, not a wish.",
+   "wpm": 122.69938650306746,
+   "maxp": 1.04,
+   "wpm_ex": 142.09591474245116,
+   "maxp_t": 404.53
+  },
+  {
+   "i": 24,
+   "spk": "Guest2",
+   "t": 413.6,
+   "end": 431.66,
+   "words": 40,
+   "span": 18.060000000000002,
+   "sil": [
+    [
+     413.68,
+     0.58
+    ],
+    [
+     416.14,
+     0.53
+    ],
+    [
+     422.94,
+     0.45
+    ],
+    [
+     424.83,
+     0.34
+    ],
+    [
+     428.42,
+     0.4
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Notice the passive voice. 'Politics stops being a seminar.' Nobody's pulling a trigger in Elliot's sentences, Carter. History just happens, like weather. That's the oldest trick in the reactionary book: you build the mood and then you blame the barometer."
+  },
+  {
+   "i": 25,
+   "spk": "Host",
+   "t": 435.9,
+   "end": 448.78,
+   "words": 35,
+   "span": 12.879999999999995,
+   "sil": [
+    [
+     436.81,
+     0.7
+    ],
+    [
+     439.61,
+     0.51
+    ],
+    [
+     444.59,
+     0.74
+    ],
+    [
+     446.18,
+     0.58
+    ],
+    [
+     447.23,
+     0.61
+    ]
+   ],
+   "wgap": [
+    [
+     436.5,
+     0.54
+    ],
+    [
+     444.58,
+     0.34
+    ],
+    [
+     446.18,
+     0.4
+    ],
+    [
+     447.02,
+     0.6
+    ],
+    [
+     448.1,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "Right. Then here's the question I actually came in with. Forget the shooter for a moment. What did your own side's reaction reveal about your own side? Not the other lot. Yours. Elliot, you first."
+  },
+  {
+   "i": 26,
+   "spk": "Guest",
+   "t": 448.78,
+   "end": 459.66,
+   "words": 20,
+   "span": 10.880000000000052,
+   "sil": [
+    [
+     448.89,
+     0.39
+    ],
+    [
+     451.19,
+     0.75
+    ],
+    [
+     453.59,
+     0.25
+    ],
+    [
+     455.99,
+     0.58
+    ],
+    [
+     456.64,
+     0.27
+    ]
+   ],
+   "wgap": [
+    [
+     451.0,
+     0.9
+    ],
+    [
+     452.5,
+     1.1
+    ],
+    [
+     455.64,
+     0.76
+    ]
+   ],
+   "tags": [
+    "[sighs]"
+   ],
+   "text": "[sighs] My side grieved. Genuinely. Thousands of young people in tears, a widow standing in a stadium. That's what I saw.",
+   "wpm": 110.2941176470583,
+   "maxp": 0.75,
+   "wpm_ex": 125.65445026177942,
+   "maxp_t": 451.19
+  },
+  {
+   "i": 27,
+   "spk": "Host",
+   "t": 459.9,
+   "end": 474.08,
+   "words": 37,
+   "span": 14.180000000000007,
+   "sil": [
+    [
+     459.9,
+     0.39
+    ],
+    [
+     461.29,
+     0.42
+    ],
+    [
+     472.51,
+     0.67
+    ]
+   ],
+   "wgap": [
+    [
+     460.96,
+     0.4
+    ],
+    [
+     468.04,
+     0.26
+    ],
+    [
+     472.4,
+     0.56
+    ]
+   ],
+   "tags": [],
+   "text": "And the lists? The website? The Vice President on Kirk's own show, telling people to report anyone celebrating to their employer? People wrongly named and doxxed, a family having to leave their home? That's your side too."
+  },
+  {
+   "i": 28,
+   "spk": "Guest",
+   "t": 474.46,
+   "end": 497.48,
+   "words": 54,
+   "span": 23.02000000000004,
+   "sil": [
+    [
+     474.46,
+     0.28
+    ],
+    [
+     476.57,
+     0.39
+    ],
+    [
+     479.46,
+     0.56
+    ],
+    [
+     485.38,
+     0.76
+    ],
+    [
+     487.57,
+     0.31
+    ],
+    [
+     493.23,
+     1.01
+    ]
+   ],
+   "wgap": [
+    [
+     475.8,
+     1.34
+    ],
+    [
+     479.02,
+     0.66
+    ],
+    [
+     485.14,
+     0.52
+    ],
+    [
+     493.02,
+     1.06
+    ]
+   ],
+   "tags": [],
+   "text": "Some of it was ugly. Some of it was overdue. When a movement has spent ten years getting people fired for the wrong opinion about a bathroom, it shouldn't be shocked when the weapon is turned around. Freedom isn't the right to say anything without consequence. Freedom is a people's ability to remain itself.",
+   "wpm": 140.74717636837508,
+   "maxp": 1.01,
+   "wpm_ex": 156.59739004349896,
+   "maxp_t": 493.23
+  },
+  {
+   "i": 29,
+   "spk": "Guest2",
+   "t": 498.14,
+   "end": 514.2,
+   "words": 34,
+   "span": 16.06000000000006,
+   "sil": [
+    [
+     498.14,
+     0.33
+    ],
+    [
+     499.44,
+     0.41
+    ],
+    [
+     501.2,
+     0.39
+    ],
+    [
+     508.75,
+     0.81
+    ],
+    [
+     511.06,
+     0.31
+    ]
+   ],
+   "wgap": [
+    [
+     498.78,
+     0.28
+    ],
+    [
+     499.22,
+     0.34
+    ],
+    [
+     508.64,
+     0.6
+    ],
+    [
+     510.9,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "Wait, what? Did everyone hear that? He just redefined freedom on air. Freedom is now a people's ability to remain itself. That's not freedom, Elliot, that's a gated community with a flag on it."
+  },
+  {
+   "i": 30,
+   "spk": "Guest",
+   "t": 514.34,
+   "end": 519.92,
+   "words": 14,
+   "span": 5.579999999999927,
+   "sil": [
+    [
+     514.34,
+     0.28
+    ],
+    [
+     515.78,
+     0.74
+    ]
+   ],
+   "wgap": [
+    [
+     515.66,
+     1.12
+    ]
+   ],
+   "tags": [],
+   "text": "It's the older meaning. Liberals stole the word and shrank it down to shopping.",
+   "wpm": 150.5376344086041,
+   "maxp": 0.74,
+   "wpm_ex": 173.55371900826708,
+   "maxp_t": 515.78
+  },
+  {
+   "i": 31,
+   "spk": "Guest2",
+   "t": 520.84,
+   "end": 536.44,
+   "words": 37,
+   "span": 15.600000000000023,
+   "sil": [
+    [
+     520.84,
+     0.47
+    ],
+    [
+     529.55,
+     0.68
+    ],
+    [
+     532.84,
+     0.55
+    ]
+   ],
+   "wgap": [
+    [
+     532.72,
+     0.46
+    ],
+    [
+     535.08,
+     0.32
+    ]
+   ],
+   "tags": [],
+   "text": "It's the meaning that got used to keep half of Europe in their place for a thousand years. Freedom to remain itself. And who decides what 'itself' is? Not the woman cleaning the hotel, I promise you."
+  },
+  {
+   "i": 32,
+   "spk": "Host",
+   "t": 536.44,
+   "end": 549.48,
+   "words": 36,
+   "span": 13.039999999999964,
+   "sil": [
+    [
+     536.46,
+     0.45
+    ],
+    [
+     538.22,
+     0.66
+    ],
+    [
+     543.22,
+     0.32
+    ]
+   ],
+   "wgap": [
+    [
+     537.18,
+     0.36
+    ],
+    [
+     545.5,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Clara, your turn. Your side. Because there were people online celebrating a man being shot in the neck, and some of them weren't anonymous trolls, they were teachers and firefighters with their names on their profiles."
+  },
+  {
+   "i": 33,
+   "spk": "Guest2",
+   "t": 550.22,
+   "end": 569.6,
+   "words": 58,
+   "span": 19.379999999999995,
+   "sil": [
+    [
+     550.65,
+     0.49
+    ],
+    [
+     553.63,
+     0.27
+    ],
+    [
+     554.63,
+     0.3
+    ],
+    [
+     564.54,
+     0.37
+    ]
+   ],
+   "wgap": [
+    [
+     550.56,
+     0.4
+    ],
+    [
+     553.54,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Yes. There were. And I find it repugnant, actually, and I'm saying it on a recording, so you can play it back to me. But you have to understand where the rage comes from. This was a man who said, in 2023, that some gun deaths every year were a cost worth paying to keep the Second Amendment."
+  },
+  {
+   "i": 34,
+   "spk": "Guest",
+   "t": 569.96,
+   "end": 577.54,
+   "words": 20,
+   "span": 7.579999999999927,
+   "sil": [
+    [
+     569.96,
+     0.33
+    ],
+    [
+     571.72,
+     0.75
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "He is dead, Clara. He was shot in front of his supporters, and you're quoting him at his own funeral.",
+   "wpm": 158.31134564643952,
+   "maxp": 0.75,
+   "wpm_ex": 175.69546120058752,
+   "maxp_t": 571.72
+  },
+  {
+   "i": 35,
+   "spk": "Guest2",
+   "t": 578.36,
+   "end": 587.54,
+   "words": 29,
+   "span": 9.17999999999995,
+   "sil": [
+    [
+     578.36,
+     0.47
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "I'm quoting him because his side turned him into a saint within forty-eight hours, and you can't build a saint out of a man without hiding half his sentences."
+  },
+  {
+   "i": 36,
+   "spk": "Guest",
+   "t": 587.94,
+   "end": 599.04,
+   "words": 31,
+   "span": 11.099999999999909,
+   "sil": [
+    [
+     587.94,
+     0.33
+    ],
+    [
+     592.04,
+     0.29
+    ],
+    [
+     596.09,
+     0.26
+    ],
+    [
+     596.79,
+     0.39
+    ]
+   ],
+   "wgap": [
+    [
+     596.54,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "And you can't build a movement out of people who laugh at a widow without losing your soul. You don't get to say 'repugnant, but' and think the 'but' is invisible.",
+   "wpm": 167.56756756756894,
+   "maxp": 0.39,
+   "wpm_ex": 167.56756756756894,
+   "maxp_t": 596.79
+  },
+  {
+   "i": 37,
+   "spk": "Host",
+   "t": 599.58,
+   "end": 620.12,
+   "words": 59,
+   "span": 20.539999999999964,
+   "sil": [
+    [
+     602.41,
+     0.62
+    ],
+    [
+     603.59,
+     0.3
+    ],
+    [
+     604.27,
+     0.6
+    ],
+    [
+     609.54,
+     0.67
+    ],
+    [
+     613.53,
+     0.56
+    ],
+    [
+     616.33,
+     0.5
+    ]
+   ],
+   "wgap": [
+    [
+     602.48,
+     0.52
+    ],
+    [
+     604.14,
+     0.6
+    ],
+    [
+     609.5,
+     0.44
+    ],
+    [
+     613.38,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "Notice that every one of those answers had a 'but' in it. 'Repugnant, but.' 'Ugly, but overdue.' It's the colleague in the canteen who says 'no offence, but'. Everybody knows the real sentence starts after the 'but'. My view: you both admitted your side behaved badly, then spent twice as long explaining why it was the other side's fault."
+  },
+  {
+   "i": 38,
+   "spk": "Guest2",
+   "t": 620.38,
+   "end": 622.34,
+   "words": 5,
+   "span": 1.9600000000000364,
+   "sil": [
+    [
+     620.38,
+     0.3
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "That's not fair, Mr. Carter."
+  },
+  {
+   "i": 39,
+   "spk": "Host",
+   "t": 622.78,
+   "end": 627.32,
+   "words": 11,
+   "span": 4.540000000000077,
+   "sil": [
+    [
+     622.78,
+     0.3
+    ],
+    [
+     623.5,
+     0.72
+    ],
+    [
+     625.57,
+     0.68
+    ]
+   ],
+   "wgap": [
+    [
+     623.32,
+     0.5
+    ],
+    [
+     625.44,
+     0.5
+    ]
+   ],
+   "tags": [],
+   "text": "Oh, it's Mr. Carter now. That's how I know it landed."
+  },
+  {
+   "i": 40,
+   "spk": "Host",
+   "t": 631.71,
+   "end": 657.29,
+   "words": 63,
+   "span": 25.579999999999927,
+   "sil": [
+    [
+     635.53,
+     0.52
+    ],
+    [
+     637.61,
+     0.66
+    ],
+    [
+     647.71,
+     0.56
+    ],
+    [
+     650.06,
+     0.72
+    ],
+    [
+     651.99,
+     0.29
+    ]
+   ],
+   "wgap": [
+    [
+     634.49,
+     0.3
+    ],
+    [
+     635.47,
+     0.34
+    ],
+    [
+     637.43,
+     0.42
+    ],
+    [
+     647.61,
+     0.64
+    ],
+    [
+     649.95,
+     0.3
+    ],
+    [
+     651.81,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "Let's go to the man Elliot can't stop quoting. Carl Schmitt, The Concept of the Political: 'The specific political distinction to which political actions and motives can be traced is the distinction between friend and enemy.' And the enemy, he says, 'need not be morally evil'. 'He is just the other, the stranger.' So, Elliot. In Schmitt's sense, was Charlie Kirk somebody's enemy?"
+  },
+  {
+   "i": 41,
+   "spk": "Guest",
+   "t": 657.65,
+   "end": 684.85,
+   "words": 61,
+   "span": 27.200000000000045,
+   "sil": [
+    [
+     657.65,
+     0.31
+    ],
+    [
+     659.02,
+     1.01
+    ],
+    [
+     664.61,
+     0.7
+    ],
+    [
+     667.46,
+     1.27
+    ],
+    [
+     670.47,
+     0.52
+    ],
+    [
+     677.47,
+     0.47
+    ],
+    [
+     678.02,
+     0.32
+    ],
+    [
+     679.81,
+     1.02
+    ]
+   ],
+   "wgap": [
+    [
+     658.91,
+     1.16
+    ],
+    [
+     667.27,
+     1.1
+    ]
+   ],
+   "tags": [],
+   "text": "Of course he was. And that's the honest part of Schmitt that liberals can't stomach. 'The enemy is always a public enemy.' It isn't personal hatred, it's two collectives facing each other. Kirk went onto campuses that had become one collective's territory, and he argued in public. He was the stranger in their house. That's why he was dangerous to them.",
+   "wpm": 134.55882352941154,
+   "maxp": 1.27,
+   "wpm_ex": 161.37566137566105,
+   "maxp_t": 667.46
+  },
+  {
+   "i": 42,
+   "spk": "Guest2",
+   "t": 684.85,
+   "end": 707.89,
+   "words": 58,
+   "span": 23.039999999999964,
+   "sil": [
+    [
+     684.9,
+     0.51
+    ],
+    [
+     695.18,
+     0.45
+    ],
+    [
+     705.49,
+     0.43
+    ]
+   ],
+   "wgap": [
+    [
+     693.27,
+     0.26
+    ],
+    [
+     705.37,
+     0.4
+    ]
+   ],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Do you hear how romantic you make it sound? The stranger in their house! Schmitt also says the terms friend, enemy and conflict 'receive and retain their real meaning by the fact that they refer specifically to the real possibility of physical killing.' That's what you read at bedtime, Elliot. A theory where the killing is the point."
+  },
+  {
+   "i": 43,
+   "spk": "Guest",
+   "t": 708.13,
+   "end": 752.25,
+   "words": 101,
+   "span": 44.120000000000005,
+   "sil": [
+    [
+     708.13,
+     0.37
+    ],
+    [
+     711.26,
+     1.11
+    ],
+    [
+     715.78,
+     0.53
+    ],
+    [
+     718.9,
+     1.26
+    ],
+    [
+     724.32,
+     0.57
+    ],
+    [
+     725.99,
+     1.2
+    ],
+    [
+     732.78,
+     0.57
+    ],
+    [
+     734.56,
+     0.4
+    ],
+    [
+     736.18,
+     1.04
+    ],
+    [
+     745.51,
+     1.58
+    ],
+    [
+     749.5,
+     0.6
+    ],
+    [
+     750.11,
+     0.33
+    ]
+   ],
+   "wgap": [
+    [
+     709.99,
+     0.38
+    ],
+    [
+     715.63,
+     0.26
+    ],
+    [
+     718.77,
+     0.8
+    ],
+    [
+     724.13,
+     0.44
+    ],
+    [
+     725.91,
+     0.86
+    ],
+    [
+     732.55,
+     0.56
+    ],
+    [
+     734.37,
+     0.34
+    ],
+    [
+     745.37,
+     1.34
+    ]
+   ],
+   "tags": [],
+   "text": "The killing is the possibility, not the point. Schmitt is a realist. He looks at what politics is, not at what you'd like it to be in your reading group. And here's the part you skip, Clara. Schmitt warns about your side too. He quotes Proudhon: 'Whoever invokes humanity wishes to cheat.' When you say you are fighting for humanity, for human rights, for the marginalised, what you really mean is that whoever disagrees with you is outside humanity. That's far more dangerous than an honest enemy. An honest enemy you can make peace with. A heretic, you have to burn.",
+   "wpm": 137.35267452402536,
+   "maxp": 1.58,
+   "wpm_ex": 169.9383062254627,
+   "maxp_t": 745.51
+  },
+  {
+   "i": 44,
+   "spk": "Guest2",
+   "t": 752.25,
+   "end": 777.99,
+   "words": 63,
+   "span": 25.74000000000001,
+   "sil": [
+    [
+     752.33,
+     0.54
+    ],
+    [
+     753.54,
+     0.25
+    ],
+    [
+     754.2,
+     0.86
+    ],
+    [
+     757.14,
+     0.34
+    ],
+    [
+     758.07,
+     0.64
+    ],
+    [
+     776.42,
+     0.28
+    ]
+   ],
+   "wgap": [
+    [
+     757.89,
+     0.28
+    ],
+    [
+     769.17,
+     0.28
+    ],
+    [
+     774.61,
+     0.32
+    ]
+   ],
+   "tags": [],
+   "text": "Realist. Right. And a heretic you have to burn, lovely, very calm. Every reactionary who's ever lost an argument suddenly becomes a realist. And then he goes on a podcast and cries about cancel culture. Honestly, people lose a job over one stupid post, and the next week they've got a book deal and a brand. It's professional martyrdom. It's a career path."
+  },
+  {
+   "i": 45,
+   "spk": "Guest",
+   "t": 777.99,
+   "end": 779.81,
+   "words": 5,
+   "span": 1.8199999999999363,
+   "sil": [
+    [
+     778.08,
+     0.44
+    ]
+   ],
+   "wgap": [],
+   "tags": [
+    "[whispers]"
+   ],
+   "text": "[whispers] You think it's a performance?"
+  },
+  {
+   "i": 46,
+   "spk": "Host",
+   "t": 780.45,
+   "end": 783.27,
+   "words": 8,
+   "span": 2.8199999999999363,
+   "sil": [
+    [
+     780.45,
+     0.33
+    ],
+    [
+     782.44,
+     0.44
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Elliot, I can barely hear you. Go on."
+  },
+  {
+   "i": 47,
+   "spk": "Guest",
+   "t": 783.65,
+   "end": 824.56,
+   "words": 88,
+   "span": 40.90999999999997,
+   "sil": [
+    [
+     786.51,
+     2.72
+    ],
+    [
+     791.06,
+     1.69
+    ],
+    [
+     795.36,
+     1.67
+    ],
+    [
+     798.12,
+     0.35
+    ],
+    [
+     803.75,
+     1.46
+    ],
+    [
+     808.33,
+     3.64
+    ],
+    [
+     813.33,
+     0.79
+    ],
+    [
+     814.41,
+     0.25
+    ],
+    [
+     817.17,
+     3.76
+    ],
+    [
+     822.38,
+     0.7
+    ]
+   ],
+   "wgap": [
+    [
+     795.22,
+     1.4
+    ],
+    [
+     797.9,
+     0.28
+    ],
+    [
+     799.5,
+     0.36
+    ],
+    [
+     803.6,
+     1.14
+    ],
+    [
+     808.16,
+     3.51
+    ],
+    [
+     813.13,
+     1.14
+    ],
+    [
+     816.99,
+     3.61
+    ],
+    [
+     822.24,
+     0.56
+    ]
+   ],
+   "tags": [],
+   "text": "I said, do you think it's a performance? I lost my post at the institute in 2019. A clip of a lecture went round, forty seconds cut out of ninety minutes, and by the Friday I was a pariah. Colleagues I'd had dinner with for twelve years wouldn't look at me in the canteen. They looked through me, Clara. Like I'd already died. My daughter was nine. She asked me why our name was on the television. There was no book deal. There was a very long winter.",
+   "wpm": 129.06379858225384,
+   "maxp": 3.76,
+   "wpm_ex": 215.6862745098042,
+   "maxp_t": 817.17
+  },
+  {
+   "i": 48,
+   "spk": "Host",
+   "t": 825.32,
+   "end": 837.68,
+   "words": 39,
+   "span": 12.3599999999999,
+   "sil": [
+    [
+     825.69,
+     0.75
+    ],
+    [
+     831.88,
+     0.26
+    ],
+    [
+     832.84,
+     0.57
+    ],
+    [
+     834.05,
+     0.73
+    ]
+   ],
+   "wgap": [
+    [
+     825.54,
+     0.32
+    ],
+    [
+     831.7,
+     0.3
+    ],
+    [
+     832.68,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Okay. I'm going to throw away the next question on my card, because that's more important than the card. Elliot, I'm sorry. I mean that. But I have to ask you this, and I think you know what's coming."
+  },
+  {
+   "i": 49,
+   "spk": "Guest",
+   "t": 838.02,
+   "end": 838.66,
+   "words": 2,
+   "span": 0.6399999999999864,
+   "sil": [],
+   "wgap": [],
+   "tags": [],
+   "text": "Go on."
+  },
+  {
+   "i": 50,
+   "spk": "Host",
+   "t": 839.9,
+   "end": 868.46,
+   "words": 78,
+   "span": 28.56000000000006,
+   "sil": [
+    [
+     845.93,
+     0.43
+    ],
+    [
+     847.26,
+     0.46
+    ],
+    [
+     848.86,
+     0.83
+    ],
+    [
+     860.65,
+     0.25
+    ],
+    [
+     865.05,
+     0.51
+    ]
+   ],
+   "wgap": [
+    [
+     844.82,
+     0.44
+    ],
+    [
+     845.68,
+     0.34
+    ],
+    [
+     847.2,
+     0.36
+    ],
+    [
+     848.74,
+     0.62
+    ],
+    [
+     854.74,
+     0.5
+    ],
+    [
+     863.54,
+     0.38
+    ]
+   ],
+   "tags": [],
+   "text": "What happened to you in 2019 happened to a lot of people in September 2025. Teachers, a firefighter, people in the military. Only this time your side was doing it. A website collected over sixty-three thousand posts. Jimmy Kimmel was pulled off the air after the head of the broadcasting regulator went after ABC, and only came back days later after a backlash. So how does it feel, watching your own movement build the machine that broke you?"
+  },
+  {
+   "i": 51,
+   "spk": "Guest",
+   "t": 868.46,
+   "end": 876.06,
+   "words": 11,
+   "span": 7.599999999999909,
+   "sil": [
+    [
+     868.53,
+     0.45
+    ],
+    [
+     872.98,
+     1.14
+    ]
+   ],
+   "wgap": [
+    [
+     869.98,
+     1.14
+    ],
+    [
+     872.8,
+     0.78
+    ]
+   ],
+   "tags": [
+    "[sighs]"
+   ],
+   "text": "[sighs] Sick. I felt sick. I said so at the time, privately.",
+   "wpm": 86.84210526315894,
+   "maxp": 1.14,
+   "wpm_ex": 102.16718266254013,
+   "maxp_t": 872.98
+  },
+  {
+   "i": 52,
+   "spk": "Host",
+   "t": 876.64,
+   "end": 878.4,
+   "words": 2,
+   "span": 1.759999999999991,
+   "sil": [
+    [
+     877.36,
+     0.74
+    ]
+   ],
+   "wgap": [
+    [
+     877.22,
+     0.54
+    ]
+   ],
+   "tags": [],
+   "text": "Privately. Interesting."
+  },
+  {
+   "i": 53,
+   "spk": "Guest",
+   "t": 879.18,
+   "end": 888.38,
+   "words": 26,
+   "span": 9.200000000000045,
+   "sil": [
+    [
+     880.51,
+     0.27
+    ],
+    [
+     884.07,
+     0.9
+    ]
+   ],
+   "wgap": [
+    [
+     883.9,
+     0.6
+    ]
+   ],
+   "tags": [],
+   "text": "Yes, privately, because publicly I'd have been eaten by both sides at once. You have no idea what it's like to be a dissident twice over.",
+   "wpm": 169.5652173913035,
+   "maxp": 0.9,
+   "wpm_ex": 187.95180722891465,
+   "maxp_t": 884.07
+  },
+  {
+   "i": 54,
+   "spk": "Guest2",
+   "t": 888.68,
+   "end": 910.34,
+   "words": 52,
+   "span": 21.660000000000082,
+   "sil": [
+    [
+     888.68,
+     0.31
+    ],
+    [
+     890.53,
+     0.33
+    ],
+    [
+     891.44,
+     0.56
+    ],
+    [
+     895.16,
+     0.44
+    ],
+    [
+     897.51,
+     0.53
+    ],
+    [
+     900.43,
+     0.41
+    ],
+    [
+     905.9,
+     0.4
+    ],
+    [
+     907.79,
+     0.68
+    ],
+    [
+     909.71,
+     0.29
+    ]
+   ],
+   "wgap": [
+    [
+     890.36,
+     0.26
+    ],
+    [
+     891.34,
+     0.34
+    ],
+    [
+     895.02,
+     0.36
+    ],
+    [
+     897.32,
+     0.58
+    ],
+    [
+     905.7,
+     0.38
+    ],
+    [
+     907.72,
+     0.4
+    ]
+   ],
+   "tags": [],
+   "text": "I'm sorry about your daughter. I am. That's a horrible thing for a nine-year-old. But Elliot, this is exactly the problem. You only discover that the machine is wrong when it's pointed at you. When it was pointed at the people who celebrated Kirk, you said 'overdue'. That was your word, earlier."
+  },
+  {
+   "i": 55,
+   "spk": "Guest",
+   "t": 910.76,
+   "end": 922.28,
+   "words": 27,
+   "span": 11.519999999999982,
+   "sil": [
+    [
+     910.76,
+     0.29
+    ],
+    [
+     914.24,
+     0.68
+    ],
+    [
+     917.81,
+     0.27
+    ],
+    [
+     921.32,
+     0.4
+    ]
+   ],
+   "wgap": [
+    [
+     913.94,
+     1.06
+    ],
+    [
+     916.86,
+     0.9
+    ],
+    [
+     921.2,
+     0.6
+    ]
+   ],
+   "tags": [],
+   "text": "And when it was pointed at me in 2019, your lot called it consequences. Your word, at the start of this show. So we're even, aren't we?",
+   "wpm": 140.62500000000023,
+   "maxp": 0.68,
+   "wpm_ex": 149.4464944649449,
+   "maxp_t": 914.24
+  },
+  {
+   "i": 56,
+   "spk": "Guest2",
+   "t": 922.46,
+   "end": 932.3,
+   "words": 24,
+   "span": 9.839999999999918,
+   "sil": [
+    [
+     922.46,
+     0.44
+    ],
+    [
+     928.26,
+     0.83
+    ]
+   ],
+   "wgap": [
+    [
+     928.08,
+     0.6
+    ]
+   ],
+   "tags": [],
+   "text": "We are not even. There's a difference between losing your job for celebrating a murder and losing your job for a lecture about demographics."
+  },
+  {
+   "i": 57,
+   "spk": "Guest",
+   "t": 932.76,
+   "end": 947.04,
+   "words": 31,
+   "span": 14.279999999999973,
+   "sil": [
+    [
+     932.76,
+     0.28
+    ],
+    [
+     934.47,
+     0.48
+    ],
+    [
+     938.2,
+     2.46
+    ],
+    [
+     942.59,
+     0.92
+    ],
+    [
+     945.46,
+     0.8
+    ]
+   ],
+   "wgap": [
+    [
+     933.66,
+     1.02
+    ],
+    [
+     937.92,
+     2.42
+    ],
+    [
+     942.38,
+     0.68
+    ],
+    [
+     945.36,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "Is there? Because a moment ago you called mine a performance. You didn't know what was in that lecture. You just knew which side I was on, and that was enough.",
+   "wpm": 130.2521008403364,
+   "maxp": 2.46,
+   "wpm_ex": 184.15841584158466,
+   "maxp_t": 938.2
+  },
+  {
+   "i": 58,
+   "spk": "Host",
+   "t": 947.54,
+   "end": 960.5,
+   "words": 48,
+   "span": 12.960000000000036,
+   "sil": [
+    [
+     947.54,
+     0.45
+    ],
+    [
+     949.57,
+     0.33
+    ],
+    [
+     954.58,
+     0.69
+    ],
+    [
+     957.87,
+     0.7
+    ]
+   ],
+   "wgap": [
+    [
+     959.32,
+     0.32
+    ]
+   ],
+   "tags": [],
+   "text": "I'm going to sit in that for a second, because I think it's the most honest thing either of you has said. Neither of you is against the machine. You're both against the machine when it's pointed at your people. That's not a principle. That's a fan club."
+  },
+  {
+   "i": 59,
+   "spk": "Guest",
+   "t": 960.5,
+   "end": 986.9,
+   "words": 61,
+   "span": 26.399999999999977,
+   "sil": [
+    [
+     960.56,
+     0.45
+    ],
+    [
+     961.89,
+     0.81
+    ],
+    [
+     963.34,
+     0.75
+    ],
+    [
+     966.54,
+     1.19
+    ],
+    [
+     976.36,
+     0.67
+    ],
+    [
+     977.84,
+     0.84
+    ],
+    [
+     979.62,
+     0.72
+    ]
+   ],
+   "wgap": [
+    [
+     961.62,
+     0.84
+    ],
+    [
+     979.48,
+     0.66
+    ],
+    [
+     981.36,
+     0.32
+    ],
+    [
+     983.76,
+     0.36
+    ],
+    [
+     984.46,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "A fan club. Fine. But at least my club admits it's a club. Clara's side spent ten years telling everyone it was simply the side of decency, and anyone outside it was a moral failure. Mine says: we are a people, we want to continue, and we're prepared to fight for it, politically. I find that more honest than a halo.",
+   "wpm": 138.63636363636377,
+   "maxp": 1.19,
+   "wpm_ex": 170.86834733893576,
+   "maxp_t": 966.54
+  },
+  {
+   "i": 60,
+   "spk": "Guest2",
+   "t": 987.36,
+   "end": 997.48,
+   "words": 22,
+   "span": 10.120000000000005,
+   "sil": [
+    [
+     988.68,
+     0.33
+    ],
+    [
+     993.04,
+     0.51
+    ],
+    [
+     994.57,
+     0.29
+    ]
+   ],
+   "wgap": [
+    [
+     990.96,
+     0.26
+    ],
+    [
+     994.4,
+     0.48
+    ]
+   ],
+   "tags": [],
+   "text": "A halo. Oh, I wish. Have you been to a union meeting? There's no halo. There's bad coffee and a broken projector."
+  },
+  {
+   "i": 61,
+   "spk": "Host",
+   "t": 1001.77,
+   "end": 1020.87,
+   "words": 54,
+   "span": 19.100000000000023,
+   "sil": [
+    [
+     1003.37,
+     0.35
+    ],
+    [
+     1006.04,
+     0.53
+    ],
+    [
+     1007.45,
+     0.93
+    ],
+    [
+     1017.58,
+     0.68
+    ]
+   ],
+   "wgap": [
+    [
+     1005.99,
+     0.6
+    ],
+    [
+     1007.27,
+     0.72
+    ],
+    [
+     1017.47,
+     0.5
+    ],
+    [
+     1018.61,
+     0.44
+    ]
+   ],
+   "tags": [],
+   "text": "Now Clara's thinker, so Elliot gets a break. Chantal Mouffe, On the Political: 'In place of a struggle between right and left we are faced with a struggle between right and wrong.' And then 'the opponent can be perceived only as an enemy to be destroyed.' Clara, isn't that exactly what we just heard?"
+  },
+  {
+   "i": 62,
+   "spk": "Guest2",
+   "t": 1021.13,
+   "end": 1054.91,
+   "words": 72,
+   "span": 33.780000000000086,
+   "sil": [
+    [
+     1021.13,
+     0.35
+    ],
+    [
+     1021.85,
+     0.77
+    ],
+    [
+     1024.1,
+     0.5
+    ],
+    [
+     1032.78,
+     0.54
+    ],
+    [
+     1037.89,
+     0.62
+    ],
+    [
+     1049.59,
+     0.89
+    ]
+   ],
+   "wgap": [
+    [
+     1021.77,
+     0.36
+    ],
+    [
+     1037.83,
+     0.46
+    ],
+    [
+     1049.39,
+     0.72
+    ]
+   ],
+   "tags": [],
+   "text": "Yes, and I love Mouffe. She's the person who explains why the liberal centre keeps getting blindsided. When there's no real choice left between left and right, when everybody in the middle runs the same economy with slightly different ties on, the anger goes somewhere. She says aiming democratic politics at consensus and reconciliation 'is also fraught with political dangers.' That's the danger. People like Elliot are the danger she's talking about."
+  },
+  {
+   "i": 63,
+   "spk": "Guest",
+   "t": 1054.91,
+   "end": 1066.78,
+   "words": 16,
+   "span": 11.86999999999989,
+   "sil": [
+    [
+     1055.05,
+     0.49
+    ],
+    [
+     1056.57,
+     3.04
+    ],
+    [
+     1060.74,
+     1.37
+    ]
+   ],
+   "wgap": [
+    [
+     1063.42,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "I'm the danger. Marvellous. I've been called worse, usually by people in nicer flats than mine.",
+   "wpm": 80.87615838247758,
+   "maxp": 3.04,
+   "wpm_ex": 128.6863270777499,
+   "maxp_t": 1056.57
+  },
+  {
+   "i": 64,
+   "spk": "Guest2",
+   "t": 1067.82,
+   "end": 1100.5,
+   "words": 84,
+   "span": 32.680000000000064,
+   "sil": [
+    [
+     1067.82,
+     0.66
+    ],
+    [
+     1077.6,
+     0.39
+    ],
+    [
+     1089.44,
+     0.3
+    ]
+   ],
+   "wgap": [
+    [
+     1070.14,
+     0.34
+    ],
+    [
+     1074.14,
+     0.34
+    ],
+    [
+     1082.96,
+     0.26
+    ],
+    [
+     1089.36,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "Your flat is fine, Elliot. I've seen the photos in that magazine profile. But listen, because this is the bit the centre never understands. Mouffe isn't saying the populist right is right. She's saying it's a symptom. If a society only offers you one sensible economy and two slightly different haircuts, people go looking for someone who'll at least admit there's a fight. And if the left won't offer that fight, the right will, and it'll aim it at migrants instead of at landlords."
+  },
+  {
+   "i": 65,
+   "spk": "Host",
+   "t": 1100.94,
+   "end": 1121.86,
+   "words": 47,
+   "span": 20.919999999999845,
+   "sil": [
+    [
+     1100.94,
+     0.31
+    ],
+    [
+     1101.95,
+     0.68
+    ],
+    [
+     1104.7,
+     0.79
+    ],
+    [
+     1107.65,
+     0.89
+    ],
+    [
+     1110.83,
+     0.27
+    ],
+    [
+     1118.1,
+     0.68
+    ],
+    [
+     1119.8,
+     0.56
+    ]
+   ],
+   "wgap": [
+    [
+     1101.82,
+     0.48
+    ],
+    [
+     1104.58,
+     0.42
+    ],
+    [
+     1107.34,
+     0.82
+    ],
+    [
+     1110.68,
+     0.36
+    ],
+    [
+     1114.8,
+     0.36
+    ],
+    [
+     1117.98,
+     0.52
+    ],
+    [
+     1119.7,
+     0.8
+    ]
+   ],
+   "tags": [],
+   "text": "Hang on, though. Because Mouffe's answer is agonism. 'They are adversaries not enemies.' That's her line. The other side is legitimate, you fight them hard, but you don't try to destroy them. And you, Clara, you are a no-platform-for-fascists person. So which is Elliot? Adversary or enemy?"
+  },
+  {
+   "i": 66,
+   "spk": "Guest2",
+   "t": 1122.42,
+   "end": 1124.66,
+   "words": 4,
+   "span": 2.240000000000009,
+   "sil": [],
+   "wgap": [],
+   "tags": [],
+   "text": "That depends on Elliot."
+  },
+  {
+   "i": 67,
+   "spk": "Host",
+   "t": 1125.14,
+   "end": 1129.18,
+   "words": 9,
+   "span": 4.039999999999964,
+   "sil": [
+    [
+     1125.14,
+     0.27
+    ],
+    [
+     1125.84,
+     0.44
+    ],
+    [
+     1126.83,
+     0.62
+    ]
+   ],
+   "wgap": [
+    [
+     1125.64,
+     0.46
+    ],
+    [
+     1126.82,
+     0.38
+    ]
+   ],
+   "tags": [],
+   "text": "No, it doesn't. Answer for yourself, not for him."
+  },
+  {
+   "i": 68,
+   "spk": "Guest2",
+   "t": 1129.18,
+   "end": 1156.86,
+   "words": 67,
+   "span": 27.679999999999836,
+   "sil": [
+    [
+     1129.23,
+     0.53
+    ],
+    [
+     1130.21,
+     0.73
+    ],
+    [
+     1137.34,
+     0.46
+    ],
+    [
+     1150.17,
+     0.4
+    ],
+    [
+     1152.21,
+     0.27
+    ],
+    [
+     1155.44,
+     0.36
+    ]
+   ],
+   "wgap": [
+    [
+     1131.06,
+     0.42
+    ],
+    [
+     1155.28,
+     0.38
+    ]
+   ],
+   "tags": [],
+   "text": "Ugh. Fine. An adversary is someone you can disagree with about how power and resources are shared out, inside a shared democratic space. An enemy is someone who wants to use that space to remove people from it. When Elliot talks about remigration, he's talking about removing people from the space. So, on that question, he's an enemy. On tax, he's an adversary. Probably a bad one."
+  },
+  {
+   "i": 69,
+   "spk": "Guest",
+   "t": 1156.86,
+   "end": 1211.9,
+   "words": 131,
+   "span": 55.04000000000019,
+   "sil": [
+    [
+     1156.97,
+     0.45
+    ],
+    [
+     1170.04,
+     0.8
+    ],
+    [
+     1176.59,
+     0.66
+    ],
+    [
+     1181.75,
+     0.46
+    ],
+    [
+     1183.74,
+     0.28
+    ],
+    [
+     1185.16,
+     1.08
+    ],
+    [
+     1190.13,
+     0.91
+    ],
+    [
+     1194.79,
+     0.67
+    ],
+    [
+     1202.96,
+     1.12
+    ],
+    [
+     1204.09,
+     0.39
+    ],
+    [
+     1205.82,
+     0.9
+    ],
+    [
+     1206.74,
+     0.3
+    ],
+    [
+     1209.12,
+     0.43
+    ]
+   ],
+   "wgap": [
+    [
+     1158.82,
+     0.72
+    ],
+    [
+     1169.8,
+     0.3
+    ],
+    [
+     1178.72,
+     0.26
+    ],
+    [
+     1181.62,
+     0.26
+    ],
+    [
+     1185.04,
+     1.08
+    ],
+    [
+     1187.16,
+     0.38
+    ],
+    [
+     1190.04,
+     0.74
+    ],
+    [
+     1194.52,
+     0.66
+    ],
+    [
+     1202.84,
+     1.3
+    ],
+    [
+     1205.72,
+     1.0
+    ],
+    [
+     1209.0,
+     0.56
+    ]
+   ],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Wonderful. I'm an adversary on Tuesdays and an enemy on Thursdays. That's the most convenient shell game I've ever heard. You quote Mouffe when you're debating another academic, and the moment someone actually challenges you, you're straight back to the oldest playbook there is: the enemy must be destroyed. And since she's put remigration on the table, let me say what I mean, not what she hears. Lawful return. Generous help for people who want to go home, firm enforcement for people who were never entitled to stay, and an end to pretending that a nation is just whoever happens to be standing on it this year. You can think that's wrong. Plenty of Danes don't. But it's a policy argument, Clara, not a plan to remove you from a room.",
+   "wpm": 142.80523255813904,
+   "maxp": 1.12,
+   "wpm_ex": 160.73619631901778,
+   "maxp_t": 1202.96
+  },
+  {
+   "i": 70,
+   "spk": "Guest2",
+   "t": 1212.18,
+   "end": 1216.86,
+   "words": 10,
+   "span": 4.679999999999836,
+   "sil": [
+    [
+     1212.18,
+     0.34
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "I didn't say destroyed. I said not given a microphone."
+  },
+  {
+   "i": 71,
+   "spk": "Guest",
+   "t": 1217.4,
+   "end": 1219.92,
+   "words": 9,
+   "span": 2.519999999999982,
+   "sil": [],
+   "wgap": [],
+   "tags": [],
+   "text": "You're sitting next to me at a microphone, Clara."
+  },
+  {
+   "i": 72,
+   "spk": "Guest2",
+   "t": 1220.64,
+   "end": 1225.15,
+   "words": 5,
+   "span": 4.509999999999991,
+   "sil": [
+    [
+     1220.64,
+     0.3
+    ],
+    [
+     1223.31,
+     0.87
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Because Carter has terrible judgement."
+  },
+  {
+   "i": 73,
+   "spk": "Host",
+   "t": 1225.15,
+   "end": 1245.64,
+   "words": 47,
+   "span": 20.49000000000001,
+   "sil": [
+    [
+     1227.86,
+     0.26
+    ],
+    [
+     1228.55,
+     0.44
+    ],
+    [
+     1231.97,
+     0.44
+    ],
+    [
+     1237.02,
+     0.43
+    ],
+    [
+     1238.84,
+     0.54
+    ],
+    [
+     1243.63,
+     0.83
+    ],
+    [
+     1244.86,
+     0.34
+    ]
+   ],
+   "wgap": [
+    [
+     1228.34,
+     0.34
+    ],
+    [
+     1234.72,
+     0.28
+    ],
+    [
+     1238.7,
+     0.34
+    ],
+    [
+     1243.6,
+     0.56
+    ],
+    [
+     1244.72,
+     0.32
+    ]
+   ],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Fair. My mother says the same. But stay with the enemy idea, because there's a sentence in this case I can't shake. Prosecutors allege the accused texted: 'I had enough of his hatred. Some hate can't be negotiated out.' An allegation, untested in court. Elliot, you're itching."
+  },
+  {
+   "i": 74,
+   "spk": "Guest",
+   "t": 1245.96,
+   "end": 1265.05,
+   "words": 41,
+   "span": 19.089999999999918,
+   "sil": [
+    [
+     1245.96,
+     0.26
+    ],
+    [
+     1248.4,
+     1.59
+    ],
+    [
+     1250.01,
+     0.48
+    ],
+    [
+     1253.19,
+     1.43
+    ],
+    [
+     1261.68,
+     0.28
+    ],
+    [
+     1264.78,
+     0.27
+    ]
+   ],
+   "wgap": [
+    [
+     1248.2,
+     2.07
+    ],
+    [
+     1253.03,
+     1.24
+    ],
+    [
+     1256.27,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "I want to ask Clara a question. 'Some hate can't be negotiated out.' Isn't that your movement's logic? Isn't that exactly what no-platforming is? You decide the other person is hate itself, and then anything you do to them is self-defence.",
+   "wpm": 128.86327920377215,
+   "maxp": 1.59,
+   "wpm_ex": 153.0802738021165,
+   "maxp_t": 1248.4
+  },
+  {
+   "i": 75,
+   "spk": "Guest2",
+   "t": 1265.05,
+   "end": 1302.63,
+   "words": 80,
+   "span": 37.580000000000155,
+   "sil": [
+    [
+     1265.05,
+     0.28
+    ],
+    [
+     1265.76,
+     0.71
+    ],
+    [
+     1269.26,
+     0.7
+    ],
+    [
+     1271.5,
+     0.62
+    ],
+    [
+     1280.85,
+     0.49
+    ],
+    [
+     1296.29,
+     0.27
+    ],
+    [
+     1299.62,
+     0.39
+    ]
+   ],
+   "wgap": [
+    [
+     1265.63,
+     0.72
+    ],
+    [
+     1269.09,
+     0.32
+    ],
+    [
+     1271.35,
+     0.36
+    ],
+    [
+     1274.85,
+     0.56
+    ],
+    [
+     1289.55,
+     0.26
+    ],
+    [
+     1299.45,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "No. Absolutely not, and you know better. We do not know the motive. A court has not established anything. You're taking one alleged text from one young man who has not been tried, and you're hanging an entire movement on it. Utah's own governor said 'leftist ideology' without giving a single specific. And people on your side were talking about left-wing networks behind it within hours, with no evidence anyone has reported. That's not analysis, Elliot. That's opportunism with footnotes."
+  },
+  {
+   "i": 76,
+   "spk": "Guest",
+   "t": 1302.87,
+   "end": 1312.67,
+   "words": 24,
+   "span": 9.800000000000182,
+   "sil": [
+    [
+     1302.87,
+     0.32
+    ],
+    [
+     1305.62,
+     1.44
+    ],
+    [
+     1309.72,
+     0.45
+    ]
+   ],
+   "wgap": [
+    [
+     1305.43,
+     1.18
+    ]
+   ],
+   "tags": [],
+   "text": "I didn't say he was sent by anyone. I said the sentence is the logic. And you still haven't told me whether it's yours.",
+   "wpm": 146.93877551020137,
+   "maxp": 1.44,
+   "wpm_ex": 172.24880382774742,
+   "maxp_t": 1305.62
+  },
+  {
+   "i": 77,
+   "spk": "Guest2",
+   "t": 1313.07,
+   "end": 1320.57,
+   "words": 15,
+   "span": 7.5,
+   "sil": [
+    [
+     1313.07,
+     0.36
+    ],
+    [
+     1314.62,
+     0.59
+    ],
+    [
+     1317.01,
+     0.27
+    ],
+    [
+     1318.31,
+     0.57
+    ]
+   ],
+   "wgap": [
+    [
+     1314.47,
+     0.34
+    ],
+    [
+     1318.19,
+     0.52
+    ]
+   ],
+   "tags": [],
+   "text": "It's not mine. I negotiate with hate all the time. I'm doing it right now."
+  },
+  {
+   "i": 78,
+   "spk": "Guest",
+   "t": 1320.57,
+   "end": 1339.51,
+   "words": 41,
+   "span": 18.940000000000055,
+   "sil": [
+    [
+     1320.68,
+     0.48
+    ],
+    [
+     1321.65,
+     0.27
+    ],
+    [
+     1323.96,
+     0.34
+    ],
+    [
+     1326.85,
+     1.19
+    ],
+    [
+     1328.77,
+     0.64
+    ],
+    [
+     1331.19,
+     1.07
+    ],
+    [
+     1333.55,
+     1.15
+    ],
+    [
+     1336.28,
+     0.3
+    ]
+   ],
+   "wgap": [
+    [
+     1326.73,
+     0.96
+    ],
+    [
+     1328.63,
+     0.56
+    ],
+    [
+     1331.03,
+     0.8
+    ],
+    [
+     1333.41,
+     0.84
+    ]
+   ],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] You negotiate with hate the way a cat negotiates with a mouse. But fine. I'll take 'not mine'. I'll even write it down. I'm going to quote it back to you the next time your friends shout someone off a stage.",
+   "wpm": 129.8838437170007,
+   "maxp": 1.19,
+   "wpm_ex": 165.21155137676232,
+   "maxp_t": 1326.85
+  },
+  {
+   "i": 79,
+   "spk": "Host",
+   "t": 1339.73,
+   "end": 1351.13,
+   "words": 36,
+   "span": 11.400000000000091,
+   "sil": [
+    [
+     1339.73,
+     0.41
+    ],
+    [
+     1344.71,
+     0.57
+    ]
+   ],
+   "wgap": [
+    [
+     1341.53,
+     0.28
+    ],
+    [
+     1342.03,
+     0.32
+    ],
+    [
+     1344.65,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "I'm going to push you both, though. Elliot, you keep saying the pillars are being taken apart, the nation's being dissolved. Tell me concretely what you think is causing the economic mess people are angry about."
+  },
+  {
+   "i": 80,
+   "spk": "Guest",
+   "t": 1351.13,
+   "end": 1371.05,
+   "words": 40,
+   "span": 19.919999999999845,
+   "sil": [
+    [
+     1351.17,
+     0.51
+    ],
+    [
+     1354.51,
+     0.46
+    ],
+    [
+     1364.77,
+     0.41
+    ],
+    [
+     1367.14,
+     0.46
+    ],
+    [
+     1370.21,
+     0.26
+    ]
+   ],
+   "wgap": [
+    [
+     1360.11,
+     0.26
+    ]
+   ],
+   "tags": [
+    "[whispers]"
+   ],
+   "text": "[whispers] It's not complicated, Carter. The hollowing out of the working and middle class is not an accident. It's what happens when you import a permanent low-wage underclass to undercut your own workers, and then call anyone who notices a bigot.",
+   "wpm": 120.48192771084432,
+   "maxp": 0.51,
+   "wpm_ex": 123.64760432766715,
+   "maxp_t": 1351.17
+  },
+  {
+   "i": 81,
+   "spk": "Guest2",
+   "t": 1371.41,
+   "end": 1393.19,
+   "words": 58,
+   "span": 21.779999999999973,
+   "sil": [
+    [
+     1371.41,
+     0.45
+    ],
+    [
+     1372.94,
+     0.73
+    ],
+    [
+     1379.61,
+     0.31
+    ]
+   ],
+   "wgap": [
+    [
+     1372.99,
+     0.4
+    ],
+    [
+     1377.91,
+     0.3
+    ],
+    [
+     1379.41,
+     0.5
+    ]
+   ],
+   "tags": [],
+   "text": "And there it is. Every time. It's never the bankers, never the hedge funds, never the landlords, never forty years of union-busting. It's always a group of people who came from somewhere else and live a few streets away. You can't explain global capital, so you point at the man at the bus stop with a different accent."
+  },
+  {
+   "i": 82,
+   "spk": "Guest",
+   "t": 1393.51,
+   "end": 1398.51,
+   "words": 12,
+   "span": 5.0,
+   "sil": [
+    [
+     1393.51,
+     0.31
+    ],
+    [
+     1396.24,
+     0.64
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "I'm talking about wages and numbers, and you're talking about my soul.",
+   "wpm": 144.0,
+   "maxp": 0.64,
+   "wpm_ex": 165.13761467889907,
+   "maxp_t": 1396.24
+  },
+  {
+   "i": 83,
+   "spk": "Guest2",
+   "t": 1398.75,
+   "end": 1401.93,
+   "words": 9,
+   "span": 3.1800000000000637,
+   "sil": [
+    [
+     1398.75,
+     0.31
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Because your numbers always end at the bus stop."
+  },
+  {
+   "i": 84,
+   "spk": "Host",
+   "t": 1402.45,
+   "end": 1422.33,
+   "words": 66,
+   "span": 19.87999999999988,
+   "sil": [
+    [
+     1406.93,
+     0.42
+    ],
+    [
+     1411.72,
+     0.48
+    ],
+    [
+     1417.35,
+     0.94
+    ]
+   ],
+   "wgap": [
+    [
+     1402.77,
+     0.36
+    ],
+    [
+     1406.79,
+     0.48
+    ],
+    [
+     1411.67,
+     0.34
+    ],
+    [
+     1414.77,
+     0.28
+    ],
+    [
+     1417.13,
+     0.74
+    ]
+   ],
+   "tags": [],
+   "text": "Stop, both of you, because this is the thing we're trying to understand. My view, Elliot: blaming stagnant wages on one group of people is the easiest story in the world, which is exactly why I don't trust it. And Clara, you said 'global capital' four times. If I'm on a building site in Odense, what does that mean on Monday morning? What would you do?"
+  },
+  {
+   "i": 85,
+   "spk": "Guest2",
+   "t": 1423.03,
+   "end": 1430.21,
+   "words": 14,
+   "span": 7.180000000000064,
+   "sil": [
+    [
+     1425.43,
+     0.34
+    ],
+    [
+     1427.19,
+     0.29
+    ]
+   ],
+   "wgap": [
+    [
+     1424.07,
+     0.38
+    ],
+    [
+     1425.23,
+     0.46
+    ],
+    [
+     1427.07,
+     0.46
+    ]
+   ],
+   "tags": [],
+   "text": "Sectoral bargaining, rent controls, public housing at scale, taxing wealth instead of work. Happy?"
+  },
+  {
+   "i": 86,
+   "spk": "Host",
+   "t": 1430.83,
+   "end": 1436.61,
+   "words": 19,
+   "span": 5.779999999999973,
+   "sil": [
+    [
+     1431.42,
+     0.32
+    ],
+    [
+     1432.28,
+     0.7
+    ]
+   ],
+   "wgap": [
+    [
+     1431.21,
+     0.38
+    ],
+    [
+     1432.07,
+     0.48
+    ]
+   ],
+   "tags": [],
+   "text": "Honestly? Yes. That's the first time in half an hour anybody's said a thing you could actually vote for."
+  },
+  {
+   "i": 87,
+   "spk": "Guest",
+   "t": 1436.89,
+   "end": 1453.43,
+   "words": 40,
+   "span": 16.539999999999964,
+   "sil": [
+    [
+     1436.89,
+     0.29
+    ],
+    [
+     1438.04,
+     0.53
+    ],
+    [
+     1440.1,
+     1.07
+    ],
+    [
+     1442.08,
+     0.43
+    ],
+    [
+     1444.58,
+     0.44
+    ],
+    [
+     1446.63,
+     1.08
+    ]
+   ],
+   "wgap": [
+    [
+     1437.87,
+     0.28
+    ],
+    [
+     1440.05,
+     0.76
+    ],
+    [
+     1444.47,
+     0.28
+    ],
+    [
+     1446.47,
+     0.72
+    ]
+   ],
+   "tags": [],
+   "text": "For the record, I'd vote for two of those. Public housing and taxing wealth over work. Don't look so shocked, Clara. The old right built half of Europe's council flats. It was your friends in the centre who sold them.",
+   "wpm": 145.10278113663878,
+   "maxp": 1.08,
+   "wpm_ex": 173.16017316017363,
+   "maxp_t": 1446.63
+  },
+  {
+   "i": 88,
+   "spk": "Host",
+   "t": 1457.52,
+   "end": 1489.84,
+   "words": 82,
+   "span": 32.319999999999936,
+   "sil": [
+    [
+     1459.23,
+     0.63
+    ],
+    [
+     1466.95,
+     0.33
+    ],
+    [
+     1485.23,
+     0.64
+    ],
+    [
+     1487.66,
+     0.8
+    ]
+   ],
+   "wgap": [
+    [
+     1459.02,
+     0.6
+    ],
+    [
+     1462.06,
+     0.4
+    ],
+    [
+     1466.34,
+     0.94
+    ],
+    [
+     1471.26,
+     0.26
+    ],
+    [
+     1485.06,
+     0.42
+    ],
+    [
+     1487.54,
+     0.36
+    ]
+   ],
+   "tags": [],
+   "text": "Let's get to the numbers. Nathan Kalmoe and Lilliana Mason, Radical American Partisanship. In a survey from February 2021, 'nearly three-quarters of partisans viewed opponents as a national threat and nearly 60 percent considered them to be evil.' And: 'Twelve percent of Republicans and 11 percent of Democrats said assassinations carried out by their party were at least a little bit justified.' About one in ten, on both sides. So, look at me while you answer. Are you in that ten percent?"
+  },
+  {
+   "i": 89,
+   "spk": "Guest2",
+   "t": 1489.84,
+   "end": 1512.36,
+   "words": 53,
+   "span": 22.519999999999982,
+   "sil": [
+    [
+     1489.84,
+     0.38
+    ]
+   ],
+   "wgap": [
+    [
+     1508.56,
+     0.34
+    ]
+   ],
+   "tags": [],
+   "text": "Oh, please. I'm not going to validate a survey designed by academics to turn rage into pathology. This is how the establishment works. They take people screaming because they're being crushed and they label them extremists. Statistics are the ruling class's favourite weapon. Lived experience tells you more than a percentage ever will."
+  },
+  {
+   "i": 90,
+   "spk": "Guest",
+   "t": 1512.74,
+   "end": 1528.92,
+   "words": 40,
+   "span": 16.180000000000064,
+   "sil": [
+    [
+     1525.03,
+     0.43
+    ]
+   ],
+   "wgap": [
+    [
+     1514.02,
+     0.52
+    ],
+    [
+     1520.62,
+     0.5
+    ],
+    [
+     1524.42,
+     0.54
+    ]
+   ],
+   "tags": [],
+   "text": "Lived experience. Lovely. My lived experience is that I can't walk across certain campuses without someone filming me in case I say something they can clip. Does that count, or is lived experience only for the right sort of people?",
+   "wpm": 148.33127317676085,
+   "maxp": 0.43,
+   "wpm_ex": 148.33127317676085,
+   "maxp_t": 1525.03
+  },
+  {
+   "i": 91,
+   "spk": "Host",
+   "t": 1529.2,
+   "end": 1535.64,
+   "words": 15,
+   "span": 6.440000000000055,
+   "sil": [
+    [
+     1529.2,
+     0.38
+    ],
+    [
+     1531.09,
+     0.28
+    ],
+    [
+     1532.53,
+     0.95
+    ]
+   ],
+   "wgap": [
+    [
+     1530.9,
+     0.38
+    ],
+    [
+     1532.42,
+     0.68
+    ],
+    [
+     1534.64,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "That's not an answer, Clara. That's a fog machine. Killing political leaders. Yes or no."
+  },
+  {
+   "i": 92,
+   "spk": "Guest2",
+   "t": 1536.14,
+   "end": 1549.02,
+   "words": 29,
+   "span": 12.879999999999882,
+   "sil": [
+    [
+     1536.82,
+     0.48
+    ],
+    [
+     1538.68,
+     0.5
+    ],
+    [
+     1544.45,
+     0.28
+    ]
+   ],
+   "wgap": [
+    [
+     1536.5,
+     0.8
+    ],
+    [
+     1538.44,
+     0.52
+    ],
+    [
+     1544.26,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "No. Obviously no. I'm an organiser. Dead martyrs are the worst thing that can happen to a movement, and assassinations have always helped the right more than the left."
+  },
+  {
+   "i": 93,
+   "spk": "Guest",
+   "t": 1549.5,
+   "end": 1584.24,
+   "words": 72,
+   "span": 34.74000000000001,
+   "sil": [
+    [
+     1552.17,
+     1.46
+    ],
+    [
+     1558.99,
+     0.67
+    ],
+    [
+     1566.82,
+     3.34
+    ],
+    [
+     1570.36,
+     0.54
+    ],
+    [
+     1578.48,
+     3.07
+    ]
+   ],
+   "wgap": [
+    [
+     1552.06,
+     1.14
+    ],
+    [
+     1553.84,
+     0.28
+    ],
+    [
+     1563.58,
+     0.3
+    ],
+    [
+     1566.64,
+     4.28
+    ],
+    [
+     1576.94,
+     0.36
+    ],
+    [
+     1578.26,
+     2.94
+    ]
+   ],
+   "tags": [],
+   "text": "I'll answer properly, since she nearly did. No. I've spent my whole adult life arguing that the nation needs to survive, and a nation where you shoot the people you argue with doesn't survive. It just becomes a nicer word for a battlefield. Charlie Kirk went onto campuses with a microphone and a folding table. Whatever you think of him, that's politics. A rifle on a roof is the end of politics.",
+   "wpm": 124.35233160621758,
+   "maxp": 3.34,
+   "wpm_ex": 168.35541699142627,
+   "maxp_t": 1566.82
+  },
+  {
+   "i": 94,
+   "spk": "Host",
+   "t": 1585.54,
+   "end": 1615.8,
+   "words": 75,
+   "span": 30.25999999999999,
+   "sil": [
+    [
+     1585.54,
+     0.42
+    ],
+    [
+     1586.27,
+     0.66
+    ],
+    [
+     1590.35,
+     0.51
+    ],
+    [
+     1592.64,
+     0.66
+    ],
+    [
+     1596.58,
+     0.42
+    ],
+    [
+     1602.08,
+     0.33
+    ],
+    [
+     1603.94,
+     0.35
+    ],
+    [
+     1614.3,
+     0.36
+    ]
+   ],
+   "wgap": [
+    [
+     1586.14,
+     0.32
+    ],
+    [
+     1592.6,
+     0.32
+    ]
+   ],
+   "tags": [],
+   "text": "Good. Then here's the uncomfortable part. Neither of you is in the ten percent, but your movements are full of them. The right points to Kirk. The left points to Melissa Hortman, the Minnesota Democratic legislator killed with her husband in June 2025, to January the sixth, and to research critics cite saying most ideologically motivated killings in the US since 1990 came from right-wing extremists. Is counting bodies an argument, or just another weapon?"
+  },
+  {
+   "i": 95,
+   "spk": "Guest2",
+   "t": 1616.06,
+   "end": 1628.12,
+   "words": 26,
+   "span": 12.059999999999945,
+   "sil": [
+    [
+     1616.06,
+     0.29
+    ],
+    [
+     1619.56,
+     0.85
+    ],
+    [
+     1623.12,
+     0.48
+    ],
+    [
+     1626.41,
+     0.56
+    ]
+   ],
+   "wgap": [
+    [
+     1619.46,
+     0.6
+    ],
+    [
+     1626.26,
+     0.48
+    ]
+   ],
+   "tags": [],
+   "text": "It's an argument when the numbers are that lopsided. Most of the killings since 1990 come from the right. That's not my opinion, that's the research."
+  },
+  {
+   "i": 96,
+   "spk": "Guest",
+   "t": 1628.12,
+   "end": 1639.82,
+   "words": 23,
+   "span": 11.700000000000045,
+   "sil": [
+    [
+     1628.31,
+     0.44
+    ],
+    [
+     1629.14,
+     0.48
+    ],
+    [
+     1632.24,
+     0.99
+    ]
+   ],
+   "wgap": [],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Oh, now numbers are allowed? Thirty seconds ago statistics were the ruling class's favourite weapon. Now you've got a spreadsheet in each hand.",
+   "wpm": 117.94871794871749,
+   "maxp": 0.99,
+   "wpm_ex": 128.85154061624596,
+   "maxp_t": 1632.24
+  },
+  {
+   "i": 97,
+   "spk": "Guest2",
+   "t": 1639.82,
+   "end": 1641.8,
+   "words": 3,
+   "span": 1.9800000000000182,
+   "sil": [
+    [
+     1639.97,
+     0.5
+    ]
+   ],
+   "wgap": [
+    [
+     1641.22,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "That's different, that's..."
+  },
+  {
+   "i": 98,
+   "spk": "Guest",
+   "t": 1641.8,
+   "end": 1653.1,
+   "words": 27,
+   "span": 11.299999999999955,
+   "sil": [
+    [
+     1641.91,
+     0.46
+    ],
+    [
+     1644.25,
+     0.88
+    ],
+    [
+     1645.2,
+     0.58
+    ],
+    [
+     1651.1,
+     0.47
+    ]
+   ],
+   "wgap": [
+    [
+     1644.1,
+     1.32
+    ]
+   ],
+   "tags": [],
+   "text": "It's different because it helps you. That's the only difference. You believe in data the way some people believe in horoscopes: only the ones that flatter them.",
+   "wpm": 143.36283185840765,
+   "maxp": 0.88,
+   "wpm_ex": 164.6341463414642,
+   "maxp_t": 1644.25
+  },
+  {
+   "i": 99,
+   "spk": "Guest2",
+   "t": 1653.1,
+   "end": 1671.34,
+   "words": 35,
+   "span": 18.24000000000001,
+   "sil": [
+    [
+     1653.1,
+     0.59
+    ],
+    [
+     1657.89,
+     0.31
+    ],
+    [
+     1659.01,
+     0.43
+    ],
+    [
+     1663.04,
+     0.26
+    ],
+    [
+     1665.51,
+     0.73
+    ],
+    [
+     1666.77,
+     0.5
+    ],
+    [
+     1668.08,
+     0.6
+    ],
+    [
+     1669.29,
+     0.98
+    ]
+   ],
+   "wgap": [
+    [
+     1669.06,
+     0.68
+    ]
+   ],
+   "tags": [],
+   "text": "And you believe in data the way a drunk believes in lamp posts, for support, not illumination. Your movement has produced plenty of violence, Elliot. Ut\u00f8ya. Christchurch. Buffalo. Do you want me to keep going?"
+  },
+  {
+   "i": 100,
+   "spk": "Guest",
+   "t": 1671.78,
+   "end": 1674.64,
+   "words": 10,
+   "span": 2.8600000000001273,
+   "sil": [],
+   "wgap": [],
+   "tags": [],
+   "text": "And yours produced a man on a rooftop in Utah.",
+   "wpm": 209.79020979020044,
+   "maxp": 0,
+   "wpm_ex": 209.79020979020044,
+   "maxp_t": null
+  },
+  {
+   "i": 101,
+   "spk": "Guest2",
+   "t": 1676.3,
+   "end": 1680.4,
+   "words": 9,
+   "span": 4.100000000000136,
+   "sil": [
+    [
+     1677.08,
+     0.31
+    ]
+   ],
+   "wgap": [
+    [
+     1676.9,
+     0.38
+    ]
+   ],
+   "tags": [],
+   "text": "Allegedly! You don't know that! Nobody knows that yet!"
+  },
+  {
+   "i": 102,
+   "spk": "Host",
+   "t": 1680.86,
+   "end": 1688.88,
+   "words": 24,
+   "span": 8.02000000000021,
+   "sil": [
+    [
+     1686.47,
+     0.31
+    ]
+   ],
+   "wgap": [
+    [
+     1683.14,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Elliot's gone quiet. In my experience, that silence means 'you have just said something shameful, and I'm too disappointed to explain it to you.'"
+  },
+  {
+   "i": 103,
+   "spk": "Guest",
+   "t": 1689.1,
+   "end": 1713.05,
+   "words": 47,
+   "span": 23.950000000000045,
+   "sil": [
+    [
+     1689.1,
+     0.28
+    ],
+    [
+     1698.76,
+     0.41
+    ],
+    [
+     1703.23,
+     2.39
+    ],
+    [
+     1707.09,
+     0.29
+    ],
+    [
+     1708.35,
+     1.18
+    ],
+    [
+     1710.7,
+     0.74
+    ]
+   ],
+   "wgap": [
+    [
+     1690.78,
+     1.82
+    ],
+    [
+     1703.12,
+     1.57
+    ],
+    [
+     1708.17,
+     0.78
+    ],
+    [
+     1710.21,
+     1.34
+    ]
+   ],
+   "tags": [],
+   "text": "It means I'm tired, Carter. I'm tired of a debate where my dead are statistics and her dead are martyrs. We have reached the point where every corpse is evidence for somebody. That's what a war looks like, from the inside. Not tanks. Spreadsheets of the dead.",
+   "wpm": 117.74530271398726,
+   "maxp": 2.39,
+   "wpm_ex": 143.5845213849284,
+   "maxp_t": 1703.23
+  },
+  {
+   "i": 104,
+   "spk": "Guest2",
+   "t": 1713.05,
+   "end": 1731.85,
+   "words": 44,
+   "span": 18.799999999999955,
+   "sil": [
+    [
+     1713.13,
+     0.6
+    ],
+    [
+     1716.41,
+     0.55
+    ],
+    [
+     1717.83,
+     0.84
+    ],
+    [
+     1720.09,
+     0.59
+    ],
+    [
+     1725.32,
+     0.55
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "My dead are not martyrs to me, Elliot. They're names. I've carried coffins. I don't want a spreadsheet either. But if one side is doing most of the killing, pretending it's even is not neutrality. It's a lie that just happens to sound calm."
+  },
+  {
+   "i": 105,
+   "spk": "Host",
+   "t": 1732.05,
+   "end": 1757.03,
+   "words": 71,
+   "span": 24.980000000000018,
+   "sil": [
+    [
+     1732.05,
+     0.41
+    ],
+    [
+     1738.28,
+     0.36
+    ],
+    [
+     1754.37,
+     0.67
+    ]
+   ],
+   "wgap": [
+    [
+     1747.11,
+     0.32
+    ],
+    [
+     1754.27,
+     0.42
+    ]
+   ],
+   "tags": [],
+   "text": "Right, I'm stopping it here, because that went exactly where Kalmoe and Mason said it would. But they also write, 'We see nothing today like the levels of partisan violence that plagued the distant American past.' Their warning is about the trend. And in their experiments, anti-violence messages from Biden and from Trump reduced support for partisan violence. Leaders' words move people. That's the one hopeful number in the whole book."
+  },
+  {
+   "i": 106,
+   "spk": "Host",
+   "t": 1761.27,
+   "end": 1771.59,
+   "words": 23,
+   "span": 10.319999999999936,
+   "sil": [
+    [
+     1761.83,
+     0.59
+    ],
+    [
+     1763.0,
+     0.67
+    ],
+    [
+     1765.43,
+     0.71
+    ]
+   ],
+   "wgap": [
+    [
+     1761.59,
+     0.36
+    ],
+    [
+     1762.91,
+     0.5
+    ],
+    [
+     1769.69,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "So, why now? Clara, you're the sociologist. Lilliana Mason opens Uncivil Agreement with a famous experiment. Tell it, because I'll only ruin it."
+  },
+  {
+   "i": 107,
+   "spk": "Guest2",
+   "t": 1771.59,
+   "end": 1816.23,
+   "words": 115,
+   "span": 44.6400000000001,
+   "sil": [
+    [
+     1771.59,
+     0.49
+    ],
+    [
+     1772.66,
+     0.57
+    ],
+    [
+     1794.58,
+     0.35
+    ],
+    [
+     1796.12,
+     0.42
+    ],
+    [
+     1802.42,
+     0.47
+    ],
+    [
+     1807.88,
+     0.31
+    ],
+    [
+     1812.4,
+     0.27
+    ],
+    [
+     1814.93,
+     0.35
+    ]
+   ],
+   "wgap": [
+    [
+     1776.73,
+     0.64
+    ],
+    [
+     1784.31,
+     0.28
+    ],
+    [
+     1791.03,
+     0.32
+    ],
+    [
+     1802.35,
+     0.4
+    ],
+    [
+     1804.05,
+     0.3
+    ],
+    [
+     1805.25,
+     0.3
+    ],
+    [
+     1814.87,
+     0.32
+    ]
+   ],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Happily, it's one of my favourites. 1954. The psychologist Muzafer Sherif takes a group of boys from Oklahoma City, carefully chosen to be almost identical, and splits them into two camps in a state park. One team becomes the Rattlers, the other the Eagles. Give them a few days of competitions and a trophy, and, as Mason puts it, 'The Eagles burned the Rattlers' flag.' There were raids on each other's cabins in the middle of the night. Same kind of boys, same backgrounds. A name, a rival and a prize, and you get a tiny civil war in a summer camp. I teach it every year, and every year some student says, 'That's Twitter.'"
+  },
+  {
+   "i": 108,
+   "spk": "Guest",
+   "t": 1816.81,
+   "end": 1821.07,
+   "words": 10,
+   "span": 4.259999999999991,
+   "sil": [
+    [
+     1819.92,
+     0.5
+    ]
+   ],
+   "wgap": [
+    [
+     1819.77,
+     0.52
+    ]
+   ],
+   "tags": [],
+   "text": "And the moral is that we're all eleven-year-olds. How flattering.",
+   "wpm": 140.8450704225355,
+   "maxp": 0.5,
+   "wpm_ex": 140.8450704225355,
+   "maxp_t": 1819.92
+  },
+  {
+   "i": 109,
+   "spk": "Host",
+   "t": 1822.01,
+   "end": 1847.27,
+   "words": 76,
+   "span": 25.25999999999999,
+   "sil": [
+    [
+     1822.01,
+     0.48
+    ],
+    [
+     1824.2,
+     0.32
+    ],
+    [
+     1829.94,
+     0.36
+    ],
+    [
+     1843.08,
+     0.56
+    ]
+   ],
+   "wgap": [
+    [
+     1829.85,
+     0.3
+    ],
+    [
+     1830.71,
+     0.28
+    ],
+    [
+     1831.73,
+     0.34
+    ],
+    [
+     1832.85,
+     0.34
+    ],
+    [
+     1842.89,
+     0.57
+    ]
+   ],
+   "tags": [],
+   "text": "The moral is Mason's line: 'We act like we disagree more than we really do.' She says partisanship has become a 'mega-identity'. Religion, where you live, what you drive, all stacked into one team shirt. And 'our conflicts are largely over who we think we are rather than over reasoned differences of opinion.' I see it at my family's Sunday lunch. My uncle can tell how my cousin votes from the way she carves a roast."
+  },
+  {
+   "i": 110,
+   "spk": "Guest2",
+   "t": 1847.27,
+   "end": 1850.45,
+   "words": 5,
+   "span": 3.1800000000000637,
+   "sil": [
+    [
+     1847.42,
+     0.42
+    ]
+   ],
+   "wgap": [],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] How does she carve it?"
+  },
+  {
+   "i": 111,
+   "spk": "Host",
+   "t": 1850.97,
+   "end": 1856.45,
+   "words": 12,
+   "span": 5.480000000000018,
+   "sil": [
+    [
+     1851.5,
+     0.54
+    ],
+    [
+     1853.79,
+     0.68
+    ]
+   ],
+   "wgap": [
+    [
+     1851.35,
+     0.48
+    ],
+    [
+     1853.63,
+     0.44
+    ]
+   ],
+   "tags": [],
+   "text": "Thin. Apparently that's very left-wing. He says real people cut thick slices."
+  },
+  {
+   "i": 112,
+   "spk": "Guest",
+   "t": 1857.17,
+   "end": 1878.83,
+   "words": 60,
+   "span": 21.659999999999854,
+   "sil": [
+    [
+     1859.4,
+     0.89
+    ],
+    [
+     1865.97,
+     1.02
+    ]
+   ],
+   "wgap": [
+    [
+     1859.29,
+     0.58
+    ],
+    [
+     1865.89,
+     0.8
+    ],
+    [
+     1875.95,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Mason's right about the dinner table. The sorting is real. My mother can tell you how a Dane votes from the car in their drive. But she treats that as the disease, and I think it's the symptom. People sort themselves because they no longer trust the shared institutions to treat them fairly. Fix the trust and the sorting relaxes.",
+   "wpm": 166.20498614958558,
+   "maxp": 1.02,
+   "wpm_ex": 182.27848101265957,
+   "maxp_t": 1865.97
+  },
+  {
+   "i": 113,
+   "spk": "Guest2",
+   "t": 1879.55,
+   "end": 1899.91,
+   "words": 53,
+   "span": 20.360000000000127,
+   "sil": [
+    [
+     1879.55,
+     0.5
+    ],
+    [
+     1883.81,
+     0.47
+    ],
+    [
+     1893.91,
+     0.36
+    ]
+   ],
+   "wgap": [
+    [
+     1883.65,
+     0.26
+    ],
+    [
+     1892.29,
+     0.36
+    ],
+    [
+     1893.73,
+     0.44
+    ]
+   ],
+   "tags": [],
+   "text": "And here's my problem with how people use that story, Mason included. It's a great story, and it's half true. But I'm not a Rattler because someone handed me a T-shirt. My rights, my friends' rights, rents, wages, those are real disagreements. Calling it all identity makes it sound like a football club."
+  },
+  {
+   "i": 114,
+   "spk": "Guest",
+   "t": 1899.91,
+   "end": 1920.14,
+   "words": 42,
+   "span": 20.230000000000018,
+   "sil": [
+    [
+     1899.96,
+     0.42
+    ],
+    [
+     1902.17,
+     1.1
+    ],
+    [
+     1907.11,
+     2.27
+    ],
+    [
+     1912.72,
+     0.69
+    ],
+    [
+     1916.83,
+     0.77
+    ]
+   ],
+   "wgap": [
+    [
+     1902.01,
+     1.0
+    ],
+    [
+     1904.45,
+     0.84
+    ],
+    [
+     1906.97,
+     1.67
+    ]
+   ],
+   "tags": [],
+   "text": "For once I agree with Clara, which I'd like noted, because it won't happen again. I'm not on a team. I'm defending a civilisation. Mason's psychology treats a nation like a sports club. The Rattlers didn't have a thousand years of history.",
+   "wpm": 124.56747404844279,
+   "maxp": 2.27,
+   "wpm_ex": 163.63636363636343,
+   "maxp_t": 1907.11
+  },
+  {
+   "i": 115,
+   "spk": "Host",
+   "t": 1920.14,
+   "end": 1927.06,
+   "words": 15,
+   "span": 6.919999999999845,
+   "sil": [
+    [
+     1920.25,
+     0.6
+    ],
+    [
+     1921.45,
+     0.35
+    ],
+    [
+     1922.99,
+     0.91
+    ],
+    [
+     1926.41,
+     0.41
+    ]
+   ],
+   "wgap": [
+    [
+     1921.44,
+     0.26
+    ],
+    [
+     1922.56,
+     1.02
+    ]
+   ],
+   "tags": [],
+   "text": "Look at that, a reconciliation. Mason would say you've just found a common enemy: her."
+  },
+  {
+   "i": 116,
+   "spk": "Host",
+   "t": 1927.24,
+   "end": 1952.06,
+   "words": 68,
+   "span": 24.819999999999936,
+   "sil": [
+    [
+     1928.67,
+     0.88
+    ],
+    [
+     1943.7,
+     0.75
+    ],
+    [
+     1947.93,
+     0.4
+    ]
+   ],
+   "wgap": [
+    [
+     1939.66,
+     0.26
+    ],
+    [
+     1943.56,
+     0.58
+    ],
+    [
+     1947.64,
+     0.36
+    ]
+   ],
+   "tags": [],
+   "text": "Then let's make it European. Boxell, Gentzkow and Shapiro looked at twelve rich democracies over several decades. The US had the biggest rise in how much people dislike the other side. Denmark rose too, but much less, up to 2015 when the Danish data stops. Norway and Sweden actually went down. Elliot, you're half Danish. Is the Danish consensus a vaccine against all this, or a pressure cooker?"
+  },
+  {
+   "i": 117,
+   "spk": "Guest",
+   "t": 1952.28,
+   "end": 1999.93,
+   "words": 116,
+   "span": 47.65000000000009,
+   "sil": [
+    [
+     1952.28,
+     0.3
+    ],
+    [
+     1954.93,
+     0.73
+    ],
+    [
+     1957.33,
+     0.42
+    ],
+    [
+     1961.53,
+     0.63
+    ],
+    [
+     1963.65,
+     0.52
+    ],
+    [
+     1965.42,
+     0.25
+    ],
+    [
+     1965.68,
+     0.37
+    ],
+    [
+     1972.6,
+     2.01
+    ],
+    [
+     1978.84,
+     0.25
+    ],
+    [
+     1981.88,
+     0.62
+    ],
+    [
+     1995.54,
+     0.51
+    ],
+    [
+     1996.07,
+     0.54
+    ]
+   ],
+   "wgap": [
+    [
+     1957.16,
+     0.26
+    ],
+    [
+     1961.36,
+     0.68
+    ],
+    [
+     1963.5,
+     0.6
+    ],
+    [
+     1965.12,
+     0.58
+    ],
+    [
+     1968.5,
+     0.26
+    ],
+    [
+     1972.58,
+     2.03
+    ],
+    [
+     1978.45,
+     0.4
+    ],
+    [
+     1981.71,
+     0.28
+    ],
+    [
+     1995.49,
+     0.54
+    ]
+   ],
+   "tags": [],
+   "text": "A pressure cooker with very good design. The consensus works because for a long time it rested on a shared people, a shared church, shared assumptions nobody needed to say out loud. Take those away and you'll find the Danes can hate with the best of them. The lid is just Scandinavian, so it's quieter. And by the way, my mother's family is from a small town in Jutland where everyone knew everyone. My grandfather could tell you who voted for whom by which baker they used. They disagreed about everything and still sang the same songs at the same funerals. That world is not coming back, and nobody in Copenhagen will admit what replaced it.",
+   "wpm": 146.0650577124866,
+   "maxp": 2.01,
+   "wpm_ex": 165.35994297932967,
+   "maxp_t": 1972.6
+  },
+  {
+   "i": 118,
+   "spk": "Guest2",
+   "t": 2000.43,
+   "end": 2025.69,
+   "words": 55,
+   "span": 25.25999999999999,
+   "sil": [
+    [
+     2001.77,
+     0.52
+    ]
+   ],
+   "wgap": [
+    [
+     2008.01,
+     0.38
+    ],
+    [
+     2008.79,
+     0.38
+    ],
+    [
+     2009.71,
+     0.54
+    ],
+    [
+     2010.63,
+     0.52
+    ],
+    [
+     2011.41,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "And Mouffe would say the lid is the problem. She actually names Denmark, alongside Belgium, Switzerland, the Netherlands, Norway, Italy and France, as places where right-wing populists grew. Her argument is that when there's a consensus at the centre, voters don't get a real choice between different policies, so the anger goes to the demagogues."
+  },
+  {
+   "i": 119,
+   "spk": "Host",
+   "t": 2025.85,
+   "end": 2032.81,
+   "words": 22,
+   "span": 6.960000000000036,
+   "sil": [
+    [
+     2025.85,
+     0.4
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Right, so is it working or is it just delaying the explosion by making everybody sit in the same boring, sensible box?"
+  },
+  {
+   "i": 120,
+   "spk": "Guest2",
+   "t": 2033.37,
+   "end": 2034.63,
+   "words": 4,
+   "span": 1.2600000000002183,
+   "sil": [],
+   "wgap": [],
+   "tags": [],
+   "text": "I'm not answering that."
+  },
+  {
+   "i": 122,
+   "spk": "Guest2",
+   "t": 2035.67,
+   "end": 2050.33,
+   "words": 42,
+   "span": 14.659999999999854,
+   "sil": [
+    [
+     2035.67,
+     0.31
+    ],
+    [
+     2042.65,
+     0.52
+    ]
+   ],
+   "wgap": [
+    [
+     2039.61,
+     0.28
+    ],
+    [
+     2042.49,
+     0.5
+    ],
+    [
+     2044.83,
+     0.3
+    ],
+    [
+     2045.45,
+     0.32
+    ]
+   ],
+   "tags": [],
+   "text": "I'm not answering that, because that's not the question you asked Elliot. You asked him: vaccine or pressure cooker. Then you turned to me and slipped in 'boring, sensible box'. Ask me the same question, word for word, and I'll answer it."
+  },
+  {
+   "i": 123,
+   "spk": "Host",
+   "t": 2050.33,
+   "end": 2053.07,
+   "words": 3,
+   "span": 2.7400000000002365,
+   "sil": [
+    [
+     2050.34,
+     0.48
+    ]
+   ],
+   "wgap": [],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Are you serious?"
+  },
+  {
+   "i": 124,
+   "spk": "Guest2",
+   "t": 2053.75,
+   "end": 2055.87,
+   "words": 4,
+   "span": 2.119999999999891,
+   "sil": [
+    [
+     2054.67,
+     0.4
+    ]
+   ],
+   "wgap": [
+    [
+     2054.39,
+     0.4
+    ]
+   ],
+   "tags": [],
+   "text": "Completely. Word for word."
+  },
+  {
+   "i": 125,
+   "spk": "Host",
+   "t": 2056.33,
+   "end": 2062.89,
+   "words": 15,
+   "span": 6.559999999999945,
+   "sil": [
+    [
+     2056.91,
+     0.68
+    ],
+    [
+     2058.08,
+     0.7
+    ]
+   ],
+   "wgap": [
+    [
+     2056.83,
+     0.76
+    ],
+    [
+     2057.91,
+     0.52
+    ]
+   ],
+   "tags": [],
+   "text": "Fine. Clara. Is the Danish consensus a vaccine against all this, or a pressure cooker?"
+  },
+  {
+   "i": 126,
+   "spk": "Guest2",
+   "t": 2063.19,
+   "end": 2109.25,
+   "words": 120,
+   "span": 46.059999999999945,
+   "sil": [
+    [
+     2063.19,
+     0.31
+    ],
+    [
+     2064.05,
+     0.66
+    ],
+    [
+     2069.62,
+     0.26
+    ],
+    [
+     2075.6,
+     0.25
+    ],
+    [
+     2076.69,
+     0.25
+    ],
+    [
+     2082.23,
+     0.39
+    ],
+    [
+     2091.12,
+     0.41
+    ],
+    [
+     2093.45,
+     0.37
+    ],
+    [
+     2096.36,
+     0.31
+    ],
+    [
+     2097.64,
+     0.38
+    ],
+    [
+     2099.92,
+     0.44
+    ],
+    [
+     2101.86,
+     0.32
+    ],
+    [
+     2106.37,
+     0.44
+    ]
+   ],
+   "wgap": [
+    [
+     2063.95,
+     0.34
+    ],
+    [
+     2067.45,
+     0.26
+    ],
+    [
+     2090.99,
+     0.5
+    ],
+    [
+     2093.25,
+     0.3
+    ],
+    [
+     2094.79,
+     0.28
+    ],
+    [
+     2096.13,
+     0.48
+    ],
+    [
+     2097.39,
+     0.62
+    ],
+    [
+     2099.79,
+     0.4
+    ]
+   ],
+   "tags": [],
+   "text": "Thank you. A pressure cooker. And notice what you did, Carter, because you do it all the time and so does every presenter in Europe. When Elliot talks, consensus is a 'design'. When I talk, it's a 'boring box'. Whoever frames the question has already won half of the argument. That's what the centre does. It decides which questions sound reasonable and which ones sound mad. And the Danish model I actually admire, Carter, isn't the consensus in parliament. It's the unions. Collective bargaining, high membership, workers who've got a seat at the table. That's the real vaccine, if there is one. People who have some power over their own lives don't need to hate a stranger to feel it."
+  },
+  {
+   "i": 127,
+   "spk": "Guest",
+   "t": 2109.45,
+   "end": 2111.93,
+   "words": 8,
+   "span": 2.480000000000018,
+   "sil": [
+    [
+     2109.45,
+     0.3
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "She's right about that, and I resent it."
+  },
+  {
+   "i": 128,
+   "spk": "Host",
+   "t": 2112.05,
+   "end": 2127.87,
+   "words": 47,
+   "span": 15.819999999999709,
+   "sil": [
+    [
+     2112.07,
+     0.54
+    ],
+    [
+     2113.03,
+     0.45
+    ],
+    [
+     2113.98,
+     0.27
+    ],
+    [
+     2114.78,
+     0.63
+    ],
+    [
+     2116.37,
+     0.51
+    ]
+   ],
+   "wgap": [
+    [
+     2112.83,
+     0.38
+    ],
+    [
+     2113.85,
+     0.28
+    ],
+    [
+     2114.77,
+     0.44
+    ],
+    [
+     2116.15,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Fair. You're right, I did that. My own bias: I like the boring box. I like that politicians here can lose an election and still have a beer together. I've never been sure if that's maturity or just a nicer way of not saying what you think."
+  },
+  {
+   "i": 129,
+   "spk": "Host",
+   "t": 2131.79,
+   "end": 2149.17,
+   "words": 48,
+   "span": 17.38000000000011,
+   "sil": [
+    [
+     2140.91,
+     0.37
+    ],
+    [
+     2142.7,
+     0.66
+    ],
+    [
+     2147.56,
+     0.59
+    ]
+   ],
+   "wgap": [
+    [
+     2137.87,
+     0.26
+    ],
+    [
+     2138.93,
+     0.34
+    ]
+   ],
+   "tags": [],
+   "text": "Let me bring us back to Utah, because there's one moment in the reactions that doesn't fit any of our theories. At the memorial, Kirk's widow, Erika Kirk, publicly forgave the killer. In a stadium. Is forgiveness politically possible for either of your sides? Or only in private?"
+  },
+  {
+   "i": 130,
+   "spk": "Guest",
+   "t": 2149.17,
+   "end": 2164.73,
+   "words": 38,
+   "span": 15.559999999999945,
+   "sil": [
+    [
+     2149.23,
+     0.44
+    ],
+    [
+     2151.65,
+     1.02
+    ],
+    [
+     2155.33,
+     0.25
+    ],
+    [
+     2159.35,
+     0.71
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "It's a private virtue, Carter. It's beautiful in a church. In politics, you don't forgive an aggressor who's still trying to take apart your home. You resist him. Forgiving in politics is just surrender in a nicer coat.",
+   "wpm": 146.52956298200564,
+   "maxp": 1.02,
+   "wpm_ex": 164.85900216919805,
+   "maxp_t": 2151.65
+  },
+  {
+   "i": 131,
+   "spk": "Guest2",
+   "t": 2164.73,
+   "end": 2184.69,
+   "words": 57,
+   "span": 19.960000000000036,
+   "sil": [
+    [
+     2164.8,
+     0.43
+    ],
+    [
+     2172.41,
+     0.37
+    ],
+    [
+     2178.72,
+     0.42
+    ]
+   ],
+   "wgap": [
+    [
+     2172.27,
+     0.28
+    ],
+    [
+     2180.95,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "Spoken like a man who's never had to forgive anyone in public. I've sat in rooms with families after a police shooting, and nobody there thinks forgiveness is surrender. Sometimes it's the only power you have left. You don't forgive for the killer. You forgive so the killer doesn't get to own the rest of your life."
+  },
+  {
+   "i": 132,
+   "spk": "Guest",
+   "t": 2185.27,
+   "end": 2200.29,
+   "words": 29,
+   "span": 15.019999999999982,
+   "sil": [
+    [
+     2187.87,
+     0.41
+    ],
+    [
+     2188.34,
+     1.76
+    ],
+    [
+     2192.49,
+     0.5
+    ],
+    [
+     2194.1,
+     1.18
+    ],
+    [
+     2198.67,
+     0.44
+    ]
+   ],
+   "wgap": [
+    [
+     2187.79,
+     2.0
+    ],
+    [
+     2191.63,
+     0.46
+    ],
+    [
+     2192.35,
+     0.56
+    ],
+    [
+     2193.85,
+     0.9
+    ],
+    [
+     2196.41,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "That's a fair hit, and I don't like it. But you're describing grief, Clara, not politics. A family can forgive. A state that forgives everything stops being a state.",
+   "wpm": 115.84553928095886,
+   "maxp": 1.76,
+   "wpm_ex": 144.03973509933797,
+   "maxp_t": 2188.34
+  },
+  {
+   "i": 133,
+   "spk": "Host",
+   "t": 2200.47,
+   "end": 2224.27,
+   "words": 61,
+   "span": 23.800000000000182,
+   "sil": [
+    [
+     2200.47,
+     0.36
+    ],
+    [
+     2206.64,
+     0.61
+    ],
+    [
+     2211.36,
+     0.82
+    ],
+    [
+     2213.91,
+     0.68
+    ],
+    [
+     2220.27,
+     0.69
+    ],
+    [
+     2221.3,
+     0.77
+    ]
+   ],
+   "wgap": [
+    [
+     2211.29,
+     0.38
+    ],
+    [
+     2213.75,
+     0.48
+    ],
+    [
+     2220.21,
+     0.48
+    ],
+    [
+     2221.21,
+     0.6
+    ]
+   ],
+   "tags": [],
+   "text": "Even your Schmitt doesn't quite say that. In the later foreword: 'The big problem is the limitation of war,' and limiting it is 'a cynical game, the organization of a dog fight, or an empty self-deception, unless it is connected on both sides with a relativization of the enmity.' Relativising the enmity, Elliot. Isn't that what forgiveness looks like in politics?"
+  },
+  {
+   "i": 134,
+   "spk": "Guest",
+   "t": 2224.61,
+   "end": 2227.73,
+   "words": 8,
+   "span": 3.119999999999891,
+   "sil": [
+    [
+     2224.61,
+     0.38
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "That's a dirty trick, using my own author."
+  },
+  {
+   "i": 135,
+   "spk": "Host",
+   "t": 2227.95,
+   "end": 2231.35,
+   "words": 8,
+   "span": 3.400000000000091,
+   "sil": [
+    [
+     2227.95,
+     0.38
+    ],
+    [
+     2229.72,
+     0.6
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "I learned it from Clara. Twenty minutes ago."
+  },
+  {
+   "i": 136,
+   "spk": "Guest2",
+   "t": 2231.61,
+   "end": 2248.91,
+   "words": 46,
+   "span": 17.299999999999727,
+   "sil": [
+    [
+     2231.61,
+     0.36
+    ],
+    [
+     2232.97,
+     0.72
+    ],
+    [
+     2236.08,
+     0.63
+    ]
+   ],
+   "wgap": [
+    [
+     2232.83,
+     0.34
+    ],
+    [
+     2235.99,
+     0.26
+    ]
+   ],
+   "tags": [],
+   "text": "I'll take that. And I'll say something I didn't expect to say. I don't think she was being naive. I think it was the most political thing anybody did that whole month. It cost her something, and it refused the script everyone else was reading from."
+  },
+  {
+   "i": 137,
+   "spk": "Host",
+   "t": 2249.21,
+   "end": 2257.99,
+   "words": 30,
+   "span": 8.779999999999745,
+   "sil": [
+    [
+     2249.21,
+     0.26
+    ],
+    [
+     2249.88,
+     0.32
+    ],
+    [
+     2256.66,
+     0.46
+    ]
+   ],
+   "wgap": [
+    [
+     2249.69,
+     0.34
+    ],
+    [
+     2252.73,
+     0.3
+    ],
+    [
+     2256.43,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Okay. Last question on my card, and I want real answers. Who in your own life do you no longer talk to because of politics? And do you miss them?"
+  },
+  {
+   "i": 138,
+   "spk": "Guest2",
+   "t": 2258.21,
+   "end": 2262.95,
+   "words": 13,
+   "span": 4.739999999999782,
+   "sil": [
+    [
+     2258.21,
+     0.28
+    ],
+    [
+     2259.89,
+     0.53
+    ]
+   ],
+   "wgap": [
+    [
+     2259.77,
+     0.48
+    ]
+   ],
+   "tags": [],
+   "text": "Can I say something first? Something that isn't an answer to the question?"
+  },
+  {
+   "i": 139,
+   "spk": "Host",
+   "t": 2263.25,
+   "end": 2264.03,
+   "words": 2,
+   "span": 0.7800000000002001,
+   "sil": [
+    [
+     2263.25,
+     0.34
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Go on."
+  },
+  {
+   "i": 140,
+   "spk": "Guest2",
+   "t": 2264.43,
+   "end": 2309.37,
+   "words": 119,
+   "span": 44.940000000000055,
+   "sil": [
+    [
+     2266.73,
+     0.5
+    ],
+    [
+     2267.74,
+     0.32
+    ],
+    [
+     2273.46,
+     0.56
+    ],
+    [
+     2279.11,
+     0.39
+    ],
+    [
+     2281.86,
+     0.46
+    ],
+    [
+     2287.96,
+     0.25
+    ],
+    [
+     2291.28,
+     0.3
+    ],
+    [
+     2291.99,
+     0.29
+    ],
+    [
+     2299.77,
+     0.53
+    ],
+    [
+     2306.75,
+     0.84
+    ]
+   ],
+   "wgap": [
+    [
+     2266.71,
+     0.34
+    ],
+    [
+     2267.65,
+     0.26
+    ],
+    [
+     2268.49,
+     0.26
+    ],
+    [
+     2287.67,
+     0.42
+    ],
+    [
+     2291.19,
+     0.34
+    ],
+    [
+     2306.63,
+     0.42
+    ]
+   ],
+   "tags": [],
+   "text": "About ten years ago I wrote a book. Short, angry, very popular in certain bookshops. It was about naming the enemy, basically, about how the left had to stop being nice and draw a hard line. And it sold, and people quoted it at demonstrations, and I was proud of it. And my oldest friend from school, a nurse, very ordinary, votes for whoever promises to fix the hospital, read it and asked me if she was on the other side of my line. Because she'd voted for a party I named in chapter three. I told her it wasn't about people like her. And she said, 'Clara, it's always about people like me.' We haven't really spoken since."
+  },
+  {
+   "i": 141,
+   "spk": "Host",
+   "t": 2309.75,
+   "end": 2312.67,
+   "words": 3,
+   "span": 2.9200000000000728,
+   "sil": [
+    [
+     2310.49,
+     0.66
+    ],
+    [
+     2311.76,
+     0.7
+    ]
+   ],
+   "wgap": [
+    [
+     2310.35,
+     0.98
+    ]
+   ],
+   "tags": [],
+   "text": "Wow. That's... yeah."
+  },
+  {
+   "i": 142,
+   "spk": "Guest2",
+   "t": 2313.05,
+   "end": 2324.41,
+   "words": 25,
+   "span": 11.359999999999673,
+   "sil": [
+    [
+     2313.05,
+     0.26
+    ],
+    [
+     2315.01,
+     0.97
+    ],
+    [
+     2316.56,
+     0.45
+    ],
+    [
+     2318.49,
+     0.78
+    ]
+   ],
+   "wgap": [
+    [
+     2314.91,
+     0.74
+    ],
+    [
+     2316.41,
+     0.28
+    ],
+    [
+     2318.35,
+     0.4
+    ]
+   ],
+   "tags": [],
+   "text": "I half regret that book. Half. The analysis was right. The tone told people like her that they weren't wanted. And that's how you lose."
+  },
+  {
+   "i": 143,
+   "spk": "Guest",
+   "t": 2324.41,
+   "end": 2334.53,
+   "words": 11,
+   "span": 10.120000000000346,
+   "sil": [
+    [
+     2324.55,
+     0.44
+    ],
+    [
+     2326.48,
+     0.5
+    ],
+    [
+     2327.17,
+     0.43
+    ],
+    [
+     2330.37,
+     0.8
+    ],
+    [
+     2332.04,
+     1.33
+    ]
+   ],
+   "wgap": [
+    [
+     2326.53,
+     2.24
+    ],
+    [
+     2330.15,
+     1.1
+    ],
+    [
+     2331.91,
+     1.06
+    ]
+   ],
+   "tags": [
+    "[sighs]"
+   ],
+   "text": "[sighs] That's... I'm sorry, Clara. I mean it. That's a real loss.",
+   "wpm": 65.2173913043456,
+   "maxp": 1.33,
+   "wpm_ex": 82.6032540675809,
+   "maxp_t": 2332.04
+  },
+  {
+   "i": 144,
+   "spk": "Guest2",
+   "t": 2334.85,
+   "end": 2335.83,
+   "words": 2,
+   "span": 0.9800000000000182,
+   "sil": [
+    [
+     2334.85,
+     0.34
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Thank you."
+  },
+  {
+   "i": 145,
+   "spk": "Guest",
+   "t": 2336.27,
+   "end": 2339.27,
+   "words": 11,
+   "span": 3.0,
+   "sil": [],
+   "wgap": [],
+   "tags": [],
+   "text": "Though I'd love to know which party was in chapter three.",
+   "wpm": 220.0,
+   "maxp": 0,
+   "wpm_ex": 220.0,
+   "maxp_t": null
+  },
+  {
+   "i": 146,
+   "spk": "Guest2",
+   "t": 2339.27,
+   "end": 2342.43,
+   "words": 4,
+   "span": 3.1599999999998545,
+   "sil": [
+    [
+     2339.4,
+     1.13
+    ]
+   ],
+   "wgap": [],
+   "tags": [
+    "[laughs]"
+   ],
+   "text": "[laughs] Of course you would."
+  },
+  {
+   "i": 147,
+   "spk": "Host",
+   "t": 2342.99,
+   "end": 2345.11,
+   "words": 4,
+   "span": 2.1200000000003456,
+   "sil": [
+    [
+     2344.25,
+     0.63
+    ]
+   ],
+   "wgap": [
+    [
+     2343.37,
+     0.3
+    ],
+    [
+     2344.17,
+     0.36
+    ]
+   ],
+   "tags": [],
+   "text": "Elliot. Your turn. Who?"
+  },
+  {
+   "i": 148,
+   "spk": "Guest",
+   "t": 2345.51,
+   "end": 2375.81,
+   "words": 57,
+   "span": 30.299999999999727,
+   "sil": [
+    [
+     2345.51,
+     0.38
+    ],
+    [
+     2346.63,
+     0.85
+    ],
+    [
+     2348.37,
+     1.02
+    ],
+    [
+     2350.86,
+     0.8
+    ],
+    [
+     2353.24,
+     0.35
+    ],
+    [
+     2354.64,
+     0.81
+    ],
+    [
+     2357.31,
+     0.64
+    ],
+    [
+     2359.59,
+     0.51
+    ],
+    [
+     2362.21,
+     0.89
+    ],
+    [
+     2365.4,
+     0.47
+    ],
+    [
+     2366.9,
+     0.42
+    ],
+    [
+     2369.67,
+     1.17
+    ],
+    [
+     2373.74,
+     1.2
+    ]
+   ],
+   "wgap": [
+    [
+     2346.51,
+     0.7
+    ],
+    [
+     2348.23,
+     0.68
+    ],
+    [
+     2350.71,
+     0.54
+    ],
+    [
+     2353.09,
+     0.32
+    ],
+    [
+     2354.53,
+     0.56
+    ],
+    [
+     2369.51,
+     0.84
+    ],
+    [
+     2373.45,
+     1.02
+    ]
+   ],
+   "tags": [],
+   "text": "My brother. Younger brother. He lives in Aarhus, teaches at a gymnasium, a decent man. After my institute business he wrote me a long email saying he couldn't defend me any more, that my ideas made him afraid for his students. We haven't spoken in five years. My daughter sees his children at Christmas. I don't go.",
+   "wpm": 112.87128712871389,
+   "maxp": 1.2,
+   "wpm_ex": 152.61044176707014,
+   "maxp_t": 2373.74
+  },
+  {
+   "i": 149,
+   "spk": "Host",
+   "t": 2375.81,
+   "end": 2377.75,
+   "words": 4,
+   "span": 1.9400000000000546,
+   "sil": [
+    [
+     2375.93,
+     0.57
+    ],
+    [
+     2376.63,
+     0.55
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Do you miss him?"
+  },
+  {
+   "i": 150,
+   "spk": "Guest",
+   "t": 2378.01,
+   "end": 2380.93,
+   "words": 4,
+   "span": 2.919999999999618,
+   "sil": [
+    [
+     2378.01,
+     0.3
+    ],
+    [
+     2379.25,
+     0.87
+    ]
+   ],
+   "wgap": [],
+   "tags": [],
+   "text": "Every Christmas. Next question."
+  },
+  {
+   "i": 151,
+   "spk": "Host",
+   "t": 2380.93,
+   "end": 2399.83,
+   "words": 66,
+   "span": 18.90000000000009,
+   "sil": [
+    [
+     2380.99,
+     0.57
+    ],
+    [
+     2382.68,
+     0.42
+    ],
+    [
+     2385.58,
+     0.44
+    ],
+    [
+     2388.87,
+     0.34
+    ],
+    [
+     2392.95,
+     0.95
+    ]
+   ],
+   "wgap": [
+    [
+     2392.87,
+     0.62
+    ]
+   ],
+   "tags": [],
+   "text": "No next question. I want to stay here a second. My honest view: all the Schmitt and the Mouffe and the spreadsheets of the dead, that's not the real war. The real war is the Christmas you don't go to. The friend from school asking if she's on the other side of the line. That's where it's being fought, and both of you are losing it."
+  },
+  {
+   "i": 152,
+   "spk": "Guest2",
+   "t": 2400.25,
+   "end": 2401.49,
+   "words": 3,
+   "span": 1.2399999999997817,
+   "sil": [],
+   "wgap": [],
+   "tags": [],
+   "text": "That's not fair."
+  },
+  {
+   "i": 153,
+   "spk": "Host",
+   "t": 2401.83,
+   "end": 2404.53,
+   "words": 9,
+   "span": 2.700000000000273,
+   "sil": [
+    [
+     2402.64,
+     0.71
+    ]
+   ],
+   "wgap": [
+    [
+     2402.63,
+     0.34
+    ]
+   ],
+   "tags": [],
+   "text": "Maybe not. But I don't think it's wrong either."
+  },
+  {
+   "i": 154,
+   "spk": "Guest",
+   "t": 2404.87,
+   "end": 2431.17,
+   "words": 70,
+   "span": 26.300000000000182,
+   "sil": [
+    [
+     2405.72,
+     0.49
+    ],
+    [
+     2407.88,
+     1.03
+    ],
+    [
+     2410.87,
+     0.3
+    ],
+    [
+     2428.48,
+     0.49
+    ]
+   ],
+   "wgap": [
+    [
+     2405.63,
+     0.32
+    ],
+    [
+     2407.71,
+     0.92
+    ],
+    [
+     2410.71,
+     0.46
+    ],
+    [
+     2412.23,
+     0.48
+    ]
+   ],
+   "tags": [],
+   "text": "It's fair. I don't like it, but it's fair. And I'll tell you what frightens me, Carter, since we're being honest. It isn't Clara. It's the twenty-year-olds on both sides who've never had a brother to lose, because they grew up already sorted. My daughter's friends don't know a single person who votes the other way. When that generation runs the country, there won't be a Christmas left to skip.",
+   "wpm": 159.6958174904932,
+   "maxp": 1.03,
+   "wpm_ex": 166.2049861495833,
+   "maxp_t": 2407.88
+  },
+  {
+   "i": 155,
+   "spk": "Host",
+   "t": 2434.85,
+   "end": 2454.25,
+   "words": 51,
+   "span": 19.40000000000009,
+   "sil": [
+    [
+     2436.07,
+     0.27
+    ],
+    [
+     2438.2,
+     0.31
+    ],
+    [
+     2441.46,
+     0.53
+    ],
+    [
+     2452.77,
+     0.31
+    ]
+   ],
+   "wgap": [
+    [
+     2435.93,
+     0.5
+    ],
+    [
+     2438.09,
+     0.5
+    ],
+    [
+     2439.27,
+     0.32
+    ],
+    [
+     2442.23,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Right. So what do we take home? Five points, my view, not a peace treaty. One: it's not a war yet. Kalmoe and Mason are clear that the violence is nothing like the American past. But the vocabulary of war is spreading much faster than the violence, and words go first."
+  },
+  {
+   "i": 156,
+   "spk": "Host",
+   "t": 2454.25,
+   "end": 2470.59,
+   "words": 49,
+   "span": 16.340000000000146,
+   "sil": [
+    [
+     2454.83,
+     0.3
+    ],
+    [
+     2457.46,
+     0.82
+    ],
+    [
+     2464.27,
+     0.69
+    ],
+    [
+     2467.7,
+     0.35
+    ]
+   ],
+   "wgap": [
+    [
+     2457.35,
+     0.86
+    ],
+    [
+     2464.17,
+     0.4
+    ]
+   ],
+   "tags": [],
+   "text": "Two: the anger is running ahead of the disagreement. Mason's line, we act like we disagree more than we really do. Today proved it the other way round as well: when these two actually talked about wages and housing, they disagreed less than when they talked about each other."
+  },
+  {
+   "i": 157,
+   "spk": "Host",
+   "t": 2470.59,
+   "end": 2492.47,
+   "words": 54,
+   "span": 21.879999999999654,
+   "sil": [
+    [
+     2470.66,
+     0.5
+    ],
+    [
+     2471.65,
+     0.34
+    ],
+    [
+     2474.32,
+     0.66
+    ],
+    [
+     2476.97,
+     0.34
+    ],
+    [
+     2481.96,
+     0.48
+    ],
+    [
+     2485.47,
+     0.29
+    ]
+   ],
+   "wgap": [
+    [
+     2474.23,
+     0.48
+    ],
+    [
+     2476.75,
+     0.28
+    ],
+    [
+     2481.63,
+     0.38
+    ],
+    [
+     2483.17,
+     0.5
+    ],
+    [
+     2484.23,
+     0.3
+    ],
+    [
+     2485.27,
+     0.28
+    ],
+    [
+     2487.75,
+     0.3
+    ]
+   ],
+   "tags": [],
+   "text": "Three: the reactions told us more than the crime did. We still don't know, legally, why Charlie Kirk was killed. But we know exactly how everybody behaved afterwards: the celebrations, the lists, the firings, the regulator going after a comedian. Everyone discovered they hate the machine only when it's pointed at their own people."
+  },
+  {
+   "i": 158,
+   "spk": "Host",
+   "t": 2492.47,
+   "end": 2509.21,
+   "words": 40,
+   "span": 16.740000000000236,
+   "sil": [
+    [
+     2500.35,
+     0.39
+    ],
+    [
+     2506.16,
+     0.5
+    ],
+    [
+     2507.53,
+     0.7
+    ]
+   ],
+   "wgap": [
+    [
+     2496.13,
+     0.44
+    ]
+   ],
+   "tags": [],
+   "text": "Four: leaders matter. In Kalmoe and Mason's tests, anti-violence messages from both a Democratic and a Republican leader actually reduced support for partisan violence. So when a leader chooses blame over calm, that's a choice, and it has a cost."
+  },
+  {
+   "i": 159,
+   "spk": "Host",
+   "t": 2509.63,
+   "end": 2526.69,
+   "words": 52,
+   "span": 17.059999999999945,
+   "sil": [
+    [
+     2510.42,
+     0.27
+    ],
+    [
+     2511.86,
+     0.35
+    ],
+    [
+     2515.9,
+     0.42
+    ],
+    [
+     2521.11,
+     0.53
+    ]
+   ],
+   "wgap": [
+    [
+     2510.23,
+     0.3
+    ],
+    [
+     2520.97,
+     0.28
+    ],
+    [
+     2525.57,
+     0.28
+    ]
+   ],
+   "tags": [],
+   "text": "And five: you can fight like hell and still call the other side adversaries. That's Mouffe's whole point, and in his own way even Schmitt's. If we lose the difference between adversary and enemy, we lose the thing that lets us lose an election and go home alive. Elliot, a closing line."
+  },
+  {
+   "i": 160,
+   "spk": "Guest",
+   "t": 2527.03,
+   "end": 2539.55,
+   "words": 33,
+   "span": 12.519999999999982,
+   "sil": [
+    [
+     2534.41,
+     1.4
+    ],
+    [
+     2537.86,
+     0.5
+    ]
+   ],
+   "wgap": [
+    [
+     2534.35,
+     1.08
+    ]
+   ],
+   "tags": [],
+   "text": "Call them adversaries if it helps you sleep, Carter. But a people that can't name its enemy will eventually be named by them. I'd rather be honest and lonely than polite and gone.",
+   "wpm": 158.14696485623026,
+   "maxp": 1.4,
+   "wpm_ex": 178.05755395683485,
+   "maxp_t": 2534.41
+  },
+  {
+   "i": 162,
+   "spk": "Guest2",
+   "t": 2540.83,
+   "end": 2553.25,
+   "words": 30,
+   "span": 12.420000000000073,
+   "sil": [
+    [
+     2540.83,
+     0.29
+    ],
+    [
+     2544.7,
+     0.31
+    ],
+    [
+     2545.72,
+     0.33
+    ],
+    [
+     2546.69,
+     0.44
+    ],
+    [
+     2548.74,
+     0.38
+    ],
+    [
+     2550.68,
+     0.54
+    ]
+   ],
+   "wgap": [
+    [
+     2544.57,
+     0.3
+    ],
+    [
+     2545.55,
+     0.4
+    ],
+    [
+     2550.57,
+     0.46
+    ]
+   ],
+   "tags": [],
+   "text": "I hope we don't wake up one day having lost the cousins, the friends, the brothers, and only then call it the first shot, when it was really the thousandth."
+  },
+  {
+   "i": 163,
+   "spk": "Host",
+   "t": 2553.39,
+   "end": 2578.59,
+   "words": 78,
+   "span": 25.200000000000273,
+   "sil": [
+    [
+     2553.39,
+     0.37
+    ],
+    [
+     2554.44,
+     0.75
+    ],
+    [
+     2556.58,
+     0.37
+    ],
+    [
+     2562.89,
+     0.43
+    ],
+    [
+     2570.23,
+     0.67
+    ],
+    [
+     2574.41,
+     0.68
+    ],
+    [
+     2577.15,
+     0.34
+    ]
+   ],
+   "wgap": [
+    [
+     2554.35,
+     0.42
+    ],
+    [
+     2556.51,
+     0.32
+    ],
+    [
+     2559.05,
+     0.34
+    ],
+    [
+     2570.05,
+     0.52
+    ],
+    [
+     2574.27,
+     0.38
+    ]
+   ],
+   "tags": [],
+   "text": "Thank you both. That was honest, and it hurt, which is probably how it should feel. A reminder: Tyler Robinson is the accused, he has pleaded not guilty, and no court has established why Charlie Kirk was killed. Our guests' views are their own, and every source is in the show notes. Next time on Fault Lines, another crack in the ground. I'm Carter. Go and ring someone you've stopped talking to. Or at least think about it."
+  }
+ ]
+}

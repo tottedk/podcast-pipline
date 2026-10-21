@@ -21,6 +21,12 @@
   },
   "Burnout Society": {
    "multi": false
+  },
+  "Agentic Ai": {
+   "multi": false
+  },
+  "Fault Lines": {
+   "multi": true
   }
  },
  "episodes": [
@@ -248,6 +254,37 @@
    "date": "2026-10-17",
    "duration_s": 2426.793492,
    "cast": "Carter, Clara, Marcus"
+  },
+  {
+   "ep": "agentic_ai_ep1",
+   "number": 10,
+   "series": "Agentic Ai",
+   "multi": false,
+   "series_no": null,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "What Are AI Agents Really Good For? Agentic AI, Honestly",
+   "subject": "What Are AI Agents Really Good For? Agentic AI, Honestly",
+   "label": "2026-10-19",
+   "date": "2026-10-19",
+   "duration_s": 2702.529683,
+   "cast": "Carter, Clara, Lachlan"
+  },
+  {
+   "ep": "faultlines_01",
+   "number": 11,
+   "series": "Fault Lines",
+   "multi": true,
+   "series_no": 1,
+   "version": 1,
+   "rerender_of": null,
+   "display_title": "Fault Lines #1",
+   "subject": "Left vs Right: Is It Becoming a War?",
+   "label": "Fault Lines #1",
+   "date": "2026-10-21",
+   "duration_s": 2593.4378,
+   "cast": "Carter, Elliot, Clara",
+   "note": "re-render v1.11 (v1.10 render rejected, moved to episodes/_rejected/faultlines_01_v110)"
   }
  ]
 }

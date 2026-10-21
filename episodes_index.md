@@ -12,3 +12,5 @@
 | 7 | Uploaded Intelligence (multi) | Uploaded Intelligence #1 | 2026-10-15 | 40:46 | uploaded_intelligence_ep1 |
 | 8 | Mike Ma | Mike Ma: Harassment Architecture and Gothic Violence | 2026-10-16 | 42:00 | mike_ma_ep1 |
 | 9 | Burnout Society | Why Are We So Tired? Byung-Chul Han's The Burnout Society | 2026-10-17 | 40:27 | burnout_society_ep1 |
+| 10 | Agentic Ai | What Are AI Agents Really Good For? Agentic AI, Honestly | 2026-10-19 | 45:03 | agentic_ai_ep1 |
+| 11 | Fault Lines (multi) | Fault Lines #1 | 2026-10-21 | 43:13 | faultlines_01 |

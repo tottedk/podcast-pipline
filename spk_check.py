@@ -13,7 +13,7 @@ pick never prefers a wrong voice) and are added to "redo". Prints 'SPK c<i> ...'
 import argparse, json, os, sys, subprocess, numpy as np
 ap = argparse.ArgumentParser(); ap.add_argument("--chunks", required=True); ap.add_argument("--cast", required=True); ap.add_argument("--qc"); ap.add_argument("--json")
 ap.add_argument("--root", default=os.path.dirname(os.path.abspath(__file__))); ap.add_argument("--refs", default="")
-ap.add_argument("--margin", type=float, default=0.0); ap.add_argument("--win", type=float, default=3.0); a = ap.parse_args()
+ap.add_argument("--ref_map", default=""); ap.add_argument("--margin", type=float, default=0.0); ap.add_argument("--win", type=float, default=3.0); a = ap.parse_args()
 import torch
 torch.set_num_threads(4)
 from speechbrain.inference.speaker import EncoderClassifier
@@ -31,6 +31,9 @@ def emb(x):
     with torch.no_grad(): e = M.encode_batch(torch.from_numpy(np.ascontiguousarray(x)).unsqueeze(0)).squeeze().numpy()
     return e / (np.linalg.norm(e) + 1e-9)
 cast = dict(kv.split("=") for kv in a.cast.split(",") if "=" in kv and kv.split("=")[1])
+# v1.12: voice name -> versioned Drama 3 reference (drama3_ref_map.json, e.g. Elliot -> Elliot_v2): compare against the ref that was actually cloned
+_rm = a.ref_map or os.path.join(a.root, "drama3_ref_map.json")
+if os.path.exists(_rm): _m = json.load(open(_rm, encoding="utf-8-sig")).get("map", {}); cast = {r: _m.get(n, n) for r, n in cast.items()}
 os.makedirs(os.path.join(refs, "_ecapa"), exist_ok=True); R = {}
 for role, name in cast.items():
     w = os.path.join(refs, name + ".wav"); c = os.path.join(refs, "_ecapa", name + ".npy")

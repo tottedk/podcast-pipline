@@ -10,7 +10,11 @@ Usage:
   python episodes_index.py plan --ep <ep> [--series S] [--multi|--oneoff] [--title T] [--date D] [--index file]   (dry run: prints the JSON naming plan, writes nothing)
   python episodes_index.py add  --ep <ep> ... --dur <seconds> [--cast "Carter, X, Y"]                              (register; no-op if already registered)
   python episodes_index.py backfill [--dry]                                                                          (register the episodes found in episodes\*.mp3, oldest first)
-  python episodes_index.py show"""
+  python episodes_index.py update --ep <ep> [--dur <seconds>] [--date D] [--note "..."] [--cast "..."]                (v1.12: change an existing entry, e.g. after a re-render)
+  python episodes_index.py show
+v1.12 (2026-10-21): main() only runs under `if __name__ == "__main__"` (importing the module from a launcher one-liner ran argparse and failed with
+"the following arguments are required: cmd" - Fault Lines #1 re-render was never re-registered), new `update` subcommand (launchers call it instead
+of inline python, see tools\\launcher_lib.ps1 Update-EpisodeIndex)."""
 import argparse, glob, json, os, re, shutil, subprocess, sys, time
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BACKFILL = {"fanged": ("Fanged Noumena", True), "dark_enlightenment": ("Dark Enlightenment", False), "patchwork": ("Patchwork", False),
@@ -62,13 +66,24 @@ def add_entry(ix, pl, dur, cast=""):
     e = dict(pl); e.pop("note", None); e["duration_s"] = dur; e["cast"] = cast
     ix["episodes"].append(e); ix["series"].setdefault(pl["series"], {"multi": pl["multi"]}); return e
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["plan", "add", "backfill", "show"])
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["plan", "add", "backfill", "show", "update"])
     ap.add_argument("--ep", default=""); ap.add_argument("--series", default=""); ap.add_argument("--title", default=""); ap.add_argument("--date", default="")
     ap.add_argument("--multi", action="store_true"); ap.add_argument("--oneoff", action="store_true"); ap.add_argument("--dur", type=float, default=0); ap.add_argument("--cast", default="")
-    ap.add_argument("--index", default=""); ap.add_argument("--dry", action="store_true")
+    ap.add_argument("--index", default=""); ap.add_argument("--dry", action="store_true"); ap.add_argument("--note", default=None)
     a = ap.parse_args(); p, mdp = idx_paths(a); ix = load(p); multi = True if a.multi else (False if a.oneoff else None)
     if a.cmd == "show": print(open(mdp, encoding="utf-8").read() if os.path.exists(mdp) else "(empty)"); return
     if a.cmd == "plan": print(json.dumps(plan(ix, a.ep, a.series, multi, a.title, a.date), ensure_ascii=True)); return
+    if a.cmd == "update":
+        if not a.ep: sys.exit("--ep required")
+        es = [e for e in ix["episodes"] if e["ep"] == a.ep]
+        if not es: sys.exit(f"registry: {a.ep} is not registered (use add)")
+        e = es[-1]; old = (e.get("duration_s"), e.get("date"), e.get("note"))
+        if a.dur: e["duration_s"] = a.dur
+        if a.date: e["date"] = a.date
+        if a.note is not None: e["note"] = a.note
+        if a.cast: e["cast"] = a.cast
+        if a.dry: print(f"registry (dry): would update #{e['number']} {a.ep}: {old} -> {(e.get('duration_s'), e.get('date'), e.get('note'))}"); return
+        write(ix, p, mdp); print(f"registry: updated #{e['number']} {e['display_title']} ({e['date']}, {fmt_dur(e['duration_s']) if e.get('duration_s') else '?'})"); return
     if a.cmd == "add":
         if not a.ep: sys.exit("--ep required")
         pl = plan(ix, a.ep, a.series, multi, a.title, a.date)
@@ -92,4 +107,5 @@ def main():
         n += 1; print(f"#{e['number']:<2} {e['display_title']:<42} {e['date']} {fmt_dur(e['duration_s']) if e['duration_s'] else '?':>7}  {ep}  (series {ser}, multi={mu}; legacy title: {legacy})")
     if not a.dry and n: write(ix, p, mdp)
     print(f"backfill: {n} episode(s) {'(dry run, nothing written)' if a.dry else 'registered'}")
-main()
+if __name__ == "__main__":
+    main()

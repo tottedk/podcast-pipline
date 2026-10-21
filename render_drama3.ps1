@@ -1,4 +1,4 @@
-<#  render_drama3.ps1 (template v1.11, 2026-10-20; was v1.9/v1.10) - TTS+QC driver: Fish Audio Drama 3 Q4_K_S GGUF (audio.cpp v0.9.2-drama3-base-small, Vulkan) -> QC + VOICE-MATCH GATE after every take -> best take -> final QC -> post_segment.ps1.
+<#  render_drama3.ps1 (template v1.12, 2026-10-21; was v1.11/v1.9/v1.10) - TTS+QC driver: Fish Audio Drama 3 Q4_K_S GGUF (audio.cpp v0.9.2-drama3-base-small, Vulkan) -> QC + VOICE-MATCH GATE after every take -> best take -> final QC -> post_segment.ps1.
 Same interface and outputs as render7b.ps1 (segNN.raw.wav + .chunks\cNNN.wav/chunks.json at 24 kHz, segNN.qc.json, segNN.mp3, STATUS.txt, SEGDONE/ALLDONE lines).
 v1.11 (Fault Lines #1 root causes, fl1\analysis\ANALYSIS.md):
   - drama3_generate.py --mode turn: ONE speaker (one reference) per Drama 3 request (multi-reference requests voiced 54/83 non-first-reference lines with reference 0).
@@ -8,13 +8,19 @@ v1.11 (Fault Lines #1 root causes, fl1\analysis\ANALYSIS.md):
     so the best-take pick never ships them; if a wrong voice survives the retries -> SPKFAIL, STATUS 'STOP voice mismatch', exit 5 (nothing shipped).
   - GENFAIL (no audio) -> STATUS 'STOP GENFAIL', exit 4 immediately (no further segments; run_episode stops before FLUX/post).
   - qc_vv.py v2.3: hard flag end_missing (cut-off line ending) -> retry; gate never mutes speech-level audio. post_segment.ps1 v1.11 checks raw vs gated (GATECUT).
+v1.12 (fl1b\analysis\TEMPO_PAUSES.md): PER-SPEAKER TEMPO applied per chunk inside drama3_generate.py (-TempoCfg drama3_tempo.json: fixed map by
+  reference name + auto-calibration to target_wpm for unmapped refs, clamp 0.85-1.10, locked per run in <Dir>\drama3_tempo_lock.json) -> post_segment.ps1
+  runs with -Tempo 1. -Tempo = fallback tempo for refs the config cannot place. -GlobalTempo = v1.11 behaviour (one atempo for the whole segment in post).
+  Pause clamp v2: silence = -SilRelDb (20) dB below the chunk speech level, internal pauses > -MaxPause 0.4 s -> -KeepPause 0.4 s (final-tempo seconds).
+  -RefMap drama3_ref_map.json (voice -> versioned reference, e.g. Elliot -> Elliot_v2) is passed to drama3_refs.py, the generator and spk_check.py.
 GPU hygiene: waits until Ollama is empty AND no other audiocpp_cli runs before each TTS call; the CLI exits after each call (model unloaded); leftovers killed in finally.
-Usage: .\render_drama3.ps1 -Dir ui1 [-Segs 00,01,...] [-Tempo 0.90] [-ChunkWords 100] [-QcRetries 1] [-SpkRetries 2] [-Mode turn|multi] [-NoSpkCheck] [-D3Home C:\grok\drama3]  #>
+Usage: .\render_drama3.ps1 -Dir ui1 [-Segs 00,01,...] [-Tempo 0.90] [-TempoCfg f.json] [-RefMap f.json] [-GlobalTempo] [-MaxPause 0.4] [-ChunkWords 100] [-QcRetries 1] [-SpkRetries 2] [-Mode turn|multi] [-NoSpkCheck] [-D3Home C:\grok\drama3]  #>
 param([string]$Dir, [string[]]$Segs = @(), [string]$HostVoice = "Carter", [string]$GuestVoice = "", [string]$Guest2Voice = "",
   [double]$Tempo = 0.90, [int]$ChunkWords = 100, [int]$QcRetries = 1, [int]$SpkRetries = 2, [int]$GenRetries = 2, [int[]]$Seeds = @(42,1988,3042,4096), [string]$Glossary = "",
   [ValidateSet("turn","multi")][string]$Mode = "turn", [switch]$NoSpkCheck,
   [double]$Cfg = 1.3, [int]$Steps = 10, [double]$AfftdnNr = 0, [switch]$NoResume, [string]$Root = "C:\grok\podcast",
-  [string]$D3Home = "C:\grok\drama3", [int]$CacheSize = 8, [int]$CtxLen = 4096)
+  [string]$D3Home = "C:\grok\drama3", [int]$CacheSize = 8, [int]$CtxLen = 4096,
+  [string]$TempoCfg = "", [string]$RefMap = "", [switch]$GlobalTempo, [double]$MaxPause = 0.4, [double]$KeepPause = 0.4, [double]$SilRelDb = 20)
 $ErrorActionPreference = 'Continue'; (Get-Process -Id $PID).PriorityClass = 'Idle'
 cd $Root; $W = if ([IO.Path]::IsPathRooted($Dir)) { $Dir } else { Join-Path $Root $Dir }
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
@@ -28,7 +34,11 @@ if (-not $NoSpkCheck -and -not (Test-Path $py_s)) { throw "voice-match gate need
 $tpl = Split-Path $MyInvocation.MyCommand.Path
 function Tool($n) { if (Test-Path "$Root\$n") { "$Root\$n" } else { "$tpl\$n" } }
 $gen = "`"$py_t`" `"$(Tool 'drama3_generate.py')`""
-$d3x = " --cli `"$D3Home\bin\audiocpp_cli.exe`" --model `"$D3Home\models\drama-3-backbone-8bit-experts-Q4_K_S.gguf`" --cache_size $CacheSize --ctx $CtxLen --mode $Mode --gen_retries $GenRetries"
+if (-not $TempoCfg) { $TempoCfg = Tool 'drama3_tempo.json' }; if (-not $RefMap) { $RefMap = Tool 'drama3_ref_map.json' }
+$tmx = if ($GlobalTempo) { " --tempo_mode off --tempo $Tempo" } else { " --tempo_mode cfg --tempo_cfg `"$TempoCfg`" --tempo $Tempo" }
+$postTempo = if ($GlobalTempo) { $Tempo } else { 1 }   # v1.12: the generator already stretched every chunk to its speaker's tempo
+"v1.12 tempo: $(if ($GlobalTempo) { "GLOBAL $Tempo in post (v1.11 mode)" } else { "per speaker ($TempoCfg), fallback $Tempo, post -Tempo 1" }); refmap $RefMap; clamp >$MaxPause s -> $KeepPause s at -$SilRelDb dB"
+$d3x = " --ref_map `"$RefMap`" --max_pause $MaxPause --keep_pause $KeepPause --sil_rel_db $SilRelDb$tmx --cli `"$D3Home\bin\audiocpp_cli.exe`" --model `"$D3Home\models\drama-3-backbone-8bit-experts-Q4_K_S.gguf`" --cache_size $CacheSize --ctx $CtxLen --mode $Mode --gen_retries $GenRetries"
 function St($m) { Set-Content "$W\STATUS.txt" "$(Get-Date -f 'yyyy-MM-dd HH:mm:ss') $m" }
 function WaitGpu { while ($true) { $om = ((Invoke-RestMethod http://localhost:11434/api/ps -EA SilentlyContinue).models); $ac = Get-Process audiocpp_cli, audiocpp_server -EA 0
     if (-not $om.Count -and -not $ac) { break }; "GPU busy (ollama=$($om.Count) audiocpp=$(@($ac).Count)), waiting"; St "waiting for Ollama/audiocpp to be idle"; Start-Sleep 15 } }
@@ -36,7 +46,7 @@ if (-not $Segs.Count) { $Segs = (gci "$W\seg??.json" | % { $_.BaseName.Substring
 $castArg = "Host=$HostVoice,Guest=$GuestVoice" + $(if ($Guest2Voice) { ",Guest2=$Guest2Voice" } else { "" })
 function SpkCheck($chunks, $qcj, $tag) {   # v1.11 voice-match gate: merges into qc json (flag 'voice', score +1000, redo); returns failing chunk list
   if ($NoSpkCheck) { return @() }
-  $o = cmd /c "`"$py_s`" `"$(Tool 'spk_check.py')`" --chunks `"$chunks`" --cast $castArg --qc `"$qcj`" --root `"$Root`" --json `"$chunks\spk_$tag.json`" 2>&1" | % { "$_" }
+  $o = cmd /c "`"$py_s`" `"$(Tool 'spk_check.py')`" --chunks `"$chunks`" --cast $castArg --ref_map `"$RefMap`" --qc `"$qcj`" --root `"$Root`" --json `"$chunks\spk_$tag.json`" 2>&1" | % { "$_" }
   $o | ? { $_ -match '^SPK .*FAIL|^SPKSUMMARY|Error|Traceback' } | % { Write-Host "[VOICE] $_" }   # Write-Host: the function's output is its return value
   if (-not ($o | ? { $_ -match '^SPKSUMMARY' })) { Write-Host "[VOICE] spk_check.py failed: $(($o | select -Last 3) -join ' / ')"; return @(-1) }
   $r = (($o | ? { $_ -match '^SPKREDO' } | select -Last 1) -replace '^SPKREDO\s*', '').Trim()
@@ -44,7 +54,7 @@ function SpkCheck($chunks, $qcj, $tag) {   # v1.11 voice-match gate: merges into
 $rc = 0
 try {
 $rv = (@($HostVoice, $GuestVoice, $Guest2Voice) | ? { $_ }) -join ','
-$ro = cmd /c "`"$py_w`" `"$(Tool 'drama3_refs.py')`" --voices $rv --root `"$Root`" 2>&1" | % { "$_" }; $ro | ? { $_ -match '^REF|Error' }
+$ro = cmd /c "`"$py_w`" `"$(Tool 'drama3_refs.py')`" --voices $rv --root `"$Root`" --ref_map `"$RefMap`" 2>&1" | % { "$_" }; $ro | ? { $_ -match '^REF|Error' }
 if ($LASTEXITCODE) { throw "drama3_refs.py failed: $($ro -join ' / ')" }
 foreach ($s in $Segs) {
   $json = "$W\seg$s.json"; $wav = "$W\seg$s.raw.wav"; $Out = "$W\seg$s.mp3"; $chunks = "$wav.chunks"; $qcj = "$W\seg$s.qc.json"
@@ -86,7 +96,7 @@ foreach ($s in $Segs) {
   if (-not $NoSpkCheck -and $vr.Count) { "SPKFAIL seg$s chunk(s) $($vr -join ',') still in the wrong voice after $SpkRetries retries"
     St "STOP voice mismatch seg$s chunk(s) $($vr -join ',') after $SpkRetries retries - nothing shipped (see seg$s.qc.json voice)"; $rc = 5; break }
   St "step=post seg$s"
-  & "$(Split-Path (Tool 'post_segment.ps1'))\post_segment.ps1" -Raw $wav -Script $json -Out $Out -Tempo $Tempo -AfftdnNr $AfftdnNr -Root $Root
+  & "$(Split-Path (Tool 'post_segment.ps1'))\post_segment.ps1" -Raw $wav -Script $json -Out $Out -Tempo $postTempo -AfftdnNr $AfftdnNr -Root $Root
   if (-not (Test-Path $Out)) { "POSTFAIL seg$s"; St "STOP post_segment failed seg$s"; $rc = 6; break }
   "SEGDONE seg$s dur $(ffprobe -v error -show_entries format=duration -of csv=p=0 $Out) s in $([int]((Get-Date)-$t0).TotalSeconds) s"
 }

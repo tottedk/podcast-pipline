@@ -1,4 +1,4 @@
-"""drama3_generate.py (template v1.11, 2026-10-20; was v1.9) - TTS engine: Fish Audio Drama 3 (full Q4_K_S GGUF) via audio.cpp
+"""drama3_generate.py (template v1.12, 2026-10-21; was v1.11/v1.9) - TTS engine: Fish Audio Drama 3 (full Q4_K_S GGUF) via audio.cpp
 release v0.9.2-drama3-base-small (Windows Vulkan, device 0 = RX 7900 XT).
 Drop-in replacement for vv7b_generate.py: same chunking on turn boundaries, same <out>.chunks\\cNNN.wav (24 kHz mono) + chunks.json,
 same --redo i:seed,... interface, so qc_vv.py / qc_takes.py / post_segment.ps1 / align.py work unchanged.
@@ -23,10 +23,21 @@ v1.11 (Fault Lines #1 root-cause fixes, see fl1\\analysis\\ANALYSIS.md):
    decode graph explodes; chunks with reached_limit, no output (CLI crash, e.g. Vulkan ErrorOutOfDeviceMemory) or an implausible duration are
    regenerated in a new CLI process with another seed (--gen_retries, default 2) instead of failing the whole segment.
  - pause clamp per chunk (model silences): lead silence -> <= 0.05 s, tail -> <= 0.12 s, internal silences > --max_pause (0.9 s) -> --keep_pause
-   (0.6 s); silence = 10 ms frames < chunk speech level - 32 dB (word tails stay). The unclamped 44.1 kHz CLI output stays in _d3out\\."""
+   (0.6 s); silence = 10 ms frames < chunk speech level - 32 dB (word tails stay). The unclamped 44.1 kHz CLI output stays in _d3out\\.
+v1.12 (Fault Lines #1 tempo/pause analysis, fl1b\\analysis\\TEMPO_PAUSES.md; helpers in d3_pace.py):
+ - PER-SPEAKER TEMPO per chunk (every turn-mode chunk = one speaker): --tempo_cfg drama3_tempo.json ("voices" map by REFERENCE name = fixed tempo;
+   refs not in the map are auto-calibrated to target_wpm from their first chunks, clamped 0.85-1.10, locked in <Dir>\\drama3_tempo_lock.json).
+   The chunk is time-stretched here (ffmpeg atempo), so post_segment.ps1 must run with -Tempo 1 (render_drama3.ps1 does that).
+   --tempo_mode off = v1.11 behaviour (no stretch here; post applies the global --tempo; pause caps are then scaled by --tempo).
+   Per chunk: tempo, tempo_src, pace_dur_s (raw, provisional clamp) in chunks.json; run decision in chunks.json "tempo_by_role" (reused by --redo).
+ - PAUSE CLAMP v2 AFTER the tempo (final-tempo seconds): internal silence = frames > --sil_rel_db (20) dB below the chunk speech level
+   (v1.11: 32 dB - missed every pause of a voice with a noisy floor), runs > --max_pause (0.4 s) -> --keep_pause (0.4 s). [whispers] chunks keep 32 dB.
+ - --ref_map drama3_ref_map.json: voice name -> versioned reference name (e.g. Elliot -> Elliot_v2); drama3_refs\\<ref>.wav/.txt.
+ - leading [sighs] of Guest/Guest2 lines are stripped (md_clean.strip_lead_sighs; 3 of Elliot's 4 slowest FL1 lines began with [sighs])."""
 import argparse, json, os, re, sys, time, subprocess, ctypes, csv
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from md_clean import clean_lines
+from md_clean import clean_lines, strip_lead_sighs
+import d3_pace
 import numpy as np, soundfile as sf
 ROOT = os.environ.get("PODCAST_ROOT", r"C:\grok\podcast"); D3 = os.environ.get("DRAMA3_HOME", r"C:\grok\drama3")
 BLOCKED = {"alice": "never used (v1.3 decision)", "mary": "background music in the reference clip", "thomas": "no personal voice clones",
@@ -35,7 +46,10 @@ ap = argparse.ArgumentParser(); ap.add_argument("script"); ap.add_argument("out"
 ap.add_argument("--host", default="Carter"); ap.add_argument("--guest", default=""); ap.add_argument("--guest2", default="")
 ap.add_argument("--seed", type=int, default=42); ap.add_argument("--chunk_words", type=int, default=100); ap.add_argument("--pause", type=float, default=0.35)
 ap.add_argument("--mode", choices=["turn", "multi"], default="turn"); ap.add_argument("--max_frames", type=int, default=512); ap.add_argument("--gen_retries", type=int, default=2)
-ap.add_argument("--max_pause", type=float, default=0.9); ap.add_argument("--keep_pause", type=float, default=0.6); ap.add_argument("--no_clamp", action="store_true")
+ap.add_argument("--max_pause", type=float, default=0.4); ap.add_argument("--keep_pause", type=float, default=0.4); ap.add_argument("--no_clamp", action="store_true")
+ap.add_argument("--sil_rel_db", type=float, default=20.0)
+ap.add_argument("--tempo_cfg", default=""); ap.add_argument("--tempo", type=float, default=0.90); ap.add_argument("--tempo_mode", choices=["cfg", "off"], default="")
+ap.add_argument("--ref_map", default=os.path.join(os.environ.get("PODCAST_ROOT", r"C:\grok\podcast"), "drama3_ref_map.json"))
 ap.add_argument("--redo", default=""); ap.add_argument("--glossary", default="")
 ap.add_argument("--cfg", type=float, default=0); ap.add_argument("--steps", type=int, default=0); ap.add_argument("--pace", default="none")
 ap.add_argument("--cli", default=os.path.join(D3, "bin", "audiocpp_cli.exe"))
@@ -44,6 +58,10 @@ ap.add_argument("--refs", default=os.path.join(ROOT, "drama3_refs"))
 ap.add_argument("--cache_size", type=int, default=8); ap.add_argument("--ctx", type=int, default=4096); ap.add_argument("--threads", type=int, default=6)
 ap.add_argument("--min_start_gb", type=float, default=6.0); ap.add_argument("--min_free_mb", type=float, default=1200)
 a = ap.parse_args()
+if not a.tempo_mode: a.tempo_mode = "cfg" if a.tempo_cfg else "off"
+if a.mode == "multi": a.tempo_mode = "off"      # several speakers per chunk -> no per-speaker stretch
+RMAP = json.load(open(a.ref_map, encoding="utf-8-sig")).get("map", {}) if a.ref_map and os.path.exists(a.ref_map) else {}
+TCFG = d3_pace.load_cfg(a.tempo_cfg)
 TAG = re.compile(r"\[[A-Za-z][A-Za-z' -]{0,30}\]")
 def spoken(t): return re.sub(r"\s+([,.?!;:])", r"\1", re.sub(r"\s+", " ", TAG.sub(" ", t))).strip()
 class MS(ctypes.Structure):
@@ -52,14 +70,17 @@ class MS(ctypes.Structure):
                 ("ullAvailVirtual", ctypes.c_ulonglong), ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
 def free_mb():
     m = MS(); m.dwLength = ctypes.sizeof(MS); ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m)); return m.ullAvailPhys / 2**20
+REFNAME = {}
 _used = set(l["speaker"] for l in json.load(open(a.script, encoding="utf-8-sig")) if l.get("text"))
 REF = {}
 for role, who in (("Host", a.host), ("Guest", a.guest), ("Guest2", a.guest2)):
     if role not in _used: continue
     if not who: sys.exit(f"Error: the script has {role} lines but no voice was given (no default cast: use pick_cast.py / run_episode.ps1 or pass --{role.lower()})")
     if who.lower() in BLOCKED: sys.exit(f"Error: voice {who} is blocked for Drama 3: {BLOCKED[who.lower()]}")
-    w, t = os.path.join(a.refs, f"{who}.wav"), os.path.join(a.refs, f"{who}.txt")
-    if not (os.path.exists(w) and os.path.exists(t)): sys.exit(f"Error: no Drama 3 reference for {who} in {a.refs} (run drama3_refs.py --voices {who})")
+    rn = RMAP.get(who, who); REFNAME[role] = rn
+    if rn.lower().split("_")[0] in BLOCKED: sys.exit(f"Error: reference {rn} is blocked for Drama 3")
+    w, t = os.path.join(a.refs, f"{rn}.wav"), os.path.join(a.refs, f"{rn}.txt")
+    if not (os.path.exists(w) and os.path.exists(t)): sys.exit(f"Error: no Drama 3 reference {rn} for {who} in {a.refs} (run drama3_refs.py --voices {who})")
     REF[role] = (w, open(t, encoding="utf-8").read().strip())
 for p in (a.cli, a.model):
     if not os.path.exists(p): sys.exit(f"Error: missing {p}")
@@ -70,6 +91,8 @@ def clean(t):
     t = t.replace("\u2014", ", ").replace("\u2013", ", ").replace("\u2026", ".").replace("*", "")
     return re.sub(r"\s+", " ", re.sub(r"[^\x00-\x7f]", "", t)).strip()
 lines = clean_lines([l for l in json.load(open(a.script, encoding="utf-8-sig")) if l.get("text")])[0]
+lines, _nsig = strip_lead_sighs(lines)
+if _nsig: print(f"strip_lead_sighs: {_nsig} guest line(s) lost a leading [sighs] tag", flush=True)
 chunks, cur, n = [], [], 0
 for l in lines:          # chunks end on turn boundaries; v1.11 --mode turn: also on every speaker change (one speaker per request)
     w = len(spoken(l["text"]).split())
@@ -77,10 +100,11 @@ for l in lines:          # chunks end on turn boundaries; v1.11 --mode turn: als
     cur.append(l); n += w
 if cur: chunks.append(cur)
 ORDER = {"Host": 0, "Guest": 1, "Guest2": 2}
-cdir = a.out + ".chunks"; os.makedirs(cdir, exist_ok=True); odir = os.path.join(cdir, "_d3out"); os.makedirs(odir, exist_ok=True)
+cdir = a.out + ".chunks"; os.makedirs(cdir, exist_ok=True); odir = os.path.join(cdir, "_d3out"); os.makedirs(odir, exist_ok=True); pdir = os.path.join(cdir, "_pretempo"); os.makedirs(pdir, exist_ok=True)
 redo = {int(k): int(s) for k, s in (x.split(":") for x in a.redo.split(",") if x)}
 todo = sorted(redo) if redo else list(range(1, len(chunks) + 1))
 print(f"{len(lines)} lines, {sum(len(spoken(l['text']).split()) for l in lines)} words, {len(chunks)} chunk(s); Drama3-Q4KS Host={a.host} Guest={a.guest} Guest2={a.guest2} chunk_words={a.chunk_words} mode={a.mode} max_frames={a.max_frames} todo={todo}", flush=True)
+print(f"v1.12 refs {REFNAME} tempo_mode={a.tempo_mode} cfg={a.tempo_cfg or '-'} fallback={a.tempo} clamp: >{a.max_pause}s -> {a.keep_pause}s at -{a.sil_rel_db} dB (final-tempo seconds)", flush=True)
 sr = 24000; meta = {"chunks": [], "args": vars(a), "engine": "drama3"}; mpath = os.path.join(cdir, "chunks.json")
 if redo and os.path.exists(mpath): meta = json.load(open(mpath))
 reqs, ents, li = [], {}, 0
@@ -93,34 +117,18 @@ for i, ch in enumerate(chunks, 1):
     reqs.append({"id": f"c{i:03d}", "text": " ".join(tts), "seed": seed, "options": {"references": json.dumps(refs), "max_tokens": a.max_frames}})
     ents[i] = {"i": i, "seed": seed, "first_line": li, "n_lines": len(ch), "text": " ".join(spoken(l["text"]) for l in ch), "lines": [spoken(l["text"]) for l in ch],
                "speakers": [l["speaker"] for l in ch], "tts_lines": tts, "engine": "drama3", "mode": a.mode,
-               "ref_order": spk, "words": sum(len(spoken(l["text"]).split()) for l in ch)}
+               "ref_order": spk, "refs": [REFNAME.get(s, s) for s in spk], "words": sum(len(spoken(l["text"]).split()) for l in ch),
+               "quiet": any("[whispers]" in l["text"].lower() for l in ch)}
     li += len(ch)
     for f in (os.path.join(cdir, f"c{i:03d}.wav"), os.path.join(odir, f"c{i:03d}.wav")):
         if os.path.exists(f): os.remove(f)
 fm0 = free_mb()
 if fm0 < a.min_start_gb * 1024: sys.exit(f"Error: free RAM {fm0/1024:.1f} GB < {a.min_start_gb} GB - not starting Drama 3")
-def clamp(w):
-    """v1.11: shorten model silences (lead/tail/internal) - returns (wav, info)"""
-    h = int(sr * 0.01); n = len(w) // h
-    if a.no_clamp or n < 20: return w, {}
-    e = 20 * np.log10(np.sqrt((w[:n * h].reshape(n, h) ** 2).mean(1)) + 1e-9); sp = float(np.median(e[e > -45])) if (e > -45).any() else -30.0
-    q = e < sp - 32; runs = []; k = 0
-    while k < n:
-        if q[k]:
-            j = k
-            while j < n and q[j]: j += 1
-            runs.append((k, j)); k = j
-        else: k += 1
-    keep = np.ones(len(w), bool); info = {"speech_db": round(sp, 1), "clamped": []}; xf = int(sr * 0.01)
-    for k, j in runs:
-        L = (j - k) * h
-        if k == 0: cut = max(0, L - int(sr * 0.05)); keep[:cut] = False; info["lead_cut_s"] = round(cut / sr, 2); continue
-        if j >= n: cut = max(0, len(w) - k * h - int(sr * 0.12)); keep[len(w) - cut:] = False; info["tail_cut_s"] = round(cut / sr, 2); continue
-        if L > a.max_pause * sr:
-            s0 = k * h + int(a.keep_pause * sr / 2); s1 = j * h - int(a.keep_pause * sr / 2); keep[s0:s1] = False
-            info["clamped"].append([round(k * h / sr, 2), round(L / sr, 2), a.keep_pause])
-    o = w[keep]
-    return o.astype(np.float32), info
+CAP = a.tempo if a.tempo_mode == "off" else 1.0   # off: post_segment stretches later by --tempo -> raw caps scaled so the FINAL pause is the cap
+def clamp(w, quiet=False, scale=1.0):
+    """v1.12: d3_pace.clamp (relative silence threshold); caps in seconds of the given audio (scale = tempo factor already applied: 1)"""
+    if a.no_clamp: return w, {}
+    return d3_pace.clamp(w, sr, a.max_pause * scale, a.keep_pause * scale, a.sil_rel_db, quiet)
 def expect_s(e): return e["words"] * 60 / 172.0     # measured Drama 3 pace (fl1: 6198 words / 2161 s raw = 172 wpm)
 tried = {i: [ents[i]["seed"]] for i in ents}; runs_meta = []; pending = list(sorted(ents)); attempt = 0; gen_audio = 0
 mf = os.path.join(cdir, "drama3_metrics.json")
@@ -186,17 +194,40 @@ while pending:
             continue
         if why and not os.path.exists(dst): sys.exit(f"Error: Drama 3 produced no usable audio for chunk {i}: {why} (after {attempt} retries)")
         if why: print(f"chunk {i}: WARNING {why} - kept (retries exhausted), QC decides", flush=True); e.setdefault("gen_warn", []).append(why)
-        w, ci = clamp(w0); sf.write(dst, w, sr, subtype="PCM_16"); d = len(w) / sr; gen_audio += d; mm = M.get(key, {})
-        e["d3_rtf"] = mm.get("rtf"); e["d3_wall_s"] = round(mm.get("wall_ms", 0) / 1000, 1); e["gen_dur_s"] = round(d0, 2); e["dur_s"] = round(d, 2); e["clamp"] = ci
+        sf.write(os.path.join(pdir, f"c{i:03d}.wav"), w0, sr, subtype="PCM_16")      # v1.12: pre-tempo audio; tempo + clamp after all chunks are in
+        wp, _ = clamp(w0, e["quiet"], CAP); mm = M.get(key, {})
+        e["d3_rtf"] = mm.get("rtf"); e["d3_wall_s"] = round(mm.get("wall_ms", 0) / 1000, 1); e["gen_dur_s"] = round(d0, 2); e["pace_dur_s"] = round(len(wp) / sr, 2)
+        e["reached"] = key in reached
         meta["chunks"] = [c for c in meta["chunks"] if c["i"] != i] + [e]
-        cl = f" clamp {d0:.1f}->{d:.1f}s ({len(ci.get('clamped', []))} long pauses)" if ci else ""
-        print(f"chunk {i}/{len(chunks)} seed {e['seed']}: {d:.1f}s audio in {e['d3_wall_s']}s (rtf {e['d3_rtf']}){' REACHED_LIMIT' if key in reached else ''}{cl}", flush=True)
     peak_fp = max([v.get("memory.peak_footprint_mb", 0) for v in M.values()] or [0]); peak_rss = max([v.get("memory.peak_rss_mb", 0) for v in M.values()] or [0])
     run = {"time": ts, "todo": pending, "attempt": attempt, "rc": rc, "wall_s": round(wall, 1), "rtf_gen": {k: v.get("rtf") for k, v in M.items()}, "vram_peak_mb": vpk, "vram_base_mb": vbase,
            "commit_peak_mb": peak_fp, "rss_peak_mb": peak_rss, "sys_free_min_mb": round(fmin), "reached_limit": reached, "regenerate": again}
     runs = json.load(open(mf)) if os.path.exists(mf) else []; runs.append(run); json.dump(runs, open(mf, "w"), indent=1)
     print(f"D3RUN attempt {attempt} wall {run['wall_s']}s rc {rc} vram_peak {vpk} MB (base {vbase}) commit_peak {peak_fp} MB rss_peak {peak_rss} MB sys_free_min {run['sys_free_min_mb']} MB regenerate {again}", flush=True)
     pending = again; attempt += 1
+# ---- v1.12: per-speaker tempo (per chunk) + pause clamp in final-tempo seconds ----
+done = [i for i in sorted(ents) if "pace_dur_s" in ents[i]]
+lockf = os.path.join(os.path.dirname(os.path.abspath(a.out)), "drama3_tempo_lock.json")
+if a.tempo_mode == "cfg":
+    if redo and meta.get("tempo_by_role"): TB = meta["tempo_by_role"]          # --redo: keep the tempo of the first run of this segment
+    else:
+        lock = json.load(open(lockf)) if os.path.exists(lockf) else {}; st = {}
+        for i in done:
+            e = ents[i]; rn = e["refs"][0]; v = st.setdefault(rn, [0, 0.0]); v[0] += e["words"]; v[1] += e["pace_dur_s"]
+        TB = d3_pace.plan_tempo(TCFG, {r: REFNAME[r] for r in REFNAME}, st, lock, a.tempo)
+        json.dump(lock, open(lockf, "w"), indent=1)
+    meta["tempo_by_role"] = TB
+    print("TEMPO " + " ".join(f"{r}={REFNAME.get(r, r)}:{v['tempo']}({v['src']}, raw {v['raw_wpm']} wpm)" for r, v in TB.items()), flush=True)
+else: TB = {}
+for i in done:
+    e = ents[i]; role = e["speakers"][0]; t = float(TB.get(role, {}).get("tempo", 1.0)) if a.tempo_mode == "cfg" else 1.0
+    pre = os.path.join(pdir, f"c{i:03d}.wav"); dst = os.path.join(cdir, f"c{i:03d}.wav")
+    d3_pace.stretch(pre, dst, t, sr)
+    w1 = sf.read(dst, dtype="float32")[0]; w1 = w1.mean(1) if w1.ndim > 1 else w1
+    w, ci = clamp(w1, e["quiet"], CAP); sf.write(dst, w, sr, subtype="PCM_16"); d = len(w) / sr; gen_audio += d
+    e["tempo"] = round(t, 3); e["tempo_src"] = TB.get(role, {}).get("src", "off"); e["dur_s"] = round(d, 2); e["clamp"] = ci
+    cl = f" clamp {len(w1)/sr:.1f}->{d:.1f}s ({len(ci.get('clamped', []))} long pauses)" if ci else ""
+    print(f"chunk {i}/{len(chunks)} seed {e['seed']}: {d:.1f}s audio in {e['d3_wall_s']}s (rtf {e['d3_rtf']}) tempo {t:.3f} ({e['tempo_src']}){' REACHED_LIMIT' if e.get('reached') else ''}{cl}", flush=True)
 meta["chunks"].sort(key=lambda c: c["i"]); json.dump(meta, open(mpath, "w"), indent=1)
 gap = np.zeros(int(sr * a.pause), dtype=np.float32); o = []
 for i in range(1, len(chunks) + 1):

@@ -1,0 +1,4 @@
+{
+ "_doc": "template v1.12 (2026-10-21): cast voice name -> versioned Drama 3 clone reference in drama3_refs\\<ref>.wav + .txt (used by drama3_refs.py, drama3_generate.py, spk_check.py). Old refs are never overwritten; to go back, remove the entry. Elliot_v2 = tools\\make_ref_v2.ps1 (see templates\\technical_v1.12.md). Never map anyone to a clone of Thomas.",
+ "map": {"Elliot": "Elliot_v2"}
+}

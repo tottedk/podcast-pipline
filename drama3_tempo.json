@@ -1,0 +1,11 @@
+{
+ "_doc": "template v1.12 (2026-10-21) per-speaker tempo for Drama 3 (d3_pace.plan_tempo, applied per chunk by drama3_generate.py). Keys of 'voices' are Drama 3 REFERENCE names (drama3_refs\\<ref>.wav, after drama3_ref_map.json). Values = fixed tempo for that reference (Thomas-approved defaults from fl1b\\analysis\\TEMPO_PAUSES.md for the refs used in Fault Lines #1). A reference NOT in the map (e.g. a new versioned ref like Elliot_v2) is auto-calibrated: tempo = target_wpm / raw wpm measured on its first chunks of the run (>= min_words_lock words, then locked in <Dir>\\drama3_tempo_lock.json for every later segment), clamped to [min_tempo, max_tempo]. auto_all=true calibrates every reference (would put Carter at ~0.86 for 160 wpm - Thomas' decision).",
+ "target_wpm": 160,
+ "min_tempo": 0.85,
+ "max_tempo": 1.10,
+ "auto": true,
+ "auto_all": false,
+ "min_words_lock": 60,
+ "min_words_provisional": 15,
+ "voices": {"Carter": 0.90, "Clara": 0.95, "Elliot": 1.00}
+}
