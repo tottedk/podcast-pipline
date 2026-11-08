@@ -12,11 +12,7 @@ Products or services using those materials must show prominent "Built with Fish 
 
 ## VibeVoice
 
-The optional `-Engine 7b` fallback expects VibeVoice-7B Q8 weights installed outside this repository. The Microsoft VibeVoice software repository is MIT:
-
-https://github.com/microsoft/VibeVoice/blob/main/LICENSE
-
-That MIT grant was not verified for the TTS weights this pipeline was run with. The official project page states that the TTS release was disabled after misuse (https://microsoft.github.io/VibeVoice/). The published ASR-7B model is a different model. Do not describe the fallback weights as MIT until their origin, revision, and license are checked on the machine that holds them.
+**Optional VibeVoice-7B TTS fallback:** Model weights and voice references are not included. Microsoft's VibeVoice software repository uses the MIT license (https://github.com/microsoft/VibeVoice/blob/main/LICENSE). Microsoft disabled its original TTS release on 5 September 2025 following misuse (https://microsoft.github.io/VibeVoice/). Community 7B/GGUF mirrors advertise MIT, but the upstream model card also contains research-purpose and out-of-scope-use language. The provenance, revision and applicable terms of our locally installed Q8 GGUF have not yet been verified; we do not claim commercial-use or weight-redistribution clearance for it. Review the exact model source and its terms before obtaining or using weights. This is the TTS fallback, not VibeVoice-ASR-7B.
 
 `podcast.ps1` can still drive VibeVoice-1.5B. Those weights are also not in this repository. `voices.json` marks the VibeVoice demo voices as "license not verified".
 

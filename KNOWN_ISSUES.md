@@ -6,18 +6,11 @@ Technical v1.14 / content v2.6: short tests only. No new full episode has been r
 
 `python tests/test_md_clean.py` (9 tests) and `python tests/test_v112.py` (20 tests) pass on this tree. There is no other linter or test config in the repository. `tests/test_v112.py` expected Carter's mapped tempo to be 0.90 after `drama3_tempo.json` had already been set to 0.86; the assertion now expects 0.86. That failure existed on `main` (`b352181`) before the sync.
 
-## Missing v1.13 files
+## v1.13 files
 
-v1.14 was applied on top of a tree that never received v1.13. These files are required by the new code or by the template text, and their contents were not guessed:
+The PC copies are in the tree and match the manifest hashes: `tools/research.py`, `tools/episode_qc.py`, `tools/qc_eval.py`, `templates/cast_bible_v1.json`, `templates/content_style_v2.5.md`, `templates/technical_v1.13.md`, `templates/code_v1.13/`, and the full `templates/code_v1.14/` snapshot including `SHA256SUMS.txt`.
 
-- `tools/research.py` — `tools/brief_gen.py` imports it for web research.
-- `tools/episode_qc.py` — `tools/start_brief.ps1` runs it before and after TTS.
-- `tools/qc_eval.py` — regression command used on the PC; named in the PC `code_v1.14` snapshot. Not imported by the generator.
-- `templates/cast_bible_v1.json` — `brief_gen.py` raises if this is missing for content styles v2.5 and v2.6.
-- `templates/content_style_v2.5.md` — v2.6 is a delta on v2.5. The v2.5 rules are implemented inside `brief_gen.py`, but the standalone template file is absent.
-- `templates/technical_v1.13.md` and `templates/code_v1.13/` — named as the predecessor of v1.14.
-
-`templates/code_v1.14/SHA256SUMS.txt` covers the eight files that were in the drop. The PC snapshot also hashed `research.py`, `episode_qc.py`, and `qc_eval.py`, so the sums will not match that directory. `start_brief.ps1` in the snapshot was edited after the copy to remove a user-specific Hugging Face cache path, so that one hash also differs from the PC file.
+The live Python tools have no `C:\Users` or Hugging Face cache path. The versioned snapshots were left byte-identical, so `templates/code_v1.13/start_brief.ps1` and `templates/code_v1.14/start_brief.ps1` still contain `C:\Users\TJ\.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c`. `qc_eval.py`'s 32-case fixture run was not repeated here; the module imports.
 
 `run_episode.ps1 -DryRun` still prints the mix gate as "145-175 wpm". The gate that actually fails the run is `qc_mix.py`: guests 145–175, host 145–190, no intra-line pause over 1.5 seconds.
 

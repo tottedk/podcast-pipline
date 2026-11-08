@@ -32,7 +32,7 @@ You provide, outside this repo:
 - `ffmpeg` and `ffprobe` on `PATH`.
 - Fish Audio Drama 3 weights and a matching audio.cpp build (`audiocpp_cli.exe`). No weights are committed here. Read the Community License before you download them.
 - Python environments the launchers call: `venv_vv` (generator, numpy, soundfile, librosa), `venv_whisper` (faster-whisper), `venv_spk` (speechbrain ECAPA voice check), and, for pictures, `venv_sd` plus `venv_video` (Pillow). `venv_rocm_freeze_pre_librosa.txt` is an old package freeze, not a supported install list.
-- Optional fallback: VibeVoice-7B Q8 weights for `-Engine 7b`. The Microsoft VibeVoice software repository is MIT. The license of the exact 7B TTS weights used as this fallback is not verified. Do not treat those weights as MIT. See `NOTICE`.
+- **Optional VibeVoice-7B TTS fallback:** Model weights and voice references are not included. Microsoft's VibeVoice software repository uses the MIT license. Microsoft disabled its original TTS release on 5 September 2025 following misuse. Community 7B/GGUF mirrors advertise MIT, but the upstream model card also contains research-purpose and out-of-scope-use language. The provenance, revision and applicable terms of our locally installed Q8 GGUF have not yet been verified; we do not claim commercial-use or weight-redistribution clearance for it. Review the exact model source and its terms before obtaining or using weights. This is the TTS fallback, not VibeVoice-ASR-7B.
 - Optional backgrounds: a FLUX.1-schnell snapshot. Set `FLUX_SNAPSHOT` to the snapshot directory, or place it in the current user's Hugging Face cache at `%USERPROFILE%\.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c`.
 
 A brief-to-episode run also expects local assets that are intentionally absent here: `fd1\intro.wav`, `fd1\sting.wav`, `fd1\outro.wav`, voice references, and the files listed under [Known gaps](#known-gaps).
@@ -66,18 +66,11 @@ Versioned behaviour, QC gates, and per-release file lists live in `templates/tec
 
 ## Known gaps
 
-`main` did not contain the v1.13 files that v1.14 is built on, and they were not in the PC file drop used to sync this tree. Their contents were not reconstructed. Until you add the copies from the PC, `tools/brief_gen.py` cannot finish a topic-first episode:
+`tools/research.py`, `tools/episode_qc.py`, `tools/qc_eval.py`, `templates/cast_bible_v1.json`, `templates/content_style_v2.5.md`, `templates/technical_v1.13.md`, and `templates/code_v1.13/` are in the tree, copied byte-for-byte from the PC. `templates/code_v1.14/SHA256SUMS.txt` matches that snapshot.
 
-- `tools/research.py` (imported by `brief_gen.py`)
-- `tools/episode_qc.py` (called by `tools/start_brief.ps1`)
-- `tools/qc_eval.py` (the PC regression command; also part of the PC `templates/code_v1.14` snapshot)
-- `templates/cast_bible_v1.json` (required for content styles v2.5 and v2.6)
-- `templates/content_style_v2.5.md` and `templates/technical_v1.13.md`
-- `templates/code_v1.13/`
+Those versioned snapshots were not edited. `templates/code_v1.13/start_brief.ps1` and `templates/code_v1.14/start_brief.ps1` still set Flux to `C:\Users\TJ\.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c`. `content_style_v2.5.md` and `technical_v1.13.md` have no home-directory path. The live copies of `tools/research.py`, `tools/episode_qc.py`, and `tools/qc_eval.py` have no `C:\Users` or Hugging Face cache path.
 
-`templates/code_v1.14/` in this repo hashes only the files that were in the drop. It is not a byte-for-byte copy of the PC snapshot.
-
-The Episode desk (the small local UI that writes a brief) is a separate project. Its files were in the same drop and were not copied into this repository.
+The Episode desk (the small local UI that writes a brief) is a separate project and is not in this repository.
 
 ## Licenses
 
@@ -91,6 +84,6 @@ The MIT license in `LICENSE` covers original orchestration code in this reposito
 - The license forbids unconsented imitation of identifiable people, deceptive impersonation, and watermark removal.
 - Drama 3 weights are not in this repository. Do not relicense those weights, or derivatives of them, as MIT.
 
-Microsoft's VibeVoice software repository is MIT (Copyright 2025 Microsoft). This repo does not vendor that source. The exact VibeVoice-7B TTS weights used as the optional fallback were not identifiable from public model cards at review time (the official TTS release was withdrawn, and the current ASR-7B model is a different model). Their license stays unverified. Do not describe those weights as MIT.
+**Optional VibeVoice-7B TTS fallback:** Model weights and voice references are not included. Microsoft's VibeVoice software repository uses the MIT license. Microsoft disabled its original TTS release on 5 September 2025 following misuse. Community 7B/GGUF mirrors advertise MIT, but the upstream model card also contains research-purpose and out-of-scope-use language. The provenance, revision and applicable terms of our locally installed Q8 GGUF have not yet been verified; we do not claim commercial-use or weight-redistribution clearance for it. Review the exact model source and its terms before obtaining or using weights. This is the TTS fallback, not VibeVoice-ASR-7B.
 
 Voice credit lines for reference speakers drawn from LibriTTS-R and the CSTR VCTK Corpus are CC BY 4.0 and live in `voices.json`. The recordings themselves are not committed. `hwmon.cs` is original code that calls LibreHardwareMonitorLib 0.9.6 (MPL-2.0). That library is not vendored here.
