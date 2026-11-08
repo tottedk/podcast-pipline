@@ -26,8 +26,17 @@ s4 = np.concatenate([noise(0.8, -60), tone(1), noise(0.9, -60)]).astype(np.float
 check(abs(i4["lead_cut_s"] - 0.75) < 0.03 and abs(i4["tail_cut_s"] - 0.78) < 0.03, f"lead -> 0.05 s, tail -> 0.12 s ({i4['lead_cut_s']}, {i4['tail_cut_s']})")
 cfg = d3_pace.load_cfg(os.path.join(ROOT, "drama3_tempo.json")); lock = {}
 tb = d3_pace.plan_tempo(cfg, {"Host": "Carter", "Guest": "Elliot_v2", "Guest2": "Clara"}, {"Carter": [200, 60.0], "Elliot_v2": [100, 40.0], "Clara": [100, 36.0]}, lock, 0.90)
-check(tb["Host"] == {"tempo": 0.90, "src": "map", "raw_wpm": 200.0}, f"Carter fixed 0.90 from the map ({tb['Host']})")
+check(tb["Host"] == {"tempo": 0.86, "src": "map", "raw_wpm": 200.0}, f"Carter fixed 0.86 from the map ({tb['Host']})")
 check(tb["Guest2"]["tempo"] == 0.95 and tb["Guest2"]["src"] == "map", "Clara fixed 0.95")
+cfg_ps = dict(cfg); cfg_ps["voices"] = dict(cfg["voices"])
+cfg_ps["voices"]["Carter"] = {"mode": "per_segment", "target_wpm": 156, "min_tempo": 0.72, "max_tempo": 0.95, "fallback": 0.86}
+tbps = d3_pace.plan_tempo(cfg_ps, {"Host": "Carter"}, {"Carter": [300, 300 * 60 / 210]}, {}, 0.90)
+check(tbps["Host"]["src"] == "per_segment" and abs(tbps["Host"]["tempo"] - 0.743) < 1e-9, f"per_segment Carter 156/210 wpm -> 0.743 ({tbps['Host']})")
+lock_ps = {}
+d3_pace.plan_tempo(cfg_ps, {"Host": "Carter"}, {"Carter": [300, 300 * 60 / 210]}, lock_ps, 0.90)
+check("Carter" not in lock_ps, "per_segment tempo is not written to the lock")
+tbfb = d3_pace.plan_tempo(cfg_ps, {"Host": "Carter"}, {"Carter": [10, 3.0]}, {}, 0.90)["Host"]
+check(tbfb["src"] == "voice-fallback" and tbfb["tempo"] == 0.86, f"per_segment with too few words uses the voice fallback ({tbfb})")
 check(tb["Guest"]["src"] == "auto" and abs(tb["Guest"]["tempo"] - 160 / 150) < 0.002 and "Elliot_v2" in lock, f"unmapped Elliot_v2 at raw 150 wpm -> auto {tb['Guest']['tempo']} and locked")
 tb2 = d3_pace.plan_tempo(cfg, {"Guest": "Elliot_v2"}, {"Elliot_v2": [100, 30.0]}, lock, 0.90)
 check(tb2["Guest"]["src"] == "locked" and tb2["Guest"]["tempo"] == tb["Guest"]["tempo"], "a later segment reuses the locked tempo")

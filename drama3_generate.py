@@ -33,7 +33,23 @@ v1.12 (Fault Lines #1 tempo/pause analysis, fl1b\\analysis\\TEMPO_PAUSES.md; hel
  - PAUSE CLAMP v2 AFTER the tempo (final-tempo seconds): internal silence = frames > --sil_rel_db (20) dB below the chunk speech level
    (v1.11: 32 dB - missed every pause of a voice with a noisy floor), runs > --max_pause (0.4 s) -> --keep_pause (0.4 s). [whispers] chunks keep 32 dB.
  - --ref_map drama3_ref_map.json: voice name -> versioned reference name (e.g. Elliot -> Elliot_v2); drama3_refs\\<ref>.wav/.txt.
- - leading [sighs] of Guest/Guest2 lines are stripped (md_clean.strip_lead_sighs; 3 of Elliot's 4 slowest FL1 lines began with [sighs])."""
+ - leading [sighs] of Guest/Guest2 lines are stripped (md_clean.strip_lead_sighs; 3 of Elliot's 4 slowest FL1 lines began with [sighs]).
+v1.14 (2026-11-07, monotone voices + Carter tempo, templates\\technical_v1.14.md):
+ - --chunk_mode sentence (DEFAULT): chunk boundaries only at sentence ends. A turn is kept whole up to --chunk_words * --turn_cap_x (1.5) words
+   (was: one 100-word budget); longer turns are split at the sentence end nearest the middle, preferring a boundary just before a delivery
+   tag/direction (emotion boundary). Consecutive lines of one speaker are merged up to --chunk_words as before. --chunk_mode words = v1.12.
+   --max_lines_per_chunk N (0 = no limit) is for tests. Split turns keep their parts as separate 'lines' in chunks.json (qc_vv works per part).
+ - --text_chunk_chars 240 -> request option text_chunk_size (audio.cpp default 128 chars cut every ~20 words inside a request);
+   text_chunk_mode=tag_aware. 240 chars ~ 40 words ~ 15 s stays under max_frames 512 (~24 s).
+ - delivery direction per chunk (--directions drama3_directions.json): a chunk with no [tag]/[direction] gets ONE plain-language direction in
+   front of its first line, picked from the whitelist in that file by role and sentence type (Drama 3 performs bracketed directions, it does not
+   read them: fish.audio Drama 3 docs; audio.cpp fish_drama3 event tags). Directions go to Drama 3 only, never into the QC texts.
+ - PITCH-VARIATION GATE: F0 std in semitones (d3_pace.pitch_std_st, pyin = qc_f0.py method) on every generated chunk with >= --flat_min_voiced_s
+   (3 s) voiced audio; < --flat_st (2.5 st: passing voices in the_long_game_ep1 = Carter p10 3.48 / Isla 3.18 / Marcus 3.51, Elliot monotone
+   ~2-2.7) -> regenerated with the next seed (retry 2 also with the 'lively' direction), up to --flat_retries 2; then the take with the highest
+   std is kept and the chunk is flagged 'flat' in chunks.json + a 'FLAT chunk i' line (render log). chunks.json gets pitch_std_st per chunk.
+ - Carter tempo: d3_pace.plan_tempo supports a per_segment voice rule, but Carter is back on fixed 0.86 (Thomas t62u: the stretched
+   per_segment Carter sounded slow and smeared); the mix gate allows the host up to 190 wpm instead (qc_mix.py --wpm_hi_host)."""
 import argparse, json, os, re, sys, time, subprocess, ctypes, csv
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from md_clean import clean_lines, strip_lead_sighs
@@ -48,6 +64,10 @@ ap.add_argument("--seed", type=int, default=42); ap.add_argument("--chunk_words"
 ap.add_argument("--mode", choices=["turn", "multi"], default="turn"); ap.add_argument("--max_frames", type=int, default=512); ap.add_argument("--gen_retries", type=int, default=2)
 ap.add_argument("--max_pause", type=float, default=0.4); ap.add_argument("--keep_pause", type=float, default=0.4); ap.add_argument("--no_clamp", action="store_true")
 ap.add_argument("--sil_rel_db", type=float, default=20.0)
+ap.add_argument("--chunk_mode", choices=["sentence", "words"], default="sentence"); ap.add_argument("--turn_cap_x", type=float, default=1.5)
+ap.add_argument("--max_lines_per_chunk", type=int, default=0); ap.add_argument("--text_chunk_chars", type=int, default=240)
+ap.add_argument("--directions", default=os.path.join(os.environ.get("PODCAST_ROOT", r"C:\grok\podcast"), "drama3_directions.json"))
+ap.add_argument("--flat_st", type=float, default=2.5); ap.add_argument("--flat_retries", type=int, default=2); ap.add_argument("--flat_min_voiced_s", type=float, default=3.0)
 ap.add_argument("--tempo_cfg", default=""); ap.add_argument("--tempo", type=float, default=0.90); ap.add_argument("--tempo_mode", choices=["cfg", "off"], default="")
 ap.add_argument("--ref_map", default=os.path.join(os.environ.get("PODCAST_ROOT", r"C:\grok\podcast"), "drama3_ref_map.json"))
 ap.add_argument("--redo", default=""); ap.add_argument("--glossary", default="")
@@ -62,7 +82,9 @@ if not a.tempo_mode: a.tempo_mode = "cfg" if a.tempo_cfg else "off"
 if a.mode == "multi": a.tempo_mode = "off"      # several speakers per chunk -> no per-speaker stretch
 RMAP = json.load(open(a.ref_map, encoding="utf-8-sig")).get("map", {}) if a.ref_map and os.path.exists(a.ref_map) else {}
 TCFG = d3_pace.load_cfg(a.tempo_cfg)
-TAG = re.compile(r"\[[A-Za-z][A-Za-z' -]{0,30}\]")
+TAG = re.compile(r"\[[A-Za-z][A-Za-z' ,-]{0,60}\]")   # v1.14: also plain-language directions with commas, e.g. [relaxed, unhurried]
+DIRS = json.load(open(a.directions, encoding="utf-8-sig")) if a.directions and os.path.exists(a.directions) else {}
+if not DIRS.get("enabled", False): DIRS = {}
 def spoken(t): return re.sub(r"\s+([,.?!;:])", r"\1", re.sub(r"\s+", " ", TAG.sub(" ", t))).strip()
 class MS(ctypes.Structure):
     _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong), ("ullTotalPhys", ctypes.c_ulonglong), ("ullAvailPhys", ctypes.c_ulonglong),
@@ -93,33 +115,69 @@ def clean(t):
 lines = clean_lines([l for l in json.load(open(a.script, encoding="utf-8-sig")) if l.get("text")])[0]
 lines, _nsig = strip_lead_sighs(lines)
 if _nsig: print(f"strip_lead_sighs: {_nsig} guest line(s) lost a leading [sighs] tag", flush=True)
+SENT = re.compile(r"(?<=[.!?])\s+(?=[\[A-Z0-9\"'])")
+def split_turn(l, cap):
+    """v1.14: a turn over cap words -> parts cut at sentence ends (nearest the middle, preferring a cut before a [tag]); never mid-sentence"""
+    ss = [x for x in SENT.split(l["text"].strip()) if x.strip()]
+    if len(ss) < 2: return [l]
+    wc = [len(spoken(x).split()) for x in ss]; tot = sum(wc); acc = 0; best = None
+    for k in range(1, len(ss)):
+        acc += wc[k - 1]; cost = abs(acc - tot / 2) - (0.15 * tot if ss[k].lstrip().startswith("[") else 0)
+        if best is None or cost < best[0]: best = (cost, k)
+    k = best[1]; A = {**l, "text": " ".join(ss[:k])}; B = {**l, "text": " ".join(ss[k:])}
+    return split_turn(A, cap) + split_turn(B, cap) if len(spoken(A["text"]).split()) > cap or len(spoken(B["text"]).split()) > cap else [A, B]
 chunks, cur, n = [], [], 0
-for l in lines:          # chunks end on turn boundaries; v1.11 --mode turn: also on every speaker change (one speaker per request)
-    w = len(spoken(l["text"]).split())
-    if cur and (n + w > a.chunk_words or (a.mode == "turn" and l["speaker"] != cur[-1]["speaker"])): chunks.append(cur); cur, n = [], 0
-    cur.append(l); n += w
+if a.chunk_mode == "words":
+    for l in lines:          # v1.12: chunks end on turn boundaries; v1.11 --mode turn: also on every speaker change (one speaker per request)
+        w = len(spoken(l["text"]).split())
+        if cur and (n + w > a.chunk_words or (a.mode == "turn" and l["speaker"] != cur[-1]["speaker"])): chunks.append(cur); cur, n = [], 0
+        cur.append(l); n += w
+else:
+    cap = int(a.chunk_words * a.turn_cap_x); nsplit = 0
+    for li_, l in enumerate(lines):
+        parts = split_turn(l, cap) if len(spoken(l["text"]).split()) > cap else [l]
+        if len(parts) > 1: nsplit += 1
+        for pi, p_ in enumerate(parts):
+            p_ = {**p_, "_line": li_}; w = len(spoken(p_["text"]).split())
+            new = cur and (pi > 0 or n + w > a.chunk_words or (a.mode == "turn" and p_["speaker"] != cur[-1]["speaker"])
+                           or (a.max_lines_per_chunk and len(cur) >= a.max_lines_per_chunk))
+            if new: chunks.append(cur); cur, n = [], 0
+            cur.append(p_); n += w
+    if nsplit: print(f"v1.14 chunker: {nsplit} long turn(s) split at sentence ends (cap {cap} words)", flush=True)
 if cur: chunks.append(cur)
+def direction(ch, role, k=0):
+    """v1.14: one whitelisted plain-language direction for a chunk without any [tag]; k = flat-retry number (2 -> 'lively')"""
+    if not DIRS or any(TAG.search(l["text"]) for l in ch): return ""
+    t = " ".join(l["text"] for l in ch).strip(); R = DIRS.get("roles", {}).get(role) or DIRS.get("roles", {}).get("Guest", {})
+    kind = "lively" if k >= 2 else ("question" if t.endswith("?") else ("exclaim" if "!" in t else "statement"))
+    opts = R.get(kind) or R.get("statement") or []
+    return f"[{opts[(len(t) + k) % len(opts)]}] " if opts else ""
 ORDER = {"Host": 0, "Guest": 1, "Guest2": 2}
 cdir = a.out + ".chunks"; os.makedirs(cdir, exist_ok=True); odir = os.path.join(cdir, "_d3out"); os.makedirs(odir, exist_ok=True); pdir = os.path.join(cdir, "_pretempo"); os.makedirs(pdir, exist_ok=True)
 redo = {int(k): int(s) for k, s in (x.split(":") for x in a.redo.split(",") if x)}
 todo = sorted(redo) if redo else list(range(1, len(chunks) + 1))
 print(f"{len(lines)} lines, {sum(len(spoken(l['text']).split()) for l in lines)} words, {len(chunks)} chunk(s); Drama3-Q4KS Host={a.host} Guest={a.guest} Guest2={a.guest2} chunk_words={a.chunk_words} mode={a.mode} max_frames={a.max_frames} todo={todo}", flush=True)
+print(f"v1.14 chunk_mode={a.chunk_mode} text_chunk_chars={a.text_chunk_chars} directions={'on' if DIRS else 'off'} flat_gate<{a.flat_st}st x{a.flat_retries}", flush=True)
 print(f"v1.12 refs {REFNAME} tempo_mode={a.tempo_mode} cfg={a.tempo_cfg or '-'} fallback={a.tempo} clamp: >{a.max_pause}s -> {a.keep_pause}s at -{a.sil_rel_db} dB (final-tempo seconds)", flush=True)
 sr = 24000; meta = {"chunks": [], "args": vars(a), "engine": "drama3"}; mpath = os.path.join(cdir, "chunks.json")
 if redo and os.path.exists(mpath): meta = json.load(open(mpath))
 reqs, ents, li = [], {}, 0
 for i, ch in enumerate(chunks, 1):
-    if i not in todo: li += len(ch); continue
+    if i not in todo: li += len(set(l.get("_line", id(l)) for l in ch)) if a.chunk_mode == "sentence" else len(ch); continue
     seed = redo.get(i, a.seed)
     spk = sorted(set(l["speaker"] for l in ch), key=lambda s: ORDER.get(s, 1)); idx = {s: k for k, s in enumerate(spk)}
-    tts = [f"<|speaker:{idx[l['speaker']]}|> {clean(l['text'])}" for l in ch]
+    dr = direction(ch, ch[0]["speaker"]) if a.mode == "turn" else ""
+    tts = [f"<|speaker:{idx[l['speaker']]}|> {dr if k == 0 else ''}{clean(l['text'])}" for k, l in enumerate(ch)]
     refs = [{"text": f"<|speaker:{idx[s]}|> {REF[s][1]}", "audio_path": REF[s][0]} for s in spk]
-    reqs.append({"id": f"c{i:03d}", "text": " ".join(tts), "seed": seed, "options": {"references": json.dumps(refs), "max_tokens": a.max_frames}})
+    opt = {"references": json.dumps(refs), "max_tokens": a.max_frames}
+    if a.chunk_mode == "sentence" and a.text_chunk_chars > 0: opt.update({"text_chunk_size": a.text_chunk_chars, "text_chunk_mode": "tag_aware"})
+    reqs.append({"id": f"c{i:03d}", "text": " ".join(tts), "seed": seed, "options": opt})
     ents[i] = {"i": i, "seed": seed, "first_line": li, "n_lines": len(ch), "text": " ".join(spoken(l["text"]) for l in ch), "lines": [spoken(l["text"]) for l in ch],
-               "speakers": [l["speaker"] for l in ch], "tts_lines": tts, "engine": "drama3", "mode": a.mode,
+               "speakers": [l["speaker"] for l in ch], "tts_lines": tts, "engine": "drama3", "mode": a.mode, "direction": dr.strip(),
+               "line_ids": [l.get("_line") for l in ch], "chunk_mode": a.chunk_mode,
                "ref_order": spk, "refs": [REFNAME.get(s, s) for s in spk], "words": sum(len(spoken(l["text"]).split()) for l in ch),
                "quiet": any("[whispers]" in l["text"].lower() for l in ch)}
-    li += len(ch)
+    li += len(set(l.get("_line", id(l)) for l in ch)) if a.chunk_mode == "sentence" else len(ch)
     for f in (os.path.join(cdir, f"c{i:03d}.wav"), os.path.join(odir, f"c{i:03d}.wav")):
         if os.path.exists(f): os.remove(f)
 fm0 = free_mb()
@@ -183,7 +241,7 @@ while pending:
             subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src_, "-ac", "1", "-ar", str(sr), "-c:a", "pcm_s16le", dst], check=True)
             w0 = sf.read(dst, dtype="float32")[0]; w0 = w0.mean(1) if w0.ndim > 1 else w0; d0 = len(w0) / sr; ex = expect_s(e)
             if d0 > 2.3 * ex + 4 or d0 < 0.4 * ex - 1: why = f"implausible duration {d0:.1f}s vs ~{ex:.1f}s expected"
-        if why and attempt < a.gen_retries:
+        if why and len(e.get("gen_retries", [])) < a.gen_retries:   # v1.14: per chunk (flat retries add CLI passes)
             ns = [s for s in (1988, 3042, 4096, 777, 31337) if s not in tried[i]][0]; tried[i].append(ns)
             print(f"chunk {i}: {why} -> regenerate with seed {ns} (attempt {attempt + 1}/{a.gen_retries})", flush=True)
             for r in reqs:
@@ -192,8 +250,35 @@ while pending:
             for f in (src_, dst):
                 if os.path.exists(f): os.remove(f)
             continue
-        if why and not os.path.exists(dst): sys.exit(f"Error: Drama 3 produced no usable audio for chunk {i}: {why} (after {attempt} retries)")
+        if why and not os.path.exists(dst): sys.exit(f"Error: Drama 3 produced no usable audio for chunk {i}: {why} (after {len(e.get('gen_retries', []))} retries)")
         if why: print(f"chunk {i}: WARNING {why} - kept (retries exhausted), QC decides", flush=True); e.setdefault("gen_warn", []).append(why)
+        # v1.14 pitch-variation gate (pre-tempo audio; atempo keeps pitch)
+        if a.flat_st > 0:
+            try: ps, vs = d3_pace.pitch_std_st(w0, sr)
+            except Exception as ex_: ps, vs = None, 0.0; print(f"chunk {i}: pitch gate skipped ({ex_})", flush=True)
+            if ps is not None and vs >= a.flat_min_voiced_s:
+                ft = e.setdefault("flat_takes", []); tp_ = os.path.join(pdir, f"c{i:03d}_take{len(ft)}.wav"); sf.write(tp_, w0, sr, subtype="PCM_16")
+                ft.append({"seed": e["seed"], "pitch_std_st": round(ps, 2), "voiced_s": vs, "wav": tp_, "direction": e.get("direction", "")})
+                if ps < a.flat_st and len(ft) <= a.flat_retries:
+                    ns = [s for s in (1988, 3042, 4096, 777, 31337, 2024, 99) if s not in tried[i]][0]; tried[i].append(ns)
+                    k_ = len(ft)   # retry 1 = new seed; retry 2 = new seed + the 'lively' direction (only where the chunk got an automatic direction)
+                    dr2 = direction(chunks[i - 1], e["speakers"][0], 2).strip() if (k_ >= 2 and e.get("direction")) else ""
+                    print(f"chunk {i}: FLATRETRY pitch std {ps:.2f} st < {a.flat_st} -> regenerate with seed {ns}{' + ' + dr2 if dr2 else ''} (flat retry {k_}/{a.flat_retries})", flush=True)
+                    for r in reqs:
+                        if r["id"] == key:
+                            r["seed"] = ns
+                            if dr2: r["text"] = r["text"].replace(e["direction"], dr2, 1)
+                    if dr2: e["direction"] = dr2
+                    e["seed"] = ns; again.append(i)
+                    for f in (src_, dst):
+                        if os.path.exists(f): os.remove(f)
+                    continue
+                best = max(ft, key=lambda x: x["pitch_std_st"])
+                if best["wav"] != tp_:
+                    w0 = sf.read(best["wav"], dtype="float32")[0]; d0 = len(w0) / sr; e["seed"] = best["seed"]; e["direction"] = best["direction"]
+                e["pitch_std_st"] = best["pitch_std_st"]; e["flat"] = best["pitch_std_st"] < a.flat_st
+                if e["flat"]: print(f"FLAT chunk {i}: pitch std {best['pitch_std_st']:.2f} st < {a.flat_st} after {len(ft) - 1} retries - best take kept, flagged", flush=True)
+            elif ps is not None: e["pitch_std_st"] = round(ps, 2)
         sf.write(os.path.join(pdir, f"c{i:03d}.wav"), w0, sr, subtype="PCM_16")      # v1.12: pre-tempo audio; tempo + clamp after all chunks are in
         wp, _ = clamp(w0, e["quiet"], CAP); mm = M.get(key, {})
         e["d3_rtf"] = mm.get("rtf"); e["d3_wall_s"] = round(mm.get("wall_ms", 0) / 1000, 1); e["gen_dur_s"] = round(d0, 2); e["pace_dur_s"] = round(len(wp) / sr, 2)
@@ -227,7 +312,7 @@ for i in done:
     w, ci = clamp(w1, e["quiet"], CAP); sf.write(dst, w, sr, subtype="PCM_16"); d = len(w) / sr; gen_audio += d
     e["tempo"] = round(t, 3); e["tempo_src"] = TB.get(role, {}).get("src", "off"); e["dur_s"] = round(d, 2); e["clamp"] = ci
     cl = f" clamp {len(w1)/sr:.1f}->{d:.1f}s ({len(ci.get('clamped', []))} long pauses)" if ci else ""
-    print(f"chunk {i}/{len(chunks)} seed {e['seed']}: {d:.1f}s audio in {e['d3_wall_s']}s (rtf {e['d3_rtf']}) tempo {t:.3f} ({e['tempo_src']}){' REACHED_LIMIT' if e.get('reached') else ''}{cl}", flush=True)
+    print(f"chunk {i}/{len(chunks)} seed {e['seed']}: {d:.1f}s audio in {e['d3_wall_s']}s (rtf {e['d3_rtf']}) tempo {t:.3f} ({e['tempo_src']}) pitch {e.get('pitch_std_st', '-')} st{' FLAT' if e.get('flat') else ''}{' REACHED_LIMIT' if e.get('reached') else ''}{cl}", flush=True)
 meta["chunks"].sort(key=lambda c: c["i"]); json.dump(meta, open(mpath, "w"), indent=1)
 gap = np.zeros(int(sr * a.pause), dtype=np.float32); o = []
 for i in range(1, len(chunks) + 1):

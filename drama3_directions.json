@@ -1,0 +1,12 @@
+{
+ "_doc": "template v1.14 (2026-11-07): plain-language delivery directions that drama3_generate.py puts in front of a chunk that has no [tag] of its own (one per chunk, Drama 3 only, never in QC texts or the script). Drama 3 performs bracketed directions instead of reading them (docs.fish.audio Drama 3: 'Describe the delivery in your own words'; audio.cpp fish_drama3: event tags like [sighs] [laughs]). Kinds: question / exclaim / statement by the chunk's text, lively = 2nd pitch-gate retry. Keep them short, calm and conversational: the audio.cpp port warns that strong emotion prompts can cause prolonged reactions. enabled=false switches the feature off.",
+ "enabled": true,
+ "roles": {
+  "Host": {"statement": ["relaxed, warm, unhurried", "easy-going and curious, unhurried"], "question": ["genuinely curious, relaxed", "warm, curious, taking his time"],
+           "exclaim": ["amused, warm"], "lively": ["animated and expressive, relaxed pace"]},
+  "Guest": {"statement": ["engaged, conversational", "thoughtful, warm"], "question": ["curious, a little skeptical"], "exclaim": ["animated, amused"],
+            "lively": ["animated and expressive"]},
+  "Guest2": {"statement": ["engaged, conversational", "thoughtful, dry"], "question": ["curious, a little skeptical"], "exclaim": ["animated, amused"],
+             "lively": ["animated and expressive"]}
+ }
+}
