@@ -42,7 +42,7 @@ foreach ($f in 'agentic_ai_ep1_script.json', 'ag\agentic_ai_ep1.chapters.in.json
 $vo = gc "$Root\voices.json" -Raw | ConvertFrom-Json
 foreach ($g in $gv) { $e = $vo.voices.$g; Chk ($e -and (Test-Path "$Root\$($e.file)")) "voice $g exists ($($e.file))" }
 Chk ((Test-Path "$Root\voices_extra\LICENSES.md")) 'voices_extra\LICENSES.md exists'
-Chk (Test-Path 'C:\Users\TJ\.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c\model_index.json') 'FLUX.1-schnell snapshot'
+Chk (Test-Path (Join-Path $(if ($env:FLUX_SNAPSHOT) { $env:FLUX_SNAPSHOT } else { Join-Path $env:USERPROFILE '.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c' }) 'model_index.json')) 'FLUX.1-schnell snapshot'
 foreach ($f in 'run_episode.ps1', 'render7b.ps1', 'post_episode.ps1', 'post_segment.ps1', 'podcast.ps1') { $e = $null; [void][Management.Automation.Language.Parser]::ParseFile("$Root\$f", [ref]$null, [ref]$e); Chk ($e.Count -eq 0) "PowerShell parse $f" }
 foreach ($f in 'vram_free.ps1', 'vram_free.json') { Chk (Test-Path "C:\grok\vram\$f") "exists C:\grok\vram\$f" }; $e = $null; [void][Management.Automation.Language.Parser]::ParseFile('C:\grok\vram\vram_free.ps1', [ref]$null, [ref]$e); Chk ($e.Count -eq 0) 'PowerShell parse C:\grok\vram\vram_free.ps1'
 $re = gc "$Root\run_episode.ps1" -Raw; $pe_ = gc "$Root\post_episode.ps1" -Raw; $r7 = gc "$Root\render7b.ps1" -Raw

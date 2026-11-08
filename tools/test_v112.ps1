@@ -5,7 +5,8 @@ mp3s in -Out); never touches episodes\, fl1b\ or C:\grok\drama3 (read-only use o
   new\seg01 = FL1 lines 13-18 (Carter / Elliot / Clara mix) = 2nd short v1.12 segment (per-speaker tempo, voice gate, clamp v2)
 Both arms use the full v1.12 chain (render_drama3.ps1: generator + QC + voice gate + post_segment -Tempo 1). Then: whisper words (venv_whisper) ->
 wpm / longest pause; pyin F0 std (venv_vv); spk_check of new\seg00 against the ORIGINAL refs (voice identity kept?). RESULT.txt + result.json, DONE.txt.  #>
-param([string]$Root = "C:\grok\podcast", [string]$Out = "C:\Users\TJ\agent-tools\v112_ab", [switch]$SkipRender, [string]$Arms = "old,new")
+param([string]$Root = "C:\grok\podcast", [string]$Out = "", [switch]$SkipRender, [string]$Arms = "old,new")
+if (-not $Out) { $Out = Join-Path $env:TEMP 'v112_ab' }
 $ErrorActionPreference = 'Continue'; cd $Root; (Get-Process -Id $PID).PriorityClass = 'Idle'
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 $T = "$Root\tests\v112_ab"; if ($T -match '\\(episodes|fl1b)(\\|$)') { throw "refusing to write into $T" }

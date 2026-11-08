@@ -1,5 +1,5 @@
 import json, subprocess, os, shutil
-FF=r"C:\Users\TJ\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.exe"
+FF=os.environ.get("FFMPEG") or "ffmpeg"
 D=r"C:\grok\podcast\noise_check\clips_staging"; shutil.rmtree(D,ignore_errors=True); os.makedirs(D)
 sel=json.load(open(r"noise_check\clip_sel.json")); rows=[]
 def mmss(s): return f"{int(s//60)}:{s%60:05.2f}"

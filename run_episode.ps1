@@ -53,7 +53,8 @@ if ($rrc -or $gf.Count -or $bad.Count) {
 St "step=TTS done engine=$Engine $((gc $W\render.log | sls SEGDONE).Count) segs (all segments present, voices ok)"
 $imgs = (gc -Raw "$BgDir\prompts.json" | ConvertFrom-Json).images.id | ? { -not (Test-Path "$BgDir\$_.png") }
 if ($imgs) { $env:HIP_VISIBLE_DEVICES = '1'; St "step=FLUX $($imgs.Count) images"; $t = Get-Date
-  & powershell -ExecutionPolicy Bypass -File .\hwrun.ps1 -Name "flux_$Ep" venv_sd\Scripts\python.exe gen_backgrounds_flux.py "$BgDir\prompts.json" $BgDir --model C:\Users\TJ\.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c --offload staged --fp8 1 *> "$W\flux.log"
+  $fluxSnap = if ($env:FLUX_SNAPSHOT) { $env:FLUX_SNAPSHOT } else { Join-Path $env:USERPROFILE '.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c' }
+  & powershell -ExecutionPolicy Bypass -File .\hwrun.ps1 -Name "flux_$Ep" venv_sd\Scripts\python.exe gen_backgrounds_flux.py "$BgDir\prompts.json" $BgDir --model "$fluxSnap" --offload staged --fp8 1 *> "$W\flux.log"
   St "step=FLUX done exit $LASTEXITCODE in $([int]((Get-Date)-$t).TotalSeconds) s" }
 $nm = @(); if ($NoMixGate) { $nm += '-NoMixGate' }; if ($Series) { $nm += '-Series', $Series }; if ($Multi) { $nm += '-Multi' }; if ($OneOff) { $nm += '-OneOff' }   # v1.8 naming (post_episode.ps1 / episodes_index.py)
 $engName = if ($Engine -eq 'drama3') { 'Fish Audio Drama 3 (Q4_K_S GGUF) via audio.cpp' } else { 'VibeVoice-7B Q8 via audio.cpp' }

@@ -1,0 +1,33 @@
+# Notices
+
+The MIT license in LICENSE applies to original code by Thomas Jensen. The items below are not relicensed by that grant.
+
+## Built with Fish Audio
+
+Speech generation calls Fish Audio Drama 3 through a separately installed audio.cpp build. Drama 3 weights are not in this repository. Use of Drama 3 is under the Fish Audio Community License v1.0, not MIT:
+
+https://huggingface.co/fishaudio/drama-3/blob/main/LICENSE
+
+Products or services using those materials must show prominent "Built with Fish Audio" attribution. Commercial use is limited to organisations under USD 500,000 combined rolling-12-month gross revenue, including affiliates. Hosted self-service TTS, voice cloning, or inference needs a separate license. The license forbids unconsented imitation of identifiable people. Redistribution of Fish materials or derivatives must keep the Fish license and attribution. audio.cpp itself is not vendored here; its license is whatever that project ships and was not reviewed as part of this tree.
+
+## VibeVoice
+
+The optional `-Engine 7b` fallback expects VibeVoice-7B Q8 weights installed outside this repository. The Microsoft VibeVoice software repository is MIT:
+
+https://github.com/microsoft/VibeVoice/blob/main/LICENSE
+
+That MIT grant was not verified for the TTS weights this pipeline was run with. The official project page states that the TTS release was disabled after misuse (https://microsoft.github.io/VibeVoice/). The published ASR-7B model is a different model. Do not describe the fallback weights as MIT until their origin, revision, and license are checked on the machine that holds them.
+
+`podcast.ps1` can still drive VibeVoice-1.5B. Those weights are also not in this repository. `voices.json` marks the VibeVoice demo voices as "license not verified".
+
+## Voice recordings referenced by voices.json
+
+Credit lines for Clara, Isla, Marcus, Declan, Willa, Zara, Imogen, Elliot, Hugh, and Lachlan cite LibriTTS-R (CC BY 4.0, https://www.openslr.org/141/) or the CSTR VCTK Corpus (CC BY 4.0, https://doi.org/10.7488/ds/2645). The wav files are not committed. Keep the credit lines when those voices are used. They are not MIT.
+
+## LibreHardwareMonitor
+
+`hwmon.cs` (and the copies under `templates/code_v*/hwmon_new/`) is original code that references LibreHardwareMonitorLib 0.9.6, which is MPL-2.0. The DLL is not in this repository. PawnIO, which that library uses for hardware access, is a separate driver and is not included.
+
+## Local predecessor
+
+`templates/code_v1.0/qc_vv.py` describes that file as adapted from `pw/qc.py`. `pw/qc.py` was never committed. No third-party copyright header was found on it. The MIT grant assumes it was Thomas Jensen's own earlier script. If any part was copied from someone else, add that notice before publishing.
