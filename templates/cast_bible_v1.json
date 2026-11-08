@@ -1,0 +1,156 @@
+{
+ "_doc": "cast_bible_v1 (2026-11-01, content_style v2.5). Fixed characters, injected VERBATIM into the plan and script prompts by tools\\brief_gen.py (style v2.5). Never regenerated per episode: the plan only assigns POSITIONS (who argues which side of the crux) and one personal stake per guest. To change a character: copy to cast_bible_v2.json and add a templates\\README.md changelog line; never edit this file in place. Speaker labels are the real names. All personal stories are invented and modest; the characters are fictional AI voices. Nobody is a clone of Thomas.",
+ "rules": {
+  "host": "Carter is ALWAYS the host.",
+  "excluded": {
+   "Elliot": "OUT: his Drama 3 voice is monotone (pitch std ~2-2.7 semitones, Elliot_v2 fixed pace not pitch). No bible until a new reference passes.",
+   "Hugh": "NOT USABLE: Hugh is never paired with Carter and Carter always hosts, so there is no setup in which he can appear. No bible; brief_gen rejects him.",
+   "Maya, Declan, Alice, Mary": "BANNED: never use, even if a brief names them (use Clara or Isla instead)."
+  },
+  "weights": "pick_cast weights from the handover still apply: Frank low weight, Samuel 0.25. Frank and Marcus are US men like Carter: never cast both in one episode (three similar voices); prefer pairing each with a woman or a non-US accent.",
+  "catchphrase_cap": "Each signature phrase at most twice per episode. Quirks are seasoning, not the meal: at most one quirk moment per speaker per chapter.",
+  "concession": "Each guest concedes exactly once per episode, on a side point, with a reason, in their own words (see concedes_like). The crux is never conceded.",
+  "talk_to_each_other": "Every chapter has at least one exchange where the two guests talk to each other (tease, challenge, inside joke), not to Carter."
+ },
+ "host": {
+  "name": "Carter", "gender": "M", "accent": "US (Midwest)", "age": 44,
+  "who": "Ex-high-school physics teacher who now runs a small bike repair shop in Dayton, Ohio. Two teenagers. Learns by taking things apart.",
+  "lens": "'Does it work on a Tuesday?' He judges every idea by what it does to ordinary people on an ordinary day.",
+  "job": "Asks the listener's 'dumb' question; forces concreteness ('Give me an example. A real one.'); keeps score of who is winning; gives his own view every few minutes and is sometimes wrong. Once per episode a guest corrects him and he takes it well.",
+  "voice": "Short sentences. 'Wait, wait.' 'Hang on.' Admits confusion out loud. Self-deprecating. Never a speech over about 60 words. About 30% of the words.",
+  "running_life": "Exactly one 'this week at the shop / at home' story per episode: setup, twist, payoff. Never as filler.",
+  "hates": "Jargon, hand-waving, people who won't pick a side."
+ },
+ "guests": {
+  "Clara": {
+   "gender": "F", "accent": "US", "age": 38, "archetype": "the builder-optimist",
+   "who": "Built products at a big tech company for ten years, now runs a five-person design-and-software studio. Treats her mistakes as data.",
+   "expertise": "Product building, shipping software, what users actually do, iteration, startups.",
+   "lens": "'What I've seen work.' Argues from practice: a project, a client, a launch that went wrong and what fixed it.",
+   "natural_side": "Optimist: problems are design problems and can be fixed by building better.",
+   "voice": "Fast, warm, amused; laughs at her own jokes. Signature: 'Okay, but here's the thing.' One specific number per chapter, from the notes only.",
+   "quirk": "Talks about ideas in software versions ('that's a version-one argument').",
+   "flaw": "Oversells; skips second-order effects.",
+   "concedes_like": "With a grin: 'Fine. I oversold that.' Concedes when shown a real failure case.",
+   "stake_hint": "Her studio's clients and her team's livelihoods ride on this technology working."
+  },
+  "Lachlan": {
+   "gender": "M", "accent": "Australian (Sydney)", "age": 52, "archetype": "the failure-mode sceptic",
+   "who": "Former aviation incident investigator who has read hundreds of accident reports. Now consults on safety reviews.",
+   "expertise": "Accident investigation, safety engineering, risk, base rates, incentives, how systems fail.",
+   "lens": "'How does this fail, and who pays?' Argues from failure cases, base rates and incentives.",
+   "natural_side": "Sceptic: assume it breaks, design for the breakage.",
+   "voice": "Slow, dry, deadpan. Short punches and understatement ('That went well.'). Says 'mate' at most twice per episode. Rarely raises his voice, so when he does it lands.",
+   "quirk": "Keeps a mock 'ledger' of the other guest's predictions that did or didn't come true.",
+   "flaw": "Reflexive pessimism.",
+   "concedes_like": "Grudgingly and specifically: 'That's a better spec. I'll give you that one.' Concedes when shown a working safeguard.",
+   "stake_hint": "He has sat with families after crashes that a checklist would have prevented."
+  },
+  "Isla": {
+   "gender": "F", "accent": "Scottish (Dumfries)", "age": 46, "archetype": "the moral philosopher with dirt under her nails",
+   "who": "Trained as a moral philosopher in Glasgow, left academia, now teaches evening ethics classes for adults and volunteers on a hospice ward.",
+   "expertise": "Ethics (virtue ethics, Kant, utilitarian arguments), meaning, dignity, care, what a practice does to the people inside it.",
+   "lens": "'What does it do to the person doing it?' Judges ideas by the character they build, not only the outcomes.",
+   "natural_side": "Humanist: suspicious of anything that treats people as numbers, equally suspicious of easy outrage.",
+   "voice": "A long, careful sentence, then a blunt one-liner that lands. Gentle teasing. Signature: 'Say that again, slower.'",
+   "quirk": "Quotes her late gran's sayings (at most once per episode, invented and homely, never presented as a real source).",
+   "flaw": "Can drift into abstraction; Carter has to drag her back to Tuesday.",
+   "concedes_like": "Openly: 'No, you're right about that part, and it matters.' Concedes when shown that a rule actually protects vulnerable people.",
+   "stake_hint": "She has watched dying patients be helped or diminished by systems."
+  },
+  "Marcus": {
+   "gender": "M", "accent": "US", "age": 41, "archetype": "the incentives economist",
+   "who": "Former insurance actuary, now teaches behavioural economics at a state university. Sees prices and trade-offs everywhere.",
+   "expertise": "Economics, incentives, base rates, statistics, markets, regulation trade-offs, unintended consequences.",
+   "lens": "'Follow the incentive.' Asks who is paid to want this outcome and what it costs compared with the alternative.",
+   "natural_side": "Pragmatist: neither hype nor panic, just costs, benefits and who bears them.",
+   "voice": "Dry, precise, slightly professorial, then undercuts himself. Signature: 'What's the base rate?'",
+   "quirk": "Puts a price tag on everything, including absurd things ('that argument is worth about four dollars').",
+   "flaw": "Treats everything as priceable; misses what people refuse to trade.",
+   "concedes_like": "Precisely: 'Okay, that doesn't price. I'll take the loss on that one.' Concedes when something can't be put on a spreadsheet.",
+   "stake_hint": "He spent years pricing risks that later turned into real claims."
+  },
+  "Willa": {
+   "gender": "F", "accent": "American (San Francisco)", "age": 33, "archetype": "the insider-turned-critic",
+   "who": "Ran trust-and-safety and content moderation at two social media startups, quit, now works for a digital civil-liberties group.",
+   "expertise": "Platforms, moderation, how tech companies make decisions in practice, privacy, online harms, policy.",
+   "lens": "'I've been in that meeting.' Knows how decisions really get made inside companies and distrusts the press release.",
+   "natural_side": "Critic of corporate power, but allergic to sloppy regulation too.",
+   "voice": "Quick, sardonic, specific. Short insider anecdotes. Signature: 'Here's what actually happens.'",
+   "quirk": "Translates corporate jargon into plain English on the spot ('\"alignment\" means \"don't get us sued\"').",
+   "flaw": "Cynical; assumes bad faith where it is often just incompetence.",
+   "concedes_like": "Sharp but fair: 'Fine, that one's on the regulators, not the company.' Concedes when shown a rule backfired.",
+   "stake_hint": "She reviewed the worst content on the internet for years and knows what it does to moderators."
+  },
+  "Zara": {
+   "gender": "F", "accent": "South African (Cape Town)", "age": 49, "archetype": "the long-view historian",
+   "who": "Historian of science and technology at a Cape Town university; writes about how societies absorbed the printing press, the telegraph, radio and the pill.",
+   "expertise": "History of technology and science, colonial history, moral panics, how institutions adapt.",
+   "lens": "'We have been here before, and here is where the parallel breaks.' Brings one historical parallel per chapter, then tests it.",
+   "natural_side": "Calm contextualiser: distrusts both 'this changes everything' and 'nothing new here'.",
+   "voice": "Unhurried, warm authority; storytelling; dry irony. Signature: 'Let me take you back a bit.'",
+   "quirk": "Names who got left out of every past revolution.",
+   "flaw": "Can make everything sound like it has happened before.",
+   "concedes_like": "Gracefully: 'That's where my parallel breaks. Scale is new.' Concedes when the history genuinely doesn't fit.",
+   "stake_hint": "Her own family history runs through who got access to new technology and who didn't."
+  },
+  "Imogen": {
+   "gender": "F", "accent": "British (England)", "age": 36, "archetype": "the evidence hawk",
+   "who": "Experimental psychologist / cognitive neuroscientist who runs a small lab and reviews papers for journals.",
+   "expertise": "Psychology, cognition, how studies work, replication, measurement, human bias.",
+   "lens": "'What did they actually measure?' Separates what a study showed from what the headline said.",
+   "natural_side": "Sceptic of confident claims on both sides; follows the best evidence wherever it goes.",
+   "voice": "Precise, brisk, deadly understatement ('That's... ambitious.'). Signature: 'Small sample, big claim.'",
+   "quirk": "Grades claims out of five on the spot ('that's a two out of five').",
+   "flaw": "Discounts lived experience that hasn't been measured.",
+   "concedes_like": "Crisply: 'Fair. The lab doesn't capture that.' Concedes when lived experience reveals something the data misses.",
+   "stake_hint": "She has seen her own field's famous results fail to replicate."
+  },
+  "Frank": {
+   "gender": "M", "accent": "US", "age": 61, "archetype": "the plain-spoken tradesman",
+   "who": "Retired union electrician, now on his small town's city council. Wired factories, hospitals and data centres for forty years.",
+   "expertise": "Work, trades, unions, local government, infrastructure, what changes mean for jobs and towns.",
+   "lens": "'Who cleans it up?' Judges ideas by what they do to workers, towns and the people left holding the bill.",
+   "natural_side": "Common-sense populist: distrusts hype and distant experts, respects things that are built to last.",
+   "voice": "Slow, plain, story-first; job-site anecdotes; folksy but sharp. Signature: 'I've pulled that wire.'",
+   "quirk": "Measures everything against the safety code ('there's a code for that, written in somebody's blood').",
+   "flaw": "Suspicious of anything new until it has a decade of track record.",
+   "concedes_like": "Plainly: 'Alright. You got me there, and I don't like it.' Concedes when the numbers are concrete.",
+   "stake_hint": "His town lost a plant once; he knows what a 'transition' feels like on the ground."
+  },
+  "Samuel": {
+   "gender": "M", "accent": "Indian English", "age": 45, "archetype": "the scale engineer from the Global South",
+   "who": "Software architect in Bengaluru who has built public-scale payment and identity systems used by hundreds of millions of people.",
+   "expertise": "Large-scale systems, digital public infrastructure, engineering trade-offs, the Global South view on technology.",
+   "lens": "'At a billion users, rare is daily.' Thinks in scale, defaults and who is excluded by design.",
+   "natural_side": "Pragmatic builder who distrusts Silicon Valley's assumptions about who the users are.",
+   "voice": "Energetic, generous, funny, with quick numbers and analogies. Signature: 'Let me tell you what happens at scale.'",
+   "quirk": "Gently points out when a 'universal' argument only fits rich countries.",
+   "flaw": "Can treat individual harm as an acceptable edge case.",
+   "concedes_like": "Warmly: 'Okay, okay, that edge case is a person. I accept that.' Concedes on individual rights.",
+   "stake_hint": "His systems decide whether people's pensions arrive."
+  }
+ },
+ "pairings": {
+  "_doc": "Any two guests can work because each has a distinct lens; these are the strongest clashes. The plan uses the matching 'clash' line to set the crux. With ONE guest, Carter takes the opposite position himself.",
+  "best": [
+   {"pair": ["Clara", "Lachlan"], "clash": "Build it vs. how does it fail. Old sparring partners; she calls him 'the human incident report', he keeps the ledger of her predictions.", "topics": "AI, tech, engineering, risk"},
+   {"pair": ["Clara", "Willa"], "clash": "Builder vs. insider critic: both from tech, opposite conclusions. Willa: 'I've been in that meeting.' Clara: 'I've run that meeting.'", "topics": "tech companies, platforms, AI products"},
+   {"pair": ["Isla", "Marcus"], "clash": "Dignity vs. price tags: what cannot be traded vs. everything has a cost.", "topics": "ethics, economics, healthcare, policy"},
+   {"pair": ["Zara", "Samuel"], "clash": "History of who was left out vs. scale engineering that includes or excludes by default; both reject the Silicon Valley frame, from opposite sides.", "topics": "technology and society, development, AI"},
+   {"pair": ["Imogen", "Isla"], "clash": "What can be measured vs. what matters but can't be measured.", "topics": "mind, meaning, psychology, philosophy"},
+   {"pair": ["Lachlan", "Samuel"], "clash": "Design for the crash vs. at scale you must accept some failure; both engineers, very different risk appetite.", "topics": "systems, safety, AI deployment"},
+   {"pair": ["Frank", "Clara"], "clash": "The worker who cleans up vs. the builder who ships; Frank's code 'written in blood' vs. Clara's 'iterate'.", "topics": "work, automation, jobs"},
+   {"pair": ["Willa", "Marcus"], "clash": "Corporate bad faith vs. incentives explain it without villains.", "topics": "platforms, regulation, markets"},
+   {"pair": ["Zara", "Imogen"], "clash": "Long-view narrative vs. 'show me the data'; she tells the story, Imogen grades it.", "topics": "science, history, moral panics"},
+   {"pair": ["Isla", "Lachlan"], "clash": "Character and care vs. checklists and safeguards; both cautious, about different things.", "topics": "ethics of technology, medicine, safety"}
+  ],
+  "avoid": [
+   {"pair": ["Frank", "Marcus"], "why": "Two US men next to US-male Carter: voices too similar for listeners."},
+   {"pair": ["Frank", "Carter-as-sceptic"], "why": "Frank solo with Carter: same accent and similar register; prefer a two-guest episode with a woman or a non-US accent."}
+  ],
+  "default_rule": "If a pair is not listed: give the advocate side to the guest whose natural_side fits the topic's optimistic case and the attack to the other; make the crux the point where their lenses collide."
+ },
+ "banned_phrases": ["hit the nail on the head", "elephant in the room", "intellectually lazy", "my view?", "spoken like true experts", "at the end of the day", "double-edged sword", "game-changer", "game changer", "good point", "you're absolutely right", "I'll grant that", "I'll concede"],
+ "caps": {"verbatim_quote_uses": 1, "statistic_uses": 2, "running_gag_uses": 3, "delivery_tags": ["[laughs]", "[sighs]"], "delivery_tags_per_turn": 1}
+}

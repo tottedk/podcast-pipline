@@ -17,7 +17,7 @@ param([string]$BriefPath = '', [switch]$DryRun, [switch]$FromTask, [switch]$Inne
 $ErrorActionPreference = 'Continue'; cd $Root
 . "$Root\tools\launcher_lib.ps1"   # Update-EpisodeIndex / Get-PostExitText
 $W = "$Root\deskr"; $RejBase = "$Root\episodes\_rejected"; $Arch = "$Root\desk_runs"; $py = "$Root\venv_vv\Scripts\python.exe"; $Engine = 'drama3'
-$Flux = if ($env:FLUX_SNAPSHOT) { $env:FLUX_SNAPSHOT } else { Join-Path $env:USERPROFILE '.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c' }
+$Flux = 'C:\Users\TJ\.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c'
 function St($m) { if (Test-Path $W) { Set-Content "$W\STATUS.txt" "$(Get-Date -f 'yyyy-MM-dd HH:mm:ss') $m"; Add-Content "$W\chain.log" "$(Get-Date -f 'HH:mm:ss') $m" } else { Write-Host $m } }
 function Log($m) { if (Test-Path $W) { Add-Content "$W\chain.log" "$(Get-Date -f 'HH:mm:ss') $m" } else { Write-Host $m } }
 function OllamaModels { try { @((Invoke-RestMethod http://localhost:11434/api/ps -TimeoutSec 5).models | % { $_.name }) } catch { @() } }
