@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
-ids=["c01a","c02c","c03a","c05b","c08c"]; D=r"C:\Users\TJ\Downloads"
+ids=["c01a","c02c","c03a","c05b","c08c"]; D=os.environ.get("PODCAST_OUT") or os.getcwd()
 f=ImageFont.truetype(r"C:\Windows\Fonts\segoeuib.ttf",40)
 outs=[]
 for i in ids:

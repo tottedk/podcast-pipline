@@ -81,7 +81,7 @@ Chk ([bool](Get-Command ffmpeg -EA 0) -and [bool](Get-Command ffprobe -EA 0)) 'f
 $vo = gc "$Root\voices.json" -Raw | ConvertFrom-Json
 foreach ($g in $gv) { $e = $vo.voices.$g; Chk ($e -and (Test-Path "$Root\$($e.file)")) "voice $g exists ($($e.file))"; Chk ($g -notin 'Maya','Declan','Alice','Mary','Hugh') "guest $g allowed with Carter" }
 Chk ([bool]($vo.voices.Elliot.credit -and $vo.voices.Clara.credit)) 'CC BY credit lines for Elliot + Clara in voices.json'
-Chk (Test-Path 'C:\Users\TJ\.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c\model_index.json') 'FLUX.1-schnell snapshot'
+Chk (Test-Path (Join-Path $(if ($env:FLUX_SNAPSHOT) { $env:FLUX_SNAPSHOT } else { Join-Path $env:USERPROFILE '.cache\huggingface\hub\models--unsloth--FLUX.1-schnell\snapshots\9df3faa7ae3b6ddf0b2b69bb78616372897cc65c' }) 'model_index.json')) 'FLUX.1-schnell snapshot'
 foreach ($f in 'run_episode.ps1', 'render_drama3.ps1', 'post_episode.ps1', 'post_segment.ps1', 'tools\start_faultlines_01.ps1') { $e = $null; [void][Management.Automation.Language.Parser]::ParseFile("$Root\$f", [ref]$null, [ref]$e); Chk ($e.Count -eq 0) "PowerShell parse $f" }
 if (-not $NoVramFree) { Chk (Test-Path 'C:\grok\vram\vram_free.ps1') 'vram_free.ps1 exists (graceful, guarded hook)' }
 $re = gc "$Root\run_episode.ps1" -Raw; $pe_ = gc "$Root\post_episode.ps1" -Raw

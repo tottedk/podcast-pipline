@@ -1,7 +1,7 @@
 ﻿import json,os,re,subprocess,glob,time
 import numpy as np
 R=r'C:\grok\podcast'; W=os.path.join(R,'fl1b'); O=os.path.join(W,'analysis')
-FF=r'C:\Users\TJ\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.exe'
+FF=os.environ.get('FFMPEG') or 'ffmpeg'
 NM={'Host':'Carter','Guest':'Elliot','Guest2':'Clara'}; SPK=['Host','Guest','Guest2']
 SR=16000; H=160
 def dec(f):

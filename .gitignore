@@ -73,3 +73,34 @@ noise_check/words_takes/
 noise_check/*.out
 noise_check/clips_staging/
 bb/
+
+# Secrets, weights, voice references, and generated runs.
+# Ignoring a path does not remove it from history or untrack a file already committed.
+.env
+.env.*
+!.env.example
+config.json
+*.pem
+*.key
+*credentials*.json
+*token*.json
+.venv/
+*.py[cod]
+models/
+weights/
+*.gguf
+*.ckpt
+*.onnx
+drama3_refs/
+voice_design/
+voice_candidates/
+voices/
+outputs/
+deskr/
+desk_runs/
+uploads/
+briefs/
+*.flac
+*.ogg
+*.m4a
+*.webm
