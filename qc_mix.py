@@ -7,12 +7,14 @@ v1.12 (2026-10-21, fl1b\\analysis\\TEMPO_PAUSES.md): --gate = BLOCKING checks (e
             >= --min_spk_words 150 words only). Prints 'SPKWPM <speaker> <wpm>' for every speaker.
   PAUSE   - any silence inside a line (between its first and last word) longer than --max_pause 1.5 s (20 ms frames > 30 dB below that
             line's speech level, i.e. a relative threshold, so a noisy floor cannot hide it).
-Fault Lines #1 v1.11 would have failed: Elliot 135.6 wpm, 15 intra-line pauses > 1.5 s (up to 3.8 s)."""
+Fault Lines #1 v1.11 would have failed: Elliot 135.6 wpm, 15 intra-line pauses > 1.5 s (up to 3.8 s).
+v1.14 (2026-11-07, Thomas t62u: keep the original fast Carter at fixed tempo 0.86): the HOST role has its own upper limit --wpm_hi_host (default 190;
+  Carter at 0.86 measured 169-180.5 wpm in full episodes). Guests keep --wpm_lo/--wpm_hi (145-175). The pause rule is unchanged."""
 import sys, os, json, subprocess, argparse, numpy as np
 ap = argparse.ArgumentParser(); ap.add_argument("mp3"); ap.add_argument("timings"); ap.add_argument("--json")
 ap.add_argument("--host", default="Carter"); ap.add_argument("--guest", default="Frank"); ap.add_argument("--guest2", default=""); ap.add_argument("--f0_tol", type=float, default=0.15)
 ap.add_argument("--gate", action="store_true"); ap.add_argument("--wpm_lo", type=float, default=145); ap.add_argument("--wpm_hi", type=float, default=175)
-ap.add_argument("--max_pause", type=float, default=1.5); ap.add_argument("--min_spk_words", type=int, default=150)
+ap.add_argument("--wpm_hi_host", type=float, default=190); ap.add_argument("--max_pause", type=float, default=1.5); ap.add_argument("--min_spk_words", type=int, default=150)
 a = ap.parse_args(); SR = 16000; HERE = os.path.dirname(os.path.abspath(__file__))
 load = lambda p: np.frombuffer(subprocess.check_output(["ffmpeg","-v","error","-i",p,"-ac","1","-ar",str(SR),"-f","f32le","-"]), np.float32)
 def f0(x, h=320, N=640):
@@ -76,9 +78,10 @@ for i, l in enumerate(T):
         if (j - k) * h / SR > a.max_pause: longp.append({"line": i, "speaker": l["speaker"], "t": round(b + k * h / SR, 1), "dur": round((j - k) * h / SR, 2)})
         k = j
 spk_wpm = {s: round(v[0] / v[1] * 60, 1) for s, v in spw.items() if v[1] > 0}
-fail = [f"SPKRATE {s} {w} wpm outside {a.wpm_lo:g}-{a.wpm_hi:g}" for s, w in spk_wpm.items() if spw[s][0] >= a.min_spk_words and not (a.wpm_lo <= w <= a.wpm_hi)]
+hi_of = lambda s: a.wpm_hi_host if s == "Host" else a.wpm_hi   # v1.14: host-only upper limit
+fail = [f"SPKRATE {s} {w} wpm outside {a.wpm_lo:g}-{hi_of(s):g}" for s, w in spk_wpm.items() if spw[s][0] >= a.min_spk_words and not (a.wpm_lo <= w <= hi_of(s))]
 res["gate"] = {"speaker_wpm": spk_wpm, "speaker_words": {s: v[0] for s, v in spw.items()}, "long_pauses": longp, "fail": fail + [f"PAUSE {p['t']}s {p['dur']}s line {p['line']} {p['speaker']}" for p in longp],
-               "limits": {"wpm": [a.wpm_lo, a.wpm_hi], "max_pause": a.max_pause}, "blocking": a.gate}
+               "limits": {"wpm": [a.wpm_lo, a.wpm_hi], "wpm_hi_host": a.wpm_hi_host, "max_pause": a.max_pause}, "blocking": a.gate}
 if a.json: json.dump(res, open(a.json, "w"), indent=1)
 mm = lambda t: f"{int(t//60)}:{int(t%60):02d}"
 for s in sil: print(f"SILENCE {mm(s['t'])} {s['dur']}s lines {s['lines']}")

@@ -11,7 +11,14 @@ v1.12:
   plan_tempo(): per-speaker tempo by REFERENCE name: drama3_tempo.json "voices" map = fixed values for known refs (Thomas-approved defaults for the
            current refs); refs not in the map (or every ref with auto_all) are auto-calibrated: tempo = target_wpm / measured raw wpm of that ref's
            first chunks in the run, clamped [min_tempo, max_tempo]; locked in <Dir>\\drama3_tempo_lock.json once >= min_words_lock words were measured,
-           so every later segment of the episode uses the same value."""
+           so every later segment of the episode uses the same value.
+v1.14 (2026-11-07, Carter tempo root fix, see templates\\technical_v1.14.md):
+  "voices" values may be a number (fixed tempo, as before) OR a dict {"mode": "per_segment", "target_wpm": 156, "min_tempo": 0.72, "max_tempo": 0.95}:
+           per_segment = tempo = target_wpm / raw wpm of THIS segment's chunks of that reference, never locked (Carter's raw Drama 3 pace swings
+           181-227 wpm between segments, so the fixed 0.86 landed at 177-180.5 wpm in the mix). With < min_words_provisional words the "fallback"
+           value of the dict (or the run fallback) is used.
+  pitch_std_st(): F0 std in semitones (librosa pyin 60-450 Hz, 16 kHz, frame 1024 - the voice_design qc_f0.py / Elliot-finding method) for the
+           drama3_generate.py pitch-variation gate."""
 import json, os, subprocess
 import numpy as np
 
@@ -62,14 +69,31 @@ def stretch(src, dst, tempo, sr=24000, ffmpeg="ffmpeg"):
 
 def _clip(t, c): return round(float(min(c["max_tempo"], max(c["min_tempo"], t))), 3)
 
+def pitch_std_st(w, sr):
+    """-> (F0 std in semitones around the chunk median, voiced seconds); (None, 0) when < 20 voiced frames. Same method as qc_f0.py."""
+    import librosa
+    y = np.asarray(w, dtype=np.float32)
+    if sr != 16000: y = librosa.resample(y, orig_sr=sr, target_sr=16000)
+    f0, _, _ = librosa.pyin(y, fmin=60, fmax=450, sr=16000, frame_length=1024)
+    f = f0[~np.isnan(f0)]
+    if len(f) < 20: return None, 0.0
+    return float(np.std(12 * np.log2(f / np.median(f)))), round(len(f) * 256 / 16000, 2)   # pyin hop = frame_length // 4 = 256
+
 def plan_tempo(cfg, refs_by_role, stats_by_ref, lock, fallback):
     """refs_by_role {role: refname}; stats_by_ref {ref: [words, pace_seconds]} measured on this run's chunks (raw, provisional clamp);
     lock {ref: {...}} (mutated: new auto values with enough words are locked). Returns {role: {"tempo", "src", "raw_wpm"}}."""
     out = {}
     for role, ref in refs_by_role.items():
         w, d = stats_by_ref.get(ref, [0, 0.0]); raw = round(w / d * 60, 1) if d > 0 else None
-        if ref in lock: out[role] = {"tempo": lock[ref]["tempo"], "src": "locked", "raw_wpm": raw}; continue
         fixed = cfg["voices"].get(ref)
+        if isinstance(fixed, dict):   # v1.14 per-voice rule (e.g. Carter per_segment), never locked
+            lo, hi = float(fixed.get("min_tempo", cfg["min_tempo"])), float(fixed.get("max_tempo", cfg["max_tempo"]))
+            if fixed.get("mode") == "per_segment" and raw and w >= cfg["min_words_provisional"]:
+                t = round(min(hi, max(lo, float(fixed.get("target_wpm", cfg["target_wpm"])) / raw)), 3)
+                out[role] = {"tempo": t, "src": "per_segment", "raw_wpm": raw}
+            else: out[role] = {"tempo": float(fixed.get("fallback", fallback)), "src": "voice-fallback", "raw_wpm": raw}
+            continue
+        if ref in lock: out[role] = {"tempo": lock[ref]["tempo"], "src": "locked", "raw_wpm": raw}; continue
         if fixed and not cfg.get("auto_all"): out[role] = {"tempo": float(fixed), "src": "map", "raw_wpm": raw}; continue
         if cfg.get("auto", True) and raw and w >= cfg["min_words_provisional"]:
             t = _clip(cfg["target_wpm"] / raw, cfg)
